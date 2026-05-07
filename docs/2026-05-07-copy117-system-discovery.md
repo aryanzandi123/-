@@ -652,8 +652,10 @@ Currency gate:
 - `models.py` metadata matches the current migration head.
 - `/api/results/TDP43` emits `locus`, `is_net_effect`, `chain_members`,
   `chain_id`, `hop_index`, `chain_context_pathway`, `hop_local_pathway`, and
-  claim-level `locus`, `chain_id`, `source`, `target`, `hop_index`, evidence,
-  and PMIDs where present.
+  claim-level `locus`, `chain_id`, `source`, `target`, evidence, and PMIDs
+  where present. Nonblocking caveat: some direct/net claims do not carry
+  claim-level `hop_index`, which is acceptable for this UI repair because the
+  row-level chain context is present where needed.
 
 Root cause:
 
@@ -698,7 +700,9 @@ Browser/runtime evidence after the path-scoped modal repair:
 - Local route: `http://127.0.0.1:5004/api/visualize/TDP43`.
 - Server was started with `SKIP_APP_BOOTSTRAP=1`; no migration, backfill, or DB
   write was run.
-- Browser console after route load and modal probes: 0 errors, 0 warnings.
+- Browser console after route load and modal probes: 0 JavaScript errors in the
+  checked pass. A later focus audit still reported the known nonblocking
+  `aria-hidden` modal focus warning.
 - Scoped Autophagy card context for `TBK1` in chain `2613`, position `1`,
   renders one modal row: `ULK1 -> TBK1`, `CHAIN-HOP CLAIMS`, `CHAIN HOP 1`,
   `ACTIVATES`, with the `Ser172 Transphosphorylation & TBK1 Kinase Activation`
@@ -717,6 +721,72 @@ Cache/staleness note:
 
 - `.env` has `FLASK_DEBUG=false`, which enables static and generated HTML
   caching in normal `app.py` runs.
+- The stale static `TDP43.json` cache is not used by `/api/results/TDP43` or
+  `/api/visualize/TDP43`; static browser/cache refresh can still matter for
+  legacy JS and generated visualization HTML.
 - The verification route used a fresh local process after code edits. If a
   browser appears stale, restart the backend process and force-refresh because
   backend code edits are not hot-reloaded in the existing process.
+
+## 2026-05-07 Final TDP43 Legacy Card View Evidence
+
+The initial completion claim was incomplete. Extra audits found three remaining
+holes: the visualizer still had an aggregate fallback when a chain-scoped
+selector returned empty, the modal layer could hydrate from aggregate `SNAP`
+rows for empty scoped contexts, and the browser proof had not yet shown actual
+chain-scoped rendered nodes for the TDP43 acceptance chain.
+
+Final DB/API gate:
+
+- Live DB is at Alembic head `20260504_0009`; `alembic check` is clean except
+  the known FK-cycle sort warning.
+- `/api/results/TDP43` has chain `2613` data plus the required direct, hop, and
+  net evidence for the Card View repair.
+- Nonblocking data caveats: claim-level `hop_index` is missing on some
+  direct/net claims, and two shared direct rows omit `chain_id`; neither blocks
+  scoped Card View repair because the needed row-level chain context exists for
+  the audited hops.
+- TDP43-owned hop3+ rows are absent in the DB. The TDP43 API does expose some
+  global/shared `hop_index>=3` rows from PERK reconstruction, so global hop3+
+  exists but is not TDP43-owned chain evidence.
+- Stale `TDP43.json` is not used by `/api/results` or `/api/visualize`; static
+  JS and generated HTML caches can still make a browser session look stale.
+
+Final root causes and fixes:
+
+1. Card View now passes `cardContext` into modal opening.
+2. The visualizer selector no longer falls back to aggregate rows when a
+   chain-scoped lookup misses.
+3. The modal layer suppresses `SNAP` aggregate hydration even for empty
+   chain-scoped contexts.
+4. Card View chain pre-pass removed the redundant `chainTouchesPathway`
+   endpoint-overlap gate, so pathway-admitted chains render scoped duplicate
+   nodes even when only interior chain members overlap the pathway.
+
+Final browser evidence:
+
+- Route: `/api/visualize/TDP43`; Autophagy expanded.
+- Chain `2613` rendered `ULK1`, `TBK1`, `SQSTM1`, and `TDP43`.
+- Actual rendered TBK1 chain node had `_chainId=2613`, `_chainPosition=1`, and
+  `_chainProteins=["ULK1","TBK1","SQSTM1","TDP43"]`.
+- Clicking that rendered chain node opened `TBK1 - Interactions (1)` with
+  `ULK1 -> TBK1`, `CHAIN-HOP CLAIMS`, `CHAIN HOP 1`, and `ACTIVATES`.
+- Aggregate TBK1 still opened the direct `TBK1 -> TDP43` modal, proving scoped
+  and aggregate behavior now diverge correctly.
+
+Final checks recorded:
+
+- `node --check` passed for `static/_legacy/card_view.js`,
+  `static/_legacy/modal.js`, and `static/_legacy/visualizer.js`.
+- Focused pytest bundle eventually reached `86 passed, 1 warning`.
+- Browser audits included a negative scoped-miss check and the full UI-click
+  pass above.
+
+Remaining risks:
+
+- `chain_with_arrows` contains stale semantic labels that can differ from the
+  claim effect.
+- The modal `aria-hidden` focus warning remains.
+- Cache/static refresh remains a verification caveat.
+- React v2 still waits.
+- Future schema/path-instance work remains backup-gated and out of this slice.

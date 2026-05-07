@@ -1363,14 +1363,11 @@ function buildCardHierarchy() {
                     const arrow = entry.arrow;
                     return (typeof arrow === 'string' && arrow.trim()) ? arrow.trim().toLowerCase() : null;
                 };
-                // P3.3: a chain renders here only when it earned membership
-                // via pathway-endpoint overlap or explicit chain pathway
-                // assignment (see groupChainsByChainId). The old fallback
-                // "chainIncludesMain" is gone — every ATXN3 chain trivially
-                // contained ATXN3, which is exactly why the screenshot
-                // showed 6 unrelated cascades all under PQC.
-                const chainTouchesPathway = chainProteins.some(p => pathwayInteractorSet.has(p));
-                if (!chainTouchesPathway) continue;
+                // P3.3/P3.4: groupChainsByChainId is the pathway admission
+                // gate. It already requires endpoint overlap or explicit
+                // pathway/claim membership, so do not re-apply a protein
+                // overlap check here; that drops valid pathway-scoped chains
+                // whose endpoints are not local aggregate interactors.
 
                 // Find the anchor point for this chain.
                 let anchorNodeId = null;
@@ -1392,15 +1389,11 @@ function buildCardHierarchy() {
                     startIdx = 0;
                 }
 
-                // F2/F7: removed the old "attach query-led chain to central
-                // main node" branch. That branch (a) referenced the now-
-                // undefined `chainIncludesMain` (runtime bug), and (b) was
-                // the reason every chain involving the query collapsed
-                // into a single visual blob under the pathway. Without it,
-                // each chain instance gets its own root via the
-                // independentChainRoot path below — so the same protein
-                // (e.g. ATXN3, PERK) appears once per chain, which is
-                // exactly the user's "show every chain separately" ask.
+                // F2/F7: avoid forcing every query-led chain back onto the
+                // central main node. Non-query-starting chains get an
+                // independent root below; query-starting chains may still
+                // reuse the main query node while preserving scoped hop
+                // nodes for downstream chain positions.
 
                 let prevNode = null;
                 let independentChainRoot = false;

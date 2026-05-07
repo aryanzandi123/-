@@ -99,6 +99,61 @@ console.log(JSON.stringify({{
     return json.loads(completed.stdout)
 
 
+def _run_group_chains_pathway_claim_fixture() -> dict[str, object]:
+    """Execute chain grouping for an explicit pathway claim without endpoint overlap."""
+    card = (PROJECT_ROOT / "static" / "_legacy" / "card_view.js").read_text()
+    function = _extract_js_function(card, "groupChainsByChainId")
+    script = f"""
+var window = {{}};
+var SNAP = {{
+  interactions: [
+    {{
+      _is_chain_link: true,
+      source: 'ULK1',
+      target: 'TBK1',
+      chain_id: '2613',
+      chain_pathways: ['Autophagy'],
+      _chain_entity: {{
+        pathway_name: 'Other pathway',
+        chain_proteins: ['ULK1', 'TBK1', 'SQSTM1', 'TDP43'],
+        chain_with_arrows: [],
+      }},
+    }},
+  ],
+}};
+
+{function}
+
+const groups = groupChainsByChainId(['ATG7'], 'Autophagy');
+const group = groups.get('2613');
+console.log(JSON.stringify({{
+  chainIds: Array.from(groups.keys()),
+  proteins: group ? group.proteins : [],
+  interactions: group ? group.interactions.length : 0,
+}}));
+"""
+    completed = subprocess.run(
+        ["node", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return json.loads(completed.stdout)
+
+
+def _chain_prepass_code(source: str) -> str:
+    """Return executable-looking lines from the Card View chain pre-pass."""
+    start = source.index("const chainGroups = groupChainsByChainId(")
+    end = source.index("// --- PASS 2: Extensions", start)
+    lines = []
+    for line in source[start:end].splitlines():
+        stripped = line.lstrip()
+        if stripped.startswith("//") or stripped.startswith("*"):
+            continue
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def test_card_view_preserves_full_non_query_chain_order():
     """Each chain renders as its own independent lane under a pathway.
 
@@ -133,6 +188,24 @@ def test_card_view_preserves_full_non_query_chain_order():
         "F7: chain-scoped UIDs must be present so the same protein can "
         "render once per chain instance"
     )
+
+
+def test_card_view_renders_chains_admitted_by_pathway_claim_without_overlap_gate():
+    """Chains admitted by pathway membership must reach chain-node construction."""
+    admitted = _run_group_chains_pathway_claim_fixture()
+    card = (PROJECT_ROOT / "static" / "_legacy" / "card_view.js").read_text()
+    prepass = _chain_prepass_code(card)
+
+    assert admitted == {
+        "chainIds": ["2613"],
+        "proteins": ["ULK1", "TBK1", "SQSTM1", "TDP43"],
+        "interactions": 1,
+    }
+    assert "for (const [chainId, chainGroup] of chainGroups)" in prepass
+    assert "chainProteins.some(p => pathwayInteractorSet.has(p))" not in prepass
+    assert "chainTouchesPathway" not in prepass
+    assert "rootNode._chainId = chainId;" in prepass
+    assert "node._chainId = chainId;" in prepass
 
 
 def test_pathway_modal_relevance_includes_chain_link_endpoints():

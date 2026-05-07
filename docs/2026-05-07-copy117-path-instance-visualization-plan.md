@@ -12,9 +12,10 @@ Legacy Card View should treat every displayed relationship as a path instance:
 - Aggregate node/modal: summary over many path instances.
 
 The current code-only repair preserves clicked Card View path context into the
-modal and fixes the immediate TDP43 directionality bug. The larger schema model
-should be additive and gated later; it is scientifically useful but not required
-to complete this legacy modal repair.
+modal, blocks aggregate fallback for chain-scoped misses, and fixes the
+immediate TDP43 directionality/rendering bug. The larger schema model should be
+additive and gated later; it is scientifically useful but not required to
+complete this legacy modal repair.
 
 React v2 still waits. It should consume the stabilized legacy/API semantics,
 not become the place where path semantics are invented.
@@ -36,9 +37,14 @@ TDP43 payload truth from `/api/results/TDP43`:
   `locus`, `is_net_effect`, `chain_members`, `chain_id`, `hop_index`,
   `chain_context_pathway`, `hop_local_pathway`, claim-level `locus`,
   claim-level `chain_id`, claim-level `source`, claim-level `target`, and
-  claim-level `hop_index`.
+  claim-level `hop_index` where present.
 - TDP43 has arbitrary-depth evidence in the payload: max `chain_members`
   length is 6 and max `hop_index` is 4.
+- Chain `2613` has the direct/hop/net evidence needed for the final TDP43 Card
+  View repair. Nonblocking caveats: some direct/net claims lack claim-level
+  `hop_index`, two shared direct rows omit `chain_id`, and TDP43-owned hop3+
+  rows are absent in DB while global/shared hop3+ rows from PERK reconstruction
+  still appear in the TDP43 API.
 
 ## Code-Only Repair Now
 
@@ -49,8 +55,12 @@ The immediate implementation should remain frontend/read-side only:
   pathway context, parent id, and visible relationship metadata.
 - Select modal rows from clicked chain context first:
   `chain_id`, ordered hop pair, and `hop_index`.
-- Only use aggregate protein lookup when the user clicked an aggregate/non-chain
-  card.
+- Do not fall back to aggregate protein lookup for a chain-scoped miss; aggregate
+  lookup is only for aggregate/non-chain card clicks.
+- Suppress modal `SNAP` aggregate hydration even when a chain-scoped context has
+  zero selected links.
+- Remove the redundant `chainTouchesPathway` endpoint-overlap gate from the Card
+  View chain pre-pass so pathway-admitted chains render scoped duplicate nodes.
 - Keep chain-hop rows out of query-relative indirect perspective logic.
 - Label net-effect and aggregate content explicitly, never as direct hop claims.
 
@@ -58,11 +68,34 @@ TDP43 acceptance after repair:
 
 - Scoped Autophagy `TBK1` card opens `ULK1 -> TBK1`, `CHAIN-HOP CLAIMS`,
   `CHAIN HOP 1`, `ACTIVATES`, with the Ser172/TBK1 claim.
+- Final browser proof clicked an actual rendered TBK1 chain node with
+  `_chainId=2613`, `_chainPosition=1`, and
+  `_chainProteins=["ULK1","TBK1","SQSTM1","TDP43"]`; the modal title was
+  `TBK1 - Interactions (1)`.
 - Scoped Stress Granule Dynamics `DDX3X` card opens `GLE1 -> DDX3X`,
   `CHAIN-HOP CLAIMS`, `CHAIN HOP 2`, `ACTIVATES`, with the GLE1/DDX3X claim.
 - Aggregate DDX3X modal shows both `GLE1 -> DDX3X` chain-hop and
   `TDP43 -> DDX3X` net-effect sections, clearly separated.
 - Direct `TBK1 -> TDP43` remains a direct pair claim.
+- Aggregate TBK1 still opens direct `TBK1 -> TDP43`, proving scoped and
+  aggregate paths diverge correctly.
+
+Final closeout notes:
+
+- Initial completion was incomplete: follow-up audits found the selector empty
+  fallback, modal empty fallback, and missing actual chain-scoped rendered-node
+  proof.
+- `node --check` passed for `static/_legacy/card_view.js`,
+  `static/_legacy/modal.js`, and `static/_legacy/visualizer.js`; the focused
+  pytest bundle eventually reached `86 passed, 1 warning`.
+- Browser audits included a negative scoped-miss case and the full
+  TDP43/Autophagy UI-click pass.
+- Stale `TDP43.json` is not used by `/api/results` or `/api/visualize`, but
+  static assets and generated visualization HTML can still look stale until the
+  app/browser are refreshed.
+- Remaining risks are stale `chain_with_arrows` semantic labels, the modal
+  `aria-hidden` focus warning, cache/static refresh caveats, React v2 waiting,
+  and future schema/path-instance work staying gated.
 
 ## Future Gated Schema
 

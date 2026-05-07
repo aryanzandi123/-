@@ -664,8 +664,10 @@ Repair performed:
 - `static/_legacy/visualizer.js`
   - Adds `selectLinksForCardContext()`.
   - When a chain card has `_chainId` and `_chainPosition`, selects the specific
-    hop row by chain id, hop index, and ordered source/target pair before
-    falling back to aggregate protein lookup.
+    hop row by chain id, hop index, and ordered source/target pair.
+  - Chain-scoped misses return no scoped rows instead of falling back to
+    aggregate protein lookup; aggregate fallback remains only for unscoped
+    protein cards.
 - `static/_legacy/modal.js`
   - Preserves scoped card links through pathway filtering.
   - Normalizes hop labels through `hop_index ?? _chain_position`.
@@ -687,7 +689,9 @@ TDP43 browser/API acceptance:
 - Net/aggregate case: aggregate DDX3X modal intentionally shows separate
   `CHAIN-HOP CLAIMS` (`GLE1 -> DDX3X`) and `NET-EFFECT CLAIMS`
   (`TDP43 -> DDX3X`) sections.
-- Browser console after route load and modal probes: 0 errors, 0 warnings.
+- Browser console after route load and modal probes: 0 JavaScript errors in the
+  checked pass; the nonblocking modal `aria-hidden` focus warning remains a P1
+  accessibility item.
 
 Verification run:
 
@@ -707,7 +711,65 @@ Remaining risks:
   repair is good enough for this UI bug because TDP43 already emits the needed
   read-side fields, but durable provenance should be handled in a gated schema
   slice.
+- `chain_with_arrows` can still contain stale semantic labels that differ from
+  the claim effect.
 - PMIDs are empty on the sampled TDP43 rows, so this pass verified evidence and
   claim placement, but not positive PMID rendering.
+- Static and generated visualization caches can make the browser look stale
+  after JS/backend edits; stale `TDP43.json` is not used by `/api/results` or
+  `/api/visualize`.
 - React v2 still waits. The legacy API/modal semantics must remain the source
   of truth before React consumes or replaces them.
+
+## 2026-05-07 Final TDP43 Legacy Card View Closeout
+
+Status: final for the bounded legacy Card View repair evidence. The earlier
+completion note was incomplete: follow-up subagents found a selector empty
+fallback, a modal empty fallback, and no proof that actual chain-scoped rendered
+nodes were present in the browser.
+
+Final fixes captured by this lane:
+
+- Card View passes `cardContext`.
+- `static/_legacy/visualizer.js` no longer falls back to aggregate rows for
+  chain-scoped misses.
+- `static/_legacy/modal.js` suppresses aggregate `SNAP` hydration even for
+  empty chain-scoped contexts.
+- Card View chain pre-pass removed/replaced the redundant
+  `chainTouchesPathway` endpoint-overlap gate, allowing pathway-admitted chains
+  to render scoped duplicate nodes.
+
+Final DB/API gate:
+
+- Live DB revision and repo head are both `20260504_0009`; `alembic check` is
+  clean.
+- TDP43 payload includes chain `2613` plus required direct, hop, and net
+  evidence.
+- Nonblocking caveats: claim-level `hop_index` is missing on some direct/net
+  claims, two shared direct rows omit `chain_id`, and TDP43-owned hop3+ rows are
+  absent in DB. The TDP43 API still exposes some global/shared `hop_index>=3`
+  rows from PERK reconstruction.
+
+Final browser acceptance:
+
+- `/api/visualize/TDP43`, Autophagy expanded, rendered chain `2613` nodes
+  `ULK1/TBK1/SQSTM1/TDP43`.
+- The actual rendered TBK1 chain node carried `_chainId=2613`,
+  `_chainPosition=1`, and
+  `_chainProteins=["ULK1","TBK1","SQSTM1","TDP43"]`.
+- Clicking that node opened `TBK1 - Interactions (1)` with `ULK1 -> TBK1`,
+  `CHAIN-HOP CLAIMS`, `CHAIN HOP 1`, and `ACTIVATES`.
+- Aggregate TBK1 still opened the direct `TBK1 -> TDP43` modal.
+
+Final verification record:
+
+- `node --check` passed for the three legacy JS files.
+- Focused pytest bundle eventually reached `86 passed, 1 warning`.
+- Browser audits included a negative scoped-miss check and the full UI-click
+  pass for the rendered chain node.
+
+Recommended main-lane next move:
+
+- Keep React v2 and schema/path-instance work gated. The smallest useful next
+  move is a short browser/runtime regression harness for the TDP43 scoped Card
+  View contexts, followed by the P1 modal focus warning or cache refresh lane.

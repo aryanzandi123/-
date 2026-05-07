@@ -75,6 +75,55 @@ function chainIncludesNode(interactionData, nodeId) {
   return legacy.some((p) => (p || '').toUpperCase() === target);
 }
 
+function getDisplayHopIndex(L) {
+  const value = L && (L.hop_index ?? L._chain_position);
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function buildChainNavClickedNode(target, hopLink) {
+  const previousNode = _lastModalArgs?.clickedNode || {};
+  const previousCardContext = previousNode.cardContext || previousNode._cardContext || {};
+  const hopIndex = getDisplayHopIndex(target);
+  const chainProteins = Array.isArray(target.chain_members)
+    ? target.chain_members.slice()
+    : Array.isArray(previousCardContext._chainProteins)
+      ? previousCardContext._chainProteins.slice()
+      : null;
+  const chainPosition = hopIndex != null ? hopIndex + 1 : (target._chain_position ?? previousCardContext._chainPosition ?? null);
+  const pathwayContext = previousNode._pathwayContext || previousCardContext._pathwayContext || previousNode.pathwayContext || null;
+  const pathwayId = previousNode.pathwayId || previousCardContext.pathwayId || pathwayContext?.id || null;
+  const nextCardContext = {
+    ...previousCardContext,
+    id: target.target,
+    label: target.target,
+    originalId: target.target,
+    pathwayId,
+    pathwayContext,
+    _pathwayContext: pathwayContext,
+    _chainId: target.chain_id ?? previousCardContext._chainId ?? null,
+    _chainPosition: chainPosition,
+    _chainLength: chainProteins ? chainProteins.length : previousCardContext._chainLength ?? null,
+    _chainProteins: chainProteins,
+    relationshipText: `Hop: ${target.source || '-'} ${target.arrow || 'binds'} ${target.target || '-'}`,
+    relationshipArrow: target.arrow || hopLink.arrow || previousCardContext.relationshipArrow || null,
+    _inboundChainArrow: target.arrow || previousCardContext._inboundChainArrow || null,
+  };
+
+  return {
+    ...previousNode,
+    id: target.target,
+    label: target.target,
+    originalId: target.target,
+    pathwayId,
+    _pathwayContext: pathwayContext,
+    cardContext: nextCardContext,
+    _chainId: nextCardContext._chainId,
+    _chainPosition: nextCardContext._chainPosition,
+    _chainProteins: nextCardContext._chainProteins,
+  };
+}
+
 function _getModalFocusableElements(modalEl) {
   if (!modalEl) return [];
   return Array.from(modalEl.querySelectorAll(_MODAL_FOCUSABLE_SELECTOR))
@@ -235,15 +284,15 @@ if (_modalBody) _modalBody.addEventListener('click', (e) => {
     };
     const chainHops = allInter
       .filter(matchesChain)
-      .sort((a, b) => (a._chain_position || 0) - (b._chain_position || 0));
+      .sort((a, b) => (getDisplayHopIndex(a) ?? 0) - (getDisplayHopIndex(b) ?? 0));
     if (!chainHops.length) return;
 
     let target = null;
     const navAction = navBtn.dataset.chainNav;
     if (navAction === 'prev' || navAction === 'next') {
-      const curHop = (_lastModalArgs?.nodeLinks?.[0]?.data?._chain_position) ?? 0;
+      const curHop = getDisplayHopIndex(_lastModalArgs?.nodeLinks?.[0]?.data) ?? 0;
       const desired = navAction === 'prev' ? curHop - 1 : curHop + 1;
-      target = chainHops.find(h => (h._chain_position || 0) === desired);
+      target = chainHops.find(h => getDisplayHopIndex(h) === desired);
     } else if (navBtn.dataset.protein) {
       // Clicking a chain protein chip — find the hop where this protein is
       // the *target* (preferred) or the *source* (fallback).
@@ -259,9 +308,10 @@ if (_modalBody) _modalBody.addEventListener('click', (e) => {
       arrow: target.arrow,
       direction: target.direction,
     };
+    const navClickedNode = buildChainNavClickedNode(target, hopLink);
     showAggregatedInteractionsModal(
       [hopLink],
-      target.target,
+      navClickedNode,
       { ...(_lastModalArgs?.options || {}), showAll: true }
     );
     return;
@@ -853,7 +903,7 @@ function showInteractionModal(link, clickedNode = null) {
   const interactionLocus = getInteractionLocus(L);
   const isNetEffectInteraction = interactionLocus === 'net_effect_claim';
   const isChainHopInteraction = interactionLocus === 'chain_hop_claim';
-  const isIndirectInteraction = L.interaction_type === 'indirect' || isNetEffectInteraction;
+  const isIndirectInteraction = !isChainHopInteraction && (L.interaction_type === 'indirect' || isNetEffectInteraction);
 
   // Use semantic source/target (biological direction) instead of D3's geometric source/target
   // Semantic fields preserve the biological meaning, while link.source/target are D3 node references
@@ -874,7 +924,7 @@ function showInteractionModal(link, clickedNode = null) {
   // - Direct: direction is QUERY-RELATIVE (main_to_primary = query→interactor)
   // - Indirect: direction is LINK-ABSOLUTE (main_to_primary = source→target after transformation)
   const direction = L.direction || link.direction || 'main_to_primary';
-  const isIndirect = L.interaction_type === 'indirect' || isNetEffectInteraction;
+  const isIndirect = !isChainHopInteraction && (L.interaction_type === 'indirect' || isNetEffectInteraction);
   const directionIsLinkAbsolute = L._direction_is_link_absolute || isIndirect;
 
   // S1: all directions are asymmetric. Arrow is always source → target.
@@ -994,7 +1044,7 @@ function showInteractionModal(link, clickedNode = null) {
 
       // Prev/next hop nav \u2014 only meaningful when chain has >1 hop.
       const totalHops = Math.max(1, chainProteins.length - 1);
-      const curHop = (L._chain_position || 0);
+      const curHop = getDisplayHopIndex(L) ?? 0;
       const navHTML = totalHops > 1
         ? `<div class="chain-hop-nav" style="font-size:11px;margin-top:6px;display:flex;gap:8px;">
              <button class="chain-hop-prev" data-chain-nav="prev" ${curHop <= 0 ? 'disabled' : ''}>\u2190 Prev hop</button>
@@ -1040,7 +1090,8 @@ function showInteractionModal(link, clickedNode = null) {
     const via = Array.isArray(L.via) && L.via.length ? ` via ${L.via.map(escapeHtml).join(' → ')}` : '';
     functionTypeBadge = `<span class="mechanism-badge badge-net">NET EFFECT${via}</span>`;
   } else if (isChainHopInteraction) {
-    const hopNumber = L.hop_index != null ? ` HOP ${Number(L.hop_index) + 1}` : ' HOP';
+    const displayHopIndex = getDisplayHopIndex(L);
+    const hopNumber = displayHopIndex != null ? ` HOP ${displayHopIndex + 1}` : ' HOP';
     functionTypeBadge = `<span class="mechanism-badge badge-chain">CHAIN${hopNumber}</span>`;
   } else if (isIndirectInteraction) {
     // Build full chain path display. Preference order inside
@@ -1266,7 +1317,8 @@ function showInteractionModal(link, clickedNode = null) {
     typeBadge = `<span class="mechanism-badge badge-net" style="font-size: 10px; padding: 3px 8px; margin-left: 12px;">${label}</span>`;
   } else if (isChainHopInteraction) {
     const localPw = L.hop_local_pathway ? ` · ${escapeHtml(L.hop_local_pathway)}` : '';
-    const hopLabel = L.hop_index != null ? `CHAIN HOP ${Number(L.hop_index) + 1}` : 'CHAIN HOP';
+    const displayHopIndex = getDisplayHopIndex(L);
+    const hopLabel = displayHopIndex != null ? `CHAIN HOP ${displayHopIndex + 1}` : 'CHAIN HOP';
     typeBadge = `<span class="mechanism-badge badge-chain" style="font-size: 10px; padding: 3px 8px; margin-left: 12px;">${hopLabel}${localPw}</span>`;
   } else if (isIndirect) {
     // See note in the earlier indirect branch — call buildFullChainPath
@@ -1654,11 +1706,13 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
   const nodeLabel = clickedNode.label || nodeId;
   // For pathway-expanded nodes, use originalId to look up actual interaction data
   const lookupId = clickedNode.originalId || nodeLabel;
+  const clickedCardContext = clickedNode.cardContext || clickedNode._cardContext || clickedNode;
 
   // If this is a pathway-expanded node and nodeLinks is empty or only contains pathway links,
   // look up the actual interaction data from SNAP.interactions
   let actualLinks = nodeLinks;
-  if (clickedNode.pathwayId && SNAP && SNAP.interactions) {
+  const hasScopedCardLinks = clickedCardContext?._chainId != null && Array.isArray(nodeLinks) && nodeLinks.length > 0;
+  if (clickedNode.pathwayId && SNAP && SNAP.interactions && !hasScopedCardLinks) {
     // Find interactions involving this protein (including as mediator in indirect chains)
     const interactionData = SNAP.interactions.filter(interaction => {
       const src = interaction.source || '';
@@ -1708,7 +1762,7 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
 
     // Filter to pathway-relevant interactions (skipped when "Show All" is active)
     const unfilteredCount = actualLinks.length;
-    if (!showAll) {
+    if (!showAll && !hasScopedCardLinks) {
       actualLinks = actualLinks.filter(link => {
         const L = link.data || {};
         const src = L.source || link.source?.originalId || link.source;
@@ -1950,7 +2004,7 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
     const locus = getInteractionLocus(L);
     const isChainHop = locus === 'chain_hop_claim';
     const isNetEffect = locus === 'net_effect_claim';
-    const isIndirect = L.interaction_type === 'indirect' || isNetEffect;
+    const isIndirect = !isChainHop && (L.interaction_type === 'indirect' || isNetEffect);
     const upstream = L.upstream_interactor;
     const indirectTarget = L.primary || tgtName;
     const isViewingIndirectInteractor = isIndirect && lookupId === indirectTarget && lookupId !== SNAP.main;
@@ -1993,7 +2047,8 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
     if (sectionType === 'shared') {
       typeBadgeHTML = '<span class="mechanism-badge" style="background: #9333ea; color: white;">SHARED</span>';
     } else if (sectionType === 'chain' || isChainHop) {
-      const hopLabel = L.hop_index != null ? `CHAIN HOP ${Number(L.hop_index) + 1}` : 'CHAIN HOP';
+      const displayHopIndex = getDisplayHopIndex(L);
+      const hopLabel = displayHopIndex != null ? `CHAIN HOP ${displayHopIndex + 1}` : 'CHAIN HOP';
       const pathwayLabel = L.hop_local_pathway || L.chain_context_pathway || '';
       typeBadgeHTML = `<span class="mechanism-badge badge-chain" title="${escapeHtml(pathwayLabel || 'Adjacent hop within an indirect chain')}">${hopLabel}</span>`;
     } else if (sectionType === 'net' || isNetEffect) {

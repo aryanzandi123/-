@@ -1,0 +1,23 @@
+[   53914ms] [LOG] ✅ Step 1: RAW data loaded {keys: Array(4), hasSnapshot: true, hasCtx: true} @ http://127.0.0.1:5004/api/visualize/TDP43:553
+[   53914ms] [LOG] ✅ Step 2: SNAP extracted {main: TDP43, keys: Array(7), hasProteins: true, hasInteractors: true, hasInteractions: true} @ http://127.0.0.1:5004/api/visualize/TDP43:582
+[   53914ms] [LOG] ✅ Step 3: Data loaded (hydration removed - using direct database format) @ http://127.0.0.1:5004/api/visualize/TDP43:651
+[   53918ms] [LOG] Initialized view mode: both @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:8453
+[   53938ms] [LOG] [SessionStorage] No saved jobs found @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:6758
+[  116689ms] [LOG] Opening Card Modal for: TBK1 with 1 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  116689ms] [LOG]   → 3 in Autophagy, 1 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  116690ms] [LOG] [Pathway Filter] TBK1: 1/1 interactions in "Autophagy" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[  116705ms] [LOG] Opening Card Modal for: DDX3X with 1 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  116705ms] [LOG]   → 2 in Stress Granule Dynamics, 0 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  116705ms] [LOG] [Pathway Filter] DDX3X: 1/1 interactions in "Stress Granule Dynamics" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[  116708ms] [LOG] Opening Card Modal for: DDX3X with 2 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  116708ms] [LOG]   → 2 in Stress Granule Dynamics, 0 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  116708ms] [LOG] [Pathway Filter] DDX3X: 2/2 interactions in "Stress Granule Dynamics" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[  116714ms] [LOG] Opening Card Modal for: TBK1 with 4 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  116714ms] [LOG]   → 3 in Protein Quality Control, 1 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  116714ms] [LOG] [Pathway Filter] TBK1: 4/4 interactions in "Protein Quality Control" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[  214267ms] [LOG] Opening Card Modal for: OPTN with 1 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  214267ms] [LOG]   → 2 in Proteostasis, 2 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  214268ms] [LOG] [Pathway Filter] OPTN: 1/1 interactions in "Proteostasis" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[  216252ms] [LOG] Opening Card Modal for: MAP1LC3B with 1 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
+[  216252ms] [LOG]   → 2 in Proteostasis, 0 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
+[  216252ms] [LOG] [Pathway Filter] MAP1LC3B: 1/1 interactions in "Proteostasis" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819

@@ -10517,7 +10517,71 @@ window.getNodeRelationship = (nodeId) => {
 // MODAL HANDLER FOR CARD VIEW (Independent of Graph Links)
 // ============================================================================
 
-window.openModalForCard = (nodeId, pathwayContext = null) => {
+function cardContextChainMatches(interaction, chainId) {
+  if (chainId == null || chainId === '') return true;
+  const wanted = String(chainId);
+  if (String(interaction.chain_id ?? '') === wanted) return true;
+  if (Array.isArray(interaction.chain_ids) && interaction.chain_ids.some(cid => String(cid) === wanted)) return true;
+  if (Array.isArray(interaction.all_chains) && interaction.all_chains.some(chain => String(chain?.chain_id ?? '') === wanted)) return true;
+  return false;
+}
+
+function getCardContextHopCandidates(cardContext) {
+  const proteins = Array.isArray(cardContext?._chainProteins)
+    ? cardContext._chainProteins.filter(Boolean)
+    : [];
+  const position = Number(cardContext?._chainPosition);
+  if (!Number.isFinite(position) || proteins.length < 2) return [];
+
+  const seen = new Set();
+  const candidates = [];
+  const addCandidate = (hopIndex) => {
+    if (!Number.isFinite(hopIndex) || hopIndex < 0 || hopIndex >= proteins.length - 1) return;
+    const key = String(hopIndex);
+    if (seen.has(key)) return;
+    seen.add(key);
+    candidates.push({
+      hopIndex,
+      source: proteins[hopIndex],
+      target: proteins[hopIndex + 1],
+    });
+  };
+
+  // Non-root chain cards display their inbound hop. Root cards have no
+  // inbound hop, so use the first outbound segment instead.
+  if (position > 0) {
+    addCandidate(position - 1);
+  } else {
+    addCandidate(position);
+  }
+  return candidates;
+}
+
+function getCardRowHopIndex(interaction) {
+  const value = interaction && (interaction.hop_index ?? interaction._chain_position);
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function selectLinksForCardContext(interactions, cardContext) {
+  const chainId = cardContext?._chainId;
+  const hopCandidates = getCardContextHopCandidates(cardContext);
+  if (chainId == null || hopCandidates.length === 0) return interactions;
+
+  const scoped = interactions.filter(interaction => {
+    if (!cardContextChainMatches(interaction, chainId)) return false;
+    if (getLegacyInteractionLocus(interaction) !== 'chain_hop_claim') return false;
+    const rowHop = getCardRowHopIndex(interaction);
+    return hopCandidates.some(candidate =>
+      rowHop === candidate.hopIndex &&
+      interaction.source === candidate.source && interaction.target === candidate.target
+    );
+  });
+
+  return scoped.length ? scoped : interactions;
+}
+
+window.openModalForCard = (nodeId, pathwayContext = null, cardContext = null) => {
   if (!SNAP || !SNAP.interactions) {
     console.error('SNAP data not found');
     return;
@@ -10530,32 +10594,34 @@ window.openModalForCard = (nodeId, pathwayContext = null) => {
   // holds every protein in the chain regardless of the query's position),
   // falling back to the legacy mediator_chain for older rows.
   const nodeIdUpper = (nodeId || '').toUpperCase();
+  const lookupId = cardContext?.originalId || nodeId;
+  const lookupIdUpper = (lookupId || '').toUpperCase();
   const interactionData = SNAP.interactions.filter(interaction => {
     const src = interaction.source || '';
     const tgt = interaction.target || '';
-    if (src === nodeId || tgt === nodeId) return true;
+    if (src === lookupId || tgt === lookupId) return true;
     // Query protein owns ALL indirect interactions (discovered from its perspective)
-    if (nodeId === SNAP.main && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
+    if (lookupId === SNAP.main && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
     if (interaction.interaction_type === 'indirect' || interaction.type === 'indirect') {
-      if (interaction.upstream_interactor === nodeId) return true;
+      if (interaction.upstream_interactor === lookupId) return true;
       // Prefer chain_context.full_chain (query-position-agnostic).
       const ctx = interaction.chain_context || null;
       const fullChain =
         ctx && Array.isArray(ctx.full_chain) && ctx.full_chain.length >= 2
           ? ctx.full_chain
           : null;
-      if (fullChain && fullChain.some((p) => (p || '').toUpperCase() === nodeIdUpper)) {
+      if (fullChain && fullChain.some((p) => (p || '').toUpperCase() === lookupIdUpper)) {
         return true;
       }
       // Legacy fallback.
       const chain = interaction.mediator_chain || [];
-      if (chain.some((p) => (p || '').toUpperCase() === nodeIdUpper)) return true;
+      if (chain.some((p) => (p || '').toUpperCase() === lookupIdUpper)) return true;
     }
     return false;
   });
 
   if (interactionData.length === 0) {
-    console.warn('No interactions found for', nodeId);
+    console.warn('No interactions found for', lookupId);
   }
 
   // ✅ IMPROVED: Filter/mark interactions by pathway context
@@ -10589,7 +10655,7 @@ window.openModalForCard = (nodeId, pathwayContext = null) => {
       // Drop the clicked node itself — we want to know whether *the rest* of
       // the interaction anchors to the pathway, not whether the user clicked
       // an interactor.
-      candidates.delete(nodeId);
+      candidates.delete(lookupId);
       for (const p of candidates) {
         if (pathwayInteractionIds.has(p)) return true;
       }
@@ -10601,7 +10667,9 @@ window.openModalForCard = (nodeId, pathwayContext = null) => {
   }
 
   // Convert to link objects
-  const links = interactionData.map(interaction => ({
+  const selectedInteractions = selectLinksForCardContext(interactionData, cardContext);
+
+  const links = selectedInteractions.map(interaction => ({
     data: interaction,
     source: { id: interaction.source, originalId: interaction.source },
     target: { id: interaction.target, originalId: interaction.target },
@@ -10614,15 +10682,20 @@ window.openModalForCard = (nodeId, pathwayContext = null) => {
 
   // Mock node object
   const nodeObj = {
-    id: nodeId,
-    label: nodeId,
-    originalId: nodeId,
-    _pathwayContext: pathwayContext, // Store context for modal rendering
+    id: lookupId,
+    label: cardContext?.label || lookupId,
+    originalId: lookupId,
+    pathwayId: cardContext?.pathwayId || pathwayContext?.id || null,
+    _pathwayContext: cardContext?._pathwayContext || pathwayContext, // Store context for modal rendering
+    cardContext: cardContext,
+    _chainId: cardContext?._chainId ?? null,
+    _chainPosition: cardContext?._chainPosition ?? null,
+    _chainProteins: Array.isArray(cardContext?._chainProteins) ? cardContext._chainProteins.slice() : null,
     _relevantCount: relevantInteractions.length,
     _otherCount: otherInteractions.length
   };
 
-  console.log('Opening Card Modal for:', nodeId, 'with', links.length, 'interactions');
+  console.log('Opening Card Modal for:', lookupId, 'with', links.length, 'interactions');
   if (pathwayContext) {
     console.log(`  → ${relevantInteractions.length} in ${pathwayContext.name}, ${otherInteractions.length} in other pathways`);
   }

@@ -103,3 +103,45 @@ def test_graph_link_classes_use_locus_for_net_and_chain_rows():
     assert "locus === 'net_effect_claim') classes += ' link-net-effect'" in visualizer
     assert "locus === 'chain_hop_claim') classes += ' link-indirect-chain'" in visualizer
     assert "interactionType: interaction.interaction_type || interaction.type || 'direct'" in visualizer
+
+
+def test_card_view_passes_chain_context_to_modal_open():
+    card = (PROJECT_ROOT / "static" / "_legacy" / "card_view.js").read_text()
+    visualizer = (PROJECT_ROOT / "static" / "_legacy" / "visualizer.js").read_text()
+
+    assert "function makeCardModalContext(d, pathwayContext = null)" in card
+    assert "_chainId: data._chainId ?? null" in card
+    assert "_chainPosition: data._chainPosition ?? null" in card
+    assert "_chainProteins: Array.isArray(data._chainProteins)" in card
+    assert "const cardContext = makeCardModalContext(d, pathwayContext);" in card
+    assert "window.openModalForCard(d.data.id, pathwayContext, cardContext);" in card
+    assert "window.openModalForCard = (nodeId, pathwayContext = null, cardContext = null)" in visualizer
+
+
+def test_modal_selection_prefers_chain_id_and_hop_context():
+    visualizer = (PROJECT_ROOT / "static" / "_legacy" / "visualizer.js").read_text()
+    modal = (PROJECT_ROOT / "static" / "_legacy" / "modal.js").read_text()
+
+    assert "function selectLinksForCardContext(interactions, cardContext)" in visualizer
+    assert "const chainId = cardContext?._chainId;" in visualizer
+    assert "const hopCandidates = getCardContextHopCandidates(cardContext);" in visualizer
+    assert "rowHop === candidate.hopIndex" in visualizer
+    assert "interaction.source === candidate.source && interaction.target === candidate.target" in visualizer
+    assert "const selectedInteractions = selectLinksForCardContext(interactionData, cardContext);" in visualizer
+    assert "const hasScopedCardLinks = clickedCardContext?._chainId != null" in modal
+    assert "if (!showAll && !hasScopedCardLinks)" in modal
+
+
+def test_modal_hop_labels_and_chain_nav_preserve_context_object():
+    modal = (PROJECT_ROOT / "static" / "_legacy" / "modal.js").read_text()
+
+    assert "function getDisplayHopIndex(L)" in modal
+    assert "const value = L && (L.hop_index ?? L._chain_position);" in modal
+    assert "getDisplayHopIndex(L)" in modal
+    assert "const navClickedNode = buildChainNavClickedNode(target, hopLink);" in modal
+    assert "showAggregatedInteractionsModal(" in modal
+    assert "navClickedNode," in modal
+    assert "cardContext: nextCardContext" in modal
+    assert "const isIndirectInteraction = !isChainHopInteraction && (L.interaction_type === 'indirect' || isNetEffectInteraction);" in modal
+    assert "const isIndirect = !isChainHopInteraction && (L.interaction_type === 'indirect' || isNetEffectInteraction);" in modal
+    assert "const isIndirect = !isChainHop && (L.interaction_type === 'indirect' || isNetEffect);" in modal

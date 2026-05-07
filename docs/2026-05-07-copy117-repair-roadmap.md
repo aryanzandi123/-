@@ -639,3 +639,75 @@ Remaining P1/P0 candidates:
   DNAJB1, TBK1, and CYLD as report-only, plus XPO1 arrow/content warnings.
   Persisted pathway or arrow reassignment would be stored scientific-data work
   and requires the explicit DB/data gate.
+
+## 2026-05-07 Path-Scoped Card Modal Repair
+
+Status: completed as a code-only legacy frontend slice. No schema migration,
+live DB write, data backfill, route-default change, or React v2 work was
+performed.
+
+Problem:
+
+- Card View already rendered separate chain/path instances, including duplicate
+  protein cards by `_uid`.
+- The click handoff collapsed that path instance back to only a protein id.
+- The modal rebuilt from global protein membership and could therefore select
+  the wrong hop, a query-to-terminal net effect, or aggregate context.
+
+Repair performed:
+
+- `static/_legacy/card_view.js`
+  - Adds `makeCardModalContext()`.
+  - Passes clicked `_uid`, `_chainId`, `_chainPosition`, `_chainLength`,
+    `_chainProteins`, pathway context, parent id, and visible relationship
+    metadata into `openModalForCard()`.
+- `static/_legacy/visualizer.js`
+  - Adds `selectLinksForCardContext()`.
+  - When a chain card has `_chainId` and `_chainPosition`, selects the specific
+    hop row by chain id, hop index, and ordered source/target pair before
+    falling back to aggregate protein lookup.
+- `static/_legacy/modal.js`
+  - Preserves scoped card links through pathway filtering.
+  - Normalizes hop labels through `hop_index ?? _chain_position`.
+  - Keeps chain-hop rows out of indirect mediator perspective logic.
+  - Fixes chain navigation to reopen with a clicked-node/context object instead
+    of a bare protein string.
+
+TDP43 browser/API acceptance:
+
+- Direct case: `TBK1 -> TDP43` remains `DIRECT PAIR CLAIMS` with the
+  TBK1/TDP43 phosphorylation claim.
+- Chain-hop case: scoped Autophagy `TBK1` card in chain `2613` opens
+  `ULK1 -> TBK1`, `CHAIN-HOP CLAIMS`, `CHAIN HOP 1`, `ACTIVATES`, with the
+  Ser172/TBK1 activation claim and no `TDP43 -> TBK1` false arrow.
+- Chain-hop regression case: scoped Stress Granule Dynamics `DDX3X` card in
+  chain `2624` opens `GLE1 -> DDX3X`, `CHAIN-HOP CLAIMS`, `CHAIN HOP 2`,
+  `ACTIVATES`, with the GLE1/DDX3X RNA-helicase claim and no
+  `TDP43 -> DDX3X` false hop arrow.
+- Net/aggregate case: aggregate DDX3X modal intentionally shows separate
+  `CHAIN-HOP CLAIMS` (`GLE1 -> DDX3X`) and `NET-EFFECT CLAIMS`
+  (`TDP43 -> DDX3X`) sections.
+- Browser console after route load and modal probes: 0 errors, 0 warnings.
+
+Verification run:
+
+- `node --check static/_legacy/card_view.js`
+- `node --check static/_legacy/modal.js`
+- `node --check static/_legacy/visualizer.js`
+- `SKIP_APP_BOOTSTRAP=1 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_card_view_chain_contract.py`
+  -> 9 passed, 1 warning.
+- `SKIP_APP_BOOTSTRAP=1 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_data_builder_chain_links.py tests/test_card_view_chain_contract.py tests/test_routes_visualization.py tests/test_claim_locus_router.py tests/test_chain_orientation.py`
+  -> 83 passed, 1 warning.
+- Browser route `/api/visualize/TDP43` with a local `SKIP_APP_BOOTSTRAP=1`
+  server.
+
+Remaining risks:
+
+- Current schema still lacks a first-class path/hop occurrence model. Code-only
+  repair is good enough for this UI bug because TDP43 already emits the needed
+  read-side fields, but durable provenance should be handled in a gated schema
+  slice.
+- PMIDs are empty on the sampled TDP43 rows, so this pass verified evidence and
+  claim placement, but not positive PMID rendering.
+- React v2 still waits. The legacy API/modal semantics must remain the source
+  of truth before React consumes or replaces them.

@@ -3879,6 +3879,37 @@ function resizeCardViewToFit(nodes) {
 // INTERACTIONS
 // ============================================================================
 
+function makeCardModalContext(d, pathwayContext = null) {
+    const data = d?.data || {};
+    const parentData = d?.parent?.data || null;
+    const inheritedPathwayContext = pathwayContext || data._pathwayContext || (
+        data.pathwayId
+            ? { id: data.pathwayId, name: data.pathwayId }
+            : null
+    );
+
+    return {
+        id: data.id,
+        label: data.label || data.id,
+        originalId: data.originalId || data._duplicateOf || data.id,
+        uid: data._uid || null,
+        nodeType: data.type || null,
+        parentId: parentData?._uid || parentData?.id || data.parentId || null,
+        pathwayId: inheritedPathwayContext?.id || data.pathwayId || null,
+        pathwayContext: inheritedPathwayContext,
+        _pathwayContext: inheritedPathwayContext,
+        _chainId: data._chainId ?? null,
+        _chainPosition: data._chainPosition ?? null,
+        _chainLength: data._chainLength ?? null,
+        _chainProteins: Array.isArray(data._chainProteins) ? data._chainProteins.slice() : null,
+        relationshipText: data.contextText || '',
+        relationshipArrow: data.arrowType || data._inboundChainArrow || null,
+        _inboundChainArrow: data._inboundChainArrow || null,
+        duplicateOf: data._duplicateOf || null,
+        isChainDuplicate: !!data._isChainDuplicate,
+    };
+}
+
 function handleCardClick(event, d) {
     // --- Interactor Mode: direction_group / arrow_subgroup click = toggle expand ---
     if (d.data.type === 'direction_group') {
@@ -3931,13 +3962,15 @@ function handleCardClick(event, d) {
         }
 
         if (window.openModalForCard) {
-            window.openModalForCard(d.data.id, pathwayContext);
+            const cardContext = makeCardModalContext(d, pathwayContext);
+            window.openModalForCard(d.data.id, pathwayContext, cardContext);
         } else if (window.handleNodeClick) {
             window.handleNodeClick({
                 id: d.data.id,
                 type: 'interactor',
                 label: d.data.label,
-                pathwayContext: pathwayContext
+                pathwayContext: pathwayContext,
+                cardContext: makeCardModalContext(d, pathwayContext)
             });
         }
     } else {

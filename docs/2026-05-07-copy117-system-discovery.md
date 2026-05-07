@@ -635,3 +635,88 @@ Remaining runtime/UI risks from this pass:
 - Browser console has no JavaScript errors in the checked pass, but Chrome
   reports one accessibility warning when closing the modal because focus
   remains inside an `aria-hidden` modal ancestor.
+
+## 2026-05-07 Path-Scoped Modal Discovery
+
+Fresh TDP43-only investigation found that the remaining card/modal direction
+risk was frontend context loss, not schema drift.
+
+Currency gate:
+
+- Live DB Alembic revision: `20260504_0009`.
+- Repo Alembic head: `20260504_0009`.
+- Live DB is at head.
+- `alembic check`: no new upgrade operations detected.
+- The only Alembic warning is the known FK-cycle sort warning between
+  `indirect_chains` and `interactions`.
+- `models.py` metadata matches the current migration head.
+- `/api/results/TDP43` emits `locus`, `is_net_effect`, `chain_members`,
+  `chain_id`, `hop_index`, `chain_context_pathway`, `hop_local_pathway`, and
+  claim-level `locus`, `chain_id`, `source`, `target`, `hop_index`, evidence,
+  and PMIDs where present.
+
+Root cause:
+
+- Card View creates path-specific chain nodes with `_uid`, `_chainId`,
+  `_chainPosition`, `_chainLength`, `_chainProteins`, `pathwayId`, and
+  `_pathwayContext`.
+- Before this repair, `handleCardClick()` called
+  `window.openModalForCard(d.data.id, pathwayContext)` and discarded the
+  clicked path instance.
+- `openModalForCard()` then rebuilt modal links by scanning every
+  `SNAP.interactions` row involving that protein or containing it anywhere in
+  a chain. That aggregate lookup could select a sibling hop, net-effect row, or
+  query-relative context instead of the clicked Card View position.
+- `showAggregatedInteractionsModal()` also treated some chain-hop rows with
+  `interaction_type=indirect` as indirect aggregate rows, which could invoke
+  mediator perspective logic on a hop-local claim.
+
+TDP43 API evidence used for the repair:
+
+- Direct/length-1 probe: `TBK1 -> TDP43`, `locus=direct_claim`,
+  `interaction_type=direct`, claim `source=TBK1`, `target=TDP43`.
+- Chain-hop probe: `ULK1 -> TBK1`, `locus=chain_hop_claim`, `chain_id=2613`,
+  `hop_index=0`, `chain_members=["ULK1","TBK1","SQSTM1","TDP43"]`.
+- Chain-hop regression probe: `GLE1 -> DDX3X`, `locus=chain_hop_claim`,
+  `chain_id=2624`, `hop_index=1`,
+  `chain_members=["TDP43","GLE1","DDX3X"]`.
+- Net-effect probe: `TDP43 -> DDX3X`, `locus=net_effect_claim`,
+  `chain_id=2624`, `chain_members=["TDP43","GLE1","DDX3X"]`.
+- Net-effect probe: `TDP43 -> ULK1`, `locus=net_effect_claim`,
+  `chain_id=2613`, `chain_members=["ULK1","TBK1","SQSTM1","TDP43"]`.
+
+TDP43 arbitrary-depth evidence:
+
+- Payload max `chain_members` length: 6.
+- Payload max `hop_index`: 4.
+- TDP43 payload includes hop 3+ rows from cross-query chain instances; these
+  are emitted through `snapshot_json.interactions` and should not be silently
+  truncated by Card View.
+
+Browser/runtime evidence after the path-scoped modal repair:
+
+- Local route: `http://127.0.0.1:5004/api/visualize/TDP43`.
+- Server was started with `SKIP_APP_BOOTSTRAP=1`; no migration, backfill, or DB
+  write was run.
+- Browser console after route load and modal probes: 0 errors, 0 warnings.
+- Scoped Autophagy card context for `TBK1` in chain `2613`, position `1`,
+  renders one modal row: `ULK1 -> TBK1`, `CHAIN-HOP CLAIMS`, `CHAIN HOP 1`,
+  `ACTIVATES`, with the `Ser172 Transphosphorylation & TBK1 Kinase Activation`
+  claim. It does not render `TDP43 -> TBK1`.
+- Scoped Stress Granule Dynamics card context for `DDX3X` in chain `2624`,
+  position `2`, renders one modal row: `GLE1 -> DDX3X`, `CHAIN-HOP CLAIMS`,
+  `CHAIN HOP 2`, `ACTIVATES`, with the GLE1/DDX3X RNA-helicase claim. It does
+  not render `TDP43 -> DDX3X` as the clicked hop.
+- Aggregate DDX3X modal still intentionally shows both sections:
+  `CHAIN-HOP CLAIMS` for `GLE1 -> DDX3X` and `NET-EFFECT CLAIMS` for
+  `TDP43 -> DDX3X`.
+- Aggregate TBK1 modal shows the direct `TBK1 -> TDP43` claim under
+  `DIRECT PAIR CLAIMS`.
+
+Cache/staleness note:
+
+- `.env` has `FLASK_DEBUG=false`, which enables static and generated HTML
+  caching in normal `app.py` runs.
+- The verification route used a fresh local process after code edits. If a
+  browser appears stale, restart the backend process and force-refresh because
+  backend code edits are not hot-reloaded in the existing process.

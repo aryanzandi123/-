@@ -1,0 +1,12 @@
+[   53975ms] [LOG] ✅ Step 1: RAW data loaded {keys: Array(4), hasSnapshot: true, hasCtx: true} @ http://127.0.0.1:5003/api/visualize/TDP43:553
+[   53975ms] [LOG] ✅ Step 2: SNAP extracted {main: TDP43, keys: Array(7), hasProteins: true, hasInteractors: true, hasInteractions: true} @ http://127.0.0.1:5003/api/visualize/TDP43:582
+[   53975ms] [LOG] ✅ Step 3: Data loaded (hydration removed - using direct database format) @ http://127.0.0.1:5003/api/visualize/TDP43:651
+[   53978ms] [LOG] Initialized view mode: both @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778159435:8453
+[   54007ms] [LOG] [SessionStorage] No saved jobs found @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778159435:6758
+[  154453ms] [LOG] Opening Card Modal for: DDX3X with 2 interactions @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778159435:10624
+[  154453ms] [LOG]   → 2 in Stress Granule Dynamics, 0 in other pathways @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778159435:10626
+[  154454ms] [LOG] [Pathway Filter] DDX3X: 2/2 interactions in "Stress Granule Dynamics" @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778159435:1765
+[  230083ms] [LOG] [Pathway Filter] DDX3X: 2/2 interactions in "Stress Granule Dynamics" (Show All) @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778159435:1765
+[  252176ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <button.close-btn>
+Ancestor with aria-hidden: <div.modal#modal> @ http://127.0.0.1:5003/api/visualize/TDP43:0

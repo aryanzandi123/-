@@ -1,8 +1,8 @@
 {
   "protein": "ATXN3",
   "first_queried": "2026-05-04T00:19:39.383425Z",
-  "last_queried": "2026-05-07T16:37:31.296081Z",
-  "query_count": 18,
+  "last_queried": "2026-05-07T16:48:27.020501Z",
+  "query_count": 19,
   "total_interactions": 1,
   "interaction_partners": [
     "VCP"

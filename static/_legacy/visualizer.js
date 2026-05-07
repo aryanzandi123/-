@@ -10582,11 +10582,13 @@ function getCardContextHopCandidates(cardContext) {
     });
   };
 
-  // Non-root chain cards display their inbound hop. Root cards have no
-  // inbound hop, so use the first outbound segment instead.
+  // A chain-scoped modal is a protein-instance modal, not an edge modal.
+  // Middle proteins own both adjacent hops: inbound and outbound. Root and
+  // terminal proteins only own their single adjacent hop.
   if (position > 0) {
     addCandidate(position - 1);
-  } else {
+  }
+  if (position < proteins.length - 1) {
     addCandidate(position);
   }
   return candidates;
@@ -10622,9 +10624,16 @@ function selectLinksForCardContext(interactions, cardContext) {
   };
 
   const relationshipInteractionId = cardContext?.relationshipInteractionId;
-  if (relationshipInteractionId) {
+  const relationshipDbId = cardContext?.relationshipDbId;
+  if (relationshipInteractionId || relationshipDbId != null) {
     const exact = interactions.filter(interaction =>
-      String(interaction._interaction_instance_id || interaction._display_row_id || '') === String(relationshipInteractionId)
+      (
+        relationshipInteractionId &&
+        String(interaction._interaction_instance_id || interaction._display_row_id || '') === String(relationshipInteractionId)
+      ) || (
+        relationshipDbId != null &&
+        String(interaction._db_id ?? interaction.id ?? '') === String(relationshipDbId)
+      )
     );
     const scopedExact = hasChainScope ? exact.filter(interactionMatchesScopedHop) : exact;
     if (scopedExact.length > 0) return scopedExact;

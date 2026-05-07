@@ -1,5 +1,6 @@
 """Data builder functions for reconstructing JSON from PostgreSQL."""
 
+import json
 import os
 import re
 import sys
@@ -129,24 +130,40 @@ def _normalize_function_payloads(functions):
 
 def _chain_summaries_for_item(item: dict) -> list[dict]:
     summaries: list[dict] = []
-    seen: set[int] = set()
+    seen: set[tuple] = set()
     for summary in item.get("all_chains") or []:
         if not isinstance(summary, dict):
             continue
-        chain_id = summary.get("chain_id")
-        if isinstance(chain_id, int):
-            seen.add(chain_id)
+        key = _chain_summary_identity_key(summary)
+        if key in seen:
+            continue
+        seen.add(key)
         summaries.append(summary)
     entity = item.get("_chain_entity")
     if isinstance(entity, dict):
         chain_id = entity.get("id") or entity.get("chain_id")
-        if not isinstance(chain_id, int) or chain_id not in seen:
-            summaries.append({
-                "chain_id": chain_id,
-                "chain_proteins": entity.get("chain_proteins"),
-                "pathway_name": entity.get("pathway_name"),
-            })
+        entity_summary = {
+            "chain_id": chain_id,
+            "chain_proteins": entity.get("chain_proteins"),
+            "pathway_name": entity.get("pathway_name"),
+        }
+        key = _chain_summary_identity_key(entity_summary)
+        if key not in seen:
+            summaries.append(entity_summary)
     return summaries
+
+
+def _chain_summary_identity_key(summary: dict) -> tuple:
+    """Return a stable key for duplicate chain-summary suppression."""
+    proteins = tuple(str(p).upper() for p in (summary.get("chain_proteins") or []) if p)
+    pathways = tuple(sorted(str(p).lower() for p in (summary.get("chain_pathways") or []) if p))
+    return (
+        summary.get("chain_id"),
+        proteins,
+        str(summary.get("role") or "").lower(),
+        str(summary.get("pathway_name") or summary.get("pathway") or "").lower(),
+        pathways,
+    )
 
 
 def _primary_chain_summary(item: dict) -> dict | None:
@@ -397,6 +414,70 @@ def _merge_missing_interaction_fields(primary: dict, duplicate: dict) -> dict:
     return primary
 
 
+def _claim_payload_identity_key(claim) -> tuple:
+    """Return a stable key for duplicate claim payload suppression."""
+    if not isinstance(claim, dict):
+        return ("raw", repr(claim))
+    if claim.get("id") is not None:
+        return ("id", str(claim.get("id")))
+    return (
+        "content",
+        str(claim.get("function_name") or claim.get("function") or "").strip().lower(),
+        str(claim.get("pathway_name") or claim.get("pathway") or "").strip().lower(),
+        _normalize_identity_token(claim.get("chain_id")),
+        _normalize_identity_token(claim.get("hop_index")),
+        _normalize_identity_token(claim.get("locus")),
+        _normalize_identity_token(claim.get("function_context")),
+        _normalize_identity_token(claim.get("source")),
+        _normalize_identity_token(claim.get("target")),
+        str(claim.get("mechanism") or claim.get("effect_description") or "").strip().lower(),
+    )
+
+
+def _json_payload_identity_key(value) -> tuple:
+    """Return a stable key for generic JSON-like payload suppression."""
+    try:
+        return ("json", json.dumps(value, sort_keys=True, default=str))
+    except TypeError:
+        return ("repr", repr(value))
+
+
+def _dedupe_payload_list(values: list, key_fn=None) -> list:
+    """Deduplicate JSON-like payload lists while preserving order."""
+    seen = set()
+    deduped = []
+    key_fn = key_fn or _json_payload_identity_key
+    for value in values:
+        marker = key_fn(value)
+        if marker in seen:
+            continue
+        seen.add(marker)
+        deduped.append(value)
+    return deduped
+
+
+def _normalize_display_row_lists(item: dict) -> dict:
+    """Normalize repeated embedded lists on one display row."""
+    all_chains = item.get("all_chains")
+    if isinstance(all_chains, list) and len(all_chains) > 1:
+        item["all_chains"] = _dedupe_payload_list(
+            all_chains,
+            lambda summary: (
+                "chain_summary",
+                _chain_summary_identity_key(summary) if isinstance(summary, dict) else repr(summary),
+            ),
+        )
+
+    claims = item.get("claims")
+    if isinstance(claims, list) and len(claims) > 1:
+        item["claims"] = _dedupe_payload_list(claims, _claim_payload_identity_key)
+
+    functions = item.get("functions")
+    if isinstance(functions, list) and len(functions) > 1:
+        item["functions"] = _dedupe_payload_list(functions)
+    return item
+
+
 def _dedupe_interaction_instances(items):
     """Collapse duplicate display rows without merging distinct chain instances."""
     seen = {}
@@ -405,6 +486,7 @@ def _dedupe_interaction_instances(items):
         if not isinstance(item, dict):
             ordered.append(item)
             continue
+        _normalize_display_row_lists(item)
         item["_interaction_instance_id"] = _interaction_instance_id_for(item)
         item["_display_row_id"] = item["_interaction_instance_id"]
         key = item["_interaction_instance_id"]
@@ -415,11 +497,13 @@ def _dedupe_interaction_instances(items):
             continue
         if _row_richness_score(item) > _row_richness_score(existing):
             _merge_missing_interaction_fields(item, existing)
+            _normalize_display_row_lists(item)
             idx = ordered.index(existing)
             ordered[idx] = item
             seen[key] = item
         else:
             _merge_missing_interaction_fields(existing, item)
+            _normalize_display_row_lists(existing)
     return ordered
 
 
@@ -2444,11 +2528,18 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
             "direction": item.get("direction", "main_to_primary"),
             "confidence": item.get("confidence", 0.5),
             "type": item.get("type") or item.get("interaction_type") or "direct",
+            "interaction_type": item.get("interaction_type") or item.get("type") or "direct",
             "function_context": item.get("function_context") or "direct",
             "interaction_effect": item.get("interaction_effect", "binding"),
             "functions": item.get("functions", []),
+            "claims": item.get("claims", []),
             "evidence": item.get("evidence", []),
             "pmids": item.get("pmids", []),
+            "step3_finalized_pathway": (
+                item.get("step3_finalized_pathway")
+                or item.get("hop_local_pathway")
+                or item.get("chain_context_pathway")
+            ),
             "locus": item.get("locus"),
             "hop_index": item.get("hop_index"),
             "chain_members": item.get("chain_members"),
@@ -2471,6 +2562,7 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
             "_chain_entity": item.get("_chain_entity"),
             "_synthesized_from_chain": bool(item.get("_synthesized_from_chain")),
         }
+        _normalize_display_row_lists(entry)
         _apply_contract_fields(entry, protein_symbol)
 
         group = pathway_groups[pw_name]
@@ -2497,9 +2589,12 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
             )
             if exact_same_chain or empty_same_pair:
                 merged = {**existing, **entry}
+                _normalize_display_row_lists(merged)
+                _apply_contract_fields(merged, protein_symbol)
                 group["interactions"][idx] = merged
                 return False
 
+        _normalize_display_row_lists(entry)
         group["interactions"].append(entry)
         group["interaction_count"] += 1
         return True

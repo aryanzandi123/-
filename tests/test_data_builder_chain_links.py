@@ -90,6 +90,48 @@ def test_synthetic_chain_link_functions_are_in_pathway_payload(test_app):
         assert hop["functions"][0]["function"] == "Splice-site rescue"
 
 
+def test_interaction_instance_dedupe_collapses_embedded_duplicate_lists():
+    """Merged display rows should not repeat identical claims or chain banners."""
+    from services.data_builder import _dedupe_interaction_instances
+
+    claim = {
+        "id": 1,
+        "function_name": "Condensate co-aggregation",
+        "pathway_name": "Integrated Stress Response (ISR)",
+        "chain_id": 2621,
+        "locus": "chain_hop_claim",
+    }
+    chain = {
+        "chain_id": 2621,
+        "pathway_name": "Integrated Stress Response (ISR)",
+        "chain_proteins": ["EIF2AK3", "EWSR1", "TDP43"],
+        "role": "hop",
+        "chain_pathways": ["Integrated Stress Response (ISR)"],
+    }
+    same_claim_from_other_source = dict(claim)
+    same_claim_from_other_source["source_payload"] = "pathway-local"
+    same_chain_from_other_source = dict(chain)
+    same_chain_from_other_source["discovered_in_query"] = "TDP43"
+
+    rows = _dedupe_interaction_instances([
+        {
+            "_db_id": 14606,
+            "source": "EWSR1",
+            "target": "TDP43",
+            "chain_id": 2621,
+            "hop_index": 1,
+            "locus": "chain_hop_claim",
+            "_is_chain_link": True,
+            "claims": [claim, same_claim_from_other_source],
+            "all_chains": [chain, same_chain_from_other_source],
+        }
+    ])
+
+    assert len(rows) == 1
+    assert rows[0]["claims"] == [claim]
+    assert rows[0]["all_chains"] == [chain]
+
+
 def test_interaction_payload_uses_db_function_context_when_json_lacks_field(test_app):
     """Old JSON blobs may lack function_context; the DB column is canonical."""
 
@@ -599,6 +641,16 @@ def test_reconstruct_chain_links_prefers_real_db_terminal_hop(test_app):
         assert hop_payload["functions"][0]["function"] == "DDX3X translation control"
         assert hop_payload["claims"][0]["chain_id"] == chain.id
         assert hop_payload["claims"][0]["locus"] == "chain_hop_claim"
+
+        pathway_payload = next(p for p in result["pathways"] if p["name"] == "Stress Granule Dynamics")
+        pathway_hop = next(
+            ix for ix in pathway_payload["interactions"]
+            if ix.get("_db_id") == hop.id and ix.get("_is_chain_link")
+        )
+        assert pathway_hop["step3_finalized_pathway"] == "Stress Granule Dynamics"
+        assert pathway_hop["claims"][0]["function_name"] == "DDX3X translation control"
+        assert pathway_hop["claims"][0]["chain_id"] == chain.id
+        assert pathway_hop["claims"][0]["locus"] == "chain_hop_claim"
 
 
 def test_reconstructed_chain_link_uses_hop_membership_for_identity(test_app):

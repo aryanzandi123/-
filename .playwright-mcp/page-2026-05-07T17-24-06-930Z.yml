@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - status [ref=e2]:
+    - generic "70 of 157 functions flagged for depth issues (min 6 sentences / 3 cascades)" [ref=e3]:
+      - 'generic "Depth pass rate: 55%" [ref=e4]'
+      - generic [ref=e6]: PhD-depth
+      - generic [ref=e7]: 55%
+    - generic [ref=e8]:
+      - generic [ref=e9]: "shallow funcs:"
+      - generic [ref=e10]: 70/157
+    - generic [ref=e11]:
+      - generic [ref=e12]: "unrecoverable chain hops:"
+      - generic [ref=e13]: "1"
+    - generic [ref=e14]:
+      - generic [ref=e15]: "partial chains:"
+      - generic [ref=e16]: "2"
+    - button "details" [ref=e17] [cursor=pointer]
+  - generic [ref=e18]:
+    - generic [ref=e20]:
+      - heading "TDP43 Interaction Network" [level=1] [ref=e21]
+      - generic [ref=e23]:
+        - textbox "Search another protein..." [ref=e24]
+        - button "Generate" [ref=e25] [cursor=pointer]
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - button "Card View" [ref=e28] [cursor=pointer]
+          - button "Table View" [ref=e29] [cursor=pointer]
+          - button "Chat" [ref=e30] [cursor=pointer]
+          - button "Graph View" [ref=e31] [cursor=pointer]
+        - generic [ref=e32]:
+          - button "Cross-Query" [ref=e33] [cursor=pointer]
+          - button "Merge" [disabled] [ref=e34]
+          - 'button "Chains: Split" [ref=e35] [cursor=pointer]'
+          - 'button "Pseudo: ON" [ref=e36] [cursor=pointer]'
+          - 'button "Filter: All" [ref=e37] [cursor=pointer]'
+        - group [ref=e38]:
+          - generic "Research Settings" [ref=e39] [cursor=pointer]
+          - option "Iterative" [selected]
+          - option "Deep Research"
+          - option "Standard"
+        - button "☀️" [ref=e40] [cursor=pointer]:
+          - generic [ref=e41]: ☀️
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - img [ref=e49]
+              - generic [ref=e53]:
+                - generic [ref=e54]: Pathway Navigator
+                - generic [ref=e55]: Neural Command Interface
+            - button "Collapse" [ref=e56] [cursor=pointer]:
+              - img [ref=e57]
+          - generic [ref=e60]: Navigate pathways below
+        - generic [ref=e62]:
+          - textbox "Search pathways..." [ref=e63]
+          - img
+          - button [ref=e64] [cursor=pointer]:
+            - img [ref=e65]
+        - generic [ref=e67]:
+          - generic "Activating interactions" [ref=e68]:
+            - generic [ref=e70]: "0"
+          - generic "Inhibiting interactions" [ref=e71]:
+            - generic [ref=e73]: "0"
+          - generic "Binding interactions" [ref=e74]:
+            - generic [ref=e76]: "0"
+          - generic "Regulating interactions" [ref=e77]:
+            - generic [ref=e79]: "0"
+        - generic [ref=e80]:
+          - button "Select All" [ref=e81] [cursor=pointer]:
+            - img [ref=e82]
+            - generic [ref=e84]: Select All
+          - button "Clear" [ref=e85] [cursor=pointer]:
+            - img [ref=e86]
+            - generic [ref=e88]: Clear
+          - button "Show All" [ref=e89] [cursor=pointer]:
+            - img [ref=e90]
+            - generic [ref=e93]: Show All
+      - generic [ref=e95]:
+        - button "Pathways" [ref=e96] [cursor=pointer]:
+          - img [ref=e97]
+          - generic [ref=e99]: Pathways
+        - button "Interactors" [ref=e100] [cursor=pointer]:
+          - img [ref=e101]
+          - generic [ref=e108]: Interactors
+      - img [ref=e110]:
+        - generic [ref=e112]:
+          - generic [ref=e113]: No pathways selected
+          - generic [ref=e114]: Use the Pathway Navigator to select pathways

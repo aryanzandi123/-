@@ -167,7 +167,8 @@ const interactions = [
     target: 'PERK',
   }},
   {{
-    id: 'wrong-hop',
+    id: 'outbound-hop',
+    _db_id: 42,
     locus: 'chain_hop_claim',
     chain_id: chainProteins.join('->'),
     hop_index: 1,
@@ -186,6 +187,12 @@ console.log(JSON.stringify({{
   }})),
   staleExact: ids(selectLinksForCardContext(interactions, {{
     relationshipInteractionId: 'stale-direct-id',
+    _chainId: chainProteins.join('->'),
+    _chainPosition: 1,
+    _chainProteins: chainProteins,
+  }})),
+  dbExact: ids(selectLinksForCardContext(interactions, {{
+    relationshipDbId: 42,
     _chainId: chainProteins.join('->'),
     _chainPosition: 1,
     _chainProteins: chainProteins,
@@ -390,8 +397,88 @@ def test_card_modal_chain_context_accepts_fallback_ids_and_reversed_hops():
     selected = _run_card_context_selector_edge_fixture()
 
     assert selected == {
-        "fallback": ["all-chains-fallback", "entity-fallback", "reversed-hop"],
-        "staleExact": ["all-chains-fallback", "entity-fallback", "reversed-hop"],
+        "fallback": ["all-chains-fallback", "entity-fallback", "reversed-hop", "outbound-hop"],
+        "staleExact": ["all-chains-fallback", "entity-fallback", "reversed-hop", "outbound-hop"],
+        "dbExact": ["outbound-hop"],
+    }
+
+
+def test_middle_chain_instance_modal_selects_inbound_and_outbound_hops():
+    """Middle protein cards should show both adjacent chain-hop claims."""
+    visualizer = (PROJECT_ROOT / "static" / "_legacy" / "visualizer.js").read_text()
+    functions = "\n\n".join(
+        _extract_js_function(visualizer, name)
+        for name in (
+            "getLegacyInteractionLocus",
+            "cardContextChainMatches",
+            "getCardContextHopCandidates",
+            "getCardRowHopIndex",
+            "sameCardProteinSymbol",
+            "selectLinksForCardContext",
+        )
+    )
+    script = f"""
+{functions}
+
+const chainProteins = ['EIF2AK3', 'EWSR1', 'TDP43'];
+const interactions = [
+  {{
+    id: 'inbound',
+    locus: 'chain_hop_claim',
+    chain_id: 2621,
+    hop_index: 0,
+    source: 'EIF2AK3',
+    target: 'EWSR1',
+  }},
+  {{
+    id: 'outbound',
+    locus: 'chain_hop_claim',
+    chain_id: 2621,
+    hop_index: 1,
+    source: 'EWSR1',
+    target: 'TDP43',
+  }},
+  {{
+    id: 'other-chain',
+    locus: 'chain_hop_claim',
+    chain_id: 9999,
+    hop_index: 1,
+    source: 'EWSR1',
+    target: 'TDP43',
+  }},
+];
+
+const ids = rows => rows.map(row => row.id);
+console.log(JSON.stringify({{
+  middle: ids(selectLinksForCardContext(interactions, {{
+    _chainId: 2621,
+    _chainPosition: 1,
+    _chainProteins: chainProteins,
+  }})),
+  root: ids(selectLinksForCardContext(interactions, {{
+    _chainId: 2621,
+    _chainPosition: 0,
+    _chainProteins: chainProteins,
+  }})),
+  terminal: ids(selectLinksForCardContext(interactions, {{
+    _chainId: 2621,
+    _chainPosition: 2,
+    _chainProteins: chainProteins,
+  }})),
+}}));
+"""
+    completed = subprocess.run(
+        ["node", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    selected = json.loads(completed.stdout)
+
+    assert selected == {
+        "middle": ["inbound", "outbound"],
+        "root": ["inbound"],
+        "terminal": ["outbound"],
     }
 
 

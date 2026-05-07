@@ -290,6 +290,9 @@ export function buildCardGraph({ snap, selectedPathways, filters }: BuildArgs): 
             arrow,
             isChainEdge: true,
             isReverse: arrowKind === "reverse",
+            chainId: chain.chainId,
+            chainPosition: k,
+            hopIndex: k - 1,
           } satisfies ChainEdgeData as unknown as Record<string, unknown>,
         });
       }

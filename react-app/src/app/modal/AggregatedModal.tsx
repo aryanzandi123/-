@@ -15,8 +15,8 @@ import { useViewStore } from "@/store/useViewStore";
 import { useModalStore, type ModalArgs } from "@/store/useModalStore";
 import { ARROW_COLORS, classifyArrow } from "@/lib/colors";
 import { isPathwayInContext } from "@/lib/claims";
-import { claimsForInteraction } from "@/lib/interactionSurface";
-import type { Claim, Interaction, Snapshot } from "@/types/api";
+import { claimsForInteraction, selectInteractionsForNode } from "@/lib/interactionSurface";
+import type { Claim } from "@/types/api";
 
 import { ClaimRenderer } from "./ClaimRenderer";
 import { ChainContextBanner } from "./ChainContextBanner";
@@ -36,15 +36,6 @@ interface NodePayload {
   chainLength?: number | null;
 }
 
-function interactionsFor(snap: Snapshot, protein: string): Interaction[] {
-  const list = Array.isArray(snap.interactions) ? snap.interactions : [];
-  const TARGET = protein.toUpperCase();
-  return list.filter(
-    (i) =>
-      (i.source ?? "").toUpperCase() === TARGET || (i.target ?? "").toUpperCase() === TARGET,
-  );
-}
-
 export function AggregatedModal({ args }: AggregatedModalProps): JSX.Element {
   const close = useModalStore((s) => s.close);
   const snap = useSnapStore(selectActiveSnap);
@@ -62,8 +53,14 @@ export function AggregatedModal({ args }: AggregatedModalProps): JSX.Element {
   }, [view]);
 
   const interactions = useMemo(
-    () => (snap ? interactionsFor(snap, baseProtein) : []),
-    [snap, baseProtein],
+    () =>
+      snap
+        ? selectInteractionsForNode(snap, baseProtein, {
+            chainId: payload.chainId ?? null,
+            chainPosition: payload.chainPosition ?? null,
+          })
+        : [],
+    [snap, baseProtein, payload.chainId, payload.chainPosition],
   );
 
   // Aggregate metadata for the MetadataGrid header. We compute total +

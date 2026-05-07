@@ -22,6 +22,9 @@ export interface ChainEdgeData {
   arrow?: ArrowClass | null;
   isChainEdge?: boolean;
   isReverse?: boolean;
+  chainId?: number | null;
+  chainPosition?: number | null;
+  hopIndex?: number | null;
   multipleArrows?: ArrowClass[];
   [key: string]: unknown;
 }

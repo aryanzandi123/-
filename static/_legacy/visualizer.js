@@ -44,6 +44,19 @@ function rebuildParallelLinkIndex() {
     }
 }
 
+function visualizerRowIdentity(interaction) {
+    if (!interaction || typeof interaction !== 'object') return null;
+    return interaction._interaction_instance_id || interaction._display_row_id || interaction._db_id || interaction.id || null;
+}
+
+function visualizerLinkId(source, target, arrow, interaction, suffix = '') {
+    const identity = visualizerRowIdentity(interaction);
+    const base = identity
+        ? `${source}-${target}-${arrow}-${identity}`
+        : `${source}-${target}-${arrow}`;
+    return suffix ? `${base}-${suffix}` : base;
+}
+
 // Pathway visualization state
 let pathwayNodeRadius = 45;          // Size for pathway nodes (used for collision detection)
 let pathwayRingRadius = 300;         // Distance from center for pathway nodes (reduced for compact layout)
@@ -2880,6 +2893,9 @@ function buildInitialGraph() {
   nodes.push({
     id: SNAP.main,
     label: SNAP.main,
+    originalId: SNAP.main,
+    baseProtein: SNAP.main,
+    _instanceKey: SNAP.main,
     type: 'main',
     origin: 'query',
     isQueryDerived: true,
@@ -3082,6 +3098,9 @@ function buildInitialGraph() {
       nodes.push({
         id: p,
         label: p,
+        originalId: p,
+        baseProtein: p,
+        _instanceKey: p,
         type: 'interactor',
         origin: 'query',
         isQueryDerived: true,
@@ -3137,6 +3156,9 @@ function buildInitialGraph() {
       nodes.push({
         id: p,
         label: p,
+        originalId: p,
+        baseProtein: p,
+        _instanceKey: p,
         type: 'interactor',
         origin: 'query',
         isQueryDerived: true,
@@ -3168,7 +3190,7 @@ function buildInitialGraph() {
       if (!nodeMap.has(source) || !nodeMap.has(target)) return;
 
       const arrow = arrowKind(interaction.arrow, interaction.intent, interaction.direction);
-      const linkId = `${source}-${target}-${arrow}`;
+      const linkId = visualizerLinkId(source, target, arrow, interaction);
 
       if (linkIds.has(linkId)) return;
 
@@ -4989,7 +5011,7 @@ function expandPathwayWithInteractions(pathwayNode, interactions, options = {}) 
 
     if (!linkSource || !linkTarget || linkSource === linkTarget) return;
 
-    const linkId = `${linkSource}-${linkTarget}@${pathwayNode.id}`;
+    const linkId = visualizerLinkId(linkSource, linkTarget, arrowKind(inter.arrow, inter.intent, inter.direction), inter, pathwayNode.id);
     if (links.find(l => l.id === linkId)) return;
 
     const actualArrow = arrowKind(inter.arrow, inter.intent, inter.direction);
@@ -7263,6 +7285,9 @@ async function mergeSubgraph(raw, clickedNode) {
     const newNode = {
       id: protein,
       label: protein,
+      originalId: protein,
+      baseProtein: protein,
+      _instanceKey: protein,
       type: 'interactor',
       radius: interactorNodeRadius,
       x: x,
@@ -7302,8 +7327,8 @@ async function mergeSubgraph(raw, clickedNode) {
     );
 
     // Create link ID with arrow type (to allow parallel links with different arrows)
-    const linkId = `${source}-${target}-${arrow}`;
-    const reverseLinkId = `${target}-${source}-${arrow}`;
+    const linkId = visualizerLinkId(source, target, arrow, interaction);
+    const reverseLinkId = visualizerLinkId(target, source, arrow, interaction);
 
     // Skip if link already exists in base graph
     const inBase = (baseLinks && (baseLinks.has(linkId) || baseLinks.has(reverseLinkId)));
@@ -10563,7 +10588,19 @@ function getCardRowHopIndex(interaction) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+function sameCardProteinSymbol(left, right) {
+  return String(left || '').toUpperCase() === String(right || '').toUpperCase();
+}
+
 function selectLinksForCardContext(interactions, cardContext) {
+  const relationshipInteractionId = cardContext?.relationshipInteractionId;
+  if (relationshipInteractionId) {
+    const exact = interactions.filter(interaction =>
+      String(interaction._interaction_instance_id || interaction._display_row_id || '') === String(relationshipInteractionId)
+    );
+    if (exact.length > 0) return exact;
+  }
+
   const chainId = cardContext?._chainId;
   const hasChainScope = chainId != null && chainId !== '' && cardContext?._chainPosition != null;
   const hopCandidates = getCardContextHopCandidates(cardContext);
@@ -10576,7 +10613,8 @@ function selectLinksForCardContext(interactions, cardContext) {
     const rowHop = getCardRowHopIndex(interaction);
     return hopCandidates.some(candidate =>
       rowHop === candidate.hopIndex &&
-      interaction.source === candidate.source && interaction.target === candidate.target
+      sameCardProteinSymbol(interaction.source, candidate.source) &&
+      sameCardProteinSymbol(interaction.target, candidate.target)
     );
   });
 
@@ -10595,29 +10633,27 @@ window.openModalForCard = (nodeId, pathwayContext = null, cardContext = null) =>
   // The chain membership check prefers chain_context.full_chain (which
   // holds every protein in the chain regardless of the query's position),
   // falling back to the legacy mediator_chain for older rows.
-  const nodeIdUpper = (nodeId || '').toUpperCase();
   const lookupId = cardContext?.originalId || nodeId;
-  const lookupIdUpper = (lookupId || '').toUpperCase();
   const interactionData = SNAP.interactions.filter(interaction => {
     const src = interaction.source || '';
     const tgt = interaction.target || '';
-    if (src === lookupId || tgt === lookupId) return true;
+    if (sameCardProteinSymbol(src, lookupId) || sameCardProteinSymbol(tgt, lookupId)) return true;
     // Query protein owns ALL indirect interactions (discovered from its perspective)
-    if (lookupId === SNAP.main && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
+    if (sameCardProteinSymbol(lookupId, SNAP.main) && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
     if (interaction.interaction_type === 'indirect' || interaction.type === 'indirect') {
-      if (interaction.upstream_interactor === lookupId) return true;
+      if (sameCardProteinSymbol(interaction.upstream_interactor, lookupId)) return true;
       // Prefer chain_context.full_chain (query-position-agnostic).
       const ctx = interaction.chain_context || null;
       const fullChain =
         ctx && Array.isArray(ctx.full_chain) && ctx.full_chain.length >= 2
           ? ctx.full_chain
           : null;
-      if (fullChain && fullChain.some((p) => (p || '').toUpperCase() === lookupIdUpper)) {
+      if (fullChain && fullChain.some((p) => sameCardProteinSymbol(p, lookupId))) {
         return true;
       }
       // Legacy fallback.
       const chain = interaction.mediator_chain || [];
-      if (chain.some((p) => (p || '').toUpperCase() === lookupIdUpper)) return true;
+      if (chain.some((p) => sameCardProteinSymbol(p, lookupId))) return true;
     }
     return false;
   });
@@ -10657,7 +10693,9 @@ window.openModalForCard = (nodeId, pathwayContext = null, cardContext = null) =>
       // Drop the clicked node itself — we want to know whether *the rest* of
       // the interaction anchors to the pathway, not whether the user clicked
       // an interactor.
-      candidates.delete(lookupId);
+      for (const candidate of Array.from(candidates)) {
+        if (sameCardProteinSymbol(candidate, lookupId)) candidates.delete(candidate);
+      }
       for (const p of candidates) {
         if (pathwayInteractionIds.has(p)) return true;
       }

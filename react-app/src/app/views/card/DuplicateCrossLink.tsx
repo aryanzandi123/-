@@ -44,7 +44,7 @@ function DuplicateCrossLinkImpl(props: EdgeProps): JSX.Element {
         stroke: isHovered ? "#a5b4fc" : "#94a3b8",
         strokeWidth: isHovered ? 1.6 : 1,
         strokeDasharray: "2 4",
-        opacity: isHovered ? 0.9 : 0.45,
+        opacity: isHovered ? 0.75 : 0,
         pointerEvents: "none",
         transition: "opacity 140ms ease-out, stroke-width 140ms ease-out, stroke 140ms ease-out",
       }}

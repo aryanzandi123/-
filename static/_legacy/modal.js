@@ -81,6 +81,45 @@ function getDisplayHopIndex(L) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+function _modalSameSymbol(a, b) {
+  return String(a || '').toUpperCase() === String(b || '').toUpperCase();
+}
+
+function _modalInteractionKey(link) {
+  const L = link?.data || link || {};
+  if (L._interaction_instance_id || L._display_row_id) {
+    return String(L._interaction_instance_id || L._display_row_id);
+  }
+  const db = L._db_id ?? L.id;
+  const chain = L.chain_id ?? 'none';
+  const hop = getDisplayHopIndex(L);
+  const locus = getInteractionLocus(L);
+  const role = L._is_chain_link ? 'chain_link' : (L.is_net_effect ? 'net_effect' : (L.function_context || L.type || 'direct'));
+  if (db != null) {
+    const src = L.source || link?.source?.originalId || link?.source?.id || link?.source || '';
+    const tgt = L.target || link?.target?.originalId || link?.target?.id || link?.target || '';
+    const pair = [String(src).toUpperCase(), String(tgt).toUpperCase()].sort().join('|');
+    const pathway = L.pathway_id || L.pathway || L.pathway_name || L.hop_local_pathway || L.chain_context_pathway || 'none';
+    return `db:${db}|pair:${pair}|chain:${chain ?? 'none'}|hop:${hop ?? 'none'}|locus:${locus}|pathway:${pathway}|role:${role}`;
+  }
+  const src = L.source || link?.source?.originalId || link?.source?.id || link?.source || '';
+  const tgt = L.target || link?.target?.originalId || link?.target?.id || link?.target || '';
+  const pair = [String(src).toUpperCase(), String(tgt).toUpperCase()].sort().join('|');
+  const pathway = L.pathway_id || L.pathway || L.pathway_name || L.hop_local_pathway || L.chain_context_pathway || 'none';
+  return `pair:${pair}|chain:${chain ?? 'none'}|hop:${hop ?? 'none'}|locus:${locus}|pathway:${pathway}|role:${role}`;
+}
+
+function _modalNodeScopeKey(node) {
+  const ctx = node?.cardContext || node?._cardContext || node || {};
+  return [
+    ctx.relationshipInteractionId || '',
+    ctx.uid || ctx.instanceKey || ctx.id || node?.id || '',
+    ctx._chainId ?? '',
+    ctx._chainPosition ?? '',
+    ctx.pathwayId || node?.pathwayId || '',
+  ].map(v => String(v)).join('|');
+}
+
 function buildChainNavClickedNode(target, hopLink) {
   const previousNode = _lastModalArgs?.clickedNode || {};
   const previousCardContext = previousNode.cardContext || previousNode._cardContext || {};
@@ -1531,15 +1570,15 @@ async function handleNodeClick(node) {
       // Match either the full ID or the originalId
       const srcOriginal = l.source && l.source.originalId;
       const tgtOriginal = l.target && l.target.originalId;
-      if (src === lookupId || tgt === lookupId ||
-        srcOriginal === lookupId || tgtOriginal === lookupId ||
-        src === node.id || tgt === node.id) return true;
+      if (_modalSameSymbol(src, lookupId) || _modalSameSymbol(tgt, lookupId) ||
+        _modalSameSymbol(srcOriginal, lookupId) || _modalSameSymbol(tgtOriginal, lookupId) ||
+        _modalSameSymbol(src, node.id) || _modalSameSymbol(tgt, node.id)) return true;
       // Query protein owns ALL indirect interactions (discovered from its perspective)
       const ld = l.data || {};
-      if (lookupId === SNAP.main && (ld.interaction_type === 'indirect' || ld.type === 'indirect')) return true;
+      if (_modalSameSymbol(lookupId, SNAP.main) && (ld.interaction_type === 'indirect' || ld.type === 'indirect')) return true;
       // Also include indirect interactions where this protein is anywhere in the chain
       if (ld.interaction_type === 'indirect') {
-        if (ld.upstream_interactor === lookupId) return true;
+        if (_modalSameSymbol(ld.upstream_interactor, lookupId)) return true;
         if (chainIncludesNode(ld, lookupId)) return true;
       }
       return false;
@@ -1549,10 +1588,10 @@ async function handleNodeClick(node) {
       // FALLBACK: Try finding interactions in raw SNAP data (Robustness for Card View / Desync)
       if (typeof SNAP !== 'undefined' && SNAP.interactions) {
         const rawInteractions = SNAP.interactions.filter(i => {
-          if (i.source === lookupId || i.target === lookupId) return true;
-          if (lookupId === SNAP.main && (i.interaction_type === 'indirect' || i.type === 'indirect')) return true;
+          if (_modalSameSymbol(i.source, lookupId) || _modalSameSymbol(i.target, lookupId)) return true;
+          if (_modalSameSymbol(lookupId, SNAP.main) && (i.interaction_type === 'indirect' || i.type === 'indirect')) return true;
           if (i.interaction_type === 'indirect') {
-            if (i.upstream_interactor === lookupId) return true;
+            if (_modalSameSymbol(i.upstream_interactor, lookupId)) return true;
             if (chainIncludesNode(i, lookupId)) return true;
           }
           return false;
@@ -1591,6 +1630,7 @@ async function handleNodeClick(node) {
 
 /** Fetch all DB interactions for a protein and merge with local links, then re-render modal. */
 async function _fetchAndMergeDbInteractions(lookupId, localLinks, node) {
+  const requestScopeKey = _modalNodeScopeKey(node);
   try {
     const resp = await fetch(`/api/protein/${encodeURIComponent(lookupId)}/interactions`);
     if (!resp.ok) return; // Graceful degradation: keep showing local data
@@ -1598,7 +1638,9 @@ async function _fetchAndMergeDbInteractions(lookupId, localLinks, node) {
     const data = await resp.json();
     if (!data.interactions || data.interactions.length === 0) {
       // No additional DB data — remove loading spinner if present
-      if (modalOpen) showAggregatedInteractionsModal(localLinks, node);
+      if (modalOpen && (!_lastModalArgs || _modalNodeScopeKey(_lastModalArgs.clickedNode) === requestScopeKey)) {
+        showAggregatedInteractionsModal(localLinks, node);
+      }
       return;
     }
 
@@ -1624,46 +1666,38 @@ async function _fetchAndMergeDbInteractions(lookupId, localLinks, node) {
       };
     });
 
-    // Deduplicate: API data takes precedence (has claims)
+    // Deduplicate by display-row identity. Local scoped rows go first so
+    // async DB enrichment cannot replace a chain/path instance with a
+    // broader protein-pair row that only shares source/target.
     const seen = new Set();
     const merged = [];
 
-    // Add API links first (they have claims)
-    for (const link of apiLinks) {
-      const d = link.data;
-      const itype = (d.interaction_type || d.type || 'direct');
-      const shared = d._is_shared_link ? '|shared' : '';
-      const key = [d.source, d.target].sort().join('::') + '|' + itype + shared;
-      if (!seen.has(key)) {
-        seen.add(key);
-        merged.push(link);
-      }
-    }
-
-    // Add local links that aren't already covered
     for (const link of localLinks) {
-      const d = link.data || {};
-      const src = d.source || (link.source && (link.source.originalId || link.source.id)) || link.source;
-      const tgt = d.target || (link.target && (link.target.originalId || link.target.id)) || link.target;
-      const itype = (d.interaction_type || d.type || 'direct');
-      const shared = d._is_shared_link ? '|shared' : '';
-      const key = [src, tgt].sort().join('::') + '|' + itype + shared;
+      const key = _modalInteractionKey(link);
       if (!seen.has(key)) {
         seen.add(key);
-        // Mark local-only links as in-network
+        const d = link.data || {};
         if (d) d._in_current_network = true;
         merged.push(link);
       }
     }
 
+    for (const link of apiLinks) {
+      const key = _modalInteractionKey(link);
+      if (!seen.has(key)) {
+        seen.add(key);
+        merged.push(link);
+      }
+    }
+
     // Re-render modal with merged data (only if modal is still open)
-    if (modalOpen) {
+    if (modalOpen && (!_lastModalArgs || _modalNodeScopeKey(_lastModalArgs.clickedNode) === requestScopeKey)) {
       showAggregatedInteractionsModal(merged, node, { fromApi: true });
     }
   } catch (err) {
     console.error('[handleNodeClick] DB fetch failed (graceful degradation):', err);
     // On failure, remove loading spinner by re-rendering with local data
-    if (modalOpen && localLinks.length > 0) {
+    if (modalOpen && localLinks.length > 0 && (!_lastModalArgs || _modalNodeScopeKey(_lastModalArgs.clickedNode) === requestScopeKey)) {
       showAggregatedInteractionsModal(localLinks, node);
     }
   }
@@ -1717,12 +1751,12 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
     const interactionData = SNAP.interactions.filter(interaction => {
       const src = interaction.source || '';
       const tgt = interaction.target || '';
-      if (src === lookupId || tgt === lookupId) return true;
+      if (_modalSameSymbol(src, lookupId) || _modalSameSymbol(tgt, lookupId)) return true;
       // Query protein owns ALL indirect interactions
-      if (lookupId === SNAP.main && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
+      if (_modalSameSymbol(lookupId, SNAP.main) && (interaction.interaction_type === 'indirect' || interaction.type === 'indirect')) return true;
       // Also include indirect interactions where this protein is anywhere in the chain
       if (interaction.interaction_type === 'indirect') {
-        if (interaction.upstream_interactor === lookupId) return true;
+        if (_modalSameSymbol(interaction.upstream_interactor, lookupId)) return true;
         if (chainIncludesNode(interaction, lookupId)) return true;
       }
       return false;
@@ -1767,7 +1801,7 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
         const L = link.data || {};
         const src = L.source || link.source?.originalId || link.source;
         const tgt = L.target || link.target?.originalId || link.target;
-        const otherProtein = (src === lookupId) ? tgt : src;
+        const otherProtein = _modalSameSymbol(src, lookupId) ? tgt : src;
 
         // P3.3 — chain-link hops must EARN inclusion under the current
         // pathway (was: blanket-kept). The old rule meant a Hippo/
@@ -1936,23 +1970,7 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
   // interaction twice (one A→B row and one B→A row with identical
   // claims). Fall back to a canonical-pair key when _db_id is absent.
   const _canonLinkKey = (link) => {
-    const L = link?.data || {};
-    // L5.5 — Chain-link rows: include chain_id so the same A↔B pair
-    // appearing in two different parent indirects stays distinct. Without
-    // this, two chain hops with the same canonical pair (e.g. RNA↔UNC13A
-    // from the TDP43→FUS→RNA→UNC13A chain AND from a different chain that
-    // also touches RNA→UNC13A) collapse into a single row in the modal,
-    // hiding cross-chain biology.
-    if (L._db_id != null && L.chain_id != null) {
-      return `db:${L._db_id}|chain:${L.chain_id}`;
-    }
-    if (L._db_id != null) return `db:${L._db_id}`;
-    const src = (L.source || link.source?.originalId || link.source || '').toString();
-    const tgt = (L.target || link.target?.originalId || link.target || '').toString();
-    const pair = [src, tgt].sort().join('|');
-    const type = L.interaction_type || L.type || 'unknown';
-    const chainSuffix = L.chain_id != null ? `|chain:${L.chain_id}` : '';
-    return `pair:${pair}|${type}${chainSuffix}`;
+    return _modalInteractionKey(link);
   };
   const _dedupLinks = (arr) => {
     const seen = new Set();
@@ -2501,10 +2519,8 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
     titleDisplay = `${mediator} → ${nodeLabel}`;
   }
 
-  // Count unique interactions by _db_id to avoid inflated counts from duplicates
-  const uniqueInteractionCount = new Set(
-    actualLinks.map(l => (l.data || {})?._db_id).filter(Boolean)
-  ).size || actualLinks.length;
+  // Count visible display rows, not plain protein symbols or plain DB ids.
+  const uniqueInteractionCount = _dedupLinks(actualLinks).length;
   const modalTitle = `${escapeHtml(titleDisplay)} - Interactions (${uniqueInteractionCount})`;
 
   // Build collapsed "Other Interactions & Claims" section if pathway filtering produced non-pathway content

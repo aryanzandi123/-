@@ -14,7 +14,7 @@ import type { VisualizeApiPayload, ProteinKey } from "@/types/api";
  * dev sees the drift early. The SPA still renders — best-effort tolerance,
  * not a blocker. Bump in lockstep with the backend.
  */
-export const EXPECTED_SCHEMA_VERSION = "2026-05-04";
+export const EXPECTED_SCHEMA_VERSION = "2026-05-07";
 
 interface BootstrapPayload {
   protein: ProteinKey;

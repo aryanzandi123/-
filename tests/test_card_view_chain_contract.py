@@ -34,6 +34,7 @@ def _run_card_context_selector_fixture() -> dict[str, list[str]]:
             "cardContextChainMatches",
             "getCardContextHopCandidates",
             "getCardRowHopIndex",
+            "sameCardProteinSymbol",
             "selectLinksForCardContext",
         )
     )
@@ -266,6 +267,9 @@ def test_graph_link_classes_use_locus_for_net_and_chain_rows():
     visualizer = (PROJECT_ROOT / "static" / "_legacy" / "visualizer.js").read_text()
 
     assert "function getLegacyInteractionLocus(interaction)" in visualizer
+    assert "function visualizerLinkId(source, target, arrow, interaction, suffix = '')" in visualizer
+    assert "interaction._interaction_instance_id || interaction._display_row_id" in visualizer
+    assert "const linkId = visualizerLinkId(source, target, arrow, interaction);" in visualizer
     assert "locus === 'net_effect_claim') classes += ' link-net-effect'" in visualizer
     assert "locus === 'chain_hop_claim') classes += ' link-indirect-chain'" in visualizer
     assert "interactionType: interaction.interaction_type || interaction.type || 'direct'" in visualizer
@@ -292,7 +296,8 @@ def test_modal_selection_prefers_chain_id_and_hop_context():
     assert "const chainId = cardContext?._chainId;" in visualizer
     assert "const hopCandidates = getCardContextHopCandidates(cardContext);" in visualizer
     assert "rowHop === candidate.hopIndex" in visualizer
-    assert "interaction.source === candidate.source && interaction.target === candidate.target" in visualizer
+    assert "sameCardProteinSymbol(interaction.source, candidate.source)" in visualizer
+    assert "sameCardProteinSymbol(interaction.target, candidate.target)" in visualizer
     assert "const selectedInteractions = selectLinksForCardContext(interactionData, cardContext);" in visualizer
     assert "const hasChainScopedCardContext = clickedCardContext?._chainId != null;" in modal
     assert "if (!showAll && !hasChainScopedCardContext)" in modal

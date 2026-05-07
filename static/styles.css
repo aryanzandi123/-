@@ -1324,12 +1324,12 @@ body.dark-mode .modal-empty-evidence {
   stroke: var(--color-text-secondary, #94a3b8);
   stroke-width: 1px;
   stroke-dasharray: 2 3;
-  opacity: 0.35;
+  opacity: 0;
   pointer-events: none;
   transition: opacity 120ms ease, stroke-width 120ms ease;
 }
 .cv-duplicate-crosslink.highlighted {
-  opacity: 0.9;
+  opacity: 0.75;
   stroke-width: 2px;
   stroke: var(--color-accent, #6366f1);
 }

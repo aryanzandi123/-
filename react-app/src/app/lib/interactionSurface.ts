@@ -51,7 +51,7 @@ function sameSymbol(a: string | null | undefined, b: string): boolean {
   return (a ?? "").toUpperCase() === b;
 }
 
-function hasChain(interaction: Interaction, chainId: number): boolean {
+export function interactionHasChain(interaction: Interaction, chainId: number): boolean {
   if (interaction.chain_id === chainId) return true;
   if (Array.isArray(interaction.chain_ids) && interaction.chain_ids.includes(chainId)) {
     return true;
@@ -62,11 +62,56 @@ function hasChain(interaction: Interaction, chainId: number): boolean {
   );
 }
 
+export function interactionHopIndex(interaction: Interaction): number | null {
+  const raw = interaction.hop_index ?? interaction._chain_position;
+  return typeof raw === "number" && Number.isFinite(raw) ? raw : null;
+}
+
+export function edgeHopIndexFromChainPosition(chainPosition: number | null | undefined): number | null {
+  return typeof chainPosition === "number" && Number.isFinite(chainPosition) && chainPosition > 0
+    ? chainPosition - 1
+    : null;
+}
+
+export function interactionTouchesProtein(interaction: Interaction, protein: string): boolean {
+  const target = protein.toUpperCase();
+  return sameSymbol(interaction.source, target) || sameSymbol(interaction.target, target);
+}
+
+export function selectInteractionsForNode(
+  snap: Pick<Snapshot, "interactions"> | null | undefined,
+  protein: string,
+  options: { chainId?: number | null; chainPosition?: number | null } = {},
+): Interaction[] {
+  const list = Array.isArray(snap?.interactions) ? snap.interactions : [];
+  const baseMatches = list.filter((interaction) => interactionTouchesProtein(interaction, protein));
+  const chainId = options.chainId;
+  if (chainId == null) return baseMatches;
+
+  const chainMatches = baseMatches.filter((interaction) => interactionHasChain(interaction, chainId));
+  const edgeBefore = edgeHopIndexFromChainPosition(options.chainPosition ?? null);
+  const edgeAfter =
+    typeof options.chainPosition === "number" && Number.isFinite(options.chainPosition)
+      ? options.chainPosition
+      : null;
+  const hopCandidates = new Set<number>();
+  if (edgeBefore != null) hopCandidates.add(edgeBefore);
+  if (edgeAfter != null) hopCandidates.add(edgeAfter);
+  if (hopCandidates.size === 0) return chainMatches;
+
+  const scoped = chainMatches.filter((interaction) => {
+    const hop = interactionHopIndex(interaction);
+    return hop != null && hopCandidates.has(hop);
+  });
+  return scoped.length > 0 ? scoped : chainMatches;
+}
+
 export function selectInteractionForEdge(
   snap: Pick<Snapshot, "interactions"> | null | undefined,
   source: string,
   target: string,
   chainId: number | null | undefined,
+  hopIndex: number | null | undefined = null,
 ): Interaction | null {
   const list = Array.isArray(snap?.interactions) ? snap.interactions : [];
   const src = source.toUpperCase();
@@ -78,25 +123,32 @@ export function selectInteractionForEdge(
   });
 
   if (chainId != null) {
-    const chainMatches = pairMatches.filter((interaction) => hasChain(interaction, chainId));
+    const chainMatches = pairMatches.filter((interaction) => interactionHasChain(interaction, chainId));
+    const hopMatches =
+      hopIndex == null
+        ? chainMatches
+        : chainMatches.filter((interaction) => interactionHopIndex(interaction) === hopIndex);
+    const scopedMatches = hopMatches.length > 0 ? hopMatches : chainMatches;
+
     const exactChainHop = chainMatches.find(
       (interaction) =>
         interaction._is_chain_link &&
+        (hopIndex == null || interactionHopIndex(interaction) === hopIndex) &&
         sameSymbol(interaction.source, src) &&
         sameSymbol(interaction.target, tgt),
     );
     if (exactChainHop) return exactChainHop;
 
-    const anyChainHop = chainMatches.find((interaction) => interaction._is_chain_link);
+    const anyChainHop = scopedMatches.find((interaction) => interaction._is_chain_link);
     if (anyChainHop) return anyChainHop;
 
-    const exactDirectional = chainMatches.find(
+    const exactDirectional = scopedMatches.find(
       (interaction) =>
         sameSymbol(interaction.source, src) && sameSymbol(interaction.target, tgt),
     );
     if (exactDirectional) return exactDirectional;
 
-    if (chainMatches[0]) return chainMatches[0];
+    if (scopedMatches[0]) return scopedMatches[0];
   }
 
   return pairMatches.find((interaction) => !interaction._is_chain_link) ?? pairMatches[0] ?? null;

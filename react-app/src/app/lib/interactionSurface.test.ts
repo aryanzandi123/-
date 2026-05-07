@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { claimsForInteraction, selectInteractionForEdge } from "./interactionSurface";
+import {
+  claimsForInteraction,
+  selectInteractionForEdge,
+  selectInteractionsForNode,
+} from "./interactionSurface";
 import type { Claim, Interaction, Snapshot } from "@/types/api";
 
 const claim = (functionName: string, arrow = "binds"): Claim =>
@@ -109,5 +113,65 @@ describe("selectInteractionForEdge", () => {
     const snap = { interactions: [chainHop, direct] } as Snapshot;
 
     expect(selectInteractionForEdge(snap, "TDP43", "XPO1", null)).toBe(direct);
+  });
+
+  it("uses hop index to disambiguate repeated chain edges with the same pair", () => {
+    const firstHop = interaction({
+      source: "TDP43",
+      target: "EWSR1",
+      _is_chain_link: true,
+      chain_id: 2621,
+      hop_index: 0,
+      functions: [claim("First hop")],
+    });
+    const secondHop = interaction({
+      source: "TDP43",
+      target: "EWSR1",
+      _is_chain_link: true,
+      chain_id: 2621,
+      hop_index: 2,
+      functions: [claim("Second hop")],
+    });
+    const snap = { interactions: [firstHop, secondHop] } as Snapshot;
+
+    expect(selectInteractionForEdge(snap, "TDP43", "EWSR1", 2621, 2)).toBe(secondHop);
+  });
+});
+
+describe("selectInteractionsForNode", () => {
+  it("scopes duplicate protein node modals to adjacent chain hops", () => {
+    const inbound = interaction({
+      source: "EIF2AK3",
+      target: "EWSR1",
+      _is_chain_link: true,
+      chain_id: 2621,
+      hop_index: 0,
+    });
+    const outbound = interaction({
+      source: "EWSR1",
+      target: "TDP43",
+      _is_chain_link: true,
+      chain_id: 2621,
+      hop_index: 1,
+    });
+    const otherChain = interaction({
+      source: "TDP43",
+      target: "EWSR1",
+      _is_chain_link: true,
+      chain_id: 2622,
+      hop_index: 0,
+    });
+    const direct = interaction({
+      source: "EWSR1",
+      target: "TDP43",
+    });
+    const snap = { interactions: [inbound, outbound, otherChain, direct] } as Snapshot;
+
+    expect(
+      selectInteractionsForNode(snap, "EWSR1", {
+        chainId: 2621,
+        chainPosition: 1,
+      }),
+    ).toEqual([inbound, outbound]);
   });
 });

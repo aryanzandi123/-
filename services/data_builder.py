@@ -291,6 +291,138 @@ def _coerce_int_id(value):
         return None
 
 
+def _normalize_identity_token(value) -> str:
+    """Return a stable string token for display-row identity fields."""
+    if value is None:
+        return "none"
+    text = str(value).strip()
+    return text.lower() if text else "none"
+
+
+def _unordered_pair_token(source, target) -> str:
+    """Return an order-insensitive source/target token for duplicate rows."""
+    left = _normalize_identity_token(source)
+    right = _normalize_identity_token(target)
+    return "~".join(sorted((left, right)))
+
+
+def _identity_pathway_token(item: dict) -> str:
+    """Return the most specific pathway token available for an interaction row."""
+    candidates = [
+        item.get("pathway_id"),
+        item.get("pathway"),
+        item.get("pathway_name"),
+        item.get("step3_finalized_pathway"),
+        item.get("hop_local_pathway"),
+        item.get("chain_context_pathway"),
+    ]
+    for value in candidates:
+        if value:
+            return _normalize_identity_token(value)
+    chain_pathways = item.get("chain_pathways")
+    if isinstance(chain_pathways, list) and chain_pathways:
+        return ",".join(sorted(_normalize_identity_token(value) for value in chain_pathways if value))
+    pathways = item.get("pathways")
+    if isinstance(pathways, list) and pathways:
+        return ",".join(sorted(_normalize_identity_token(value) for value in pathways if value))
+    return "none"
+
+
+def _identity_role_token(item: dict) -> str:
+    """Return the visible graph role for an interaction row identity."""
+    summary = _primary_chain_summary(item)
+    if isinstance(summary, dict) and summary.get("role"):
+        return _normalize_identity_token(summary.get("role"))
+    if item.get("_is_chain_link"):
+        return "chain_link"
+    if item.get("is_net_effect"):
+        return "net_effect"
+    return _normalize_identity_token(item.get("function_context") or item.get("type") or "direct")
+
+
+def _interaction_instance_id_for(item: dict) -> str:
+    """Return the stable UI identity for one emitted interaction row."""
+    db_id = item.get("_db_id")
+    if db_id is None and _coerce_int_id(item.get("id")) is not None:
+        db_id = item.get("id")
+    chain_id = item.get("chain_id")
+    hop_index = _hop_index_for_item(item)
+    locus = item.get("locus") or "direct_claim"
+
+    base = f"db:{_normalize_identity_token(db_id)}" if db_id is not None else (
+        f"pair:{_unordered_pair_token(item.get('source'), item.get('target'))}"
+    )
+    parts = [
+        base,
+        f"pair:{_unordered_pair_token(item.get('source'), item.get('target'))}",
+        f"chain:{_normalize_identity_token(chain_id)}",
+        f"hop:{_normalize_identity_token(hop_index)}",
+        f"locus:{_normalize_identity_token(locus)}",
+        f"pathway:{_identity_pathway_token(item)}",
+        f"role:{_identity_role_token(item)}",
+    ]
+    return "|".join(parts)
+
+
+def _row_richness_score(item: dict) -> int:
+    """Rank duplicate display rows so richer rows survive dedupe."""
+    score = 0
+    for key in ("claims", "functions", "evidence", "pmids", "pathways", "chain_pathways"):
+        value = item.get(key)
+        if isinstance(value, list):
+            score += len(value)
+        elif value:
+            score += 1
+    for key in ("_db_id", "chain_id", "hop_index", "_chain_position", "locus"):
+        if item.get(key) is not None:
+            score += 1
+    return score
+
+
+def _merge_missing_interaction_fields(primary: dict, duplicate: dict) -> dict:
+    """Merge useful missing metadata from duplicate into primary in-place."""
+    for key, value in duplicate.items():
+        if key not in primary or primary.get(key) in (None, "", [], {}):
+            primary[key] = value
+            continue
+        if isinstance(primary.get(key), list) and isinstance(value, list):
+            seen = {
+                repr(item) for item in primary[key]
+            }
+            for item in value:
+                marker = repr(item)
+                if marker not in seen:
+                    primary[key].append(item)
+                    seen.add(marker)
+    return primary
+
+
+def _dedupe_interaction_instances(items):
+    """Collapse duplicate display rows without merging distinct chain instances."""
+    seen = {}
+    ordered = []
+    for item in items or []:
+        if not isinstance(item, dict):
+            ordered.append(item)
+            continue
+        item["_interaction_instance_id"] = _interaction_instance_id_for(item)
+        item["_display_row_id"] = item["_interaction_instance_id"]
+        key = item["_interaction_instance_id"]
+        existing = seen.get(key)
+        if existing is None:
+            seen[key] = item
+            ordered.append(item)
+            continue
+        if _row_richness_score(item) > _row_richness_score(existing):
+            _merge_missing_interaction_fields(item, existing)
+            idx = ordered.index(existing)
+            ordered[idx] = item
+            seen[key] = item
+        else:
+            _merge_missing_interaction_fields(existing, item)
+    return ordered
+
+
 def _claim_chain_scope_for_item(item: dict) -> set[int]:
     """Return chain ids whose claims belong on this emitted interaction row."""
     if not isinstance(item, dict):
@@ -380,6 +512,8 @@ def _apply_contract_fields(item: dict, query_symbol: str | None = None) -> None:
     item["source"] = str(item.get("source") or query_symbol or "")
     item["target"] = str(item.get("target") or item.get("protein_b") or item.get("protein_a") or "")
     _apply_claim_contract_fields(item)
+    item["_interaction_instance_id"] = _interaction_instance_id_for(item)
+    item["_display_row_id"] = item["_interaction_instance_id"]
 
 
 def _build_chain_membership_index(interactions) -> dict:
@@ -546,6 +680,7 @@ def _reconstruct_chain_links(
     protein_set,
     interactor_proteins,
     chain_memberships_index: dict | None = None,
+    chain_pathways_index: dict | None = None,
 ):
     """Extract chain link interactions for indirect mediator chains.
 
@@ -1028,9 +1163,23 @@ def _reconstruct_chain_links(
                                         "chain_with_arrows": normalize_chain_arrows(ch.chain_with_arrows),
                                         "pathway_name": ch.pathway_name,
                                     })
+                                    pathways_for_chain = (
+                                        chain_pathways_index.get(ch.id)
+                                        if chain_pathways_index is not None
+                                        else None
+                                    )
+                                    if pathways_for_chain:
+                                        summaries[-1]["chain_pathways"] = sorted(pathways_for_chain)
                                 if summaries:
                                     d["chain_ids"] = [s["chain_id"] for s in summaries]
                                     d["all_chains"] = summaries
+                                    union_pathways = {
+                                        pathway
+                                        for summary in summaries
+                                        for pathway in (summary.get("chain_pathways") or [])
+                                    }
+                                    if union_pathways:
+                                        d["chain_pathways"] = sorted(union_pathways)
                         except Exception:
                             # Multi-chain enrichment is best-effort;
                             # never let it break a hop emission.
@@ -1577,6 +1726,7 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
         protein_set,
         interactor_proteins,
         chain_memberships_index=chain_memberships_index,
+        chain_pathways_index=chain_pathways_index,
     )
 
     # Query for shared interactions BETWEEN interactors
@@ -1891,6 +2041,7 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
 
     for interaction_data in interactions_list:
         _apply_contract_fields(interaction_data, protein_symbol)
+    interactions_list[:] = _dedupe_interaction_instances(interactions_list)
 
     # BUILD PATHWAY HIERARCHY FROM DATABASE TABLES
     interaction_db_ids = [ix.id for ix in db_interactions] + \
@@ -2118,6 +2269,7 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
                 ix_data = interaction_data_by_id.get(inter.id, {})
                 ix_chain_fields = _chain_fields_for(inter)
                 ix_entry = {
+                    "_db_id": inter.id,
                     "source": ix_data.get("source", pa_sym),
                     "target": ix_data.get("target", pb_sym),
                     "arrow": ix_data.get("arrow", inter.arrow or "binds"),
@@ -2240,6 +2392,8 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
             return False
 
         entry = {
+            "_db_id": item.get("_db_id"),
+            "id": item.get("id"),
             "source": src,
             "target": tgt,
             "arrow": item.get("arrow", "binds"),
@@ -2269,32 +2423,28 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
             # not only under the parent's primary chain_id.
             "chain_ids": item.get("chain_ids"),
             "all_chains": item.get("all_chains"),
+            "chain_pathways": item.get("chain_pathways"),
             "_chain_entity": item.get("_chain_entity"),
             "_synthesized_from_chain": bool(item.get("_synthesized_from_chain")),
         }
+        _apply_contract_fields(entry, protein_symbol)
 
         group = pathway_groups[pw_name]
-        ordered_key = (
-            src,
-            tgt,
-            item.get("chain_id"),
-            item.get("_chain_position"),
-        )
+        entry_identity = entry.get("_interaction_instance_id")
         unordered_pair = frozenset((src, tgt))
         item_func_count = len(item.get("functions") or [])
 
         for idx, existing in enumerate(group["interactions"]):
-            existing_key = (
-                existing.get("source"),
-                existing.get("target"),
-                existing.get("chain_id"),
-                existing.get("_chain_position"),
-            )
+            if not existing.get("_interaction_instance_id"):
+                _apply_contract_fields(existing, protein_symbol)
             existing_pair = frozenset((
                 existing.get("source"),
                 existing.get("target"),
             ))
-            exact_same_chain = existing_key == ordered_key
+            exact_same_chain = (
+                entry_identity
+                and existing.get("_interaction_instance_id") == entry_identity
+            )
             empty_same_pair = (
                 existing_pair == unordered_pair
                 and not existing.get("_is_chain_link")
@@ -2381,6 +2531,8 @@ def build_full_json_from_db(protein_symbol: str) -> dict:
     _upstream_of_main = _main_meta.get("upstream_of_main")
     if not isinstance(_upstream_of_main, list):
         _upstream_of_main = []
+
+    interactions_list[:] = _dedupe_interaction_instances(interactions_list)
 
     snapshot_json = {
         "main": protein_symbol,
@@ -2665,6 +2817,7 @@ def build_protein_detail_json(symbol: str) -> dict | None:
         protein_set,
         interactor_proteins,
         chain_memberships_index=chain_memberships_index,
+        chain_pathways_index=chain_pathways_index,
     )
 
     # Batch-load claims
@@ -2721,6 +2874,8 @@ def build_protein_detail_json(symbol: str) -> dict | None:
                 }
                 for c in _claims_scoped_to_item(claims_by_interaction.get(db_id, []), item)
             ]
+        _apply_contract_fields(item, symbol)
+    interactions_list[:] = _dedupe_interaction_instances(interactions_list)
 
     return {
         "protein": symbol,

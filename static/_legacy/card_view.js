@@ -1363,6 +1363,7 @@ function buildCardHierarchy() {
                     const arrow = entry.arrow;
                     return (typeof arrow === 'string' && arrow.trim()) ? arrow.trim().toLowerCase() : null;
                 };
+                const chainContextPathway = chainGroup.pathwayName || _pathwayNameForChains || parentNode.id || '';
                 // P3.3/P3.4: groupChainsByChainId is the pathway admission
                 // gate. It already requires endpoint overlap or explicit
                 // pathway/claim membership, so do not re-apply a protein
@@ -1399,8 +1400,13 @@ function buildCardHierarchy() {
                 let independentChainRoot = false;
                 if (!anchorNodeId) {
                     const firstId = chainProteins[0];
-                    const rootNode = createInteractorNode(firstId, parentNode.id);
-                    rootNode._uid = `${firstId}::chain::${chainId}::0`;
+                    const rootNode = createInteractorNode(firstId, parentNode.id, {
+                        chainId,
+                        chainPosition: 0,
+                        chainProteins,
+                        instanceUid: `${firstId}::chain::${chainId}::0`,
+                        pathwayName: chainContextPathway,
+                    });
                     rootNode._chainId = chainId;
                     rootNode._chainPosition = 0;
                     rootNode._chainLength = chainProteins.length;
@@ -1445,8 +1451,14 @@ function buildCardHierarchy() {
                     // protein also has a direct claim. Keyed by a separate uid
                     // so addChildIfUnique treats them as distinct.
                     if (assignedIds.has(protId)) {
-                        const duplicate = createInteractorNode(protId, prevNode.id);
-                        duplicate._uid = `${protId}::chain::${chainId}::${k}`;
+                        const duplicate = createInteractorNode(protId, prevNode.id, {
+                            chainId,
+                            chainPosition: k,
+                            chainProteins,
+                            instanceUid: `${protId}::chain::${chainId}::${k}`,
+                            parentInstanceKey: prevNode._uid || prevNode.id,
+                            pathwayName: chainContextPathway,
+                        });
                         duplicate._chainId = chainId;
                         duplicate._chainPosition = k;
                         duplicate._chainLength = chainProteins.length;
@@ -1460,7 +1472,14 @@ function buildCardHierarchy() {
                         continue;
                     }
 
-                    const node = createInteractorNode(protId, prevNode.id);
+                    const node = createInteractorNode(protId, prevNode.id, {
+                        chainId,
+                        chainPosition: k,
+                        chainProteins,
+                        instanceUid: `${protId}::chain::${chainId}::${k}`,
+                        parentInstanceKey: prevNode._uid || prevNode.id,
+                        pathwayName: chainContextPathway,
+                    });
                     node._chainId = chainId;
                     node._chainPosition = k;
                     node._chainLength = chainProteins.length;
@@ -1750,14 +1769,24 @@ function findUpstreamParent(childId, candidates) {
     return parent || null;
 }
 
-function createInteractorNode(intId, parentId) {
+function _cvSameSymbol(a, b) {
+    return String(a || '').toUpperCase() === String(b || '').toUpperCase();
+}
+
+function _cvHopIndex(interaction) {
+    const value = interaction && (interaction.hop_index ?? interaction._chain_position);
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
+function createInteractorNode(intId, parentId, instanceContext = {}) {
     let rel = null;
     if (window.getNodeRelationship) {
         const isPathway = parentId.startsWith('pathway_');
-        if (isPathway) {
+        if (isPathway && instanceContext.chainId == null) {
             rel = window.getNodeRelationship(intId);
         } else {
-            rel = getLocalRelationship(parentId, intId);
+            rel = getLocalRelationship(parentId, intId, instanceContext);
         }
     }
 
@@ -1805,13 +1834,18 @@ function createInteractorNode(intId, parentId) {
 
     return {
         id: intId,
-        _uid: intId + '::' + parentId,
+        _uid: instanceContext.instanceUid || intId + '::' + parentId,
         type: 'interactor',
         label: intId,
         parentId: parentId,
         contextText: rel ? rel.text : '',
         arrowType: rel ? rel.arrow : 'binds',
         isDownstream: rel ? (rel.direction === 'downstream') : false,
+        _baseProtein: intId,
+        _instanceKey: instanceContext.instanceUid || intId + '::' + parentId,
+        _parentInstanceKey: instanceContext.parentInstanceKey || parentId,
+        _relationshipInteractionId: rel?.raw?._interaction_instance_id || rel?.raw?._display_row_id || null,
+        _relationshipDbId: rel?.raw?._db_id ?? null,
         _isChainLink: isChainLink,
         _chainPosition: chainPosition,
         _chainLength: chainLength,
@@ -1820,16 +1854,59 @@ function createInteractorNode(intId, parentId) {
     };
 }
 
-function getLocalRelationship(parentId, childId) {
+function getLocalRelationship(parentId, childId, instanceContext = {}) {
     if (!SNAP || !SNAP.interactions) return null;
-    const interaction = SNAP.interactions.find(i =>
-        (i.source === parentId && i.target === childId) ||
-        (i.source === childId && i.target === parentId)
+    const pairMatches = SNAP.interactions.filter(i =>
+        (_cvSameSymbol(i.source, parentId) && _cvSameSymbol(i.target, childId)) ||
+        (_cvSameSymbol(i.source, childId) && _cvSameSymbol(i.target, parentId))
     );
+
+    const chainId = instanceContext.chainId;
+    const chainPosition = Number(instanceContext.chainPosition);
+    const hopCandidates = new Set();
+    if (Number.isFinite(chainPosition) && chainPosition > 0) {
+        hopCandidates.add(chainPosition - 1);
+    }
+
+    let interaction = null;
+    if (chainId != null && chainId !== '') {
+        const chainMatches = pairMatches.filter(i => {
+            const rowChain = String(i.chain_id ?? '');
+            const inChains = Array.isArray(i.chain_ids) && i.chain_ids.some(cid => String(cid) === String(chainId));
+            const inAllChains = Array.isArray(i.all_chains) && i.all_chains.some(ch => String(ch?.chain_id ?? '') === String(chainId));
+            return rowChain === String(chainId) || inChains || inAllChains;
+        });
+        interaction = chainMatches.find(i =>
+            getCvInteractionLocus(i) === 'chain_hop_claim' &&
+            (hopCandidates.size === 0 || hopCandidates.has(_cvHopIndex(i))) &&
+            _cvSameSymbol(i.source, parentId) &&
+            _cvSameSymbol(i.target, childId)
+        ) || chainMatches.find(i =>
+            getCvInteractionLocus(i) === 'chain_hop_claim' &&
+            (hopCandidates.size === 0 || hopCandidates.has(_cvHopIndex(i)))
+        ) || chainMatches[0] || null;
+    }
+
+    if (!interaction && instanceContext.pathwayName) {
+        interaction = pairMatches.find(i => {
+            const labels = new Set([
+                ...(Array.isArray(i.pathways) ? i.pathways : []),
+                ...(Array.isArray(i.chain_pathways) ? i.chain_pathways : []),
+                i.step3_finalized_pathway,
+                i.hop_local_pathway,
+                i.chain_context_pathway,
+            ].filter(Boolean).map(String));
+            return labels.has(String(instanceContext.pathwayName));
+        }) || null;
+    }
+
+    if (!interaction) {
+        interaction = pairMatches[0] || null;
+    }
 
     if (!interaction) return { text: 'Associated', arrow: 'binds' };
 
-    const isDownstream = interaction.source === parentId;
+    const isDownstream = _cvSameSymbol(interaction.source, parentId);
     const arrow = interaction.arrow || 'binds';
     const locus = getCvInteractionLocus(interaction);
 
@@ -1854,14 +1931,16 @@ function getLocalRelationship(parentId, childId) {
             direction: 'downstream',
             arrow: arrow,
             text: text,
-            locus: locus
+            locus: locus,
+            raw: interaction
         };
     } else {
         return {
             direction: 'upstream',
             arrow: arrow,
             text: text,
-            locus: locus
+            locus: locus,
+            raw: interaction
         };
     }
 }
@@ -3751,16 +3830,26 @@ function _renderDuplicateCrossLinks(nodes) {
         return data._duplicateOf || data.id || null;
     };
 
+    const _scopeKey = (d) => {
+        let current = d;
+        while (current && current.data) {
+            if (current.data.type === 'pathway') return current.data.id || current.data.label || 'pathway';
+            current = current.parent;
+        }
+        return 'global';
+    };
+
     const byProtein = new Map();
     nodes.forEach(d => {
         const protein = _baseProtein(d);
         if (!protein) return;
-        if (!byProtein.has(protein)) byProtein.set(protein, []);
-        byProtein.get(protein).push(d);
+        const key = `${protein}::${_scopeKey(d)}`;
+        if (!byProtein.has(key)) byProtein.set(key, { protein, instances: [] });
+        byProtein.get(key).instances.push(d);
     });
 
     const pairs = [];
-    for (const [protein, instances] of byProtein) {
+    for (const { protein, instances } of byProtein.values()) {
         if (instances.length < 2) continue;
         // Cap at 5 cross-links per protein to keep the visual readable
         // for densely-duplicated cases.
@@ -3780,6 +3869,7 @@ function _renderDuplicateCrossLinks(nodes) {
         .insert('path', '.cv-node')
         .attr('class', 'cv-duplicate-crosslink')
         .attr('data-protein', p => p.protein)
+        .attr('data-scope', p => _scopeKey(p.a))
         .attr('d', p => {
             // Cubic Bezier between the two card centers (d.y is horizontal
             // in the rotated tree layout, d.x is vertical).
@@ -3798,8 +3888,10 @@ function _renderDuplicateCrossLinks(nodes) {
     cvG.selectAll('.cv-node')
         .on('mouseenter.cv-duplicate', function(event, d) {
             const protein = _baseProtein(d);
-            if (!protein || !byProtein.has(protein)) return;
-            const instances = byProtein.get(protein);
+            const scope = _scopeKey(d);
+            const bucket = byProtein.get(`${protein}::${scope}`);
+            if (!protein || !bucket) return;
+            const instances = bucket.instances;
             if (instances.length < 2) return;
             cvG.selectAll('.cv-node').classed('cv-protein-active', false);
             instances.forEach(inst => {
@@ -3809,7 +3901,8 @@ function _renderDuplicateCrossLinks(nodes) {
             });
             cvG.selectAll('.cv-duplicate-crosslink')
                 .classed('highlighted', function() {
-                    return this.getAttribute('data-protein') === protein;
+                    return this.getAttribute('data-protein') === protein &&
+                        this.getAttribute('data-scope') === scope;
                 });
         })
         .on('mouseleave.cv-duplicate', function() {
@@ -3885,6 +3978,10 @@ function makeCardModalContext(d, pathwayContext = null) {
         id: data.id,
         label: data.label || data.id,
         originalId: data.originalId || data._duplicateOf || data.id,
+        baseProtein: data._baseProtein || data._duplicateOf || data.id,
+        instanceKey: data._instanceKey || data._uid || data.id,
+        relationshipInteractionId: data._relationshipInteractionId || null,
+        relationshipDbId: data._relationshipDbId ?? null,
         uid: data._uid || null,
         nodeType: data.type || null,
         parentId: parentData?._uid || parentData?.id || data.parentId || null,

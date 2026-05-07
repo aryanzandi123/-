@@ -87,6 +87,9 @@ export interface Claim {
 
 /** @source services/data_builder.py + 06_FRONTEND_DEEPDIVE.md SNAP.interactions */
 export interface Interaction {
+  _db_id?: number;
+  _interaction_instance_id?: string;
+  _display_row_id?: string;
   source: string;
   target: string;
   arrow: ArrowClass;
@@ -102,6 +105,8 @@ export interface Interaction {
 
   _is_chain_link?: boolean;
   _chain_position?: number;
+  hop_index?: number | null;
+  locus?: string | null;
   _chain_length?: number;
   _chain_entity?: ChainSummary;
   chain_id?: number | null;

@@ -132,10 +132,23 @@ function CardViewInner({ protein }: CardViewProps): JSX.Element {
       const targetNode = nodes.find((n) => n.id === edge.target);
       const sourceProtein = (sourceNode?.data as ProteinCardData | undefined)?.baseProtein;
       const targetProtein = (targetNode?.data as ProteinCardData | undefined)?.baseProtein;
-      // chain edge id encoding: `chain::<chainId>::edge::<position>`
+      // Legacy fallback for pre-contract edges: `chain::<chainId>::edge::<position>`.
       const chainEdgeMatch = edge.id.match(/^chain::(\d+)::edge::(\d+)$/);
-      const chainId = chainEdgeMatch ? Number(chainEdgeMatch[1]) : null;
-      const chainPosition = chainEdgeMatch ? Number(chainEdgeMatch[2]) : null;
+      const chainId = typeof data?.chainId === "number"
+        ? data.chainId
+        : chainEdgeMatch
+          ? Number(chainEdgeMatch[1])
+          : null;
+      const chainPosition = typeof data?.chainPosition === "number"
+        ? data.chainPosition
+        : chainEdgeMatch
+          ? Number(chainEdgeMatch[2])
+          : null;
+      const hopIndex = typeof data?.hopIndex === "number"
+        ? data.hopIndex
+        : chainPosition != null && chainPosition > 0
+          ? chainPosition - 1
+          : null;
       pushModal({
         kind: "interaction",
         protein: protein.toUpperCase(),
@@ -147,6 +160,7 @@ function CardViewInner({ protein }: CardViewProps): JSX.Element {
           isReverse: data?.isReverse ?? false,
           chainId,
           chainPosition,
+          hopIndex,
           edgeId: edge.id,
         },
       });

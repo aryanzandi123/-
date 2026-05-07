@@ -39,6 +39,7 @@ interface EdgePayload {
   isReverse?: boolean;
   chainId?: number | null;
   chainPosition?: number | null;
+  hopIndex?: number | null;
 }
 
 function distinctPmidCount(claims: Claim[]): number {
@@ -72,8 +73,9 @@ export function InteractionModal({ args }: InteractionModalProps): JSX.Element {
       payload.sourceProtein,
       payload.targetProtein,
       payload.chainId ?? null,
+      payload.hopIndex ?? null,
     );
-  }, [snap, payload.sourceProtein, payload.targetProtein, payload.chainId]);
+  }, [snap, payload.sourceProtein, payload.targetProtein, payload.chainId, payload.hopIndex]);
 
   const allChains = inter?.all_chains ?? (inter?._chain_entity ? [inter._chain_entity] : []);
   const focusedHop = payload.chainPosition ?? null;

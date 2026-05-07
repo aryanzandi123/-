@@ -769,6 +769,41 @@ def test_multi_chain_hop_rows_scope_claims_to_visible_chain(test_app):
         row_b = next(ix for ix in chain_specific_rows if ix["chain_id"] == chain_b.id)
         assert [claim["function_name"] for claim in row_a["claims"]] == ["A-specific hop claim"]
         assert [claim["function_name"] for claim in row_b["claims"]] == ["B-specific hop claim"]
+        assert row_a["_interaction_instance_id"] != row_b["_interaction_instance_id"]
+        assert "chain:" in row_a["_interaction_instance_id"]
+        assert "hop:" in row_a["_interaction_instance_id"]
+        assert "locus:chain_hop_claim" in row_a["_interaction_instance_id"]
+
+
+def test_chain_hop_instance_dedup_collapses_direction_variants():
+    """Same chain hop identity should collapse opposite source/target variants."""
+
+    from services.data_builder import _dedupe_interaction_instances
+
+    first = {
+        "_db_id": 14606,
+        "source": "TDP43",
+        "target": "EWSR1",
+        "chain_id": 2621,
+        "hop_index": 1,
+        "locus": "chain_hop_claim",
+        "_is_chain_link": True,
+    }
+    duplicate_reverse = {
+        "_db_id": 14606,
+        "source": "EWSR1",
+        "target": "TDP43",
+        "chain_id": 2621,
+        "_chain_position": 1,
+        "locus": "chain_hop_claim",
+        "_is_chain_link": True,
+    }
+
+    rows = _dedupe_interaction_instances([first, duplicate_reverse])
+
+    assert rows == [first]
+    assert first["_interaction_instance_id"].startswith("db:14606|pair:ews")
+    assert "|chain:2621|hop:1|locus:chain_hop_claim|" in first["_interaction_instance_id"]
 
 
 def test_reconstruct_chain_links_matches_mixed_case_chain_symbols(test_app):

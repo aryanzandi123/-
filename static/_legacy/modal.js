@@ -1711,8 +1711,8 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
   // If this is a pathway-expanded node and nodeLinks is empty or only contains pathway links,
   // look up the actual interaction data from SNAP.interactions
   let actualLinks = nodeLinks;
-  const hasScopedCardLinks = clickedCardContext?._chainId != null && Array.isArray(nodeLinks) && nodeLinks.length > 0;
-  if (clickedNode.pathwayId && SNAP && SNAP.interactions && !hasScopedCardLinks) {
+  const hasChainScopedCardContext = clickedCardContext?._chainId != null;
+  if (clickedNode.pathwayId && SNAP && SNAP.interactions && !hasChainScopedCardContext) {
     // Find interactions involving this protein (including as mediator in indirect chains)
     const interactionData = SNAP.interactions.filter(interaction => {
       const src = interaction.source || '';
@@ -1762,7 +1762,7 @@ function showAggregatedInteractionsModal(nodeLinks, clickedNode, options = {}) {
 
     // Filter to pathway-relevant interactions (skipped when "Show All" is active)
     const unfilteredCount = actualLinks.length;
-    if (!showAll && !hasScopedCardLinks) {
+    if (!showAll && !hasChainScopedCardContext) {
       actualLinks = actualLinks.filter(link => {
         const L = link.data || {};
         const src = L.source || link.source?.originalId || link.source;

@@ -21,3 +21,4 @@
 [  216252ms] [LOG] Opening Card Modal for: MAP1LC3B with 1 interactions @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10697
 [  216252ms] [LOG]   → 2 in Proteostasis, 0 in other pathways @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:10699
 [  216252ms] [LOG] [Pathway Filter] MAP1LC3B: 1/1 interactions in "Proteostasis" @ http://127.0.0.1:5004/static/_legacy/modal.js?v=1778160552:1819
+[ 1223114ms] [LOG] [VizJobTracker] Cleaned up all polling intervals on unload @ http://127.0.0.1:5004/static/_legacy/visualizer.js?v=1778160552:9947

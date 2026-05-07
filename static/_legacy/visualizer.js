@@ -10565,8 +10565,10 @@ function getCardRowHopIndex(interaction) {
 
 function selectLinksForCardContext(interactions, cardContext) {
   const chainId = cardContext?._chainId;
+  const hasChainScope = chainId != null && chainId !== '' && cardContext?._chainPosition != null;
   const hopCandidates = getCardContextHopCandidates(cardContext);
-  if (chainId == null || hopCandidates.length === 0) return interactions;
+  if (!hasChainScope) return interactions;
+  if (hopCandidates.length === 0) return [];
 
   const scoped = interactions.filter(interaction => {
     if (!cardContextChainMatches(interaction, chainId)) return false;
@@ -10578,7 +10580,7 @@ function selectLinksForCardContext(interactions, cardContext) {
     );
   });
 
-  return scoped.length ? scoped : interactions;
+  return scoped;
 }
 
 window.openModalForCard = (nodeId, pathwayContext = null, cardContext = null) => {

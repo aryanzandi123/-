@@ -1,9 +1,102 @@
 """Static contracts for card-view non-query chain rendering."""
 
+import json
+import subprocess
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).parent.parent
+
+
+def _extract_js_function(source: str, name: str) -> str:
+    """Return a top-level JavaScript function declaration from source."""
+    start = source.index(f"function {name}(")
+    brace_start = source.index("{", start)
+    depth = 0
+    for index in range(brace_start, len(source)):
+        char = source[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return source[start:index + 1]
+    raise ValueError(f"Could not extract JavaScript function {name}")
+
+
+def _run_card_context_selector_fixture() -> dict[str, list[str]]:
+    """Execute the legacy modal selector against a minimal chain fixture."""
+    visualizer = (PROJECT_ROOT / "static" / "_legacy" / "visualizer.js").read_text()
+    functions = "\n\n".join(
+        _extract_js_function(visualizer, name)
+        for name in (
+            "getLegacyInteractionLocus",
+            "cardContextChainMatches",
+            "getCardContextHopCandidates",
+            "getCardRowHopIndex",
+            "selectLinksForCardContext",
+        )
+    )
+    script = f"""
+{functions}
+
+const interactions = [
+  {{
+    id: 'scoped-hop',
+    locus: 'chain_hop_claim',
+    chain_id: 'chain-A',
+    hop_index: 0,
+    source: 'TDP43',
+    target: 'PERK',
+  }},
+  {{
+    id: 'aggregate-same-pair',
+    locus: 'direct_claim',
+    source: 'TDP43',
+    target: 'PERK',
+  }},
+  {{
+    id: 'aggregate-next-pair',
+    locus: 'direct_claim',
+    source: 'PERK',
+    target: 'ATXN3',
+  }},
+  {{
+    id: 'other-chain-hop',
+    locus: 'chain_hop_claim',
+    chain_id: 'chain-B',
+    hop_index: 1,
+    source: 'PERK',
+    target: 'ATXN3',
+  }},
+];
+
+const chainProteins = ['TDP43', 'PERK', 'ATXN3'];
+const ids = rows => rows.map(row => row.id);
+
+console.log(JSON.stringify({{
+  matching: ids(selectLinksForCardContext(interactions, {{
+    _chainId: 'chain-A',
+    _chainPosition: 1,
+    _chainProteins: chainProteins,
+  }})),
+  nonmatching: ids(selectLinksForCardContext(interactions, {{
+    _chainId: 'chain-A',
+    _chainPosition: 2,
+    _chainProteins: chainProteins,
+  }})),
+  aggregate: ids(selectLinksForCardContext(interactions, {{
+    label: 'PERK',
+  }})),
+}}));
+"""
+    completed = subprocess.run(
+        ["node", "-e", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return json.loads(completed.stdout)
 
 
 def test_card_view_preserves_full_non_query_chain_order():
@@ -128,8 +221,38 @@ def test_modal_selection_prefers_chain_id_and_hop_context():
     assert "rowHop === candidate.hopIndex" in visualizer
     assert "interaction.source === candidate.source && interaction.target === candidate.target" in visualizer
     assert "const selectedInteractions = selectLinksForCardContext(interactionData, cardContext);" in visualizer
-    assert "const hasScopedCardLinks = clickedCardContext?._chainId != null" in modal
-    assert "if (!showAll && !hasScopedCardLinks)" in modal
+    assert "const hasChainScopedCardContext = clickedCardContext?._chainId != null;" in modal
+    assert "if (!showAll && !hasChainScopedCardContext)" in modal
+
+
+def test_modal_snap_fallback_is_gated_by_empty_chain_scope():
+    """Empty chain-scoped modal selections must not hydrate aggregate rows."""
+    modal = (PROJECT_ROOT / "static" / "_legacy" / "modal.js").read_text()
+    scoped_context_line = next(
+        line for line in modal.splitlines()
+        if "const hasChainScopedCardContext =" in line
+    )
+
+    assert "clickedCardContext?._chainId != null" in scoped_context_line
+    assert "nodeLinks.length" not in scoped_context_line
+    assert (
+        "if (clickedNode.pathwayId && SNAP && SNAP.interactions && !hasChainScopedCardContext)"
+        in modal
+    )
+
+
+def test_modal_selector_does_not_fallback_for_unmatched_chain_scoped_hop():
+    """Chain-scoped modal clicks must not broaden to aggregate protein rows."""
+    selected = _run_card_context_selector_fixture()
+
+    assert selected["matching"] == ["scoped-hop"]
+    assert selected["nonmatching"] == []
+    assert selected["aggregate"] == [
+        "scoped-hop",
+        "aggregate-same-pair",
+        "aggregate-next-pair",
+        "other-chain-hop",
+    ]
 
 
 def test_modal_hop_labels_and_chain_nav_preserve_context_object():

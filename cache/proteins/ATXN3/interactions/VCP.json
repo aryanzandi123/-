@@ -1,0 +1,35 @@
+{
+  "primary": "VCP",
+  "confidence": 0.9,
+  "arrow": "binds",
+  "direction": "main_to_primary",
+  "support_summary": "Co-IP validated in human cells",
+  "pmids": [
+    "12345678",
+    "23456789"
+  ],
+  "functions": [
+    {
+      "function": "Protein quality control",
+      "arrow": "activates",
+      "interaction_effect": "activates",
+      "interaction_direction": "main_to_primary",
+      "cellular_process": "ERAD",
+      "biological_consequence": [
+        "substrate degradation"
+      ],
+      "specific_effects": [
+        "ubiquitin chain editing"
+      ],
+      "pmids": [
+        "12345678"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "protein_a": "ATXN3",
+  "protein_b": "VCP",
+  "discovered_in_query": "ATXN3",
+  "first_discovered": "2026-05-04T21:11:57.474905Z",
+  "last_updated": "2026-05-04T21:11:57.474905Z"
+}

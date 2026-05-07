@@ -1,0 +1,3326 @@
+{
+  "source": "KEGG",
+  "terms": {
+    "hsa01100": {
+      "id": "hsa01100",
+      "name": "Metabolic pathways",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01200": {
+      "id": "hsa01200",
+      "name": "Carbon metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01210": {
+      "id": "hsa01210",
+      "name": "2-Oxocarboxylic acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01212": {
+      "id": "hsa01212",
+      "name": "Fatty acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01230": {
+      "id": "hsa01230",
+      "name": "Biosynthesis of amino acids",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01232": {
+      "id": "hsa01232",
+      "name": "Nucleotide metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01250": {
+      "id": "hsa01250",
+      "name": "Biosynthesis of nucleotide sugars",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01240": {
+      "id": "hsa01240",
+      "name": "Biosynthesis of cofactors",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01320": {
+      "id": "hsa01320",
+      "name": "Sulfur cycle",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00010": {
+      "id": "hsa00010",
+      "name": "Glycolysis / Gluconeogenesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00020": {
+      "id": "hsa00020",
+      "name": "Citrate cycle (TCA cycle)",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00030": {
+      "id": "hsa00030",
+      "name": "Pentose phosphate pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00040": {
+      "id": "hsa00040",
+      "name": "Pentose and glucuronate interconversions",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00051": {
+      "id": "hsa00051",
+      "name": "Fructose and mannose metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00052": {
+      "id": "hsa00052",
+      "name": "Galactose metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00053": {
+      "id": "hsa00053",
+      "name": "Ascorbate and aldarate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00500": {
+      "id": "hsa00500",
+      "name": "Starch and sucrose metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00620": {
+      "id": "hsa00620",
+      "name": "Pyruvate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00630": {
+      "id": "hsa00630",
+      "name": "Glyoxylate and dicarboxylate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00640": {
+      "id": "hsa00640",
+      "name": "Propanoate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00650": {
+      "id": "hsa00650",
+      "name": "Butanoate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00562": {
+      "id": "hsa00562",
+      "name": "Inositol phosphate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00190": {
+      "id": "hsa00190",
+      "name": "Oxidative phosphorylation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00910": {
+      "id": "hsa00910",
+      "name": "Nitrogen metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00920": {
+      "id": "hsa00920",
+      "name": "Sulfur metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00061": {
+      "id": "hsa00061",
+      "name": "Fatty acid biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00062": {
+      "id": "hsa00062",
+      "name": "Fatty acid elongation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00071": {
+      "id": "hsa00071",
+      "name": "Fatty acid degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00100": {
+      "id": "hsa00100",
+      "name": "Steroid biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00120": {
+      "id": "hsa00120",
+      "name": "Primary bile acid biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00140": {
+      "id": "hsa00140",
+      "name": "Steroid hormone biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00561": {
+      "id": "hsa00561",
+      "name": "Glycerolipid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00564": {
+      "id": "hsa00564",
+      "name": "Glycerophospholipid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00565": {
+      "id": "hsa00565",
+      "name": "Ether lipid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00600": {
+      "id": "hsa00600",
+      "name": "Sphingolipid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00590": {
+      "id": "hsa00590",
+      "name": "Arachidonic acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00591": {
+      "id": "hsa00591",
+      "name": "Linoleic acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00592": {
+      "id": "hsa00592",
+      "name": "alpha-Linolenic acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01040": {
+      "id": "hsa01040",
+      "name": "Biosynthesis of unsaturated fatty acids",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00230": {
+      "id": "hsa00230",
+      "name": "Purine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00240": {
+      "id": "hsa00240",
+      "name": "Pyrimidine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00250": {
+      "id": "hsa00250",
+      "name": "Alanine, aspartate and glutamate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00260": {
+      "id": "hsa00260",
+      "name": "Glycine, serine and threonine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00270": {
+      "id": "hsa00270",
+      "name": "Cysteine and methionine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00280": {
+      "id": "hsa00280",
+      "name": "Valine, leucine and isoleucine degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00290": {
+      "id": "hsa00290",
+      "name": "Valine, leucine and isoleucine biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00310": {
+      "id": "hsa00310",
+      "name": "Lysine degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00220": {
+      "id": "hsa00220",
+      "name": "Arginine biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00330": {
+      "id": "hsa00330",
+      "name": "Arginine and proline metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00340": {
+      "id": "hsa00340",
+      "name": "Histidine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00350": {
+      "id": "hsa00350",
+      "name": "Tyrosine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00360": {
+      "id": "hsa00360",
+      "name": "Phenylalanine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00380": {
+      "id": "hsa00380",
+      "name": "Tryptophan metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00400": {
+      "id": "hsa00400",
+      "name": "Phenylalanine, tyrosine and tryptophan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00410": {
+      "id": "hsa00410",
+      "name": "beta-Alanine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00430": {
+      "id": "hsa00430",
+      "name": "Taurine and hypotaurine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00440": {
+      "id": "hsa00440",
+      "name": "Phosphonate and phosphinate metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00450": {
+      "id": "hsa00450",
+      "name": "Selenocompound metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00470": {
+      "id": "hsa00470",
+      "name": "D-Amino acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00480": {
+      "id": "hsa00480",
+      "name": "Glutathione metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00520": {
+      "id": "hsa00520",
+      "name": "Amino sugar and nucleotide sugar metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00541": {
+      "id": "hsa00541",
+      "name": "Biosynthesis of various nucleotide sugars",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00510": {
+      "id": "hsa00510",
+      "name": "N-Glycan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00513": {
+      "id": "hsa00513",
+      "name": "Various types of N-glycan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00512": {
+      "id": "hsa00512",
+      "name": "Mucin type O-glycan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00515": {
+      "id": "hsa00515",
+      "name": "Mannose type O-glycan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00514": {
+      "id": "hsa00514",
+      "name": "Other types of O-glycan biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00532": {
+      "id": "hsa00532",
+      "name": "Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00534": {
+      "id": "hsa00534",
+      "name": "Glycosaminoglycan biosynthesis - heparan sulfate / heparin",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00533": {
+      "id": "hsa00533",
+      "name": "Glycosaminoglycan biosynthesis - keratan sulfate",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00531": {
+      "id": "hsa00531",
+      "name": "Glycosaminoglycan degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00563": {
+      "id": "hsa00563",
+      "name": "Glycosylphosphatidylinositol (GPI)-anchor biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00601": {
+      "id": "hsa00601",
+      "name": "Glycosphingolipid biosynthesis - lacto and neolacto series",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00603": {
+      "id": "hsa00603",
+      "name": "Glycosphingolipid biosynthesis - globo and isoglobo series",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00604": {
+      "id": "hsa00604",
+      "name": "Glycosphingolipid biosynthesis - ganglio series",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00511": {
+      "id": "hsa00511",
+      "name": "Other glycan degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00730": {
+      "id": "hsa00730",
+      "name": "Thiamine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00740": {
+      "id": "hsa00740",
+      "name": "Riboflavin metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00750": {
+      "id": "hsa00750",
+      "name": "Vitamin B6 metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00760": {
+      "id": "hsa00760",
+      "name": "Nicotinate and nicotinamide metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00770": {
+      "id": "hsa00770",
+      "name": "Pantothenate and CoA biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00780": {
+      "id": "hsa00780",
+      "name": "Biotin metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00785": {
+      "id": "hsa00785",
+      "name": "Lipoic acid metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00790": {
+      "id": "hsa00790",
+      "name": "Folate biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00670": {
+      "id": "hsa00670",
+      "name": "One carbon pool by folate",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00830": {
+      "id": "hsa00830",
+      "name": "Retinol metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00860": {
+      "id": "hsa00860",
+      "name": "Porphyrin metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00130": {
+      "id": "hsa00130",
+      "name": "Ubiquinone and other terpenoid-quinone biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00900": {
+      "id": "hsa00900",
+      "name": "Terpenoid backbone biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00232": {
+      "id": "hsa00232",
+      "name": "Caffeine metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00524": {
+      "id": "hsa00524",
+      "name": "Neomycin, kanamycin and gentamicin biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00980": {
+      "id": "hsa00980",
+      "name": "Metabolism of xenobiotics by cytochrome P450",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00982": {
+      "id": "hsa00982",
+      "name": "Drug metabolism - cytochrome P450",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00983": {
+      "id": "hsa00983",
+      "name": "Drug metabolism - other enzymes",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03020": {
+      "id": "hsa03020",
+      "name": "RNA polymerase",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03022": {
+      "id": "hsa03022",
+      "name": "Basal transcription factors",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03040": {
+      "id": "hsa03040",
+      "name": "Spliceosome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03010": {
+      "id": "hsa03010",
+      "name": "Ribosome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa00970": {
+      "id": "hsa00970",
+      "name": "Aminoacyl-tRNA biosynthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03013": {
+      "id": "hsa03013",
+      "name": "Nucleocytoplasmic transport",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03015": {
+      "id": "hsa03015",
+      "name": "mRNA surveillance pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03008": {
+      "id": "hsa03008",
+      "name": "Ribosome biogenesis in eukaryotes",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03060": {
+      "id": "hsa03060",
+      "name": "Protein export",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04141": {
+      "id": "hsa04141",
+      "name": "Protein processing in endoplasmic reticulum",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04130": {
+      "id": "hsa04130",
+      "name": "SNARE interactions in vesicular transport",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04120": {
+      "id": "hsa04120",
+      "name": "Ubiquitin mediated proteolysis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04122": {
+      "id": "hsa04122",
+      "name": "Sulfur relay system",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03050": {
+      "id": "hsa03050",
+      "name": "Proteasome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03018": {
+      "id": "hsa03018",
+      "name": "RNA degradation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03030": {
+      "id": "hsa03030",
+      "name": "DNA replication",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03410": {
+      "id": "hsa03410",
+      "name": "Base excision repair",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03420": {
+      "id": "hsa03420",
+      "name": "Nucleotide excision repair",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03430": {
+      "id": "hsa03430",
+      "name": "Mismatch repair",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03440": {
+      "id": "hsa03440",
+      "name": "Homologous recombination",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03450": {
+      "id": "hsa03450",
+      "name": "Non-homologous end-joining",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03460": {
+      "id": "hsa03460",
+      "name": "Fanconi anemia pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03082": {
+      "id": "hsa03082",
+      "name": "ATP-dependent chromatin remodeling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03083": {
+      "id": "hsa03083",
+      "name": "Polycomb repressive complex",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03250": {
+      "id": "hsa03250",
+      "name": "Viral life cycle - HIV-1",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03260": {
+      "id": "hsa03260",
+      "name": "Virion - Human immunodeficiency virus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03271": {
+      "id": "hsa03271",
+      "name": "Virion - Rotavirus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03264": {
+      "id": "hsa03264",
+      "name": "Virion - Flavivirus and Alphavirus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03265": {
+      "id": "hsa03265",
+      "name": "Virion - Ebolavirus, Lyssavirus and Morbillivirus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03273": {
+      "id": "hsa03273",
+      "name": "Virion - Lassa virus and SFTS virus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03272": {
+      "id": "hsa03272",
+      "name": "Virion - Hepatitis viruses",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03266": {
+      "id": "hsa03266",
+      "name": "Virion - Herpesvirus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03267": {
+      "id": "hsa03267",
+      "name": "Virion - Adenovirus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa02010": {
+      "id": "hsa02010",
+      "name": "ABC transporters",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04010": {
+      "id": "hsa04010",
+      "name": "MAPK signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04012": {
+      "id": "hsa04012",
+      "name": "ErbB signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04014": {
+      "id": "hsa04014",
+      "name": "Ras signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04015": {
+      "id": "hsa04015",
+      "name": "Rap1 signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04310": {
+      "id": "hsa04310",
+      "name": "Wnt signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04330": {
+      "id": "hsa04330",
+      "name": "Notch signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04340": {
+      "id": "hsa04340",
+      "name": "Hedgehog signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04350": {
+      "id": "hsa04350",
+      "name": "TGF-beta signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04390": {
+      "id": "hsa04390",
+      "name": "Hippo signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04392": {
+      "id": "hsa04392",
+      "name": "Hippo signaling pathway - multiple species",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04370": {
+      "id": "hsa04370",
+      "name": "VEGF signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04371": {
+      "id": "hsa04371",
+      "name": "Apelin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04630": {
+      "id": "hsa04630",
+      "name": "JAK-STAT signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04064": {
+      "id": "hsa04064",
+      "name": "NF-kappa B signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04668": {
+      "id": "hsa04668",
+      "name": "TNF signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04066": {
+      "id": "hsa04066",
+      "name": "HIF-1 signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04068": {
+      "id": "hsa04068",
+      "name": "FoxO signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04020": {
+      "id": "hsa04020",
+      "name": "Calcium signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04070": {
+      "id": "hsa04070",
+      "name": "Phosphatidylinositol signaling system",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04072": {
+      "id": "hsa04072",
+      "name": "Phospholipase D signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04071": {
+      "id": "hsa04071",
+      "name": "Sphingolipid signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04024": {
+      "id": "hsa04024",
+      "name": "cAMP signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04022": {
+      "id": "hsa04022",
+      "name": "cGMP-PKG signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04151": {
+      "id": "hsa04151",
+      "name": "PI3K-Akt signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04152": {
+      "id": "hsa04152",
+      "name": "AMPK signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04150": {
+      "id": "hsa04150",
+      "name": "mTOR signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04080": {
+      "id": "hsa04080",
+      "name": "Neuroactive ligand-receptor interaction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04082": {
+      "id": "hsa04082",
+      "name": "Neuroactive ligand signaling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04081": {
+      "id": "hsa04081",
+      "name": "Hormone signaling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04060": {
+      "id": "hsa04060",
+      "name": "Cytokine-cytokine receptor interaction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04061": {
+      "id": "hsa04061",
+      "name": "Viral protein interaction with cytokine and cytokine receptor",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04512": {
+      "id": "hsa04512",
+      "name": "ECM-receptor interaction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04514": {
+      "id": "hsa04514",
+      "name": "Cell adhesion molecule (CAM) interaction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04517": {
+      "id": "hsa04517",
+      "name": "IgSF CAM signaling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04518": {
+      "id": "hsa04518",
+      "name": "Integrin signaling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04144": {
+      "id": "hsa04144",
+      "name": "Endocytosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04145": {
+      "id": "hsa04145",
+      "name": "Phagosome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04142": {
+      "id": "hsa04142",
+      "name": "Lysosome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04146": {
+      "id": "hsa04146",
+      "name": "Peroxisome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04140": {
+      "id": "hsa04140",
+      "name": "Autophagy - animal",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04136": {
+      "id": "hsa04136",
+      "name": "Autophagy - other",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04137": {
+      "id": "hsa04137",
+      "name": "Mitophagy - animal",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04148": {
+      "id": "hsa04148",
+      "name": "Efferocytosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04110": {
+      "id": "hsa04110",
+      "name": "Cell cycle",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04114": {
+      "id": "hsa04114",
+      "name": "Oocyte meiosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04210": {
+      "id": "hsa04210",
+      "name": "Apoptosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04215": {
+      "id": "hsa04215",
+      "name": "Apoptosis - multiple species",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04216": {
+      "id": "hsa04216",
+      "name": "Ferroptosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04217": {
+      "id": "hsa04217",
+      "name": "Necroptosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04115": {
+      "id": "hsa04115",
+      "name": "p53 signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04218": {
+      "id": "hsa04218",
+      "name": "Cellular senescence",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04510": {
+      "id": "hsa04510",
+      "name": "Focal adhesion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04520": {
+      "id": "hsa04520",
+      "name": "Adherens junction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04530": {
+      "id": "hsa04530",
+      "name": "Tight junction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04540": {
+      "id": "hsa04540",
+      "name": "Gap junction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04550": {
+      "id": "hsa04550",
+      "name": "Signaling pathways regulating pluripotency of stem cells",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04814": {
+      "id": "hsa04814",
+      "name": "Motor proteins",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04820": {
+      "id": "hsa04820",
+      "name": "Cytoskeleton in muscle cells",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04810": {
+      "id": "hsa04810",
+      "name": "Regulation of actin cytoskeleton",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04640": {
+      "id": "hsa04640",
+      "name": "Hematopoietic cell lineage",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04610": {
+      "id": "hsa04610",
+      "name": "Complement and coagulation cascades",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04611": {
+      "id": "hsa04611",
+      "name": "Platelet activation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04613": {
+      "id": "hsa04613",
+      "name": "Neutrophil extracellular trap formation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04620": {
+      "id": "hsa04620",
+      "name": "Toll-like receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04621": {
+      "id": "hsa04621",
+      "name": "NOD-like receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04622": {
+      "id": "hsa04622",
+      "name": "RIG-I-like receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04623": {
+      "id": "hsa04623",
+      "name": "Cytosolic DNA-sensing pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04625": {
+      "id": "hsa04625",
+      "name": "C-type lectin receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04650": {
+      "id": "hsa04650",
+      "name": "Natural killer cell mediated cytotoxicity",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04612": {
+      "id": "hsa04612",
+      "name": "Antigen processing and presentation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04660": {
+      "id": "hsa04660",
+      "name": "T cell receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04658": {
+      "id": "hsa04658",
+      "name": "Th1 and Th2 cell differentiation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04659": {
+      "id": "hsa04659",
+      "name": "Th17 cell differentiation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04657": {
+      "id": "hsa04657",
+      "name": "IL-17 signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04662": {
+      "id": "hsa04662",
+      "name": "B cell receptor signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04664": {
+      "id": "hsa04664",
+      "name": "Fc epsilon RI signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04666": {
+      "id": "hsa04666",
+      "name": "Fc gamma R-mediated phagocytosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04670": {
+      "id": "hsa04670",
+      "name": "Leukocyte transendothelial migration",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04672": {
+      "id": "hsa04672",
+      "name": "Intestinal immune network for IgA production",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04062": {
+      "id": "hsa04062",
+      "name": "Chemokine signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04911": {
+      "id": "hsa04911",
+      "name": "Insulin secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04910": {
+      "id": "hsa04910",
+      "name": "Insulin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04922": {
+      "id": "hsa04922",
+      "name": "Glucagon signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04923": {
+      "id": "hsa04923",
+      "name": "Regulation of lipolysis in adipocytes",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04920": {
+      "id": "hsa04920",
+      "name": "Adipocytokine signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa03320": {
+      "id": "hsa03320",
+      "name": "PPAR signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04929": {
+      "id": "hsa04929",
+      "name": "GnRH secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04912": {
+      "id": "hsa04912",
+      "name": "GnRH signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04913": {
+      "id": "hsa04913",
+      "name": "Ovarian steroidogenesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04915": {
+      "id": "hsa04915",
+      "name": "Estrogen signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04914": {
+      "id": "hsa04914",
+      "name": "Progesterone-mediated oocyte maturation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04917": {
+      "id": "hsa04917",
+      "name": "Prolactin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04921": {
+      "id": "hsa04921",
+      "name": "Oxytocin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04926": {
+      "id": "hsa04926",
+      "name": "Relaxin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04935": {
+      "id": "hsa04935",
+      "name": "Growth hormone synthesis, secretion and action",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04918": {
+      "id": "hsa04918",
+      "name": "Thyroid hormone synthesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04919": {
+      "id": "hsa04919",
+      "name": "Thyroid hormone signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04928": {
+      "id": "hsa04928",
+      "name": "Parathyroid hormone synthesis, secretion and action",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04916": {
+      "id": "hsa04916",
+      "name": "Melanogenesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04924": {
+      "id": "hsa04924",
+      "name": "Renin secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04614": {
+      "id": "hsa04614",
+      "name": "Renin-angiotensin system",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04925": {
+      "id": "hsa04925",
+      "name": "Aldosterone synthesis and secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04927": {
+      "id": "hsa04927",
+      "name": "Cortisol synthesis and secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04260": {
+      "id": "hsa04260",
+      "name": "Cardiac muscle contraction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04261": {
+      "id": "hsa04261",
+      "name": "Adrenergic signaling in cardiomyocytes",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04270": {
+      "id": "hsa04270",
+      "name": "Vascular smooth muscle contraction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04970": {
+      "id": "hsa04970",
+      "name": "Salivary secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04971": {
+      "id": "hsa04971",
+      "name": "Gastric acid secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04972": {
+      "id": "hsa04972",
+      "name": "Pancreatic secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04976": {
+      "id": "hsa04976",
+      "name": "Bile secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04973": {
+      "id": "hsa04973",
+      "name": "Carbohydrate digestion and absorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04974": {
+      "id": "hsa04974",
+      "name": "Protein digestion and absorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04975": {
+      "id": "hsa04975",
+      "name": "Fat digestion and absorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04979": {
+      "id": "hsa04979",
+      "name": "Cholesterol metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04977": {
+      "id": "hsa04977",
+      "name": "Vitamin digestion and absorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04981": {
+      "id": "hsa04981",
+      "name": "Folate transport and metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04980": {
+      "id": "hsa04980",
+      "name": "Cobalamin transport and metabolism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04978": {
+      "id": "hsa04978",
+      "name": "Mineral absorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04962": {
+      "id": "hsa04962",
+      "name": "Vasopressin-regulated water reabsorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04960": {
+      "id": "hsa04960",
+      "name": "Aldosterone-regulated sodium reabsorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04961": {
+      "id": "hsa04961",
+      "name": "Endocrine and other factor-regulated calcium reabsorption",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04964": {
+      "id": "hsa04964",
+      "name": "Proximal tubule bicarbonate reclamation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04966": {
+      "id": "hsa04966",
+      "name": "Collecting duct acid secretion",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04724": {
+      "id": "hsa04724",
+      "name": "Glutamatergic synapse",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04727": {
+      "id": "hsa04727",
+      "name": "GABAergic synapse",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04725": {
+      "id": "hsa04725",
+      "name": "Cholinergic synapse",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04728": {
+      "id": "hsa04728",
+      "name": "Dopaminergic synapse",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04726": {
+      "id": "hsa04726",
+      "name": "Serotonergic synapse",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04720": {
+      "id": "hsa04720",
+      "name": "Long-term potentiation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04730": {
+      "id": "hsa04730",
+      "name": "Long-term depression",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04723": {
+      "id": "hsa04723",
+      "name": "Retrograde endocannabinoid signaling",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04721": {
+      "id": "hsa04721",
+      "name": "Synaptic vesicle cycle",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04722": {
+      "id": "hsa04722",
+      "name": "Neurotrophin signaling pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04744": {
+      "id": "hsa04744",
+      "name": "Phototransduction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04740": {
+      "id": "hsa04740",
+      "name": "Olfactory transduction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04742": {
+      "id": "hsa04742",
+      "name": "Taste transduction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04750": {
+      "id": "hsa04750",
+      "name": "Inflammatory mediator regulation of TRP channels",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04360": {
+      "id": "hsa04360",
+      "name": "Axon guidance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04380": {
+      "id": "hsa04380",
+      "name": "Osteoclast differentiation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04382": {
+      "id": "hsa04382",
+      "name": "Cornified envelope formation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04211": {
+      "id": "hsa04211",
+      "name": "Longevity regulating pathway",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04213": {
+      "id": "hsa04213",
+      "name": "Longevity regulating pathway - multiple species",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04710": {
+      "id": "hsa04710",
+      "name": "Circadian rhythm",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04713": {
+      "id": "hsa04713",
+      "name": "Circadian entrainment",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04714": {
+      "id": "hsa04714",
+      "name": "Thermogenesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05200": {
+      "id": "hsa05200",
+      "name": "Pathways in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05202": {
+      "id": "hsa05202",
+      "name": "Transcriptional misregulation in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05206": {
+      "id": "hsa05206",
+      "name": "MicroRNAs in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05205": {
+      "id": "hsa05205",
+      "name": "Proteoglycans in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05204": {
+      "id": "hsa05204",
+      "name": "Chemical carcinogenesis - DNA adducts",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05207": {
+      "id": "hsa05207",
+      "name": "Chemical carcinogenesis - receptor activation",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05208": {
+      "id": "hsa05208",
+      "name": "Chemical carcinogenesis - reactive oxygen species",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05203": {
+      "id": "hsa05203",
+      "name": "Viral carcinogenesis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05230": {
+      "id": "hsa05230",
+      "name": "Central carbon metabolism in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05231": {
+      "id": "hsa05231",
+      "name": "Choline metabolism in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05235": {
+      "id": "hsa05235",
+      "name": "PD-L1 expression and PD-1 checkpoint pathway in cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05210": {
+      "id": "hsa05210",
+      "name": "Colorectal cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05212": {
+      "id": "hsa05212",
+      "name": "Pancreatic cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05225": {
+      "id": "hsa05225",
+      "name": "Hepatocellular carcinoma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05226": {
+      "id": "hsa05226",
+      "name": "Gastric cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05214": {
+      "id": "hsa05214",
+      "name": "Glioma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05216": {
+      "id": "hsa05216",
+      "name": "Thyroid cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05221": {
+      "id": "hsa05221",
+      "name": "Acute myeloid leukemia",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05220": {
+      "id": "hsa05220",
+      "name": "Chronic myeloid leukemia",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05217": {
+      "id": "hsa05217",
+      "name": "Basal cell carcinoma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05218": {
+      "id": "hsa05218",
+      "name": "Melanoma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05211": {
+      "id": "hsa05211",
+      "name": "Renal cell carcinoma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05219": {
+      "id": "hsa05219",
+      "name": "Bladder cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05215": {
+      "id": "hsa05215",
+      "name": "Prostate cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05213": {
+      "id": "hsa05213",
+      "name": "Endometrial cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05224": {
+      "id": "hsa05224",
+      "name": "Breast cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05222": {
+      "id": "hsa05222",
+      "name": "Small cell lung cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05223": {
+      "id": "hsa05223",
+      "name": "Non-small cell lung cancer",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05166": {
+      "id": "hsa05166",
+      "name": "Human T-cell leukemia virus 1 infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05170": {
+      "id": "hsa05170",
+      "name": "Human immunodeficiency virus 1 infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05161": {
+      "id": "hsa05161",
+      "name": "Hepatitis B",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05160": {
+      "id": "hsa05160",
+      "name": "Hepatitis C",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05171": {
+      "id": "hsa05171",
+      "name": "Coronavirus disease - COVID-19",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05164": {
+      "id": "hsa05164",
+      "name": "Influenza A",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05162": {
+      "id": "hsa05162",
+      "name": "Measles",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05168": {
+      "id": "hsa05168",
+      "name": "Herpes simplex virus 1 infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05163": {
+      "id": "hsa05163",
+      "name": "Human cytomegalovirus infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05167": {
+      "id": "hsa05167",
+      "name": "Kaposi sarcoma-associated herpesvirus infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05169": {
+      "id": "hsa05169",
+      "name": "Epstein-Barr virus infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05165": {
+      "id": "hsa05165",
+      "name": "Human papillomavirus infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05110": {
+      "id": "hsa05110",
+      "name": "Vibrio cholerae infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05120": {
+      "id": "hsa05120",
+      "name": "Epithelial cell signaling in Helicobacter pylori infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05130": {
+      "id": "hsa05130",
+      "name": "Pathogenic Escherichia coli infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05132": {
+      "id": "hsa05132",
+      "name": "Salmonella infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05131": {
+      "id": "hsa05131",
+      "name": "Shigellosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05135": {
+      "id": "hsa05135",
+      "name": "Yersinia infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05133": {
+      "id": "hsa05133",
+      "name": "Pertussis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05134": {
+      "id": "hsa05134",
+      "name": "Legionellosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05150": {
+      "id": "hsa05150",
+      "name": "Staphylococcus aureus infection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05152": {
+      "id": "hsa05152",
+      "name": "Tuberculosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05100": {
+      "id": "hsa05100",
+      "name": "Bacterial invasion of epithelial cells",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05146": {
+      "id": "hsa05146",
+      "name": "Amoebiasis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05144": {
+      "id": "hsa05144",
+      "name": "Malaria",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05145": {
+      "id": "hsa05145",
+      "name": "Toxoplasmosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05140": {
+      "id": "hsa05140",
+      "name": "Leishmaniasis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05142": {
+      "id": "hsa05142",
+      "name": "Chagas disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05143": {
+      "id": "hsa05143",
+      "name": "African trypanosomiasis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05310": {
+      "id": "hsa05310",
+      "name": "Asthma",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05322": {
+      "id": "hsa05322",
+      "name": "Systemic lupus erythematosus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05323": {
+      "id": "hsa05323",
+      "name": "Rheumatoid arthritis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05320": {
+      "id": "hsa05320",
+      "name": "Autoimmune thyroid disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05321": {
+      "id": "hsa05321",
+      "name": "Inflammatory bowel disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05330": {
+      "id": "hsa05330",
+      "name": "Allograft rejection",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05332": {
+      "id": "hsa05332",
+      "name": "Graft-versus-host disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05340": {
+      "id": "hsa05340",
+      "name": "Primary immunodeficiency",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05010": {
+      "id": "hsa05010",
+      "name": "Alzheimer disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05012": {
+      "id": "hsa05012",
+      "name": "Parkinson disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05014": {
+      "id": "hsa05014",
+      "name": "Amyotrophic lateral sclerosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05016": {
+      "id": "hsa05016",
+      "name": "Huntington disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05017": {
+      "id": "hsa05017",
+      "name": "Spinocerebellar ataxia",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05020": {
+      "id": "hsa05020",
+      "name": "Prion disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05022": {
+      "id": "hsa05022",
+      "name": "Pathways of neurodegeneration - multiple diseases",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05030": {
+      "id": "hsa05030",
+      "name": "Cocaine addiction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05031": {
+      "id": "hsa05031",
+      "name": "Amphetamine addiction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05032": {
+      "id": "hsa05032",
+      "name": "Morphine addiction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05033": {
+      "id": "hsa05033",
+      "name": "Nicotine addiction",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05034": {
+      "id": "hsa05034",
+      "name": "Alcoholism",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05417": {
+      "id": "hsa05417",
+      "name": "Lipid and atherosclerosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05418": {
+      "id": "hsa05418",
+      "name": "Fluid shear stress and atherosclerosis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05410": {
+      "id": "hsa05410",
+      "name": "Hypertrophic cardiomyopathy",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05412": {
+      "id": "hsa05412",
+      "name": "Arrhythmogenic right ventricular cardiomyopathy",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05414": {
+      "id": "hsa05414",
+      "name": "Dilated cardiomyopathy",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05415": {
+      "id": "hsa05415",
+      "name": "Diabetic cardiomyopathy",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa05416": {
+      "id": "hsa05416",
+      "name": "Viral myocarditis",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04930": {
+      "id": "hsa04930",
+      "name": "Type II diabetes mellitus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04940": {
+      "id": "hsa04940",
+      "name": "Type I diabetes mellitus",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04950": {
+      "id": "hsa04950",
+      "name": "Maturity onset diabetes of the young",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04936": {
+      "id": "hsa04936",
+      "name": "Alcoholic liver disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04932": {
+      "id": "hsa04932",
+      "name": "Non-alcoholic fatty liver disease",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04931": {
+      "id": "hsa04931",
+      "name": "Insulin resistance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04933": {
+      "id": "hsa04933",
+      "name": "AGE-RAGE signaling pathway in diabetic complications",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa04934": {
+      "id": "hsa04934",
+      "name": "Cushing syndrome",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01521": {
+      "id": "hsa01521",
+      "name": "EGFR tyrosine kinase inhibitor resistance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01524": {
+      "id": "hsa01524",
+      "name": "Platinum drug resistance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01523": {
+      "id": "hsa01523",
+      "name": "Antifolate resistance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    },
+    "hsa01522": {
+      "id": "hsa01522",
+      "name": "Endocrine resistance",
+      "source": "KEGG",
+      "definition": null,
+      "parent_ids": [],
+      "child_ids": [],
+      "relationship_types": {}
+    }
+  }
+}

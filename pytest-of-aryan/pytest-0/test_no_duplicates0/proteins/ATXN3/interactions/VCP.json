@@ -1,0 +1,11 @@
+{
+  "primary": "VCP",
+  "confidence": 0.9,
+  "arrow": "binds",
+  "direction": "main_to_primary",
+  "protein_a": "ATXN3",
+  "protein_b": "VCP",
+  "discovered_in_query": "ATXN3",
+  "first_discovered": "2026-03-16T00:09:21.862067Z",
+  "last_updated": "2026-03-16T00:09:21.862067Z"
+}

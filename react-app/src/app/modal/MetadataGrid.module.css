@@ -1,0 +1,59 @@
+/* MetadataGrid — compact label/value grid surfaced at the top of every
+ * modal. Mirrors the legacy "TYPE / DIRECTION / FUNCTIONS / EVIDENCE /
+ * PATHWAYS / CONTEXT" rail so the user has a fixed orientation strip
+ * regardless of which modal kind they opened. */
+
+.grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: var(--space-4);
+  row-gap: 6px;
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-3) var(--space-4) 0;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+}
+
+.label {
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  padding-top: 1px;
+}
+
+.value {
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.crumb {
+  color: var(--color-text-faint);
+}
+
+.crumbActive {
+  color: var(--color-arrow-positive);
+  font-weight: 600;
+}
+
+.sep {
+  color: var(--color-text-disabled);
+}
+
+.chip {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-text);
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  font-family: var(--font-mono);
+}

@@ -1,0 +1,44 @@
+{
+  "zero_function_dropped": [],
+  "chain_pair_unrecoverable": [],
+  "pipeline_metadata": {
+    "quality_report": {
+      "total_functions": 138,
+      "flagged_functions": 58,
+      "pass_rate": 0.58,
+      "thresholds": {
+        "min_sentences": 6,
+        "max_sentences": 10,
+        "min_cascades": 3,
+        "max_cascades": 5
+      }
+    }
+  },
+  "chain_incomplete_hops": [
+    {
+      "interactor": "VIMP",
+      "missing_hops": [
+        "ATXN3->VIMP"
+      ]
+    },
+    {
+      "interactor": "UBE2D1",
+      "missing_hops": [
+        "ATXN3->STUB1",
+        "HSPA8->UBE2D1"
+      ]
+    }
+  ],
+  "pathway_drifts": [
+    {
+      "interactor": "ATXN3",
+      "function": "TP53 Deubiquitination & Protein Stabilization",
+      "from": "Transcriptional Regulation",
+      "from_score": 1,
+      "to": "Apoptosis",
+      "to_score": 6,
+      "action": "corrected",
+      "interaction_id": 14458
+    }
+  ]
+}

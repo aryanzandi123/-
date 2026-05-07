@@ -1,0 +1,13 @@
+{
+  "snapshot_json": {
+    "main": "D",
+    "interactors": [
+      {
+        "primary": "E"
+      },
+      {
+        "primary": "F"
+      }
+    ]
+  }
+}

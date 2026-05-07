@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ProPath - {{ main_protein }}</title>
+  <link rel="icon" type="image/png" href="/static/logo.png">
+  <link rel="apple-touch-icon" href="/static/logo.png">
+  <link rel="stylesheet" href="/static/styles.css"/>
+  <script src="/static/_legacy/script.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="/static/viz-styles.css"/>
+  <link rel="stylesheet" href="/static/pathway_explorer_v2.css"/>
+</head>
+<body class="dark-mode">
+<div class="container">
+  <!-- Invisible hover trigger -->
+  <div class="header-trigger"></div>
+
+  <!-- Header (classes/IDs aligned with index page) -->
+  <div class="header">
+    <h1 class="title" id="networkTitle">{{ main_protein }} Interaction Network</h1>
+
+    <div class="header-search-container">
+      <div class="input-container">
+        <input type="text" id="protein-input" placeholder="Search another protein..."/>
+        <button id="query-button">Generate</button>
+      </div>
+    </div>
+
+    <!-- Inline Controls Row: View Tabs + Research Settings -->
+    <div class="header-controls-row">
+      <div class="view-tabs">
+        <button class="header-btn tab-btn active" onclick="switchView('card')">Card View</button>
+        <button class="header-btn tab-btn" onclick="switchView('table')">Table View</button>
+        <button class="header-btn tab-btn" onclick="switchView('chat')">Chat</button>
+        <button class="header-btn tab-btn" onclick="switchView('graph')">Graph View</button>
+      </div>
+
+      <div class="cv-header-toggles" id="cv-header-toggles">
+        <button class="header-btn cv-toggle-btn" id="btn-cross-query" onclick="window.toggleCrossQuery && window.toggleCrossQuery()" title="Show interactions from other queries under shared pathways">Cross-Query</button>
+        <button class="header-btn cv-toggle-btn" id="btn-merge-cq" onclick="window.toggleMergeCrossQuery && window.toggleMergeCrossQuery()" title="Merge cross-query proteins into the main tree" disabled>Merge</button>
+        <button class="header-btn cv-toggle-btn" id="btn-chain-mode" onclick="window.toggleChainMode && window.toggleChainMode()" title="Toggle chain display: separated branches vs merged tree">Chains: Split</button>
+        <!-- L5.6 — filter chips -->
+        <button class="header-btn cv-toggle-btn cv-toggle-active" id="btn-show-pseudo" onclick="window.toggleShowPseudo && window.toggleShowPseudo()" title="Show pseudo entities (RNA, Ubiquitin, ...) as chain mediators">Pseudo: ON</button>
+        <button class="header-btn cv-toggle-btn" id="btn-cv-filter" onclick="window.cycleCvFilter && window.cycleCvFilter()" title="Filter interactions: All → Direct only → Indirect only → Chain-touching only">Filter: All</button>
+      </div>
+
+      <details class="config-details-inline">
+        <summary class="header-btn config-summary-inline">Research Settings</summary>
+        <div class="config-content-inline">
+          <label class="config-label" style="margin-bottom: 8px;">
+            <span class="config-label-text">Discovery Mode:</span>
+            <select id="pipeline-mode-select" class="config-input" style="width: auto; min-width: 140px;" onchange="onPipelineModeChange()">
+              <option value="iterative" selected>Iterative</option>
+              <option value="modern">Deep Research</option>
+              <option value="standard">Standard</option>
+            </select>
+          </label>
+          <div id="iterative-settings" style="margin-bottom: 8px;">
+            <label class="config-label">
+              <span class="config-label-text">Iterations:</span>
+              <input type="range" id="discovery-iterations" min="1" max="10" value="5"
+                  style="width: 80px; vertical-align: middle;"
+                  oninput="document.getElementById('iter-count-display').textContent = this.value">
+              <span id="iter-count-display" style="min-width: 16px; text-align: center; font-weight: 600; color: #4f46e5;">5</span>
+            </label>
+          </div>
+          <div class="config-presets">
+            <button class="preset-btn" onclick="setPreset(3,3,undefined,3)">Quick</button>
+            <button class="preset-btn" onclick="setPreset(5,5,undefined,5)">Standard</button>
+            <button class="preset-btn" onclick="setPreset(8,8,undefined,8)">Thorough</button>
+          </div>
+          <div class="config-inputs">
+            <label class="config-label">
+              <span class="config-label-text">Interactor Discovery Rounds:</span>
+              <input type="number" id="interactor-rounds" class="config-input" min="3" max="8" value="3">
+            </label>
+            <label class="config-label">
+              <span class="config-label-text">Function Mapping Rounds:</span>
+              <input type="number" id="function-rounds" class="config-input" min="3" max="8" value="3">
+            </label>
+          </div>
+        </div>
+      </details>
+
+      <button class="header-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode" id="theme-toggle">
+        <span id="theme-icon">☀️</span>
+      </button>
+    </div>
+
+    <div id="job-notification" class="job-notification">
+      <!-- Multi-job tracker container -->
+      <div id="mini-job-container" class="mini-job-container"></div>
+      <!-- Notification message for non-job updates -->
+      <p id="notification-message" style="display: none;"></p>
+    </div>
+  </div>
+
+  <div id="network" class="view-container" style="display:none;">
+    <!-- Pathway Explorer Sidebar -->
+    <div id="pathway-sidebar" class="pathway-sidebar">
+      <div class="pathway-sidebar-header">
+        <span class="pathway-sidebar-title">Pathway Explorer</span>
+        <button class="pathway-sidebar-toggle" onclick="togglePathwaySidebar()" title="Collapse">◀</button>
+      </div>
+      <div class="pathway-sidebar-content">
+        <div class="pathway-search-container">
+          <input type="text" id="pathway-search" class="pathway-search-input" placeholder="Filter pathways..." oninput="debouncedFilterPathwaySidebar(this.value)">
+        </div>
+        <div class="pathway-bulk-actions">
+          <button class="pathway-action-btn" onclick="selectAllRootPathways()">Select All</button>
+          <button class="pathway-action-btn" onclick="clearAllRootPathways()">Clear All</button>
+        </div>
+        <div id="pathway-tree" class="pathway-tree">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsed Sidebar Tab -->
+    <div id="pathway-sidebar-tab" class="pathway-sidebar-tab" style="display:none;" onclick="togglePathwaySidebar()" title="Open Pathway Explorer">
+      <span>▶</span>
+      <span class="pathway-tab-label">Pathways</span>
+    </div>
+
+    <!-- Mode Toggle: Pathway vs Interactor View -->
+    <div id="mode-toggle" class="mode-toggle-container" style="display: none;">
+      <button id="mode-pathway" class="mode-toggle-btn active" onclick="setVisualizationMode('pathway')" title="Show hierarchical pathway organization">
+        <span class="mode-icon">&#128193;</span>
+        <span class="mode-label">Pathways</span>
+      </button>
+      <button id="mode-interactor" class="mode-toggle-btn" onclick="setVisualizationMode('interactor')" title="Show pure interactor network">
+        <span class="mode-icon">&#128279;</span>
+        <span class="mode-label">Interactors</span>
+      </button>
+    </div>
+
+    <div class="controls">
+      <button class="control-btn" onclick="zoomIn()" title="Zoom In">+</button>
+      <button class="control-btn" onclick="zoomOut()" title="Zoom Out">−</button>
+      <div class="control-divider"></div>
+      <button class="control-btn" onclick="refreshVisualization()" title="Reset Graph">⟳</button>
+    </div>
+
+    <div class="info-panel"><strong>TIPS:</strong> Click arrows & nodes for details</div>
+
+    <!-- Legend restored -->
+    <div class="legend">
+      <div class="legend-title">INTERACTION TYPES</div>
+      <div class="legend-item">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="20" y2="10" stroke="#059669" stroke-width="2"/><polygon points="20,10 26,10 23,7 23,13" fill="#059669"/></svg>
+        </div>Activates
+      </div>
+      <div class="legend-item">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="20" y2="10" stroke="#dc2626" stroke-width="2"/><line x1="23" y1="6" x2="23" y2="14" stroke="#dc2626" stroke-width="3"/></svg>
+        </div>Inhibits
+      </div>
+      <div class="legend-item">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="8" x2="26" y2="8" stroke="#7c3aed" stroke-width="2"/><line x1="0" y1="12" x2="26" y2="12" stroke="#7c3aed" stroke-width="2"/></svg>
+        </div>Binding
+      </div>
+      <div class="legend-item legend-item-divider">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="26" y2="10" stroke="#6b7280" stroke-width="2"/></svg>
+        </div>Direct (physical)
+      </div>
+      <div class="legend-item">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="26" y2="10" stroke="#6b7280" stroke-width="2" stroke-dasharray="8,4"/></svg>
+        </div>Indirect (cascade)
+      </div>
+      <div class="legend-item">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="26" y2="10" stroke="#ff8c00" stroke-width="2" stroke-dasharray="5,5"/></svg>
+        </div>Incomplete (mediator missing)
+      </div>
+      <div class="legend-item legend-item-source">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="26" y2="10" stroke="#38bdf8" stroke-width="2.2"/></svg>
+        </div>Query-derived edge
+      </div>
+      <div class="legend-item legend-item-source">
+        <div class="legend-arrow">
+          <svg width="30" height="20"><line x1="0" y1="10" x2="26" y2="10" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/></svg>
+        </div>Databased one-hop edge
+      </div>
+      <div class="legend-item legend-item-source">
+        <div class="legend-db-chip">DB</div>Databased node marker
+      </div>
+    </div>
+
+    <svg id="svg"></svg>
+  </div>
+
+  <div id="table-view" class="view-container" style="display:none;">
+    <div class="table-controls">
+      <div class="table-controls-main">
+        <div class="table-controls-left">
+          <div class="search-container">
+            <input type="text" id="table-search" class="table-search-input" placeholder="Search interactions..." oninput="handleSearchInput(event)">
+            <button class="search-clear-btn" id="search-clear-btn" onclick="clearSearch()" style="display:none;">×</button>
+          </div>
+          <div class="filter-chips">
+            <button class="filter-chip filter-active activates" onclick="toggleFilter('activates')">Activates</button>
+            <button class="filter-chip filter-active inhibits" onclick="toggleFilter('inhibits')">Inhibits</button>
+            <button class="filter-chip filter-active binds" onclick="toggleFilter('binds')">Binds</button>
+            <button class="filter-chip filter-active regulates" onclick="toggleFilter('regulates')">Regulates</button>
+          </div>
+        </div>
+        <div class="export-dropdown">
+          <button class="export-btn" onclick="toggleExportDropdown()">Export ▼</button>
+          <div class="export-dropdown-menu" id="export-dropdown-menu">
+            <button class="export-option" onclick="exportToCSV(); closeExportDropdown();">Export as CSV</button>
+            <button class="export-option" onclick="exportToExcel(); closeExportDropdown();">Export as Excel (.xlsx)</button>
+          </div>
+        </div>
+      </div>
+      <div id="filter-results" class="filter-results"></div>
+    </div>
+    <div class="table-wrapper">
+      <table id="interactions-table" class="data-table">
+        <thead>
+          <tr>
+            <th class="col-expand"><span class="expand-header-icon">▼</span></th>
+            <th class="col-interaction resizable sortable" data-sort="interaction" onclick="sortTable('interaction')">Interaction <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+            <th class="col-effect resizable sortable" data-sort="effect" onclick="sortTable('effect')">Type <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+            <th class="col-function resizable sortable" data-sort="function" onclick="sortTable('function')">Function Affected <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+            <th class="col-effect-type resizable sortable" data-sort="effectType" onclick="sortTable('effectType')">Effect <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+            <th class="col-mechanism resizable sortable" data-sort="mechanism" onclick="sortTable('mechanism')">Mechanism <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Populated by buildTableView() -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="card-view" class="view-container card-view-shell">
+    <!-- Pathway Explorer V2 - Neural Command Design -->
+    <div id="pathway-explorer-v2" class="pathway-explorer-v2">
+      <!-- Header -->
+      <div class="pe-header">
+        <div class="pe-header-main">
+          <div class="pe-title-group">
+            <div class="pe-neural-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M12 6v6l4 2"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="pe-title">Pathway Navigator</div>
+              <div class="pe-subtitle">Neural Command Interface</div>
+            </div>
+          </div>
+          <button class="pe-collapse-btn" onclick="PathwayExplorer.toggleExplorer()" title="Collapse">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+        </div>
+        <!-- Breadcrumb Trail -->
+        <div class="pe-breadcrumb" id="pe-breadcrumb">
+          <span class="pe-breadcrumb-root">Navigate pathways below</span>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="pe-search-container">
+        <div class="pe-search-wrapper">
+          <input type="text"
+                 id="pe-search-input"
+                 class="pe-search-input"
+                 placeholder="Search pathways..."
+                 oninput="PathwayExplorer.handleSearch(this.value)"
+                 onkeydown="PathwayExplorer.handleKeyNav(event)">
+          <svg class="pe-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="6"/>
+            <line x1="16" y1="16" x2="20" y2="20"/>
+          </svg>
+          <button class="pe-search-clear" onclick="PathwayExplorer.clearSearch()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="pe-search-results" id="pe-search-results"></div>
+      </div>
+
+      <!-- Stats Bar - Organism Activity Monitor -->
+      <div class="pe-stats-bar">
+        <div class="pe-stat activates" title="Activating interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="pe-stat-activates">0</span>
+        </div>
+        <div class="pe-stat inhibits" title="Inhibiting interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="pe-stat-inhibits">0</span>
+        </div>
+        <div class="pe-stat binds" title="Binding interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="pe-stat-binds">0</span>
+        </div>
+        <div class="pe-stat regulates" title="Regulating interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="pe-stat-regulates">0</span>
+        </div>
+      </div>
+
+      <!-- Bulk Actions -->
+      <div class="pe-actions">
+        <button class="pe-action-btn" onclick="PathwayExplorer.selectAllVisible()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/>
+          </svg>
+          <span>Select All</span>
+        </button>
+        <button class="pe-action-btn" onclick="PathwayExplorer.clearAllSelections()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M8 6V4h8v2M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6"/>
+          </svg>
+          <span>Clear</span>
+        </button>
+        <button class="pe-action-btn" onclick="PathwayExplorer.showAllCards()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span>Show All</span>
+        </button>
+      </div>
+
+      <!-- Tree Container -->
+      <div class="pe-tree-container" id="pe-tree-container">
+        <div class="pe-tree" id="pe-tree">
+          <!-- Dynamically populated by PathwayExplorer module -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactor Explorer - shown in Interactors Mode -->
+    <div id="interactor-explorer" class="pathway-explorer-v2" style="display: none;">
+      <div class="pe-header">
+        <div class="pe-header-main">
+          <div class="pe-title-group">
+            <div class="pe-neural-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3"/>
+                <circle cx="5" cy="6" r="2"/><line x1="7" y1="7" x2="9.5" y2="10"/>
+                <circle cx="19" cy="6" r="2"/><line x1="17" y1="7" x2="14.5" y2="10"/>
+                <circle cx="5" cy="18" r="2"/><line x1="7" y1="17" x2="9.5" y2="14"/>
+                <circle cx="19" cy="18" r="2"/><line x1="17" y1="17" x2="14.5" y2="14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="pe-title">Interactor Navigator</div>
+              <div class="pe-subtitle">All protein interactions</div>
+            </div>
+          </div>
+          <button class="pe-collapse-btn" onclick="InteractorExplorer.toggleExplorer()" title="Collapse">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="pe-search-container">
+        <div class="pe-search-wrapper">
+          <input type="text"
+                 id="int-search-input"
+                 class="pe-search-input"
+                 placeholder="Search interactors..."
+                 oninput="InteractorExplorer.handleSearch(this.value)">
+          <svg class="pe-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="6"/>
+            <line x1="16" y1="16" x2="20" y2="20"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Direction Filters -->
+      <div class="int-direction-filters">
+        <button class="int-filter-btn active" data-dir="upstream" onclick="InteractorExplorer.toggleDirection('upstream')">
+          <span class="int-filter-icon">&uarr;</span>
+          Upstream <span class="int-filter-count" id="int-count-upstream">0</span>
+        </button>
+        <button class="int-filter-btn active" data-dir="downstream" onclick="InteractorExplorer.toggleDirection('downstream')">
+          <span class="int-filter-icon">&darr;</span>
+          Down <span class="int-filter-count" id="int-count-downstream">0</span>
+        </button>
+        <!-- S1: Bidirectional filter removed — all directions are asymmetric -->
+      </div>
+
+      <!-- Arrow Type Filters -->
+      <div class="int-arrow-filters">
+        <button class="int-arrow-btn activates active" onclick="InteractorExplorer.toggleArrowType('activates')">
+          <span class="int-arrow-dot" style="background:#10b981;"></span> Activates
+        </button>
+        <button class="int-arrow-btn inhibits active" onclick="InteractorExplorer.toggleArrowType('inhibits')">
+          <span class="int-arrow-dot" style="background:#ef4444;"></span> Inhibits
+        </button>
+        <button class="int-arrow-btn binds active" onclick="InteractorExplorer.toggleArrowType('binds')">
+          <span class="int-arrow-dot" style="background:#a78bfa;"></span> Binds
+        </button>
+        <button class="int-arrow-btn regulates active" onclick="InteractorExplorer.toggleArrowType('regulates')">
+          <span class="int-arrow-dot" style="background:#f59e0b;"></span> Regulates
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="pe-stats-bar">
+        <div class="pe-stat activates" title="Activating interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="int-stat-activates">0</span>
+        </div>
+        <div class="pe-stat inhibits" title="Inhibiting interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="int-stat-inhibits">0</span>
+        </div>
+        <div class="pe-stat binds" title="Binding interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="int-stat-binds">0</span>
+        </div>
+        <div class="pe-stat regulates" title="Regulating interactions">
+          <div class="pe-stat-organism"></div>
+          <span class="pe-stat-value" id="int-stat-regulates">0</span>
+        </div>
+      </div>
+
+      <!-- Interactor List -->
+      <div class="pe-tree-container" id="int-list-container">
+        <div class="pe-tree" id="int-list">
+          <!-- Dynamically populated by InteractorExplorer module -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Sync Pulse Indicators (Neural Synaptic Firing) -->
+    <div id="pe-sync-indicator" class="pe-sync-indicator"></div>
+    <div id="pe-sync-line" class="pe-sync-line"></div>
+
+    <!-- Collapsed Tab (Pathway mode) -->
+    <div id="pe-collapsed-tab" class="pe-collapsed-tab" onclick="PathwayExplorer.toggleExplorer()" title="Open Pathway Navigator">
+      <svg class="pe-collapsed-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 5l7 7-7 7"/>
+      </svg>
+      <span class="pe-collapsed-tab-label">Pathways</span>
+    </div>
+
+    <!-- Collapsed Tab (Interactor mode) -->
+    <div id="int-collapsed-tab" class="pe-collapsed-tab" style="display:none;" onclick="InteractorExplorer.toggleExplorer()" title="Open Interactor Navigator">
+      <svg class="pe-collapsed-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 5l7 7-7 7"/>
+      </svg>
+      <span class="pe-collapsed-tab-label">Interactors</span>
+    </div>
+
+    <!-- Card View Mode Toggle -->
+    <div id="card-mode-toggle" class="card-mode-toggle">
+      <button id="card-mode-pathway" class="card-mode-btn active" onclick="setCardViewMode('pathway')" title="Pathway-organized view">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
+          <path d="M3 7h4v10H3zM8 3h4v14H8zM13 5h4v12h-4z"/>
+        </svg>
+        <span>Pathways</span>
+      </button>
+      <button id="card-mode-interactor" class="card-mode-btn" onclick="setCardViewMode('interactor')" title="All interactors view">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
+          <circle cx="10" cy="10" r="3"/><circle cx="4" cy="4" r="1.5"/><line x1="6" y1="6" x2="8" y2="8"/>
+          <circle cx="16" cy="4" r="1.5"/><line x1="14" y1="6" x2="12" y2="8"/>
+          <circle cx="10" cy="17" r="1.5"/><line x1="10" y1="13" x2="10" y2="15.5"/>
+        </svg>
+        <span>Interactors</span>
+      </button>
+    </div>
+
+    <!-- Scrollable SVG Container -->
+    <div id="card-svg-container" class="card-svg-shell">
+      <svg id="card-svg" class="card-svg-canvas"></svg>
+    </div>
+
+    <!-- Neural Particles (Floating Bioluminescent Organisms) -->
+    <canvas id="neural-particles" data-particles class="neural-particles-layer"></canvas>
+  </div>
+
+  <div id="chat-view" class="view-container" style="display:none;">
+    <div class="chat-container">
+      <div class="chat-header">
+        <h2 class="chat-title">Network Assistant</h2>
+        <p class="chat-subtitle">Ask questions about the protein interaction network</p>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message system-message">
+          <div class="message-content">
+            👋 Hello! I'm here to help you understand this protein interaction network. Ask me anything about the visible proteins, their interactions, or biological functions.
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-wrapper">
+        <textarea
+          id="chat-input"
+          class="chat-input"
+          placeholder="Ask about this network (e.g., 'What proteins interact with ATXN3?')..."
+          rows="3"
+        ></textarea>
+        <button id="chat-send-btn" class="chat-send-btn" onclick="sendChatMessage()">
+          <span id="chat-send-text">Send</span>
+          <span id="chat-send-loading" style="display:none;">Thinking...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal restored -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-content" tabindex="-1">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Details</h2>
+      <button type="button" class="close-btn" onclick="closeModal()" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div id="modalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/* ===== Robust data load & hydration ===== */
+let RAW, SNAP, CTX;
+
+try {
+  // Validate PLACEHOLDER was replaced
+  RAW = {{ raw_json | tojson }};
+
+  if (!RAW || typeof RAW !== 'object') {
+    throw new Error('Invalid data structure: RAW is not an object');
+  }
+
+  // Check if PLACEHOLDER wasn't replaced (safety check)
+  const rawStr = JSON.stringify(RAW).substring(0, 100);
+  if (rawStr.includes('PLACEHOLDER')) {
+    throw new Error('Data embedding failed: template placeholder not replaced');
+  }
+
+  console.log('✅ Step 1: RAW data loaded', {
+    keys: Object.keys(RAW),
+    hasSnapshot: !!RAW.snapshot_json,
+    hasCtx: !!RAW.ctx_json
+  });
+
+  SNAP = (RAW && RAW.snapshot_json && typeof RAW.snapshot_json === 'object') ? RAW.snapshot_json : (RAW || {});
+  CTX  = (RAW && RAW.ctx_json && typeof RAW.ctx_json === 'object') ? RAW.ctx_json : {};
+  SNAP.interactors = Array.isArray(SNAP.interactors) ? SNAP.interactors : [];
+  if (!SNAP.main) SNAP.main = RAW.main || RAW.primary || 'Unknown';
+
+  // Attach pipeline diagnostics from the top-level API response so
+  // cv_diagnostics.js can surface them in the card view banner. The
+  // diagnostics block lives at RAW._diagnostics (written by
+  // services/data_builder.build_full_json_from_db) and includes
+  // pass_rate, dropped interactor count, partial chains, and
+  // unrecoverable chain pairs.
+  if (RAW && RAW._diagnostics && typeof RAW._diagnostics === 'object') {
+    SNAP._diagnostics = RAW._diagnostics;
+  }
+  // Also expose status flags for partial pipeline runs.
+  if (RAW && RAW._pipeline_status) SNAP._pipeline_status = RAW._pipeline_status;
+  if (RAW && RAW._completed_phases) SNAP._completed_phases = RAW._completed_phases;
+
+  // Save current protein to localStorage for repair feature
+  if (SNAP.main && SNAP.main !== 'Unknown') {
+    localStorage.setItem('lastQueriedProtein', SNAP.main.toUpperCase());
+  }
+
+  console.log('✅ Step 2: SNAP extracted', {
+    main: SNAP.main,
+    keys: Object.keys(SNAP),
+    hasProteins: !!SNAP.proteins,
+    hasInteractors: !!SNAP.interactors,
+    hasInteractions: !!SNAP.interactions
+  });
+
+  // Legacy-shape backfill BEFORE the freeze. Older snapshots emitted
+  // ``SNAP.interactors[]`` (with ``primary``) instead of the modern
+  // ``SNAP.interactions[]`` (with ``source``/``target``). Transform
+  // here so static/visualizer.js doesn't need to write back to a
+  // frozen SNAP — that write was silently failing in strict mode and
+  // leaving the legacy fallback path effectively dead. The
+  // transformation mirrors what visualizer.js used to do at
+  // load-time, but lifted upstream so the freeze invariant holds.
+  if ((!Array.isArray(SNAP.interactions) || SNAP.interactions.length === 0)
+      && Array.isArray(SNAP.interactors) && SNAP.interactors.length > 0) {
+    const _legacyProteins = [SNAP.main];
+    const _legacyInteractions = [];
+    SNAP.interactors.forEach(function(interactor) {
+      const primary = interactor.primary;
+      if (primary && _legacyProteins.indexOf(primary) === -1) {
+        _legacyProteins.push(primary);
+      }
+      if (interactor.interaction_type === 'indirect' && interactor.upstream_interactor
+          && _legacyProteins.indexOf(interactor.upstream_interactor) === -1) {
+        _legacyProteins.push(interactor.upstream_interactor);
+      }
+      let source, target;
+      if (interactor.interaction_type === 'indirect' && interactor.upstream_interactor) {
+        source = interactor.upstream_interactor;
+        target = primary;
+      } else if (interactor.direction === 'primary_to_main') {
+        source = primary;
+        target = SNAP.main;
+      } else {
+        source = SNAP.main;
+        target = primary;
+      }
+      _legacyInteractions.push(Object.assign({}, interactor, { source: source, target: target }));
+    });
+    SNAP.proteins = _legacyProteins;
+    SNAP.interactions = _legacyInteractions;
+    console.log('ℹ Step 2.5: Legacy-shape backfill applied', {
+      transformedFrom: 'SNAP.interactors',
+      proteinCount: _legacyProteins.length,
+      interactionCount: _legacyInteractions.length
+    });
+  }
+
+  // Freeze SNAP to prevent accidental mutation after initialization.
+  // The freeze is the load-bearing invariant that keeps every JS file
+  // (cv_diagnostics, card_view, modal, visualizer) reading from one
+  // immutable source. Mutating SNAP fails silently under strict mode
+  // and produces drift between readers — never weaken the freeze.
+  Object.freeze(SNAP);
+
+} catch (error) {
+  console.error('❌ Data initialization failed:', error);
+  document.getElementById('network').innerHTML =
+    `<div style="padding: 60px 40px; text-align: center; color: #ef4444; font-family: system-ui, sans-serif;">
+      <h2 style="font-size: 24px; margin-bottom: 16px;">⚠️ Failed to Load Visualization</h2>
+      <p style="font-size: 16px; color: #6b7280; margin-bottom: 8px;">Error: ${error.message}</p>
+      <p style="font-size: 14px; color: #9ca3af;">Check the browser console for details, then try refreshing the page.</p>
+    </div>`;
+  throw error; // Stop execution
+}
+
+console.log('✅ Step 3: Data loaded (hydration removed - using direct database format)');
+
+document.getElementById('networkTitle').textContent = `${SNAP.main} Interaction Network`;
+</script>
+<script src="/static/_legacy/network_topology.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/shared_utils.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/force_config.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/cv_diagnostics.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/visualizer.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/modal.js?v={{ cache_bust }}"></script>
+<script src="/static/_legacy/card_view.js?v={{ cache_bust }}"></script>
+<script src="/static/neural_particles.js?v={{ cache_bust }}"></script>
+<script>
+/* Debounce utility for search inputs */
+function debounce(fn, ms) {
+  let timer;
+  return function(...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), ms); };
+}
+const debouncedFilterPathwaySidebar = debounce((val) => filterPathwaySidebar(val), 200);
+</script>
+</body>
+</html>

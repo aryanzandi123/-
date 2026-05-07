@@ -1,0 +1,66 @@
+{
+  "_elk.bundled-RGJQ9PZK.js": {
+    "file": "chunks/elk.bundled-RGJQ9PZK.js",
+    "name": "elk.bundled",
+    "isDynamicEntry": true,
+    "imports": [
+      "_query-CEFVlEXI.js"
+    ]
+  },
+  "_query-CEFVlEXI.js": {
+    "file": "chunks/query-CEFVlEXI.js",
+    "name": "query"
+  },
+  "_react-vendor-DEqZa_w-.js": {
+    "file": "chunks/react-vendor-DEqZa_w-.js",
+    "name": "react-vendor",
+    "imports": [
+      "_query-CEFVlEXI.js"
+    ]
+  },
+  "_reactflow-C3lUytvL.js": {
+    "file": "chunks/reactflow-C3lUytvL.js",
+    "name": "reactflow",
+    "imports": [
+      "_query-CEFVlEXI.js",
+      "_react-vendor-DEqZa_w-.js"
+    ]
+  },
+  "_useSSE-DyzIyaOg.js": {
+    "file": "chunks/useSSE-DyzIyaOg.js",
+    "name": "useSSE",
+    "imports": [
+      "_react-vendor-DEqZa_w-.js",
+      "_query-CEFVlEXI.js"
+    ]
+  },
+  "src/app/main.tsx": {
+    "file": "app.js",
+    "name": "app",
+    "src": "src/app/main.tsx",
+    "isEntry": true,
+    "imports": [
+      "_query-CEFVlEXI.js",
+      "_useSSE-DyzIyaOg.js",
+      "_react-vendor-DEqZa_w-.js",
+      "_reactflow-C3lUytvL.js"
+    ],
+    "dynamicImports": [
+      "_elk.bundled-RGJQ9PZK.js"
+    ],
+    "css": [
+      "assets/app.css"
+    ]
+  },
+  "src/islands/pipeline-events/main.tsx": {
+    "file": "pipeline-events.js",
+    "name": "pipeline-events",
+    "src": "src/islands/pipeline-events/main.tsx",
+    "isEntry": true,
+    "imports": [
+      "_query-CEFVlEXI.js",
+      "_useSSE-DyzIyaOg.js",
+      "_react-vendor-DEqZa_w-.js"
+    ]
+  }
+}

@@ -1,0 +1,1412 @@
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM - Typography-Focused Scientific UI
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Typography */
+  --font-serif: 'Charter', 'Georgia', 'Cambria', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Colors - Light Mode */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #f3f4f6;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #6b7280;
+  --color-border-subtle: #e5e7eb;
+  --color-border-medium: #d1d5db;
+  --color-accent-primary: #4f46e5;
+
+  /* Badge palette — consumed by modal.js, visualizer.js, card_view.js
+     via their shared getComputedStyle(document.documentElement) readers
+     so every inline style resolves to a theme-aware value instead of a
+     hex hardcode. When you change a badge color, change it here. */
+  --color-pathway-current: #10b981;
+  --color-pathway-other: #6b7280;
+  --color-pathway-inherited: #10b981;
+  --color-pathway-assigned: #3b82f6;
+  --color-badge-direct: #10b981;
+  --color-badge-indirect: #f59e0b;
+  --color-badge-shared: #9333ea;
+  --color-badge-mediator: #6366f1;
+  --color-badge-text: #ffffff;
+  --color-inferred-arrow-a: #f59e0b;
+  --color-inferred-arrow-b: #fbbf24;
+
+  /* Spacing */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Extra tokens used by error cards, drawers, inferred badges, etc. */
+  --color-error-bg: #fef2f2;
+  --color-error-border: #dc2626;
+  --color-error-text: #991b1b;
+  --color-border: #9ca3af;
+  --color-drawer-bg: #f9fafb;
+  --color-code-bg: #f4f4f5;
+  --color-link: var(--color-accent-primary);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE — token overrides
+   Triggers on (a) system preference OR (b) explicit opt-in via
+   ``<html data-theme="dark">``. Both paths override the same tokens
+   so every module consuming ``var(--color-*)`` gets dark without a
+   code change. Explicit opt-in wins via specificity.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #111827;
+    --color-bg-tertiary: #1f2937;
+    --color-text-primary: #f3f4f6;
+    --color-text-secondary: #9ca3af;
+    --color-border-subtle: #374151;
+    --color-border-medium: #4b5563;
+    --color-accent-primary: #818cf8;
+
+    --color-pathway-current: #34d399;
+    --color-pathway-other: #9ca3af;
+    --color-pathway-inherited: #34d399;
+    --color-pathway-assigned: #60a5fa;
+    --color-badge-direct: #34d399;
+    --color-badge-indirect: #fbbf24;
+    --color-badge-shared: #c084fc;
+    --color-badge-mediator: #818cf8;
+    --color-badge-text: #0f172a;
+    --color-inferred-arrow-a: #fbbf24;
+    --color-inferred-arrow-b: #fde68a;
+
+    --color-error-bg: #3f1d1d;
+    --color-error-border: #f87171;
+    --color-error-text: #fca5a5;
+    --color-border: #4b5563;
+    --color-drawer-bg: #1f2937;
+    --color-code-bg: #1f2937;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #111827;
+  --color-bg-tertiary: #1f2937;
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-border-subtle: #374151;
+  --color-border-medium: #4b5563;
+  --color-accent-primary: #818cf8;
+
+  --color-pathway-current: #34d399;
+  --color-pathway-other: #9ca3af;
+  --color-pathway-inherited: #34d399;
+  --color-pathway-assigned: #60a5fa;
+  --color-badge-direct: #34d399;
+  --color-badge-indirect: #fbbf24;
+  --color-badge-shared: #c084fc;
+  --color-badge-mediator: #818cf8;
+  --color-badge-text: #0f172a;
+  --color-inferred-arrow-a: #fbbf24;
+  --color-inferred-arrow-b: #fde68a;
+
+  --color-error-bg: #3f1d1d;
+  --color-error-border: #f87171;
+  --color-error-text: #fca5a5;
+  --color-border: #4b5563;
+  --color-drawer-bg: #1f2937;
+  --color-code-bg: #1f2937;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+/* --- Universal & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ... existing styles for .container, .header, .title, etc. ... */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    background: var(--color-bg-primary);
+    padding: var(--space-4) var(--space-6);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+    border-bottom: 1px solid var(--color-border-subtle);
+    text-align: center;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 20px;
+}
+
+.header-search-container {
+    max-width: 700px; 
+    margin: 15px auto 0;
+}
+
+.input-container {
+    display: flex;
+    border: 1px solid #d1d5db;
+    border-radius: 28px;
+    background: #fff;
+    padding: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-container:focus-within {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+#protein-input {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    padding: 0 20px;
+    font-size: 18px;
+    height: 48px;
+    outline: none;
+    color: #1a202c;
+}
+
+#query-button {
+    background-color: var(--color-accent-primary);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 0 var(--space-6);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#query-button:hover {
+    background-color: #4338ca;
+    transform: scale(1.02);
+}
+
+#query-button:active {
+    transform: scale(0.98);
+}
+
+
+/* --- Main Page Progress Bar --- */
+#status-display {
+    width: 100%;
+    max-width: 600px;
+}
+
+.progress-wrapper {
+    width: 100%;
+}
+
+.progress-text-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+#progress-text {
+    font-weight: 500;
+}
+
+#progress-percent {
+    font-family: monospace;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+#status-message {
+    text-align: center;
+    color: #6b7280;
+}
+
+/* This is a shared style for both progress bars */
+.progress-bar-outer {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    width: 0%;
+    height: 100%;
+    background-color: #4f46e5;
+    border-radius: 4px;
+    transition: width 0.4s ease-in-out;
+}
+
+
+/* --- START: NEW Mini Progress Bar Styles --- */
+.job-notification {
+    margin: 15px auto 0;
+    max-width: 700px;
+    font-size: 14px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-progress-wrapper {
+    width: 100%;
+    max-width: 400px; /* Or adjust as you like */
+    text-align: center;
+}
+
+#mini-progress-text {
+    font-size: 13px;
+    color: #4a5568;
+    margin-bottom: 6px;
+    display: block; /* To allow margin-bottom */
+}
+
+#notification-message a {
+    color: #4f46e5;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+#notification-message a:hover {
+    color: #4338ca;
+    text-decoration: underline;
+}
+
+.progress-tooltip {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280; /* A muted gray color */
+    margin-bottom: 16px; /* Adds space above the progress bar */
+    padding: 10px;
+    background-color: #f8f9fa; /* A very light gray background */
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+/* --- Research Settings Styles --- */
+.config-details {
+    margin-top: 12px;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.config-summary {
+    cursor: pointer;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.config-summary:hover {
+    color: #4f46e5;
+}
+
+.config-content {
+    padding: 14px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.config-presets {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+.preset-btn {
+    padding: 6px 14px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #4b5563;
+}
+
+.preset-btn:hover {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.config-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.config-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #374151;
+}
+
+.config-label-text {
+    font-weight: 500;
+}
+
+.config-input {
+    width: 60px;
+    padding: 5px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.config-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* --- Cancel Button Styles --- */
+.cancel-btn {
+    height: 38px;
+    padding: 0 20px;
+    border-radius: 8px;
+    border: 1px solid #dc2626;
+    background: #fff;
+    color: #dc2626;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.cancel-btn:hover:not(:disabled) {
+    background: #dc2626;
+    color: #fff;
+}
+
+.cancel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Dark Mode Styles --- */
+body.dark-mode .input-container {
+    background: #1e293b;
+    border-color: #475569;
+}
+
+body.dark-mode .input-container:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+body.dark-mode #protein-input {
+    color: #e2e8f0;
+}
+
+body.dark-mode #protein-input::placeholder {
+    color: #64748b;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MULTI-JOB TRACKER - Concurrent Query Management
+   ═══════════════════════════════════════════════════════════════ */
+
+.job-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+}
+
+.job-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.job-card[data-status="processing"] {
+    border-left: 3px solid #3b82f6;
+}
+
+.job-card[data-status="complete"] {
+    border-left: 3px solid #10b981;
+    background: #f0fdf4;
+}
+
+.job-card[data-status="error"] {
+    border-left: 3px solid #ef4444;
+    background: #fef2f2;
+}
+
+.job-card[data-status="cancelled"] {
+    border-left: 3px solid #6b7280;
+    background: #f9fafb;
+    opacity: 0.7;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-protein {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a202c;
+    letter-spacing: -0.01em;
+}
+
+.job-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.job-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    padding: 0;
+}
+
+.job-btn:hover {
+    background: #f3f4f6;
+}
+
+.job-btn:active {
+    transform: scale(0.95);
+}
+
+.job-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.job-btn-icon {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.job-remove .job-btn-icon {
+    color: #6b7280;
+}
+
+.job-remove:hover .job-btn-icon {
+    color: #4b5563;
+}
+
+.job-cancel .job-btn-icon {
+    color: #ef4444;
+}
+
+.job-cancel:hover {
+    background: #fef2f2;
+}
+
+.job-progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.job-progress-text {
+    font-size: 14px;
+    color: #4b5563;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.job-progress-percent {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3b82f6;
+    font-variant-numeric: tabular-nums;
+    min-width: 40px;
+    text-align: right;
+}
+
+.job-card[data-status="complete"] .job-progress-percent {
+    color: #10b981;
+}
+
+.job-card[data-status="error"] .job-progress-percent {
+    color: #ef4444;
+}
+
+.job-progress-bar-outer {
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.job-progress-bar-inner {
+    height: 100%;
+    width: 0%;
+    background: #3b82f6;
+    border-radius: 3px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+}
+
+.job-card[data-status="complete"] .job-progress-bar-inner {
+    background: #10b981;
+}
+
+.job-card[data-status="error"] .job-progress-bar-inner {
+    background: #ef4444;
+}
+
+.job-card[data-status="cancelled"] .job-progress-bar-inner {
+    background: #6b7280;
+}
+
+/* Dark Mode - Job Cards */
+body.dark-mode .job-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .job-card[data-status="complete"] {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+body.dark-mode .job-card[data-status="error"] {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+body.dark-mode .job-card[data-status="cancelled"] {
+    background: #0f172a;
+}
+
+body.dark-mode .job-protein {
+    color: #e2e8f0;
+}
+
+body.dark-mode .job-progress-text {
+    color: #cbd5e1;
+}
+
+body.dark-mode .job-btn:hover {
+    background: #334155;
+}
+
+body.dark-mode .job-progress-bar-outer {
+    background: #334155;
+}
+
+/* =========================================
+   DUAL-TRACK SYSTEM: NET vs DIRECT badges
+   ========================================= */
+
+/* Context badges for NET EFFECT vs DIRECT LINK */
+.context-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.context-badge.net {
+    background: #f59e0b;  /* Amber for NET effects */
+    color: white;
+}
+
+.context-badge.direct {
+    background: #10b981;  /* Green for DIRECT links */
+    color: white;
+}
+
+.context-badge.chain {
+    background: #f59e0b;  /* Amber for CHAIN (alias for NET) */
+    color: white;
+}
+
+/* Link differentiation for dual-track system */
+.link-net-effect {
+    stroke-dasharray: 8 4 !important;  /* Dashed pattern for NET chain effects */
+    stroke-opacity: 0.9;
+}
+
+.link-direct-mediator {
+    stroke-dasharray: none !important;  /* Solid for extracted direct mediator links */
+    opacity: 0.75;  /* Slightly muted to differentiate from primary interactions */
+}
+
+/* Table row differentiation */
+.table-row.net-effect {
+    background: rgba(245, 158, 11, 0.05);
+    border-left: 3px solid #f59e0b;
+}
+
+.table-row.direct-link {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 3px solid #10b981;
+}
+
+/* Function section styling in modals */
+.function-section {
+    margin: 16px 0;
+    padding: 12px;
+    border-left: 3px solid;
+    border-radius: 4px;
+}
+
+.function-section.net-effects {
+    border-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.function-section.direct-effects {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.function-section-header {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-primary);
+}
+
+.function-section-header .context-badge {
+    margin-left: 0;
+}
+
+/* Dark mode overrides */
+body.dark-mode .table-row.net-effect {
+    background: rgba(245, 158, 11, 0.08);
+}
+
+body.dark-mode .table-row.direct-link {
+    background: rgba(16, 185, 129, 0.08);
+}
+
+body.dark-mode .function-section.net-effects {
+    background: rgba(245, 158, 11, 0.08);
+}
+
+body.dark-mode .function-section.direct-effects {
+    background: rgba(16, 185, 129, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INDIRECT CHAIN LINKS - Dashed styling for pathway view
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Indirect chain links in pathway view - dashed with interaction colors */
+.link-indirect-chain {
+  stroke-dasharray: 6 3;
+  stroke-opacity: 0.85;
+}
+
+/* Combine with interaction type colors - these override the base dasharray */
+.link-indirect-chain.link-activate { stroke: #059669; }
+.link-indirect-chain.link-inhibit { stroke: #dc2626; }
+.link-indirect-chain.link-binding { stroke: #7c3aed; }
+.link-indirect-chain.link-regulate { stroke: #d97706; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CHAIN CONTEXT BANNER - Shows full chain path in modal
+   ═══════════════════════════════════════════════════════════════ */
+
+.chain-context-banner {
+  margin: 8px 0 16px 0;
+  padding: 10px 14px;
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chain-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #92400e;
+  font-weight: 700;
+}
+
+.chain-path {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #78350f;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Dark mode chain banner */
+body.dark-mode .chain-context-banner {
+  background: rgba(245, 158, 11, 0.12);
+}
+
+body.dark-mode .chain-label {
+  color: #fcd34d;
+}
+
+body.dark-mode .chain-path {
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OTHER PATHWAYS SECTION - Clickable tags for pathway switching
+   ═══════════════════════════════════════════════════════════════ */
+
+.other-pathways-section {
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.05));
+  border: 1px solid rgba(99,102,241,0.15);
+  border-radius: 8px;
+}
+
+.other-pathways-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6366f1;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.other-pathways-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pathway-tag {
+  padding: 5px 12px;
+  background: rgba(99,102,241,0.1);
+  color: #4f46e5;
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-family: var(--font-sans);
+}
+
+.pathway-tag:hover {
+  background: rgba(99,102,241,0.2);
+  transform: scale(1.02);
+}
+
+.pathway-tag:active {
+  transform: scale(0.98);
+}
+
+/* Dark mode other pathways section */
+body.dark-mode .other-pathways-section {
+  background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
+  border-color: rgba(99,102,241,0.25);
+}
+
+body.dark-mode .other-pathways-label {
+  color: #a5b4fc;
+}
+
+body.dark-mode .pathway-tag {
+  background: rgba(99,102,241,0.2);
+  color: #c7d2fe;
+}
+
+body.dark-mode .pathway-tag:hover {
+  background: rgba(99,102,241,0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PATHWAY-SCOPED MODAL - Filtered interaction indicator
+   ═══════════════════════════════════════════════════════════════ */
+
+.pathway-filter-indicator {
+  margin: 0 0 16px 0;
+  padding: 10px 14px;
+  background: rgba(99, 102, 241, 0.08);
+  border-left: 4px solid #6366f1;
+  border-radius: 0 6px 6px 0;
+  font-size: 12px;
+  color: #4338ca;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pathway-filter-indicator .pathway-name {
+  font-weight: 600;
+}
+
+body.dark-mode .pathway-filter-indicator {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+.pathway-filter-toggle {
+  margin-left: auto;
+  padding: 4px 12px;
+  border: 1px solid #6366f1;
+  border-radius: 12px;
+  background: transparent;
+  color: #6366f1;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.pathway-filter-toggle:hover {
+  background: #6366f1;
+  color: white;
+}
+body.dark-mode .pathway-filter-toggle {
+  border-color: #a5b4fc;
+  color: #a5b4fc;
+}
+body.dark-mode .pathway-filter-toggle:hover {
+  background: #6366f1;
+  color: white;
+}
+
+/* =========================================================================
+   QUERY PROTEIN STYLING - Special highlight for query protein in pathway expansion
+   ========================================================================= */
+
+/* Query protein node in pathway expansion - gold ring to distinguish from interactors */
+.interactor-node.is-query-protein {
+  stroke: #f59e0b !important;
+  stroke-width: 3px !important;
+}
+
+body.dark-mode .interactor-node.is-query-protein {
+  stroke: #fbbf24 !important;
+}
+
+/* Query protein label - slightly bolder */
+.interactor-label.is-query-protein {
+  font-weight: 700 !important;
+}
+
+/* Pathway anchor links - subtle connectors from pathway to proteins */
+.link.pathway-anchor-link {
+  stroke: #9ca3af;
+  stroke-width: 1.5px;
+  stroke-dasharray: 4, 3;
+  opacity: 0.3;
+}
+
+body.dark-mode .link.pathway-anchor-link {
+  stroke: #6b7280;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PSEUDO ENTITIES (RNA, Ubiquitin, Proteasome, …)
+   Generic biomolecule classes that appear as chain mediators but
+   are NOT queryable as stand-alone proteins. Render italicized
+   with a "class" suffix and muted color so the user can tell at a
+   glance they're not regular gene symbols.
+   ═══════════════════════════════════════════════════════════════ */
+.cv-node.pseudo .cv-label,
+.node.pseudo text {
+  font-style: italic;
+  opacity: 0.82;
+}
+
+.cv-class-suffix {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.chain-protein.pseudo {
+  font-style: italic;
+  opacity: 0.78;
+}
+
+/* Chain banner: distinguish pseudo mediators from real protein chips */
+.chain-context-banner .chain-protein.pseudo::after {
+  content: " · class";
+  font-size: 9px;
+  opacity: 0.55;
+  margin-left: 2px;
+}
+
+/* Card: a pseudo node tooltip / hint on hover */
+.cv-node.pseudo[title]:hover::after {
+  content: attr(title);
+}
+
+/* Hop card visual marker for chain links */
+.cv-node.chain-link .cv-label::before {
+  content: "↳ ";
+  opacity: 0.55;
+  font-size: 0.85em;
+}
+
+body.dark-mode .cv-class-suffix,
+body.dark-mode .chain-context-banner .chain-protein.pseudo::after {
+  opacity: 0.7;
+}
+
+/* ===========================================================================
+ * Pipeline diagnostics surface — banners + per-card badges
+ * Added 2026-04-29 alongside the depth-redispatch + diagnostics-pipeline work.
+ * The backend now emits a `_diagnostics` block on /api/results responses
+ * carrying pass_rate, dropped interactor counts, partial chain counts, and
+ * unrecoverable chain pairs. These styles render the surfacing UI.
+ * =========================================================================== */
+
+.cv-diagnostics-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 10px 14px;
+  margin: 8px 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+  font-size: 12px;
+  color: #92400e;
+}
+body.dark-mode .cv-diagnostics-banner {
+  border-color: rgba(245, 158, 11, 0.55);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.18), rgba(245, 158, 11, 0.04));
+  color: #fcd34d;
+}
+.cv-diagnostics-banner.cv-diag-clean {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.06), rgba(34, 197, 94, 0.02));
+  color: #166534;
+}
+body.dark-mode .cv-diagnostics-banner.cv-diag-clean {
+  border-color: rgba(34, 197, 94, 0.55);
+  color: #86efac;
+}
+.cv-diag-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-weight: 500;
+}
+.cv-diag-stat-value {
+  font-weight: 700;
+  font-feature-settings: "tnum" 1;
+}
+.cv-diag-stat.warn .cv-diag-stat-value {
+  color: #b45309;
+}
+.cv-diag-stat.bad .cv-diag-stat-value {
+  color: #dc2626;
+}
+.cv-diag-stat.good .cv-diag-stat-value {
+  color: #15803d;
+}
+.cv-diag-details-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.cv-diag-details-toggle:hover {
+  opacity: 1;
+}
+.cv-diag-details {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  white-space: pre-wrap;
+  display: none;
+}
+body.dark-mode .cv-diag-details {
+  background: rgba(255, 255, 255, 0.06);
+}
+.cv-diag-details.show {
+  display: block;
+}
+
+/* Pass-rate bar (slim horizontal indicator) */
+.cv-pass-rate-bar {
+  position: relative;
+  width: 120px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cv-pass-rate-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, #dc2626 0%, #f59e0b 60%, #16a34a 90%);
+}
+
+/* Per-card depth-issue badge */
+.cv-depth-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border-radius: 3px;
+  background: rgba(245, 158, 11, 0.18);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  cursor: help;
+  vertical-align: middle;
+}
+body.dark-mode .cv-depth-badge {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.55);
+}
+
+/* Partial-chain badge — chain has missing per-hop claims */
+.cv-partial-chain-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 3px;
+  background: rgba(220, 38, 38, 0.14);
+  color: #b91c1c;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  cursor: help;
+}
+body.dark-mode .cv-partial-chain-badge {
+  background: rgba(220, 38, 38, 0.22);
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.55);
+}
+
+/* Per-hop "no biology" badge — applied to the specific chain hop node
+ * whose source→target pair is in the missing_hops list. Distinct from
+ * the parent-interactor "partial" badge so users can immediately see
+ * WHICH hop in a long chain has no validated claim. */
+.cv-hop-missing-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 3px;
+  background: rgba(245, 101, 101, 0.16);
+  color: #b91c1c;
+  border: 1px dashed rgba(245, 101, 101, 0.55);
+  cursor: help;
+}
+body.dark-mode .cv-hop-missing-badge {
+  background: rgba(245, 101, 101, 0.24);
+  color: #fed7d7;
+  border-color: rgba(252, 165, 165, 0.55);
+}
+
+/* Pathway drift badges. ``corrected`` (rehomed at write time, P3.1)
+ * uses a green tone to signal "this was fixed automatically".
+ * ``report-only`` uses amber to signal "still drifted, no auto-fix". */
+.cv-pathway-drift-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 3px;
+  cursor: help;
+}
+.cv-pathway-drift-badge.corrected {
+  background: rgba(16, 185, 129, 0.16);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+}
+.cv-pathway-drift-badge.report-only {
+  background: rgba(245, 158, 11, 0.16);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+}
+body.dark-mode .cv-pathway-drift-badge.corrected {
+  background: rgba(16, 185, 129, 0.22);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.55);
+}
+body.dark-mode .cv-pathway-drift-badge.report-only {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.55);
+}
+
+/* Toggle-active: define the missing rule that buttons referenced from
+ * card_view.js had no styling for. Now the active state is visible.
+ */
+.cv-toggle-active {
+  background: rgba(79, 70, 229, 0.12) !important;
+  border-color: rgba(79, 70, 229, 0.5) !important;
+  color: #4338ca !important;
+}
+body.dark-mode .cv-toggle-active {
+  background: rgba(99, 102, 241, 0.22) !important;
+  border-color: rgba(129, 140, 248, 0.55) !important;
+  color: #c7d2fe !important;
+}
+.cv-filter-active {
+  background: rgba(79, 70, 229, 0.12) !important;
+  border-color: rgba(79, 70, 229, 0.5) !important;
+  color: #4338ca !important;
+}
+body.dark-mode .cv-filter-active {
+  background: rgba(99, 102, 241, 0.22) !important;
+  border-color: rgba(129, 140, 248, 0.55) !important;
+  color: #c7d2fe !important;
+}
+
+/* Modal "no published evidence" empty state for unrecoverable chain pairs */
+.modal-empty-evidence {
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 6px;
+  background: rgba(220, 38, 38, 0.06);
+  border: 1px dashed rgba(220, 38, 38, 0.4);
+  color: #991b1b;
+  font-size: 13px;
+  font-style: italic;
+}
+body.dark-mode .modal-empty-evidence {
+  background: rgba(220, 38, 38, 0.12);
+  color: #fca5a5;
+}
+.modal-empty-evidence .icon {
+  margin-right: 6px;
+}
+
+/* ============================================================
+ * Layer 3 of CLAUDE_DOCS/11_CHAIN_TOPOLOGY.md
+ * Cross-link between same-protein duplicates + per-edge chain
+ * verb labels. Cross-link is the visual cue that two cards with
+ * the same HGNC symbol are the same biological entity rendered
+ * in two contexts (chain participant + direct interactor). Edge
+ * labels carry biological direction even when spatial layout is
+ * constrained by the strict tree.
+ * ============================================================ */
+
+.cv-duplicate-crosslink {
+  fill: none;
+  stroke: var(--color-text-secondary, #94a3b8);
+  stroke-width: 1px;
+  stroke-dasharray: 2 3;
+  opacity: 0.35;
+  pointer-events: none;
+  transition: opacity 120ms ease, stroke-width 120ms ease;
+}
+.cv-duplicate-crosslink.highlighted {
+  opacity: 0.9;
+  stroke-width: 2px;
+  stroke: var(--color-accent, #6366f1);
+}
+body.dark-mode .cv-duplicate-crosslink {
+  stroke: rgba(148, 163, 184, 0.7);
+}
+body.dark-mode .cv-duplicate-crosslink.highlighted {
+  stroke: #a5b4fc;
+}
+
+.cv-protein-active rect {
+  stroke: var(--color-accent, #6366f1) !important;
+  stroke-width: 3px !important;
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.55));
+}
+
+.cv-chain-edge-label {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  fill: var(--color-text-secondary, #94a3b8);
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+.cv-chain-edge-label.arrow-activates,
+.cv-chain-edge-label.arrow-phosphorylates,
+.cv-chain-edge-label.arrow-stabilizes,
+.cv-chain-edge-label.arrow-induces,
+.cv-chain-edge-label.arrow-recruits,
+.cv-chain-edge-label.arrow-deubiquitinates {
+  fill: #059669;
+  font-weight: 600;
+}
+.cv-chain-edge-label.arrow-inhibits,
+.cv-chain-edge-label.arrow-degrades,
+.cv-chain-edge-label.arrow-destabilizes,
+.cv-chain-edge-label.arrow-represses,
+.cv-chain-edge-label.arrow-ubiquitinates,
+.cv-chain-edge-label.arrow-cleaves,
+.cv-chain-edge-label.arrow-sequesters {
+  fill: #dc2626;
+  font-weight: 700;
+}
+.cv-chain-edge-label.arrow-binds {
+  fill: #8b5cf6;
+}
+.cv-chain-edge-label.arrow-regulates {
+  fill: #d97706;
+}
+/* Reverse-direction verbs render in italic so a chain stored in
+ * inverted query-centric order still communicates direction even
+ * if the canonicalization fix hasn't reached this row yet. */
+.cv-chain-edge-label[class*="arrow-is_"] {
+  font-style: italic;
+  fill: var(--color-text-secondary, #94a3b8);
+}
+body.dark-mode .cv-chain-edge-label.arrow-activates,
+body.dark-mode .cv-chain-edge-label.arrow-phosphorylates,
+body.dark-mode .cv-chain-edge-label.arrow-stabilizes,
+body.dark-mode .cv-chain-edge-label.arrow-induces,
+body.dark-mode .cv-chain-edge-label.arrow-recruits,
+body.dark-mode .cv-chain-edge-label.arrow-deubiquitinates {
+  fill: #34d399;
+}
+body.dark-mode .cv-chain-edge-label.arrow-inhibits,
+body.dark-mode .cv-chain-edge-label.arrow-degrades,
+body.dark-mode .cv-chain-edge-label.arrow-destabilizes,
+body.dark-mode .cv-chain-edge-label.arrow-represses,
+body.dark-mode .cv-chain-edge-label.arrow-ubiquitinates,
+body.dark-mode .cv-chain-edge-label.arrow-cleaves,
+body.dark-mode .cv-chain-edge-label.arrow-sequesters {
+  fill: #fca5a5;
+}
+body.dark-mode .cv-chain-edge-label.arrow-binds {
+  fill: #c4b5fd;
+}
+body.dark-mode .cv-chain-edge-label.arrow-regulates {
+  fill: #fcd34d;
+}

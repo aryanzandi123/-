@@ -1,0 +1,31 @@
+=================================================================
+            PATHWAY VERIFICATION REPORT
+            Generated: 2026-05-06 19:39:14
+=================================================================
+
+SUMMARY
+-----------------------------------------------------------------
+  Interactions verified:  66
+  Pathways verified:      0
+  Checks passed:          7
+  Checks failed:          0
+
+STATUS: [OK*] PASS_WITH_FIXES
+        (2 auto-fixes applied)
+
+CHECKS
+-----------------------------------------------------------------
+  [OK] interactions_have_pathway
+  [OK] pathway_references_valid
+  [OK] pathway_claim_consistency
+  [OK] claim_chain_id_backfill
+  [OK] chain_pathway_consistency
+  [OK] function_context_drift
+  [OK] no_duplicate_names
+
+AUTO-FIXES APPLIED
+-----------------------------------------------------------------
+  [FIXED] Bulk UPDATE — backfilled 1 claim.chain_id rows
+  [FIXED] Unified 1 claim(s) in IndirectChain 2614 onto the dominant pathway
+
+=================================================================

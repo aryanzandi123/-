@@ -1,0 +1,153 @@
+/**
+ * ProPaths SPA design tokens. Single source of truth for color, spacing,
+ * radius, typography, and transitions. Components reference these via
+ * `var(--…)` so a future theme toggle (light mode, high contrast) flips
+ * one block instead of every inline style.
+ *
+ * Naming follows the dark-first, accent-driven aesthetic the legacy app
+ * established. Light theme will override the `:root` block under
+ * `[data-theme="light"]`.
+ */
+
+:root {
+  /* Surface layers — deepest to shallowest. bg-1 is the canvas, bg-2 is
+     panels, bg-3 is the most-elevated surface (modals, popovers). */
+  --color-bg-0: #070b14;
+  --color-bg-1: #0b1220;
+  --color-bg-2: #0f172a;
+  --color-bg-3: #111827;
+  --color-bg-elevated: rgba(15, 23, 42, 0.95);
+
+  /* Text — primary for headings/emphasis, secondary for body, muted for hints. */
+  --color-text-primary: #f8fafc;
+  --color-text-strong: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-faint: #64748b;
+  --color-text-disabled: #475569;
+
+  /* Borders graduated by emphasis. */
+  --color-border-subtle: #1e293b;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+
+  /* Brand accent — indigo. Used for query glow, selected states, focus rings. */
+  --color-accent: #6366f1;
+  --color-accent-soft: rgba(99, 102, 241, 0.2);
+  --color-accent-text: #a5b4fc;
+
+  /* Semantic palette — also reused as ARROW_COLORS for consistency. */
+  --color-success: #10b981;
+  --color-success-soft: rgba(16, 185, 129, 0.18);
+  --color-warn: #f59e0b;
+  --color-warn-soft: rgba(245, 158, 11, 0.18);
+  --color-danger: #ef4444;
+  --color-danger-soft: rgba(239, 68, 68, 0.18);
+  --color-info: #0ea5e9;
+  --color-info-soft: rgba(14, 165, 233, 0.18);
+
+  /* Verb-class colors (mirrored in lib/colors.ARROW_COLORS).
+     Components can use either source; the constants are coupled. */
+  --color-arrow-positive: #10b981;
+  --color-arrow-negative: #ef4444;
+  --color-arrow-binding: #a78bfa;
+  --color-arrow-regulatory: #f59e0b;
+  --color-arrow-reverse: #94a3b8;
+  --color-arrow-neutral: #64748b;
+
+  /* Spacing — 4px base unit. */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+
+  /* Radius. */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-full: 999px;
+
+  /* Typography — small surfaces. */
+  --font-size-xs: 10px;
+  --font-size-sm: 11px;
+  --font-size-md: 12px;
+  --font-size-lg: 14px;
+  --font-size-xl: 16px;
+  --font-size-xxl: 20px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  /* Serif used for modal/header titles to match the legacy editorial feel. */
+  --font-serif: "Charter", "Iowan Old Style", "Source Serif Pro", "Georgia", serif;
+
+  /* Line-heights — line up with --leading-* below for token-driven prose. */
+  --leading-tight: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  /* Modal / glass surfaces. The modal sits on top of the canvas; --glass-bg
+     gives the legacy translucent feel and --backdrop-blur adds depth. */
+  --glass-bg: rgba(15, 23, 42, 0.92);
+  --glass-border: rgba(99, 102, 241, 0.18);
+  --backdrop-blur: blur(8px) saturate(140%);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  /* Section accent aliases used by FunctionCard sub-cards. MECHANISM is
+     always amber regardless of the claim's arrow; EFFECT picks the arrow's
+     color so the user reads direction at a glance. SPECIFICS sits between
+     the two as a softer orange. */
+  --section-mechanism: var(--color-warn);
+  --section-mechanism-soft: var(--color-warn-soft);
+  --section-effect-positive: var(--color-arrow-positive);
+  --section-effect-negative: var(--color-arrow-negative);
+  --section-effect-binding: var(--color-arrow-binding);
+  --section-effect-regulatory: var(--color-arrow-regulatory);
+  --section-effect-neutral: var(--color-arrow-neutral);
+  --section-specifics: #f97316;
+
+  /* Transitions. */
+  --transition-fast: 120ms ease-out;
+  --transition-normal: 180ms ease-out;
+  --transition-slow: 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Z-layers. */
+  --z-canvas: 1;
+  --z-overlay: 100;
+  --z-modal: 10000;
+  --z-tooltip: 11000;
+
+  /* Misc. */
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+  --backdrop-tint: rgba(2, 6, 16, 0.72);
+}
+
+/* Default body styling — ensures consistent baseline before React mounts. */
+html, body, #root { height: 100%; margin: 0; padding: 0; }
+body {
+  background: var(--color-bg-1);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus ring — visible for keyboard nav across all interactive surfaces. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Reduce motion respect. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

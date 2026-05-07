@@ -1,0 +1,1495 @@
+/* ===============================================================
+   PATHWAY EXPLORER V2 - "Neural Command" Design
+   A living, breathing interface for navigating biological pathways
+   =============================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ---------------------------------------------------------------
+   CSS CUSTOM PROPERTIES - Neural Command Theme
+   --------------------------------------------------------------- */
+:root {
+    /* Deep space background palette */
+    --pe-bg-void: #0a0612;
+    --pe-bg-deep: #110b1f;
+    --pe-bg-surface: rgba(23, 15, 42, 0.85);
+    --pe-bg-elevated: rgba(35, 22, 60, 0.9);
+    --pe-bg-hover: rgba(139, 92, 246, 0.12);
+    --pe-bg-active: rgba(139, 92, 246, 0.18);
+
+    /* Bioluminescent accent colors */
+    --pe-glow-primary: #8b5cf6;
+    --pe-glow-secondary: #a78bfa;
+    --pe-glow-tertiary: #c4b5fd;
+    --pe-glow-dim: rgba(139, 92, 246, 0.3);
+
+    /* Interaction organism colors */
+    --pe-activates: #10b981;
+    --pe-activates-glow: rgba(16, 185, 129, 0.6);
+    --pe-inhibits: #ef4444;
+    --pe-inhibits-glow: rgba(239, 68, 68, 0.6);
+    --pe-binds: #a78bfa;
+    --pe-binds-glow: rgba(167, 139, 250, 0.6);
+    --pe-regulates: #f59e0b;
+    --pe-regulates-glow: rgba(245, 158, 11, 0.6);
+
+    /* Neural text hierarchy */
+    --pe-text-bright: #f1f5f9;
+    --pe-text-primary: #e2e8f0;
+    --pe-text-secondary: #94a3b8;
+    --pe-text-tertiary: #64748b;
+    --pe-text-dim: #475569;
+
+    /* Structure lines */
+    --pe-border-subtle: rgba(139, 92, 246, 0.15);
+    --pe-border-medium: rgba(139, 92, 246, 0.25);
+    --pe-border-bright: rgba(139, 92, 246, 0.4);
+
+    /* Timing functions - organic movement */
+    --pe-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --pe-ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --pe-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Spacing rhythm */
+    --pe-space-xs: 4px;
+    --pe-space-sm: 8px;
+    --pe-space-md: 12px;
+    --pe-space-lg: 16px;
+    --pe-space-xl: 24px;
+    --pe-space-2xl: 32px;
+}
+
+/* ---------------------------------------------------------------
+   MAIN CONTAINER - The Neural Viewport
+   --------------------------------------------------------------- */
+.pathway-explorer-v2 {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 400px;
+    min-width: 320px;
+    max-width: 80vw;
+    height: calc(100vh - 100px);
+    min-height: 300px;
+    max-height: calc(100vh - 60px);
+    /* Enable resize from all edges */
+    resize: both;
+
+    /* Deep space glass effect - Enhanced with multi-layer depth */
+    background:
+        /* Layer 1: Depth dust (furthest) */
+        radial-gradient(ellipse 120% 80% at 30% 20%,
+            rgba(139, 92, 246, 0.08) 0%,
+            transparent 60%
+        ),
+        /* Layer 2: Particle clouds */
+        radial-gradient(ellipse 100% 100% at 70% 80%,
+            rgba(167, 139, 250, 0.05) 0%,
+            transparent 50%
+        ),
+        /* Layer 3: Base glass (closest) */
+        linear-gradient(135deg,
+            rgba(23, 15, 42, 0.95) 0%,
+            rgba(10, 6, 18, 0.98) 50%,
+            rgba(17, 11, 31, 0.96) 100%
+        );
+    backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+
+    /* Neural membrane border */
+    border: 1px solid var(--pe-border-medium);
+    border-left: none;
+    border-radius: 0 16px 16px 0;
+
+    /* Enhanced bioluminescent glow with breathing */
+    box-shadow:
+        /* Neural membrane */
+        0 0 0 1px rgba(139, 92, 246, 0.1),
+        /* Inner glow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        inset 0 -1px 0 rgba(139, 92, 246, 0.1),
+        /* Outer aura (3 layers for depth) */
+        4px 0 60px rgba(139, 92, 246, 0.12),
+        0 0 120px -40px rgba(139, 92, 246, 0.25),
+        0 0 200px -80px rgba(139, 92, 246, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+
+    /* Entry animation + continuous breathing */
+    animation:
+        neuralAwaken 0.6s var(--pe-ease-out-expo) forwards,
+        explorerBreathe 4s ease-in-out infinite 0.6s;
+    transform-origin: left center;
+}
+
+@keyframes neuralAwaken {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.98);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Breathing animation - Subtle organic pulse */
+@keyframes explorerBreathe {
+    0%, 100% {
+        box-shadow:
+            0 0 0 1px rgba(139, 92, 246, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            inset 0 -1px 0 rgba(139, 92, 246, 0.1),
+            4px 0 60px rgba(139, 92, 246, 0.12),
+            0 0 120px -40px rgba(139, 92, 246, 0.25),
+            0 0 200px -80px rgba(139, 92, 246, 0.15);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(139, 92, 246, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            inset 0 -1px 0 rgba(139, 92, 246, 0.15),
+            4px 0 80px rgba(139, 92, 246, 0.18),
+            0 0 140px -40px rgba(139, 92, 246, 0.35),
+            0 0 240px -80px rgba(139, 92, 246, 0.2);
+    }
+}
+
+/* Ambient glow layer */
+.pathway-explorer-v2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(139, 92, 246, 0.15) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------------------------------------------------------------
+   HEADER - Neural Command Center Identity (Draggable)
+   --------------------------------------------------------------- */
+.pe-header {
+    position: relative;
+    padding: 10px 14px;
+    background: linear-gradient(180deg,
+        rgba(139, 92, 246, 0.12) 0%,
+        rgba(139, 92, 246, 0.04) 100%
+    );
+    border-bottom: 1px solid var(--pe-border-subtle);
+    z-index: 1;
+    cursor: grab;
+    user-select: none;
+}
+
+.pe-header:active {
+    cursor: grabbing;
+}
+
+/* Drag indicator dots */
+.pe-header::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 2px;
+}
+
+/* Resize handle styling */
+.pathway-explorer-v2::-webkit-resizer {
+    background: linear-gradient(135deg, transparent 50%, rgba(139, 92, 246, 0.4) 50%);
+    border-radius: 0 0 16px 0;
+}
+
+.pe-header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--pe-space-md);
+}
+
+.pe-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-md);
+}
+
+/* Animated neural icon */
+.pe-neural-icon {
+    width: 32px;
+    height: 32px;
+    position: relative;
+}
+
+.pe-neural-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--pe-glow-secondary);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 8px var(--pe-glow-dim));
+}
+
+.pe-neural-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--pe-glow-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: neuralPulse 2s ease-in-out infinite;
+}
+
+@keyframes neuralPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 8px var(--pe-glow-primary), 0 0 20px var(--pe-glow-dim);
+    }
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 4px var(--pe-glow-primary), 0 0 10px var(--pe-glow-dim);
+    }
+}
+
+.pe-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.35px;
+    background: linear-gradient(135deg,
+        var(--pe-text-bright) 0%,
+        var(--pe-glow-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pe-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--pe-text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 1px;
+}
+
+/* Collapse button */
+.pe-collapse-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--pe-border-subtle);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pe-text-tertiary);
+    transition: all 0.2s ease;
+}
+
+.pe-collapse-btn:hover {
+    background: var(--pe-bg-hover);
+    border-color: var(--pe-border-medium);
+    color: var(--pe-glow-secondary);
+}
+
+.pe-collapse-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s var(--pe-ease-out-expo);
+}
+
+/* ---------------------------------------------------------------
+   BREADCRUMB TRAIL - Neural Pathway Visualization
+   --------------------------------------------------------------- */
+.pe-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-xs);
+    padding: var(--pe-space-sm) var(--pe-space-md);
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    min-height: 36px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.pe-breadcrumb::-webkit-scrollbar {
+    display: none;
+}
+
+.pe-breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-xs);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--pe-text-tertiary);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.pe-breadcrumb-item.active {
+    color: var(--pe-glow-secondary);
+    font-weight: 500;
+}
+
+.pe-breadcrumb-divider {
+    color: var(--pe-text-dim);
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+.pe-breadcrumb-root {
+    color: var(--pe-text-dim);
+    font-style: italic;
+}
+
+/* ---------------------------------------------------------------
+   SEARCH - Neural Signal Filter
+   --------------------------------------------------------------- */
+.pe-search-container {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--pe-border-subtle);
+}
+
+.pe-search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pe-search-input {
+    width: 100%;
+    padding: 10px 12px;
+    padding-left: 40px;
+    padding-right: 36px;
+    background: rgba(2, 6, 23, 0.64);
+    border: 1px solid var(--pe-border-medium);
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: var(--pe-text-primary);
+    transition: all 0.25s ease;
+}
+
+.pe-search-input::placeholder {
+    color: var(--pe-text-dim);
+}
+
+.pe-search-input:focus {
+    outline: none;
+    border-color: var(--pe-glow-primary);
+    background: rgba(2, 6, 23, 0.82);
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.14),
+        0 0 34px -5px rgba(139, 92, 246, 0.24);
+}
+
+.pe-search-icon {
+    position: absolute;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    color: var(--pe-text-dim);
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.pe-search-input:focus + .pe-search-icon,
+.pe-search-wrapper:focus-within .pe-search-icon {
+    color: var(--pe-glow-secondary);
+}
+
+.pe-search-clear {
+    position: absolute;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--pe-text-dim);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.pe-search-input:not(:placeholder-shown) ~ .pe-search-clear {
+    opacity: 0.6;
+    transform: scale(1);
+}
+
+.pe-search-clear:hover {
+    opacity: 1;
+    background: var(--pe-bg-hover);
+    color: var(--pe-glow-secondary);
+}
+
+.pe-search-results {
+    margin-top: var(--pe-space-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--pe-text-dim);
+    letter-spacing: 0.5px;
+}
+
+/* ---------------------------------------------------------------
+   STATS BAR - Organism Activity Monitor
+   --------------------------------------------------------------- */
+.pe-stats-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 14px;
+    background: rgba(2, 6, 23, 0.32);
+    border-bottom: 1px solid var(--pe-border-subtle);
+}
+
+.pe-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-xs);
+    padding: var(--pe-space-xs) var(--pe-space-sm);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.pe-stat:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+}
+
+.pe-stat-organism {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+}
+
+/* Living organism animations */
+.pe-stat-organism::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: organismBreath 3s ease-in-out infinite;
+}
+
+.pe-stat-organism::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: inherit;
+    filter: brightness(1.4);
+}
+
+@keyframes organismBreath {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 0.1;
+    }
+}
+
+.pe-stat.activates .pe-stat-organism {
+    background: var(--pe-activates);
+}
+.pe-stat.activates .pe-stat-organism::before {
+    background: var(--pe-activates-glow);
+}
+
+.pe-stat.inhibits .pe-stat-organism {
+    background: var(--pe-inhibits);
+}
+.pe-stat.inhibits .pe-stat-organism::before {
+    background: var(--pe-inhibits-glow);
+}
+
+.pe-stat.binds .pe-stat-organism {
+    background: var(--pe-binds);
+}
+.pe-stat.binds .pe-stat-organism::before {
+    background: var(--pe-binds-glow);
+}
+
+.pe-stat.regulates .pe-stat-organism {
+    background: var(--pe-regulates);
+}
+.pe-stat.regulates .pe-stat-organism::before {
+    background: var(--pe-regulates-glow);
+}
+
+.pe-stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pe-text-secondary);
+    min-width: 20px;
+    text-align: center;
+}
+
+.pe-stat.activates .pe-stat-value { color: var(--pe-activates); }
+.pe-stat.inhibits .pe-stat-value { color: var(--pe-inhibits); }
+.pe-stat.binds .pe-stat-value { color: var(--pe-binds); }
+.pe-stat.regulates .pe-stat-value { color: var(--pe-regulates); }
+
+/* ---------------------------------------------------------------
+   BULK ACTIONS - Command Controls
+   --------------------------------------------------------------- */
+.pe-actions {
+    display: flex;
+    gap: var(--pe-space-sm);
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--pe-border-subtle);
+}
+
+.pe-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--pe-space-xs);
+    padding: var(--pe-space-sm) var(--pe-space-md);
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid var(--pe-border-subtle);
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--pe-glow-tertiary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pe-action-btn:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: var(--pe-border-medium);
+    color: var(--pe-glow-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
+.pe-action-btn:active {
+    transform: translateY(0);
+}
+
+.pe-action-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ---------------------------------------------------------------
+   TREE CONTAINER - Neural Network View
+   --------------------------------------------------------------- */
+.pe-tree-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 10px 10px 12px 10px;
+    /* Don't constrain min-width - let content determine scroll */
+
+    /* Custom neural scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--pe-glow-dim) transparent;
+}
+
+/* Inner tree wrapper - ensures horizontal scroll works for deeply nested items */
+#pe-tree,
+.pe-tree-container > .pe-tree {
+    min-width: max-content;
+    width: fit-content;
+    padding-right: var(--pe-space-lg); /* Extra padding for scrollbar clearance */
+}
+
+.pe-tree-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pe-tree-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pe-tree-container::-webkit-scrollbar-thumb {
+    background: var(--pe-glow-dim);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+}
+
+.pe-tree-container::-webkit-scrollbar-thumb:hover {
+    background: var(--pe-glow-primary);
+}
+
+/* Horizontal scrollbar styling */
+.pe-tree-container::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+/* ---------------------------------------------------------------
+   TREE ITEM - Neural Node
+   --------------------------------------------------------------- */
+.pe-item {
+    position: relative;
+    margin-bottom: 2px;
+}
+
+/* Tree connector lines - Horizontal branch connecting item to vertical line */
+.pe-item::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 18px;
+    width: 12px;
+    height: 1px;
+    background: rgba(139, 92, 246, 0.25);
+    opacity: 1;
+}
+
+/* Level 0 items get special treatment - no connectors (they are roots) */
+.pe-item[data-level="0"] {
+    margin-bottom: var(--pe-space-sm);
+}
+
+.pe-item[data-level="0"]::before {
+    display: none;
+}
+
+/* Item content row */
+.pe-item-content {
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-sm);
+    padding: var(--pe-space-sm) var(--pe-space-md);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: visible;
+}
+
+/* Hover state */
+.pe-item-content:hover {
+    background: var(--pe-bg-hover);
+    border-color: var(--pe-border-subtle);
+}
+
+/* Selected state */
+.pe-item-content.selected {
+    background: linear-gradient(135deg,
+        rgba(139, 92, 246, 0.2) 0%,
+        rgba(124, 58, 237, 0.1) 100%
+    );
+    border-color: var(--pe-border-medium);
+    box-shadow:
+        0 0 20px -5px rgba(139, 92, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Hidden state */
+.pe-item-content.hidden-card {
+    opacity: 0.35;
+}
+
+.pe-item-content.hidden-card:hover {
+    opacity: 0.6;
+}
+
+/* No interactors state - Pathways that don't lead to any interactors */
+/* BUG C FIX: Enhanced empty pathway styling - more visually distinct */
+.pe-item.no-interactors > .pe-item-content {
+    opacity: 0.4;
+    background: rgba(30, 30, 40, 0.3);
+}
+
+.pe-item.no-interactors > .pe-item-content .pe-label {
+    color: #64748b;
+}
+
+.pe-item.no-interactors > .pe-item-content .pe-checkbox-visual {
+    border-color: var(--pe-text-dim);
+    opacity: 0.5;
+}
+
+.pe-item.no-interactors > .pe-item-content:hover {
+    opacity: 0.6;
+}
+
+/* Level-specific indentation */
+.pe-item[data-level="1"] > .pe-item-content { margin-left: 20px; }
+.pe-item[data-level="2"] > .pe-item-content { margin-left: 40px; }
+.pe-item[data-level="3"] > .pe-item-content { margin-left: 60px; }
+.pe-item[data-level="4"] > .pe-item-content { margin-left: 80px; }
+.pe-item[data-level="5"] > .pe-item-content { margin-left: 100px; }
+.pe-item[data-level="6"] > .pe-item-content { margin-left: 120px; }
+.pe-item[data-level="7"] > .pe-item-content { margin-left: 140px; }
+.pe-item[data-level="8"] > .pe-item-content { margin-left: 160px; }
+.pe-item[data-level="9"] > .pe-item-content { margin-left: 180px; }
+.pe-item[data-level="10"] > .pe-item-content { margin-left: 200px; }
+.pe-item[data-level="11"] > .pe-item-content { margin-left: 220px; }
+.pe-item[data-level="12"] > .pe-item-content { margin-left: 240px; }
+.pe-item[data-level="13"] > .pe-item-content { margin-left: 260px; }
+.pe-item[data-level="14"] > .pe-item-content { margin-left: 280px; }
+.pe-item[data-level="15"] > .pe-item-content { margin-left: 300px; }
+
+/* Root level gets premium treatment */
+.pe-item[data-level="0"] > .pe-item-content {
+    background: linear-gradient(135deg,
+        rgba(139, 92, 246, 0.1) 0%,
+        rgba(59, 7, 100, 0.15) 100%
+    );
+    border-color: var(--pe-border-subtle);
+    padding: var(--pe-space-md);
+}
+
+/* ---------------------------------------------------------------
+   EXPANDER - Neural Branch Control
+   --------------------------------------------------------------- */
+.pe-expander {
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--pe-ease-spring);
+}
+
+.pe-expander svg {
+    width: 14px;
+    height: 14px;
+    color: var(--pe-text-dim);
+    transition: color 0.2s ease;
+}
+
+.pe-expander:hover svg {
+    color: var(--pe-glow-secondary);
+}
+
+.pe-item.expanded > .pe-item-content .pe-expander {
+    transform: rotate(90deg);
+}
+
+.pe-expander.no-children {
+    visibility: hidden;
+}
+
+/* ---------------------------------------------------------------
+   CONTENT INDICATOR - Shows direct interactor content
+   --------------------------------------------------------------- */
+.pe-content-indicator {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 4px;
+    opacity: 0.2;
+}
+
+.pe-content-indicator svg {
+    width: 8px;
+    height: 8px;
+    color: var(--pe-text-dim);
+}
+
+.pe-content-indicator.has-content {
+    opacity: 1;
+}
+
+.pe-content-indicator.has-content svg {
+    color: #10b981;
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.5));
+}
+
+/* BUG C FIX: Direct content indicator - bright green with stronger glow */
+.pe-content-indicator.has-direct svg {
+    color: #10b981;
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.7));
+    animation: pe-content-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pe-content-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* BUG C FIX: Subtree content indicator - indigo for indirect content */
+.pe-content-indicator.has-subtree-content {
+    opacity: 0.8;
+}
+
+.pe-content-indicator.has-subtree-content svg {
+    color: #818cf8;
+    filter: drop-shadow(0 0 4px rgba(129, 140, 248, 0.5));
+}
+
+/* ---------------------------------------------------------------
+   CHECKBOX - Neural Selection Switch
+   --------------------------------------------------------------- */
+.pe-checkbox-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.pe-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.pe-checkbox-visual {
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--pe-border-medium);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.pe-checkbox:hover + .pe-checkbox-visual {
+    border-color: var(--pe-glow-primary);
+}
+
+.pe-checkbox:checked + .pe-checkbox-visual {
+    background: linear-gradient(135deg, var(--pe-glow-primary), #7c3aed);
+    border-color: var(--pe-glow-primary);
+    box-shadow: 0 0 12px var(--pe-glow-dim);
+}
+
+.pe-checkbox-visual svg {
+    width: 12px;
+    height: 12px;
+    color: white;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s var(--pe-ease-spring);
+}
+
+.pe-checkbox:checked + .pe-checkbox-visual svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ---------------------------------------------------------------
+   LABEL GROUP - Neural Identity
+   --------------------------------------------------------------- */
+.pe-label-group {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--pe-space-sm);
+    min-width: 120px;
+    overflow: visible;
+}
+
+.pe-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pe-text-primary);
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    transition: color 0.2s ease;
+}
+
+.pe-item-content:hover .pe-label {
+    color: var(--pe-text-bright);
+}
+
+.pe-item-content.selected .pe-label {
+    color: var(--pe-glow-secondary);
+    font-weight: 600;
+}
+
+/* Search highlight */
+.pe-label .search-match {
+    background: linear-gradient(135deg,
+        rgba(251, 191, 36, 0.3) 0%,
+        rgba(245, 158, 11, 0.2) 100%
+    );
+    color: #fbbf24;
+    border-radius: 2px;
+    padding: 0 2px;
+    margin: 0 -2px;
+}
+
+/* Level badge */
+.pe-level-badge {
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--pe-text-dim);
+    flex-shrink: 0;
+}
+
+/* Level-specific badge colors */
+.pe-item[data-level="0"] .pe-level-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--pe-glow-secondary);
+}
+.pe-item[data-level="1"] .pe-level-badge {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+}
+.pe-item[data-level="2"] .pe-level-badge {
+    background: rgba(79, 70, 229, 0.12);
+    color: #a5b4fc;
+}
+
+/* ---------------------------------------------------------------
+   INTERACTION INDICATORS - Living Organisms
+   --------------------------------------------------------------- */
+.pe-indicators {
+    display: flex;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.pe-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.pe-indicator:hover {
+    transform: scale(1.4);
+}
+
+/* Organism glow effect */
+.pe-indicator::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+/* Active organism pulse */
+.pe-indicator.active {
+    animation: indicatorPulse 2s ease-in-out infinite;
+}
+
+@keyframes indicatorPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.2);
+        filter: brightness(1.3);
+    }
+}
+
+.pe-indicator.activates {
+    background: var(--pe-activates);
+    box-shadow: 0 0 8px var(--pe-activates-glow);
+}
+.pe-indicator.activates::before {
+    background: var(--pe-activates-glow);
+}
+
+.pe-indicator.inhibits {
+    background: var(--pe-inhibits);
+    box-shadow: 0 0 8px var(--pe-inhibits-glow);
+}
+.pe-indicator.inhibits::before {
+    background: var(--pe-inhibits-glow);
+}
+
+.pe-indicator.binds {
+    background: var(--pe-binds);
+    box-shadow: 0 0 8px var(--pe-binds-glow);
+}
+.pe-indicator.binds::before {
+    background: var(--pe-binds-glow);
+}
+
+.pe-indicator.regulates {
+    background: var(--pe-regulates);
+    box-shadow: 0 0 8px var(--pe-regulates-glow);
+}
+.pe-indicator.regulates::before {
+    background: var(--pe-regulates-glow);
+}
+
+/* Tooltip */
+.pe-indicator[title] {
+    cursor: help;
+}
+
+/* ---------------------------------------------------------------
+   VISIBILITY TOGGLE - Neural Cloak
+   --------------------------------------------------------------- */
+.pe-visibility-btn {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.pe-item-content:hover .pe-visibility-btn {
+    opacity: 0.5;
+    transform: scale(1);
+}
+
+.pe-visibility-btn:hover {
+    opacity: 1 !important;
+    background: var(--pe-bg-hover);
+}
+
+.pe-visibility-btn svg {
+    width: 16px;
+    height: 16px;
+    color: var(--pe-text-secondary);
+    transition: color 0.2s ease;
+}
+
+.pe-visibility-btn:hover svg {
+    color: var(--pe-glow-secondary);
+}
+
+.pe-visibility-btn.is-hidden svg {
+    color: var(--pe-text-dim);
+}
+
+/* ---------------------------------------------------------------
+   CHILDREN CONTAINER - Neural Branches with Tree Lines
+   Reduced indentation (12px total) for deep nesting support (L6, L7, L8+)
+   --------------------------------------------------------------- */
+.pe-children {
+    overflow: visible; /* Allow content to be visible for horizontal scroll */
+    transition: max-height 0.4s var(--pe-ease-out-expo),
+                opacity 0.3s ease;
+    position: relative;
+    margin-left: 4px;
+    padding-left: 12px;
+    /* Vertical tree connector line */
+    border-left: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.pe-children.collapsed {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    border-left-color: transparent;
+}
+
+.pe-children.expanded {
+    max-height: 10000px;
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------------
+   KEYBOARD NAVIGATION
+   --------------------------------------------------------------- */
+.pe-item.keyboard-focus > .pe-item-content {
+    outline: 2px solid var(--pe-glow-primary);
+    outline-offset: 2px;
+    background: var(--pe-bg-hover);
+}
+
+/* ---------------------------------------------------------------
+   COLLAPSED STATE TAB
+   --------------------------------------------------------------- */
+.pe-collapsed-tab {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: var(--pe-bg-surface);
+    border: 1px solid var(--pe-border-subtle);
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: var(--pe-space-md) var(--pe-space-sm);
+    cursor: pointer;
+    z-index: 99;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--pe-space-sm);
+    transition: all 0.2s ease;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.pe-collapsed-tab:hover {
+    background: var(--pe-bg-elevated);
+    border-color: var(--pe-border-medium);
+}
+
+.pe-collapsed-tab-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--pe-glow-secondary);
+}
+
+.pe-collapsed-tab-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--pe-text-secondary);
+    letter-spacing: 1px;
+}
+
+/* ---------------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------------- */
+.pe-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--pe-space-2xl);
+    color: var(--pe-text-tertiary);
+    text-align: center;
+}
+
+.pe-empty-state svg {
+    width: 48px;
+    height: 48px;
+    color: var(--pe-text-dim);
+    margin-bottom: var(--pe-space-md);
+    opacity: 0.5;
+}
+
+.pe-empty-state-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+}
+
+/* ---------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   --------------------------------------------------------------- */
+@media (max-width: 1400px) {
+    .pathway-explorer-v2 {
+        width: 360px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .pathway-explorer-v2 {
+        width: 320px;
+    }
+
+    .pe-actions {
+        flex-wrap: wrap;
+    }
+
+    .pe-action-btn {
+        flex: 1 1 45%;
+    }
+}
+
+/* ---------------------------------------------------------------
+   SYNC PULSE ANIMATIONS - Synaptic Firing
+   --------------------------------------------------------------- */
+
+/* Sync pulse indicator (radial glow between Explorer and Card View) */
+.pe-sync-indicator {
+    position: fixed;
+    top: 50%;
+    left: 200px;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.pe-sync-indicator::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle,
+        var(--pe-glow-primary) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+}
+
+.pe-sync-indicator.active {
+    animation: syncPulse 0.8s ease-out;
+}
+
+@keyframes syncPulse {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) scale(1.5);
+    }
+}
+
+/* Sync line (neural connection expanding from Explorer to Card View) */
+.pe-sync-line {
+    position: fixed;
+    top: 50%;
+    left: 400px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--pe-glow-primary),
+        transparent
+    );
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+}
+
+.pe-sync-line.active {
+    animation: syncLineExpand 0.8s ease-out;
+}
+
+@keyframes syncLineExpand {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    50% {
+        width: 200px;
+        opacity: 1;
+    }
+    100% {
+        width: 400px;
+        opacity: 0;
+    }
+}
+
+/* ---------------------------------------------------------------
+   EMPTY PATHWAYS GROUP - Collapsible Section for Content-less Pathways
+   Integrates seamlessly with tree structure - no divider feel
+   --------------------------------------------------------------- */
+.pe-empty-group {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+/* Horizontal connector line for empty group (like regular items) */
+.pe-empty-group::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 14px;
+    width: 12px;
+    height: 1px;
+    background: rgba(100, 116, 139, 0.2);
+}
+
+.pe-empty-group-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    /* Softer, more integrated styling - matches regular items but subtly different */
+    background: rgba(45, 40, 60, 0.25);
+    border: 1px dashed rgba(100, 116, 139, 0.2);
+    transition: all 0.2s ease;
+}
+
+.pe-empty-group-header:hover {
+    background: rgba(60, 55, 80, 0.35);
+    border-color: rgba(100, 116, 139, 0.35);
+}
+
+.pe-empty-group-chevron {
+    width: 12px;
+    height: 12px;
+    color: #64748b;
+    flex-shrink: 0;
+    transition: transform 0.25s var(--pe-ease-out-expo);
+}
+
+.pe-empty-group.expanded .pe-empty-group-chevron {
+    transform: rotate(90deg);
+}
+
+.pe-empty-group-label {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.3px;
+}
+
+.pe-empty-group-count {
+    font-size: 9px;
+    color: #475569;
+    background: rgba(71, 85, 105, 0.25);
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+}
+
+.pe-empty-group-children {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s var(--pe-ease-out-expo),
+                opacity 0.25s ease;
+    /* Tree line for empty group children - reduced indentation */
+    margin-left: 4px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+.pe-empty-group.collapsed .pe-empty-group-children {
+    border-left-color: transparent;
+}
+
+.pe-empty-group.expanded .pe-empty-group-children {
+    max-height: 5000px;
+    opacity: 1;
+}
+
+/* Nested items inside empty group - slightly muted */
+.pe-empty-group .pe-item > .pe-item-content {
+    opacity: 0.6;
+}
+
+.pe-empty-group .pe-item > .pe-item-content:hover {
+    opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------
+   PRINT STYLES
+   --------------------------------------------------------------- */
+@media print {
+    .pathway-explorer-v2 {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------------
+   RESILIENCE OVERRIDES
+   Keep the navigator usable with deep pathway hierarchies and long labels.
+   --------------------------------------------------------------- */
+
+.pe-header-main,
+.pe-title-group,
+.pe-search-wrapper,
+.pe-item-content,
+.pe-label-group,
+.pe-breadcrumb,
+.pe-empty-group-header {
+    min-width: 0;
+}
+
+.pe-title,
+.pe-subtitle,
+.pe-breadcrumb-item,
+.pe-label,
+.pe-empty-group-label {
+    overflow-wrap: anywhere;
+}
+
+.pe-search-input {
+    min-width: 0;
+}
+
+.pe-action-btn {
+    min-width: 0;
+}
+
+.pe-action-btn span,
+.pe-label,
+.pe-empty-group-label {
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .pathway-explorer-v2 {
+        width: min(360px, calc(100vw - 20px));
+        max-width: calc(100vw - 20px);
+        height: min(72vh, calc(100vh - 88px));
+        max-height: calc(100vh - 72px);
+    }
+
+    .pe-actions {
+        flex-wrap: wrap;
+    }
+
+    .pe-action-btn {
+        flex: 1 1 calc(50% - var(--pe-space-sm));
+    }
+}
+
+@media (max-width: 480px) {
+    .pathway-explorer-v2 {
+        top: 56px;
+        width: calc(100vw - 12px);
+        max-width: calc(100vw - 12px);
+        border-radius: 0 12px 12px 0;
+    }
+}

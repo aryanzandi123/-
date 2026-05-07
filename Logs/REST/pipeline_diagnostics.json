@@ -1,0 +1,75 @@
+{
+  "zero_function_dropped": [],
+  "chain_pair_unrecoverable": [],
+  "pipeline_metadata": {
+    "quality_report": {
+      "total_functions": 141,
+      "flagged_functions": 58,
+      "pass_rate": 0.589,
+      "thresholds": {
+        "min_sentences": 6,
+        "max_sentences": 10,
+        "min_cascades": 3,
+        "max_cascades": 5
+      }
+    }
+  },
+  "chain_incomplete_hops": [
+    {
+      "interactor": "MAPK1",
+      "missing_hops": [
+        "REST->MAPK1"
+      ]
+    },
+    {
+      "interactor": "GSK3B",
+      "missing_hops": [
+        "REST->AXIN1",
+        "FBXW7->GSK3B"
+      ]
+    },
+    {
+      "interactor": "LRP6",
+      "missing_hops": [
+        "REST->WNT1",
+        "BTRC->LRP6"
+      ]
+    },
+    {
+      "interactor": "AXIN1",
+      "missing_hops": [
+        "REST->BTRC",
+        "FBXW7->AXIN1"
+      ]
+    },
+    {
+      "interactor": "WNT1",
+      "missing_hops": [
+        "REST->DVL1",
+        "BTRC->WNT1"
+      ]
+    }
+  ],
+  "pathway_drifts": [
+    {
+      "interactor": "REST",
+      "function": "Peptidyl-Prolyl Isomerization & Proteasomal Degradation",
+      "from": "Transcriptional Regulation",
+      "from_score": 0,
+      "to": "Protein Quality Control",
+      "to_score": 5,
+      "action": "corrected",
+      "interaction_id": 14385
+    },
+    {
+      "interactor": "DNMT1",
+      "function": "Epigenetic Reader Recruitment & Maintenance Methylation Coupling",
+      "from": "Transcriptional Regulation",
+      "from_score": 0,
+      "to": "Cell Cycle",
+      "to_score": 3,
+      "action": "corrected",
+      "interaction_id": 14429
+    }
+  ]
+}

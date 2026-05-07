@@ -1,0 +1,9 @@
+{
+  "primary": "HDAC6",
+  "confidence": 0.8,
+  "protein_a": "ATXN3",
+  "protein_b": "HDAC6",
+  "discovered_in_query": "ATXN3",
+  "first_discovered": "2026-03-16T00:09:34.964114Z",
+  "last_updated": "2026-03-16T00:09:34.964114Z"
+}

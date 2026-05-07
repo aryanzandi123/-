@@ -1,0 +1,99 @@
+.banner {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  margin-bottom: var(--space-2);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  font-size: var(--font-size-xs);
+}
+
+.pathwayChip {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-text);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.faint {
+  color: var(--color-text-faint);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.spacer { flex: 1; }
+
+.navBtn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.navBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.chipRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chipWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chip {
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-3);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.chipFocused {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.verb {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-mono);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+.verbReverse {
+  font-style: italic;
+}

@@ -1,0 +1,853 @@
+{
+  "total_functions": 172,
+  "flagged_functions": 65,
+  "pass_rate": 0.622,
+  "thresholds": {
+    "min_sentences": 6,
+    "max_sentences": 10,
+    "min_cascades": 3,
+    "max_cascades": 5,
+    "min_effect_sentences": 6,
+    "min_specific_effects": 3,
+    "min_evidence_papers": 3
+  },
+  "violations": [
+    {
+      "interactor": "HSPA5",
+      "function_name": "PERK Luminal Domain Binding & Kinase Activity",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA5[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective mRNA Translation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA5[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective uORF Bypass",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA5[ATF4->ASNS]",
+      "function_name": "CARE Binding & ASNS Transcriptional Induction",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJC3",
+      "function_name": "PERK Kinase Domain Binding & Kinase Activity",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJC3",
+      "function_name": "PERK Kinase Domain Binding & Kinase Activity",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EIF2S1",
+      "function_name": "Serine 51 Phosphorylation & Translation Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EIF2S1[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective mRNA Translation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "EIF2S1[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective uORF Bypass",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "NFE2L2",
+      "function_name": "NFE2L2 Phosphorylation & Keap1 Dissociation & Nuclear Translocation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "NFE2L2",
+      "function_name": "NFE2L2 Phosphorylation & Keap1 Dissociation & Nuclear Translocation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "NFE2L2",
+      "function_name": "NFE2L2 Phosphorylation & Keap1 Dissociation & Nuclear Translocation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MFN2[MFN2->VDAC1]",
+      "function_name": "MAM Complex Stabilization & Mitochondrial Calcium Uptake",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PDIA6[PERK->PDIA6]",
+      "function_name": "PERK Luminal Domain Thiol-Disulfide Exchange & Signaling Attenuation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PDIA6[DDIT3->BAX]",
+      "function_name": "Pro-apoptotic Gene Transcription & Mitochondrial Outer Membrane Permeabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATAD3A",
+      "function_name": "Mitochondrial Translation Protection & Subcellular Stress Escape",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATAD3A",
+      "function_name": "Mitochondrial Translation Protection & Subcellular Stress Escape",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VAPA[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 2,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "VAPA[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "biological_consequence",
+      "rule": "min_cascades",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": 5
+    },
+    {
+      "interactor": "VAPA[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 1,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "VAPA[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "specific_effects",
+      "rule": "min_specific_effects",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VAPA[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VAPB[VAPB->RMDN3]",
+      "function_name": "ER-Mitochondria Tethering & Calcium Transfer",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VAPB[VAPB->RMDN3]",
+      "function_name": "VAPB-RMDN3 Complex & ER-Mitochondria Tethering & Calcium Transfer",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "SEL1L",
+      "function_name": "PERK Protein Turnover & UPR Termination",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "JAK1",
+      "function_name": "IL-6 Secretion & JAK1-STAT3 Pathway",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "JAK1[PERK->JAK1]",
+      "function_name": "PERK-JAK1 Physical Interaction & JAK1 Tyrosine Phosphorylation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "JAK1[STAT3->IL6]",
+      "function_name": "STAT3-Mediated IL6 Promoter Activation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "STAT3",
+      "function_name": "STAT3 Phosphorylation & Survival Gene Transcription",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "STAT3[STAT3->MCL1]",
+      "function_name": "STAT3 Transcriptional Activation of MCL1",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "STAT3[STAT3->MCL1]",
+      "function_name": "STAT3-DNA Binding & MCL1 Transcriptional Activation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "RNF139",
+      "function_name": "PERK Ubiquitination & ER Stress Resolution",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCAP31[BCAP31->CASP8]",
+      "function_name": "BCAP31-CASP8 Complex Assembly & Pro-apoptotic Cleavage",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "LACC1",
+      "function_name": "ER Stress Sensor Complex & PRR-Induced Proinflammatory Signaling",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJC10",
+      "function_name": "ERAD-UPR Crosstalk & PERK Pathway Attenuation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "DNAJC10",
+      "function_name": "ERAD-UPR Crosstalk & PERK Pathway Attenuation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJC10",
+      "function_name": "ERAD-UPR Crosstalk & PERK Pathway Attenuation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ESYT1",
+      "function_name": "ER-Mitochondria Lipid Trafficking & Mitochondrial Bioenergetics",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ESYT1",
+      "function_name": "ER-Mitochondria Lipid Trafficking & Mitochondrial Bioenergetics",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4",
+      "function_name": "Selective Translation & UPR Gene Expression Program",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4",
+      "function_name": "Selective Translation & UPR Gene Expression Program",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2B1->ATF4]",
+      "function_name": "eIF2B Sequestration & ATF4 Selective Translation Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Stability & Ternary Complex Availability & ATF4 Selective Translation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Stability & Ternary Complex Availability & ATF4 Selective Translation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Assembly & ATF4 Translational De-repression",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Assembly & ATF4 Translational De-repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective mRNA Translation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATF4[EIF2S1->ATF4]",
+      "function_name": "Delayed Translational Reinitiation & Selective uORF Bypass",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDIT3[PERK->PDIA6]",
+      "function_name": "PERK Luminal Domain Thiol-Disulfide Exchange & Signaling Attenuation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDIT3[DDIT3->BAX]",
+      "function_name": "Pro-apoptotic Gene Transcription & Mitochondrial Outer Membrane Permeabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2L11[EIF2B1->ATF4]",
+      "function_name": "eIF2B Sequestration & ATF4 Selective Translation Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2L11[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Stability & Ternary Complex Availability & ATF4 Selective Translation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2L11[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Stability & Ternary Complex Availability & ATF4 Selective Translation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2L11[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Assembly & ATF4 Translational De-repression",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2L11[EIF2B1->ATF4]",
+      "function_name": "eIF2B Decamer Assembly & ATF4 Translational De-repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KEAP1",
+      "function_name": "NFE2L2 Degradation & Redox Thresholding",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "KEAP1",
+      "function_name": "NFE2L2 Degradation & Redox Thresholding",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KEAP1[NFE2L2->KEAP1]",
+      "function_name": "Neh2-Kelch Domain Binding & Hinge-Latch Complex Formation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HMOX1",
+      "function_name": "Heme Degradation & Oxidative Stress Protection",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HMOX1",
+      "function_name": "Heme Degradation & Oxidative Stress Protection",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BBC3",
+      "function_name": "Apoptosis & MOMP Sensitization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BBC3",
+      "function_name": "Apoptosis & MOMP Sensitization",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BBC3[FOXO3->BBC3]",
+      "function_name": "FOXO3-DNA Binding & BBC3 Transcription & Apoptosis",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PMAIP1",
+      "function_name": "Apoptosis & MCL-1 Antagonism",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PMAIP1",
+      "function_name": "Apoptosis & MCL-1 Antagonism",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ITPR1[MFN2->ITPR1]",
+      "function_name": "ER-Mitochondria Tethering & Calcium Hotspot Formation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "VDAC1[MFN2->VDAC1]",
+      "function_name": "MAM Complex Stabilization & Mitochondrial Calcium Uptake",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "STIM1",
+      "function_name": "ER-PM Junction Stabilization & Store-Operated Calcium Entry",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "STIM1[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 2,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "STIM1[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "biological_consequence",
+      "rule": "min_cascades",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": 5
+    },
+    {
+      "interactor": "STIM1[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 1,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "STIM1[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "specific_effects",
+      "rule": "min_specific_effects",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "STIM1[VAPA->STIM1]",
+      "function_name": "ER-PM Junction Recruitment & SOCE Regulation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "RMDN3",
+      "function_name": "ER-Mitochondria Tethering & Calcium Flux",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "RMDN3[VAPB->RMDN3]",
+      "function_name": "ER-Mitochondria Tethering & Calcium Transfer",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "RMDN3[VAPB->RMDN3]",
+      "function_name": "VAPB-RMDN3 Complex & ER-Mitochondria Tethering & Calcium Transfer",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MCL1",
+      "function_name": "JAK1-STAT3 Axis & Survival Gene Transcription",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MCL1[STAT3->MCL1]",
+      "function_name": "STAT3 Transcriptional Activation of MCL1",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MCL1[STAT3->MCL1]",
+      "function_name": "STAT3-DNA Binding & MCL1 Transcriptional Activation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "XRN1",
+      "function_name": "CNOT7-Mediated mRNA Deadenylation & Decay",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA9",
+      "function_name": "MAM Scaffold Stabilization & Mitochondrial Calcium Transfer",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CASP8",
+      "function_name": "iDISC-Mediated Apoptosis Initiation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "CASP8",
+      "function_name": "iDISC-Mediated Apoptosis Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CASP8[BCAP31->CASP8]",
+      "function_name": "BCAP31-CASP8 Complex Assembly & Pro-apoptotic Cleavage",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "NOD2",
+      "function_name": "ER-Targeted Proinflammatory Signaling Scaffold",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ASNS[ATF4->ASNS]",
+      "function_name": "CARE Binding & ASNS Transcriptional Induction",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BAX[DDIT3->BAX]",
+      "function_name": "Pro-apoptotic Gene Transcription & Mitochondrial Outer Membrane Permeabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "IL6[STAT3->IL6]",
+      "function_name": "STAT3-Mediated IL6 Promoter Activation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BCL2[ATF4->BCL2]",
+      "function_name": "Direct Transcriptional Repression & Apoptotic Priming",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PERK",
+      "function_name": "ER-Targeted Proinflammatory Signaling Scaffold",
+      "field": "biological_consequence",
+      "rule": "min_cascades",
+      "actual": 0,
+      "expected_min": 3,
+      "expected_max": 5
+    },
+    {
+      "interactor": "PERK",
+      "function_name": "ER-Targeted Proinflammatory Signaling Scaffold",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PERK",
+      "function_name": "ER-Targeted Proinflammatory Signaling Scaffold",
+      "field": "specific_effects",
+      "rule": "min_specific_effects",
+      "actual": 0,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PERK",
+      "function_name": "ER-Targeted Proinflammatory Signaling Scaffold",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    }
+  ]
+}

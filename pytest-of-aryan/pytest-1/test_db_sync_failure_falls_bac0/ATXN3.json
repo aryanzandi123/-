@@ -1,0 +1,37 @@
+{
+  "snapshot_json": {
+    "main": "ATXN3",
+    "interactors": [
+      {
+        "primary": "VCP",
+        "confidence": 0.9,
+        "arrow": "binds",
+        "direction": "bidirectional",
+        "support_summary": "Co-IP validated in human cells",
+        "pmids": [
+          "12345678",
+          "23456789"
+        ],
+        "functions": [
+          {
+            "function": "Protein quality control",
+            "arrow": "activates",
+            "interaction_effect": "activates",
+            "interaction_direction": "main_to_primary",
+            "cellular_process": "ERAD",
+            "biological_consequence": [
+              "substrate degradation"
+            ],
+            "specific_effects": [
+              "ubiquitin chain editing"
+            ],
+            "pmids": [
+              "12345678"
+            ],
+            "confidence": 0.85
+          }
+        ]
+      }
+    ]
+  }
+}

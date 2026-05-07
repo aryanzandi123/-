@@ -1,0 +1,46 @@
+# ProPaths local-dev compose. Boots Postgres + the Flask backend in one
+# ``docker compose up``. For production deployments prefer the ``web``
+# service alone, pointed at a managed Postgres (Railway, RDS, etc.) via
+# DATABASE_URL.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-propaths}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-propaths}
+      POSTGRES_DB: ${POSTGRES_DB:-propaths}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - propaths_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-propaths}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-propaths}:${POSTGRES_PASSWORD:-propaths}@db:5432/${POSTGRES_DB:-propaths}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      ENABLE_LOG_ROTATION: "true"
+      ENABLE_BACKFILL_AT_STARTUP: "true"
+      ENABLE_CHAIN_MERGE: "true"
+      # Dev override — set to "false" in production compose file.
+      FLASK_DEBUG: "false"
+    ports:
+      - "${WEB_PORT:-5000}:5000"
+    volumes:
+      # Mount Logs/ for live log tailing; mount cache/ for iteration.
+      - ./Logs:/app/Logs
+      - ./cache:/app/cache
+
+volumes:
+  propaths_pgdata:

@@ -1,0 +1,35 @@
+{
+  "zero_function_dropped": [],
+  "chain_pair_unrecoverable": [
+    "TDP43->XPO7"
+  ],
+  "pipeline_metadata": {
+    "quality_report": {
+      "total_functions": 157,
+      "flagged_functions": 70,
+      "pass_rate": 0.554,
+      "thresholds": {
+        "min_sentences": 6,
+        "max_sentences": 10,
+        "min_cascades": 3,
+        "max_cascades": 5
+      }
+    }
+  },
+  "chain_incomplete_hops": [
+    {
+      "interactor": "GRN",
+      "missing_hops": [
+        "TDP43->SORT1",
+        "CTSD->GRN"
+      ]
+    },
+    {
+      "interactor": "ULK1",
+      "missing_hops": [
+        "TDP43->TBK1",
+        "SQSTM1->ULK1"
+      ]
+    }
+  ]
+}

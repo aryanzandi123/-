@@ -1,0 +1,781 @@
+{
+  "total_functions": 157,
+  "flagged_functions": 70,
+  "pass_rate": 0.554,
+  "thresholds": {
+    "min_sentences": 6,
+    "max_sentences": 10,
+    "min_cascades": 3,
+    "max_cascades": 5,
+    "min_effect_sentences": 6,
+    "min_specific_effects": 3,
+    "min_evidence_papers": 3
+  },
+  "violations": [
+    {
+      "interactor": "HNRNPA1",
+      "function_name": "HNRNPA1 Pre-mRNA Splicing & Proteotoxicity",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HNRNPA2B1",
+      "function_name": "Stress Granule Recruitment & LLPS",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MATR3",
+      "function_name": "Nuclear Matrix Scaffolding & Phase Separation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MATR3",
+      "function_name": "Nuclear Matrix Scaffolding & Phase Separation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FUS",
+      "function_name": "mRNA-Rich Subcompartment Formation & Phase Mixing",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FUS[FUS->UNC13A]",
+      "function_name": "REST mRNA Destabilization & Transcriptional Repression",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBQLN2[UBQLN2->PSMD4]",
+      "function_name": "UBL-UIM Binding & Proteasomal Shuttling",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "VCP",
+      "function_name": "Nuclear Pore Complex Maintenance & TDP43 Nucleocytoplasmic Shuttling",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "OPTN[TDP43->OPTN]",
+      "function_name": "TDP43-OPTN Binding & Selective Autophagic Recruitment",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "SQSTM1[TBK1->SQSTM1]",
+      "function_name": "UBA Domain Phosphorylation & Cargo Sequestration",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "SQSTM1[SQSTM1->KEAP1]",
+      "function_name": "Kelch Domain Binding & Competitive Nrf2 Displacement",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TIA1",
+      "function_name": "Stress Granule Nucleation & mRNA Sequestration",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "G3BP1",
+      "function_name": "mRNA Stability & Stress Granule Maintenance",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA8",
+      "function_name": "Protein Folding & Aggregate Clearance",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA8[DNAJB1->HSPA8]",
+      "function_name": "J-Domain ATPase Stimulation & Substrate Loading",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJB1",
+      "function_name": "Protein Disaggregation & Solubility Maintenance",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJB1",
+      "function_name": "Protein Disaggregation & Solubility Maintenance",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJB1[DNAJB1->HSPA8]",
+      "function_name": "J-Domain ATPase Stimulation & Substrate Loading",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "KPNB1",
+      "function_name": "Nuclear Import & Solubility Restoration",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "XPO1",
+      "function_name": "Nuclear Export & Phase Transition",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "XPO1[TDP43->XPO1]",
+      "function_name": "Nuclear Export Signal Recognition & Exportin Binding",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PARP1",
+      "function_name": "PAR-Binding & Phase Separation & Stress Granule Recruitment",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX5",
+      "function_name": "R-loop Resolution & Genome Integrity",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX5",
+      "function_name": "R-loop Resolution & Genome Integrity",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX5[DDX5->FANCD2]",
+      "function_name": "R-loop Resolution & FANCD2 Chromatin Recruitment",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EWSR1",
+      "function_name": "Cytoplasmic Condensate Co-aggregation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "EWSR1",
+      "function_name": "Cytoplasmic Condensate Co-aggregation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF15",
+      "function_name": "RNA Metabolism & Cytoplasmic Sequestration",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF15",
+      "function_name": "RNA Metabolism & Cytoplasmic Sequestration",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATXN2",
+      "function_name": "Stress Granule Assembly & mRNA Transport",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "ATXN2",
+      "function_name": "Stress Granule Assembly & mRNA Transport",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATXN2",
+      "function_name": "Stress Granule Assembly & mRNA Transport",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "GLE1",
+      "function_name": "Nuclear mRNA Export & Stress Granule Dynamics",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "GLE1",
+      "function_name": "Nuclear mRNA Export & Stress Granule Dynamics",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "GLE1",
+      "function_name": "Nuclear mRNA Export & Stress Granule Dynamics",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "GLE1[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "GLE1[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "NUP62",
+      "function_name": "Nuclear Pore Complex & Nucleocytoplasmic Transport",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ELAVL1",
+      "function_name": "mRNA Stability & Translation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CYLD",
+      "function_name": "K63-linked Polyubiquitin Deubiquitination & Autophagy",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CYLD[CYLD->MAP3K7]",
+      "function_name": "K63-linked Deubiquitination & Kinase Inactivation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "USP10",
+      "function_name": "Stress Granule Clearance & Aggresome Formation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PFN1",
+      "function_name": "Cytoplasmic Sequestration & Prion-like Protein Aggregation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "SETX",
+      "function_name": "R-loop Resolution & DNA Damage Response",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PABPC1",
+      "function_name": "Stress Granule Dynamics & mRNA Translation Stalling",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TARBP1",
+      "function_name": "HIV-1 LTR Transcription & Viral Gene Expression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "YTHDF2",
+      "function_name": "m6A-modified RNA Binding & mRNA Decay",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "YTHDF2[YTHDF2->CNOT1]",
+      "function_name": "CCR4-NOT Recruitment & mRNA Deadenylation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "YTHDF2[YTHDF2->CNOT1]",
+      "function_name": "CCR4-NOT Recruitment & mRNA Deadenylation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "METTL3",
+      "function_name": "RNA N6-methyladenosine Methylation & mRNA Processing",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "METTL3[TDP43->METTL3]",
+      "function_name": "Nuclear Speckle Scaffolding & m6A Writer Complex Recruitment",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "TBK1",
+      "function_name": "Serine/Threonine Kinase Activity & TDP43 Phosphorylation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CSNK1E",
+      "function_name": "Casein Kinase Activity & TDP43 Hyperphosphorylation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "STMN2",
+      "function_name": "STMN2 mRNA Splicing & Axonal Growth",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UNC13A",
+      "function_name": "UNC13A mRNA Splicing & Synaptic Function",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UNC13A[FUS->UNC13A]",
+      "function_name": "REST mRNA Destabilization & Transcriptional Repression",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "GRN",
+      "function_name": "GRN mRNA Stability & Lysosomal Homeostasis",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ULK1",
+      "function_name": "ULK1 mRNA Splicing & Autophagy Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ULK1",
+      "function_name": "ULK1 mRNA Splicing & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ULK1[TBK1->SQSTM1]",
+      "function_name": "UBA Domain Phosphorylation & Cargo Sequestration",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "C9orf72",
+      "function_name": "Nuclear Pore Complex Integrity & TDP-43 Nuclear Import",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "C9orf72",
+      "function_name": "ULK1 Complex Activity & Autophagic TDP-43 Degradation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "C9orf72[C9orf72->EIF4G1]",
+      "function_name": "Stress Granule Recruitment & Translation Inhibition",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EIF4G1[C9orf72->EIF4G1]",
+      "function_name": "Stress Granule Recruitment & Translation Inhibition",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PSMD4[UBQLN2->PSMD4]",
+      "function_name": "UBL-UIM Binding & Proteasomal Shuttling",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MAP1LC3B[TDP43->OPTN]",
+      "function_name": "TDP43-OPTN Binding & Selective Autophagic Recruitment",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KEAP1[SQSTM1->KEAP1]",
+      "function_name": "Kelch Domain Binding & Competitive Nrf2 Displacement",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "NXF1[TDP43->XPO1]",
+      "function_name": "Nuclear Export Signal Recognition & Exportin Binding",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "FANCD2",
+      "function_name": "R-loop Resolution & Genome Integrity",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FANCD2[DDX5->FANCD2]",
+      "function_name": "R-loop Resolution & FANCD2 Chromatin Recruitment",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EIF2AK3",
+      "function_name": "Integrated Stress Response & Protein Synthesis Control",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DLG4",
+      "function_name": "Synaptic mRNA Localization & Postsynaptic Density Maintenance",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX19B",
+      "function_name": "Nuclear mRNA Export & NPC Remodeling",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX19B[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX19B[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX19B[GLE1->DDX19B]",
+      "function_name": "DDX19B ATPase Activation & mRNP Remodeling",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX3X[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DDX3X[TDP43->GLE1]",
+      "function_name": "mRNP Composition Modulation & Nuclear Export Control",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HDAC6",
+      "function_name": "Deacetylase Activity & Autophagic Aggregate Clearance",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MAP3K7[CYLD->MAP3K7]",
+      "function_name": "K63-linked Deubiquitination & Kinase Inactivation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CNOT1",
+      "function_name": "Deadenylation & mRNA Decay",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CNOT1[YTHDF2->CNOT1]",
+      "function_name": "CCR4-NOT Recruitment & mRNA Deadenylation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CNOT1[YTHDF2->CNOT1]",
+      "function_name": "CCR4-NOT Recruitment & mRNA Deadenylation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "YTHDC1[TDP43->METTL3]",
+      "function_name": "Nuclear Speckle Scaffolding & m6A Writer Complex Recruitment",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATG5[TDP43->METTL3]",
+      "function_name": "Nuclear Speckle Scaffolding & m6A Writer Complex Recruitment",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    }
+  ]
+}

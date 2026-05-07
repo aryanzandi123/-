@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPath</title>
+    <link rel="icon" type="image/png" href="/static/logo.png">
+    <link rel="apple-touch-icon" href="/static/logo.png">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Query a Protein Pathway</h1>
+            <p class="subtitle">Enter a protein symbol to generate an interactive signaling network.</p>
+            <div class="header-search-container">
+                <div class="input-container" role="search">
+                    <input type="text" id="protein-input" placeholder="e.g., ATXN3, TP53..." aria-label="Protein symbol" autocomplete="off">
+                    <button id="query-button" aria-label="Generate protein pathway visualization">Generate</button>
+                </div>
+
+                <!-- Research Settings -->
+                <details class="config-details" style="margin-top: 12px;">
+                    <summary class="config-summary">Research Settings</summary>
+                    <div class="config-content">
+                        <!-- Pipeline Mode Selector -->
+                        <label class="config-label" style="margin-bottom: 10px;">
+                            <span class="config-label-text">Discovery Mode:</span>
+                            <select id="pipeline-mode-select" class="config-input" style="width: auto; min-width: 150px;" onchange="onPipelineModeChange()">
+                                <option value="iterative" selected>Iterative</option>
+                                <option value="modern">Deep Research</option>
+                                <option value="standard">Standard</option>
+                            </select>
+                        </label>
+                        <!-- Discovery Iterations (only for iterative mode) -->
+                        <div id="iterative-settings" style="margin-bottom: 10px; padding: 8px 10px; background: rgba(79, 70, 229, 0.05); border-radius: 6px; border: 1px solid rgba(79, 70, 229, 0.15);">
+                            <label class="config-label">
+                                <span class="config-label-text">Discovery Iterations:</span>
+                                <input type="range" id="discovery-iterations" min="1" max="10" value="5"
+                                    style="width: 100px; vertical-align: middle;"
+                                    oninput="document.getElementById('iter-count-display').textContent = this.value">
+                                <span id="iter-count-display" style="min-width: 20px; text-align: center; font-weight: 600; color: #4f46e5;">5</span>
+                            </label>
+                            <p style="margin: 4px 0 0; font-size: 11px; color: #9ca3af;">
+                                More iterations = broader discovery (1=quick, 5=standard, 10=exhaustive)
+                            </p>
+                        </div>
+                        <!-- Preset buttons set rounds/iterations automatically -->
+                        <div class="config-presets">
+                            <button class="preset-btn" onclick="setPreset(3,3,3)">Quick</button>
+                            <button class="preset-btn" onclick="setPreset(5,5,5)">Standard</button>
+                            <button class="preset-btn" onclick="setPreset(8,8,8)">Thorough</button>
+                        </div>
+                        <!-- Hidden fields for preset values (set by setPreset JS) -->
+                        <input type="hidden" id="interactor-rounds" value="3">
+                        <input type="hidden" id="function-rounds" value="3">
+                    </div>
+                </details>
+
+                <!-- Skip Steps (Advanced) -->
+                <!--
+                    POLARITY: every checkbox in this section is a SKIP toggle —
+                    checking means "DISABLE this stage." Labels carry the
+                    "Skip:" prefix so the polarity is obvious even with the
+                    summary collapsed. The "(env)" badge means the .env file
+                    overrides the UI (routes/query.py:111–115) — the box is
+                    cosmetic until the corresponding env var is unset.
+                    The "Mode" section at the bottom has the OPPOSITE polarity
+                    (check = enable fast mode).
+                -->
+                <details class="config-details" style="margin-top: 6px;">
+                    <summary class="config-summary">Skip Steps (Advanced) — check = DISABLE stage</summary>
+                    <div class="config-content" style="display: flex; flex-wrap: wrap; gap: 6px 16px;">
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP the arrow-validation LLM stage. Normally runs — it rewrites arrow labels when prose verbs disagree with declared fields. (env: DEFAULT_SKIP_ARROW_VALIDATION — UI overridden when set)">
+                            <input type="checkbox" id="skip-arrow-validation"> Skip: Arrow validation <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP direct-link extraction from chain claims. Normally runs — produces direct interactions derived from chain assays. (env: SKIP_DIRECT_LINK_EXTRACTION — UI overridden when set)">
+                            <input type="checkbox" id="skip-direct-links"> Skip: Direct link extraction <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP the evidence-validation LLM stage. Normally runs — validates/enriches PMIDs and paper evidence. No env override; this UI toggle is fully live.">
+                            <input type="checkbox" id="skip-validation"> Skip: Evidence validation
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP the deduplication LLM stage. Strongly recommended to leave unchecked — skipping causes duplicate claims in the modal. No env override.">
+                            <input type="checkbox" id="skip-deduplicator"> Skip: Deduplication
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP the metadata-synthesis LLM stage. Normally runs — synthesizes interaction-level confidence and summary fields. (env: DEFAULT_SKIP_INTERACTION_METADATA — UI overridden when set)">
+                            <input type="checkbox" id="skip-interaction-metadata"> Skip: Metadata synthesis <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP LLM arrow determination. NOT recommended — the code warns: 'directions will use heuristic only, which may produce incorrect bidirectional assignments.' No env override.">
+                            <input type="checkbox" id="skip-arrow-determination"> Skip: LLM arrow determination
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP schema validation (pure, cheap). Normally runs. (env: DEFAULT_SKIP_SCHEMA_VALIDATION — UI overridden when set)">
+                            <input type="checkbox" id="skip-schema-validation"> Skip: Schema validation <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP post-processor citation verification. Redundant with in-pipeline step2e. (env: SKIP_CITATION_VERIFICATION — UI overridden when set)">
+                            <input type="checkbox" id="skip-citation-verification"> Skip: Citation verification <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Check to SKIP metadata finalization (pure). Normally runs — computes derived fields the frontend reads. (env: DEFAULT_SKIP_FINALIZE_METADATA — UI overridden when set)">
+                            <input type="checkbox" id="skip-finalize-metadata"> Skip: Metadata finalization <span style="color:#6b7280;font-size:10px">(env)</span>
+                        </label>
+                        <p style="width: 100%; margin: 4px 0 0; font-size: 11px; color: #9ca3af;">
+                            Checking a box SKIPS that stage (speeds up the query but may reduce quality). Toggles tagged (env) are overridden by <code>.env</code> — UI is cosmetic until the matching env var is unset.
+                        </p>
+
+                        <!-- Mode (opposite polarity — check = ENABLE) -->
+                        <hr style="width:100%; border:0; border-top:1px solid #e5e7eb; margin:8px 0 4px;">
+                        <p style="width:100%; margin:0 0 4px; font-size:11px; color:#6b7280; font-weight:600; letter-spacing:0.3px;">MODE (check = ENABLE, opposite polarity)</p>
+                        <label style="font-size: 12px; display: flex; align-items: center; gap: 4px;"
+                               title="Quick pathway assignment is the DEFAULT (faster, DB-first matching). Uncheck to fall back to the full LLM pathway pipeline (slower, but reorganizes existing hierarchy).">
+                            <input type="checkbox" id="quick-pathway-assignment" checked> Quick pathway assignment <span style="color:#15803d;font-size:10px">(default)</span>
+                        </label>
+                    </div>
+                </details>
+            </div>
+            <div id="job-notification" class="job-notification">
+                <!-- This is where background job notifications will appear on the results page -->
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="status-display" aria-live="polite" aria-atomic="false">
+                <!-- Multi-job tracker container -->
+                <div id="job-container" class="job-container" role="log" aria-label="Job progress"></div>
+                <!-- Status message for non-job updates -->
+                <p id="status-message" role="status"></p>
+            </div>
+        </div>
+    </div>
+    <script src="/static/pipeline_controls.js"></script>
+    <script src="/static/_legacy/script.js"></script>
+</body>
+
+</html>

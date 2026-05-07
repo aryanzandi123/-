@@ -1,0 +1,3559 @@
+{
+  "parent:aggrephagy": "Selective Macroautophagy",
+  "parent:macroautophagy": "Autophagy",
+  "parent:retrograde axonal transport": "Axonal Transport",
+  "parent:dna strand break repair": "DNA Repair",
+  "parent:mitophagy": "Selective Macroautophagy",
+  "parent:apoptosis": "Programmed Cell Death",
+  "parent:dna double-strand break repair": "DNA Repair",
+  "parent:er-associated degradation": "Endoplasmic Reticulum Protein Quality Control",
+  "parent:microtubule cytoskeleton organization": "Cytoskeleton Organization",
+  "parent:intracellular transport": "Cellular Transport",
+  "parent:transcription-coupled repair": "Nucleotide Excision Repair",
+  "parent:oxidative stress response": "Cellular Stress Response",
+  "parent:cell cycle regulation": "Cell Cycle",
+  "parent:er-associated degradation (erad)": "Endoplasmic Reticulum Quality Control (ERQC)",
+  "parent:proteolytic processing": "Post-translational Protein Modification",
+  "parent:ubiquitin-proteasome system": "Protein Degradation",
+  "parent:nuclear body organization": "Subnuclear Structure Organization",
+  "parent:autophagy": "Protein Quality Control",
+  "parent:inflammasome activation": "Pattern Recognition Receptor (PRR) Signaling",
+  "parent:hippo signaling pathway": "Developmental Signaling",
+  "parent:dna damage response": "Genome Maintenance",
+  "parent:apoptotic signaling": "Programmed Cell Death Signaling",
+  "parent:transcriptional regulation": "Regulation of Gene Expression",
+  "parent:hedgehog signaling pathway": "Morphogen Signaling",
+  "parent:selective macroautophagy": "Macroautophagy",
+  "parent:pattern recognition receptor (prr) signaling": "Innate Immune Signaling",
+  "parent:axonal transport": "Microtubule-Based Transport",
+  "parent:morphogen signaling": "Developmental Signaling",
+  "parent:protein quality control": "Proteostasis",
+  "parent:cellular transport": "Membrane & Transport",
+  "parent:regulation of gene expression": "Gene Expression",
+  "parent:nucleotide excision repair": "Excision Repair",
+  "parent:subnuclear structure organization": "Nuclear Organization",
+  "parent:programmed cell death": "Cell Death",
+  "parent:endoplasmic reticulum quality control (erqc)": "Protein Quality Control",
+  "parent:cytoskeleton organization": "Cytoskeletal Dynamics",
+  "parent:protein degradation": "Protein Quality Control",
+  "parent:cellular stress response": "Cellular Responses to External Stimuli",
+  "parent:cell cycle": "Cell Proliferation",
+  "parent:dna repair": "DNA Damage Response",
+  "parent:post-translational protein modification": "Protein Processing",
+  "parent:endoplasmic reticulum protein quality control": "Protein Quality Control",
+  "parent:programmed cell death signaling": "Cell Death Signaling",
+  "parent:developmental signaling": "Intercellular Signaling",
+  "parent:excision repair": "DNA Repair",
+  "parent:innate immune signaling": "Immune System Signaling",
+  "parent:microtubule-based transport": "Cytoskeleton-Dependent Transport",
+  "parent:cell death": "Cell Fate Regulation",
+  "parent:protein processing": "Protein Maturation",
+  "parent:cellular responses to external stimuli": "Signal Transduction",
+  "parent:cell death signaling": "Programmed Cell Death",
+  "parent:intercellular signaling": "Cellular Signaling",
+  "parent:nuclear organization": "Genome Maintenance",
+  "parent:cell proliferation": "Cell Cycle Progression",
+  "parent:cell cycle progression": "Cell Cycle",
+  "parent:cellular signaling": "Signal Transduction",
+  "parent:cytoskeleton-dependent transport": "Intracellular Transport",
+  "parent:protein maturation": "Post-translational Protein Modification",
+  "parent:immune system signaling": "Physiological Signal Transduction",
+  "parent:cell fate regulation": "Developmental Signaling",
+  "parent:physiological signal transduction": "Cellular Signaling",
+  "siblings:subnuclear structure organization": [
+    {
+      "name": "Nucleolus Organization",
+      "description": "A process that is carried out at the cellular level which results in the assembly, arrangement of constituent parts, or disassembly of the nucleolus."
+    },
+    {
+      "name": "Cajal Body Organization",
+      "description": "A process that is carried out at the cellular level which results in the assembly, arrangement of constituent parts, or disassembly of Cajal bodies."
+    },
+    {
+      "name": "Nuclear Speckle Organization",
+      "description": "A process that is carried out at the cellular level which results in the assembly, arrangement of constituent parts, or disassembly of nuclear speckles."
+    },
+    {
+      "name": "PML Body Organization",
+      "description": "A process that results in the assembly, arrangement of constituent parts, or disassembly of Promyelocytic Leukemia (PML) nuclear bodies."
+    },
+    {
+      "name": "Paraspeckle Organization",
+      "description": "A process that results in the assembly, arrangement of constituent parts, or disassembly of paraspeckles within the nucleus."
+    },
+    {
+      "name": "Histone Locus Body Organization",
+      "description": "A process that results in the assembly, arrangement of constituent parts, or disassembly of histone locus bodies."
+    },
+    {
+      "name": "Perinucleolar Compartment Organization",
+      "description": "A process that results in the assembly, arrangement of constituent parts, or disassembly of the perinucleolar compartment."
+    }
+  ],
+  "siblings:intracellular transport": [
+    {
+      "name": "Vesicle-Mediated Transport",
+      "description": "The movement of proteins and lipids between organelles via membrane-bound carriers."
+    },
+    {
+      "name": "Nucleocytoplasmic Transport",
+      "description": "The regulated exchange of proteins, RNA, and ribonucleoprotein complexes between the nucleus and the cytoplasm."
+    },
+    {
+      "name": "Endosomal Transport",
+      "description": "The sorting and trafficking of internalized molecules through the endocytic pathway to various cellular destinations."
+    },
+    {
+      "name": "Retrograde Transport",
+      "description": "The movement of proteins and membranes from the Golgi apparatus back to the endoplasmic reticulum."
+    },
+    {
+      "name": "Protein Folding and Export from ER",
+      "description": "The quality control process and subsequent exit of correctly folded proteins from the endoplasmic reticulum."
+    },
+    {
+      "name": "Lysosomal Transport",
+      "description": "The targeted delivery of hydrolytic enzymes and materials for degradation to the lysosome."
+    },
+    {
+      "name": "Mitochondrial Protein Import",
+      "description": "The translocation of nuclear-encoded proteins across the mitochondrial membranes."
+    }
+  ],
+  "siblings:autophagy": [
+    {
+      "name": "Microautophagy",
+      "description": "The direct engulfment of cytoplasmic cargo by the lysosomal or vacuolar membrane via inward invagination."
+    },
+    {
+      "name": "Chaperone-mediated autophagy",
+      "description": "A selective pathway where proteins containing a KFERQ-like motif are translocated across the lysosomal membrane via hsc70 and LAMP-2A."
+    },
+    {
+      "name": "Mitophagy",
+      "description": "The selective degradation of mitochondria by autophagy in response to damage or metabolic cues."
+    },
+    {
+      "name": "Pexophagy",
+      "description": "The selective autophagic degradation of peroxisomes to maintain cellular homeostasis."
+    },
+    {
+      "name": "Xenophagy",
+      "description": "The autophagic process of capturing and degrading intracellular pathogens such as bacteria and viruses."
+    },
+    {
+      "name": "Lipophagy",
+      "description": "The selective degradation of lipid droplets via the autophagic machinery to mobilize stored fatty acids."
+    },
+    {
+      "name": "Ribophagy",
+      "description": "The selective degradation of ribosomes, often triggered by nutrient starvation to recycle amino acids."
+    }
+  ],
+  "siblings:gene expression": [
+    {
+      "name": "Transcription",
+      "description": "The process by which the information in a DNA sequence is copied into a new molecule of messenger RNA."
+    },
+    {
+      "name": "RNA Processing",
+      "description": "The modification of the primary RNA transcript into a mature mRNA molecule, including splicing and polyadenylation."
+    },
+    {
+      "name": "Translation",
+      "description": "The synthesis of a polypeptide chain by ribosomes using the genetic information carried by mRNA."
+    },
+    {
+      "name": "Chromatin Organization",
+      "description": "The structural modification of chromatin, such as histone modification and DNA methylation, to regulate gene accessibility."
+    },
+    {
+      "name": "mRNA Decay",
+      "description": "The regulated degradation of mRNA molecules which determines the stability and availability of transcripts for translation."
+    },
+    {
+      "name": "Ribosome Biogenesis",
+      "description": "The process of manufacturing ribosomes, the cellular machinery required for translating genetic information into proteins."
+    }
+  ],
+  "siblings:intercellular signaling": [
+    {
+      "name": "Endocrine Signaling",
+      "description": "Communication using hormones released into the bloodstream to reach distant target cells."
+    },
+    {
+      "name": "Paracrine Signaling",
+      "description": "Local communication where signaling molecules affect neighboring cells within the same tissue."
+    },
+    {
+      "name": "Autocrine Signaling",
+      "description": "A process where a cell secretes molecules that bind to receptors on its own surface."
+    },
+    {
+      "name": "Juxtacrine Signaling",
+      "description": "Contact-dependent signaling requiring physical interaction between membrane-bound molecules of adjacent cells."
+    },
+    {
+      "name": "Synaptic Signaling",
+      "description": "Fast intercellular communication occurring across specialized junctions called synapses in the nervous system."
+    },
+    {
+      "name": "Gap Junction Signaling",
+      "description": "Direct transmission of ions and small molecules through protein channels connecting the cytoplasm of adjacent cells."
+    }
+  ],
+  "siblings:programmed cell death signaling": [
+    {
+      "name": "Necroptosis",
+      "description": "A regulated form of necrotic cell death mediated by RIPK1, RIPK3, and MLKL proteins."
+    },
+    {
+      "name": "Pyroptosis",
+      "description": "A highly inflammatory form of programmed cell death often triggered by inflammasome activation."
+    },
+    {
+      "name": "Ferroptosis",
+      "description": "An iron-dependent form of regulated cell death characterized by the accumulation of lipid peroxides."
+    },
+    {
+      "name": "Autophagy-dependent cell death",
+      "description": "A form of regulated cell death that mechanistically depends upon the autophagic machinery."
+    },
+    {
+      "name": "Parthanatos",
+      "description": "A unique programmed cell death pathway characterized by overactivation of PARP-1 and translocation of AIF."
+    },
+    {
+      "name": "NETosis",
+      "description": "A specialized form of programmed cell death in neutrophils involving the release of extracellular traps."
+    },
+    {
+      "name": "Entosis",
+      "description": "A non-apoptotic cell death process involving the engulfment of one cell by another."
+    }
+  ],
+  "siblings:dna damage response": [
+    {
+      "name": "Cell Cycle Checkpoints",
+      "description": "Mechanisms that halt cell cycle progression to allow time for DNA repair or to prevent the replication of damaged templates."
+    },
+    {
+      "name": "DNA Damage Signaling",
+      "description": "Transduction cascades, primarily mediated by ATM, ATR, and DNA-PK kinases, that coordinate cellular responses to genotoxic stress."
+    },
+    {
+      "name": "Apoptosis",
+      "description": "Programmed cell death pathways triggered when DNA damage is too severe to be repaired, ensuring the elimination of potentially oncogenic cells."
+    },
+    {
+      "name": "Cellular Senescence",
+      "description": "A state of permanent cell cycle arrest that acts as a tumor suppressive mechanism in response to persistent DNA damage."
+    },
+    {
+      "name": "Transcriptional Response",
+      "description": "Global changes in gene expression patterns to prioritize the synthesis of proteins required for genome maintenance and stress survival."
+    },
+    {
+      "name": "Chromatin Remodeling",
+      "description": "Modification of chromatin architecture to increase the accessibility of DNA lesions to signaling and repair machinery."
+    }
+  ],
+  "siblings:axonal transport": [
+    {
+      "name": "Anterograde Axonal Transport",
+      "description": "The movement of organelles and molecules from the cell body toward the distal axon and synapse."
+    },
+    {
+      "name": "Slow Axonal Transport",
+      "description": "The transport mechanism for cytoskeletal components and cytosolic proteins, characterized by significantly lower speeds than organelle transport."
+    },
+    {
+      "name": "Fast Anterograde Transport",
+      "description": "Kinesin-mediated rapid movement of membrane-bound organelles, vesicles, and neurotransmitter precursors toward the axon terminal."
+    },
+    {
+      "name": "Mitochondrial Axonal Transport",
+      "description": "The regulated bidirectional movement of mitochondria to satisfy local energy and calcium buffering demands along the axon."
+    },
+    {
+      "name": "Slow Component a (SCa)",
+      "description": "A subcategory of slow transport primarily responsible for moving microtubules and neurofilaments."
+    },
+    {
+      "name": "Slow Component b (SCb)",
+      "description": "A subcategory of slow transport that conveys over 200 diverse proteins, including actin, clathrin, and metabolic enzymes."
+    },
+    {
+      "name": "Autophagosome Axonal Transport",
+      "description": "The specific movement of autophagic vacuoles from distal axons to the soma for degradation and recycling."
+    }
+  ],
+  "siblings:cell fate regulation": [
+    {
+      "name": "Cell Proliferation",
+      "description": "The process by which cells increase in number through growth and division."
+    },
+    {
+      "name": "Cell Differentiation",
+      "description": "The developmental process where cells acquire specialized structures and functions."
+    },
+    {
+      "name": "Cell Senescence",
+      "description": "A stable state of permanent cell cycle arrest in response to cellular stress."
+    },
+    {
+      "name": "Cell Quiescence",
+      "description": "A reversible state of non-proliferation where cells remain in the G0 phase."
+    },
+    {
+      "name": "Cell Migration",
+      "description": "The coordinated movement of cells to specific locations to establish tissue patterns."
+    },
+    {
+      "name": "Autophagy",
+      "description": "A conserved degradation process that recycles cellular components to maintain homeostasis."
+    }
+  ],
+  "siblings:protein quality control": [
+    {
+      "name": "Cytosolic Protein Quality Control",
+      "description": "The process of monitoring and maintaining the integrity of the proteome within the cytoplasm through chaperones and the ubiquitin-proteasome system."
+    },
+    {
+      "name": "Mitochondrial Protein Quality Control",
+      "description": "A network of specialized chaperones and proteases that ensures the functional integrity and folding of proteins within the mitochondria."
+    },
+    {
+      "name": "Nucleoplasmic Protein Quality Control",
+      "description": "The mechanism responsible for the detection and degradation of misfolded or aggregated proteins located within the cell nucleus."
+    },
+    {
+      "name": "Ribosome-associated Quality Control",
+      "description": "A pathway that monitors translation to detect stalled ribosomes and targets the resulting nascent polypeptide chains for degradation."
+    },
+    {
+      "name": "Autophagy-mediated Protein Quality Control",
+      "description": "The selective sequestration and degradation of large protein aggregates via the autophagic-lysosomal pathway, often referred to as aggrephagy."
+    },
+    {
+      "name": "Chloroplast Protein Quality Control",
+      "description": "A system in plant cells that manages protein folding, assembly, and degradation within the chloroplast to maintain photosynthetic efficiency."
+    }
+  ],
+  "siblings:programmed cell death": [
+    {
+      "name": "Necroptosis",
+      "description": "A regulated form of necrosis mediated by the RIPK1-RIPK3-MLKL signaling pathway."
+    },
+    {
+      "name": "Pyroptosis",
+      "description": "A highly inflammatory form of programmed cell death typically triggered by inflammasome activation and gasdermin pores."
+    },
+    {
+      "name": "Ferroptosis",
+      "description": "An iron-dependent form of cell death driven by the lethal accumulation of lipid hydroperoxides."
+    },
+    {
+      "name": "Autophagy-dependent cell death",
+      "description": "A type of regulated cell death that mechanistically relies upon the autophagic machinery."
+    },
+    {
+      "name": "Parthanatos",
+      "description": "A form of programmed cell death characterized by hyperactivation of PARP1 and translocation of AIF from mitochondria to the nucleus."
+    },
+    {
+      "name": "Entosis",
+      "description": "A process of cell-in-cell death where one cell is engulfed and subsequently killed by a neighboring cell."
+    }
+  ],
+  "siblings:cell death signaling": [
+    {
+      "name": "Apoptosis Signaling",
+      "description": "A regulated form of programmed cell death characterized by DNA fragmentation and caspase activation."
+    },
+    {
+      "name": "Necroptosis Signaling",
+      "description": "A caspase-independent form of regulated cell death involving RIPK1, RIPK3, and MLKL proteins."
+    },
+    {
+      "name": "Pyroptosis Signaling",
+      "description": "A highly inflammatory form of programmed cell death triggered by inflammasome activation and gasdermin pore formation."
+    },
+    {
+      "name": "Ferroptosis Signaling",
+      "description": "An iron-dependent form of regulated cell death driven by the accumulation of lipid peroxides."
+    },
+    {
+      "name": "Parthanatos Signaling",
+      "description": "A cell death pathway initiated by PARP1 overactivation leading to the translocation of apoptosis-inducing factor from mitochondria."
+    },
+    {
+      "name": "Autophagy-dependent Cell Death",
+      "description": "A type of regulated cell death that mechanistically depends on the autophagic machinery of the cell."
+    },
+    {
+      "name": "Entotic Cell Death",
+      "description": "A process where one cell invades or is engulfed by another, followed by its destruction within the lysosome of the host cell."
+    }
+  ],
+  "siblings:cellular stress response": [
+    {
+      "name": "Heat Shock Response",
+      "description": "A conserved mechanism involving the synthesis of chaperones to protect proteins from denaturing due to high temperatures or proteotoxicity."
+    },
+    {
+      "name": "Unfolded Protein Response",
+      "description": "A cellular stress response related to the endoplasmic reticulum (ER) triggered by an accumulation of unfolded or misfolded proteins in the ER lumen."
+    },
+    {
+      "name": "DNA Damage Response",
+      "description": "A signal transduction pathway that detects DNA lesions and coordinates repair, cell cycle checkpoints, or apoptosis to maintain genomic integrity."
+    },
+    {
+      "name": "Hypoxia Response",
+      "description": "A regulatory mechanism, primarily mediated by Hypoxia-Inducible Factors (HIFs), that allows cells to adapt to low oxygen environments."
+    },
+    {
+      "name": "Osmotic Stress Response",
+      "description": "The cellular processes used to maintain water and ion balance in response to changes in the surrounding solute concentration."
+    },
+    {
+      "name": "Cold Stress Response",
+      "description": "Physiological and molecular adjustments, such as changes in membrane fluidity and RNA chaperone activity, to survive low temperatures."
+    }
+  ],
+  "siblings:macroautophagy": [
+    {
+      "name": "Non-selective Macroautophagy",
+      "description": "The bulk, stochastic degradation of cytoplasmic components often triggered by nutrient starvation."
+    },
+    {
+      "name": "Macroautophagy Initiation",
+      "description": "The upstream signaling cascade involving the ULK1/2 complex that triggers phagophore formation."
+    },
+    {
+      "name": "Vesicle Nucleation",
+      "description": "The recruitment of the Class III PI3K complex to the site of autophagosome assembly."
+    },
+    {
+      "name": "Autophagosome Formation",
+      "description": "The expansion and elongation of the phagophore membrane to sequester cytoplasmic cargo."
+    },
+    {
+      "name": "Autophagosome Maturation",
+      "description": "The processing of the completed autophagosome, including the removal of certain ATG proteins."
+    },
+    {
+      "name": "Autophagosome-Lysosome Fusion",
+      "description": "The merging of the autophagosomal outer membrane with the lysosomal membrane to form an autolysosome."
+    },
+    {
+      "name": "Autophagic Cargo Degradation",
+      "description": "The enzymatic breakdown of sequestered materials by lysosomal hydrolases within the autolysosome."
+    }
+  ],
+  "siblings:microtubule-based transport": [
+    {
+      "name": "Intraflagellar Transport",
+      "description": "The bidirectional movement of protein complexes along the doublet microtubules of cilia and flagella."
+    },
+    {
+      "name": "Dendritic Transport",
+      "description": "The microtubule-based movement of organelles and protein complexes specifically within the dendritic compartments of neurons."
+    },
+    {
+      "name": "Chromosome Movement",
+      "description": "The transport of sister chromatids and homologous chromosomes along the mitotic or meiotic spindle during cell division."
+    },
+    {
+      "name": "Melanosome Transport",
+      "description": "The bidirectional distribution of pigment-containing organelles along microtubules in melanophores and melanocytes."
+    },
+    {
+      "name": "Organelle Transport",
+      "description": "The trafficking of mitochondria, lysosomes, and secretory vesicles in the cytoplasm of non-neuronal cells."
+    },
+    {
+      "name": "mRNA Transport",
+      "description": "The directed movement of ribonucleoprotein complexes along microtubules to facilitate localized protein synthesis."
+    }
+  ],
+  "siblings:cytoskeleton organization": [
+    {
+      "name": "Actin Cytoskeleton Organization",
+      "description": "Processes that result in the assembly, arrangement, or disassembly of the actin cytoskeleton."
+    },
+    {
+      "name": "Intermediate Filament Organization",
+      "description": "Processes that result in the assembly, arrangement, or disassembly of intermediate filaments."
+    },
+    {
+      "name": "Centrosome Organization",
+      "description": "Processes that lead to the assembly and maintenance of the centrosome, which serves as a major microtubule organizing center."
+    },
+    {
+      "name": "Actin Filament Organization",
+      "description": "A subprocess specifically focused on the formation and maintenance of individual actin filaments."
+    },
+    {
+      "name": "Septin Cytoskeleton Organization",
+      "description": "Processes that result in the assembly and maintenance of the septin cytoskeleton."
+    },
+    {
+      "name": "Myofibril Assembly",
+      "description": "The process by which contractile myofibrils are organized and formed within muscle cells."
+    }
+  ],
+  "siblings:genome maintenance": [
+    {
+      "name": "DNA Repair Mechanisms",
+      "description": "Processes such as Base Excision Repair, Nucleotide Excision Repair, and Mismatch Repair that fix specific DNA lesions."
+    },
+    {
+      "name": "DNA Damage Signaling",
+      "description": "The detection of genomic insults and the subsequent activation of signaling cascades like the ATM/ATR pathways."
+    },
+    {
+      "name": "Telomere Maintenance",
+      "description": "Processes that preserve the structural integrity and length of chromosomal ends to prevent genomic instability."
+    },
+    {
+      "name": "DNA Replication Fidelity",
+      "description": "Mechanisms that ensure accurate DNA copying and the stabilization of stalled or collapsed replication forks."
+    },
+    {
+      "name": "Chromatin Remodeling",
+      "description": "Dynamic modification of chromatin structure to facilitate access for repair enzymes and preserve epigenetic information."
+    },
+    {
+      "name": "Apoptosis Induction",
+      "description": "Programmed cell death pathways triggered when genomic damage is irreparable, preventing the propagation of mutations."
+    }
+  ],
+  "siblings:cytoskeletal dynamics": [
+    {
+      "name": "Actin Dynamics",
+      "description": "The regulated assembly, disassembly, and branching of actin filaments that drive cell shape and movement."
+    },
+    {
+      "name": "Microtubule Dynamics",
+      "description": "The polymerization, depolymerization, and stabilization of microtubules essential for intracellular transport and mitosis."
+    },
+    {
+      "name": "Cytoskeletal Motor Activity",
+      "description": "The function of motor proteins such as kinesins, dyneins, and myosins in transporting cargo and generating force."
+    },
+    {
+      "name": "Centrosome and Spindle Dynamics",
+      "description": "The organization and regulation of microtubule-organizing centers and the mitotic spindle apparatus."
+    },
+    {
+      "name": "Intermediate Filament Dynamics",
+      "description": "The assembly and remodeling of intermediate filaments providing mechanical stability and structural integrity."
+    },
+    {
+      "name": "Cilium and Flagellum Assembly",
+      "description": "The specialized organization of microtubules into axonemes for sensory or locomotive organelles."
+    }
+  ],
+  "siblings:regulation of gene expression": [
+    {
+      "name": "Post-transcriptional Regulation",
+      "description": "Control of gene expression at the RNA level, including splicing, nuclear export, and mRNA stability."
+    },
+    {
+      "name": "Translational Regulation",
+      "description": "Mechanisms that modulate the rate and efficiency of protein synthesis from mRNA templates."
+    },
+    {
+      "name": "Post-translational Regulation",
+      "description": "Control of protein activity, stability, and localization through chemical modifications or degradation."
+    },
+    {
+      "name": "Epigenetic Regulation",
+      "description": "Heritable changes in gene expression that do not involve alterations to the underlying DNA sequence."
+    },
+    {
+      "name": "Chromatin Remodeling",
+      "description": "The dynamic modification of chromatin architecture to allow or restrict access of transcriptional machinery to DNA."
+    },
+    {
+      "name": "RNA Transport and Localization",
+      "description": "Regulated movement of mRNA molecules from the nucleus to specific sites in the cytoplasm."
+    }
+  ],
+  "siblings:pattern recognition receptor (prr) signaling": [
+    {
+      "name": "Toll-like Receptor (TLR) Signaling",
+      "description": "Transmembrane receptors that recognize a wide range of PAMPs and activate NF-kB and IRF pathways."
+    },
+    {
+      "name": "RIG-I-like Receptor (RLR) Signaling",
+      "description": "Cytosolic sensors of viral RNA that induce the production of Type I interferons and proinflammatory cytokines."
+    },
+    {
+      "name": "C-type Lectin Receptor (CLR) Signaling",
+      "description": "Receptors that detect carbohydrate motifs on pathogens, particularly fungi, to initiate immune responses."
+    },
+    {
+      "name": "cGAS-STING Signaling",
+      "description": "A pathway that senses cytosolic double-stranded DNA and triggers a robust antiviral and inflammatory response."
+    },
+    {
+      "name": "NOD-like Receptor (NLR) Signaling (non-inflammasome)",
+      "description": "Intracellular sensors like NOD1 and NOD2 that activate NF-kB and MAPK pathways independently of the inflammasome."
+    },
+    {
+      "name": "Scavenger Receptor Signaling",
+      "description": "Cell surface receptors that recognize modified lipoproteins and various microbial ligands to facilitate phagocytosis."
+    }
+  ],
+  "siblings:selective macroautophagy": [
+    {
+      "name": "Pexophagy",
+      "description": "The selective degradation of peroxisomes via the autophagic machinery."
+    },
+    {
+      "name": "ER-phagy",
+      "description": "The selective sequestration and degradation of portions of the endoplasmic reticulum."
+    },
+    {
+      "name": "Aggrephagy",
+      "description": "The selective removal of misfolded and ubiquitinated protein aggregates."
+    },
+    {
+      "name": "Xenophagy",
+      "description": "The autophagic degradation of intracellular bacterial, viral, or protozoan pathogens."
+    },
+    {
+      "name": "Ribophagy",
+      "description": "The selective degradation of ribosomes, often in response to nutrient starvation."
+    },
+    {
+      "name": "Lipophagy",
+      "description": "The selective degradation of intracellular lipid droplets to regulate lipid metabolism."
+    },
+    {
+      "name": "Lysophagy",
+      "description": "The selective autophagic clearance of damaged or ruptured lysosomes."
+    }
+  ],
+  "siblings:nuclear organization": [
+    {
+      "name": "Chromatin Organization",
+      "description": "Processes that result in the specification, formation, maintenance, or disassembly of chromatin structure within the nucleus."
+    },
+    {
+      "name": "Nuclear Envelope Organization",
+      "description": "The assembly, disassembly, and maintenance of the double-membrane system that bounds the nucleus."
+    },
+    {
+      "name": "Nuclear Pore Complex Organization",
+      "description": "The regulated assembly and spatial arrangement of the large protein complexes that bridge the nuclear envelope."
+    },
+    {
+      "name": "Nuclear Lamina Organization",
+      "description": "The formation and structural maintenance of the dense fibrillar network of intermediate filaments on the inner nuclear membrane."
+    },
+    {
+      "name": "Nucleolus Organization",
+      "description": "The specific processes involved in the formation and maintenance of the nucleolus, the site of ribosome biogenesis."
+    },
+    {
+      "name": "Maintenance of Nuclear Architecture",
+      "description": "Global processes that ensure the mechanical integrity and spatial positioning of nuclear components."
+    }
+  ],
+  "siblings:signal transduction": [
+    {
+      "name": "Signaling by GPCR",
+      "description": "Transduction involving G protein-coupled receptors that respond to external signals like hormones and neurotransmitters."
+    },
+    {
+      "name": "Signaling by Receptor Tyrosine Kinases",
+      "description": "A process where high-affinity cell surface receptors for growth factors mediate cellular responses through phosphorylation."
+    },
+    {
+      "name": "Signaling by Nuclear Receptors",
+      "description": "A class of proteins that function as ligand-activated transcription factors to regulate gene expression."
+    },
+    {
+      "name": "Signaling by TGF-beta",
+      "description": "A pathway regulating cell growth, differentiation, and development across various tissue types."
+    },
+    {
+      "name": "Signaling by Wnt",
+      "description": "A group of signal transduction pathways that control cell-to-cell communication during embryonic development and tissue maintenance."
+    },
+    {
+      "name": "Signaling by Notch",
+      "description": "A highly conserved cell signaling system that regulates cell-fate determination through direct cell-to-cell contact."
+    },
+    {
+      "name": "Signaling by Interleukins",
+      "description": "A subset of cytokine signaling that regulates the immune system response and inflammatory processes."
+    }
+  ],
+  "siblings:developmental signaling": [
+    {
+      "name": "Wnt Signaling Pathway",
+      "description": "Regulates cell proliferation, polarity, and fate determination during embryonic development."
+    },
+    {
+      "name": "Notch Signaling Pathway",
+      "description": "Facilitates juxtacrine cell-to-cell communication to coordinate tissue patterning and differentiation."
+    },
+    {
+      "name": "Hedgehog Signaling Pathway",
+      "description": "Crucial for embryonic pattern formation, organogenesis, and limb development."
+    },
+    {
+      "name": "TGF-beta Signaling Pathway",
+      "description": "Controls growth, differentiation, and development in various tissues and organs."
+    },
+    {
+      "name": "FGF Signaling Pathway",
+      "description": "Involved in mesoderm induction, neural patterning, and limb bud outgrowth."
+    },
+    {
+      "name": "Hippo Signaling Pathway",
+      "description": "Regulates organ size by controlling cell proliferation and apoptosis."
+    },
+    {
+      "name": "Eph-Ephrin Signaling",
+      "description": "Mediates cell-cell contact-dependent guidance in axon pathfinding and vascular development."
+    }
+  ],
+  "siblings:dna repair": [
+    {
+      "name": "Base Excision Repair (BER)",
+      "description": "A cellular mechanism that repairs damaged DNA bases resulting from oxidation, alkylation, or deamination."
+    },
+    {
+      "name": "Nucleotide Excision Repair (NER)",
+      "description": "A versatile pathway that removes bulky, helix-distorting DNA lesions, such as those caused by UV radiation."
+    },
+    {
+      "name": "Mismatch Repair (MMR)",
+      "description": "A system for recognizing and repairing erroneous insertion, deletion, and mis-incorporation of bases during DNA replication."
+    },
+    {
+      "name": "Direct Reversal",
+      "description": "A simple repair mechanism that directly corrects specific chemical modifications to DNA bases without removing the DNA backbone."
+    },
+    {
+      "name": "Interstrand Crosslink (ICL) Repair",
+      "description": "A complex repair process that resolves covalent linkages between the two strands of the DNA double helix."
+    },
+    {
+      "name": "Translesion Synthesis (TLS)",
+      "description": "A damage tolerance pathway that utilizes specialized DNA polymerases to replicate across DNA lesions that stall standard polymerases."
+    }
+  ],
+  "siblings:innate immune signaling": [
+    {
+      "name": "Complement Cascade",
+      "description": "A biochemical cascade of the innate immune system that enhances the ability of antibodies and phagocytic cells to clear microbes."
+    },
+    {
+      "name": "Type I Interferon Signaling",
+      "description": "Signaling pathways triggered by IFN-alpha and IFN-beta that induce an antiviral state in host cells."
+    },
+    {
+      "name": "Natural Killer Cell Signaling",
+      "description": "Pathways that regulate the activation, recruitment, and cytotoxic response of NK cells against pathogens."
+    },
+    {
+      "name": "Chemokine Signaling",
+      "description": "Intracellular signaling that directs the migration and recruitment of innate immune cells to sites of infection or injury."
+    },
+    {
+      "name": "Phagocytosis and Phagosome Maturation",
+      "description": "The process by which specialized cells engulf and digest large particles, such as pathogens or apoptotic cells."
+    },
+    {
+      "name": "Pro-inflammatory Cytokine Signaling",
+      "description": "Signaling pathways activated by cytokines like TNF, IL-1, and IL-6 to coordinate the inflammatory response."
+    }
+  ],
+  "siblings:physiological signal transduction": [
+    {
+      "name": "Nervous System Signaling",
+      "description": "The transmission of chemical and electrical signals between neurons and across synapses to coordinate bodily functions."
+    },
+    {
+      "name": "Endocrine Signaling",
+      "description": "The secretion of hormones into the circulatory system to regulate physiological processes in distant target organs."
+    },
+    {
+      "name": "Sensory Signal Transduction",
+      "description": "The process by which specialized cells convert external physical or chemical stimuli into electrical impulses."
+    },
+    {
+      "name": "Metabolic Signaling",
+      "description": "Intracellular pathways that sense and respond to nutrient availability and energy status to maintain homeostasis."
+    },
+    {
+      "name": "Developmental Signaling",
+      "description": "Coordinated signaling pathways such as Wnt, Notch, and BMP that guide cell differentiation and tissue morphogenesis."
+    },
+    {
+      "name": "Cardiovascular Signal Transduction",
+      "description": "Molecular signals regulating heart rate, myocardial contractility, and the maintenance of vascular tone."
+    },
+    {
+      "name": "Musculoskeletal Signaling",
+      "description": "Signaling cascades that control skeletal muscle contraction, bone density maintenance, and joint repair mechanisms."
+    }
+  ],
+  "siblings:endoplasmic reticulum quality control (erqc)": [
+    {
+      "name": "ER-phagy",
+      "description": "Selective autophagy of the endoplasmic reticulum used to degrade large protein aggregates or excess membrane components."
+    },
+    {
+      "name": "Unfolded Protein Response (UPR)",
+      "description": "A complex signaling pathway that detects protein misfolding and triggers adaptive measures to restore ER homeostasis."
+    },
+    {
+      "name": "ER Retention and Retrieval",
+      "description": "A mechanism that employs retention motifs and chaperones to keep unfolded or misfolded proteins from exiting the ER."
+    },
+    {
+      "name": "Protein Folding and Refolding",
+      "description": "The active process mediated by molecular chaperones like BiP to facilitate the correct native conformation of polypeptides."
+    },
+    {
+      "name": "ER-to-Lysosome Degradation (ERLAD)",
+      "description": "A degradation pathway that transports large misfolded protein complexes or aggregates directly to the lysosome, bypassing the proteasome."
+    },
+    {
+      "name": "Glycoprotein Quality Control (CNX/CRT Cycle)",
+      "description": "A specialized cycle involving calnexin and calreticulin that monitors and assists the folding of N-linked glycoproteins."
+    }
+  ],
+  "siblings:proteostasis": [
+    {
+      "name": "Ubiquitin-Proteasome System",
+      "description": "The primary pathway for the selective degradation of misfolded or short-lived proteins via the 26S proteasome."
+    },
+    {
+      "name": "Autophagy-Lysosomal Pathway",
+      "description": "A bulk degradation process that delivers cytoplasmic components and organelles to the lysosome for recycling."
+    },
+    {
+      "name": "Chaperone-Mediated Protein Folding",
+      "description": "The use of molecular chaperones to assist nascent polypeptides in reaching their native functional conformation."
+    },
+    {
+      "name": "Endoplasmic Reticulum-Associated Degradation (ERAD)",
+      "description": "A quality control mechanism that targets misfolded proteins in the ER for retrotranslocation and degradation."
+    },
+    {
+      "name": "Unfolded Protein Response (UPR)",
+      "description": "A cellular stress response related to the endoplasmic reticulum that regulates protein synthesis and chaperone levels."
+    },
+    {
+      "name": "Protein Trafficking and Secretion",
+      "description": "The regulated transport of proteins to their correct cellular compartments or the extracellular space."
+    },
+    {
+      "name": "Aggresome Formation and Clearance",
+      "description": "The sequestration of insoluble protein aggregates into specialized structures for eventual autophagic clearance."
+    }
+  ],
+  "siblings:membrane & transport": [
+    {
+      "name": "Membrane Organization",
+      "description": "The process of assembling, arranging, or disassembling the constituent parts of a biological membrane."
+    },
+    {
+      "name": "Signal Transduction",
+      "description": "The transmission of molecular signals from a cell's exterior to its interior, ensuring appropriate responses."
+    },
+    {
+      "name": "Vesicle-Mediated Transport",
+      "description": "The movement of molecules between different cellular compartments via membrane-bound carriers."
+    },
+    {
+      "name": "Ion Transport",
+      "description": "The movement of ions across biological membranes through specialized channels, carriers, or pumps."
+    },
+    {
+      "name": "Protein Targeting and Sorting",
+      "description": "The mechanisms by which proteins are directed to their correct intracellular or extracellular locations."
+    },
+    {
+      "name": "Membrane Potential Maintenance",
+      "description": "The regulatory processes that maintain the electrochemical gradient across the plasma membrane."
+    }
+  ],
+  "siblings:morphogen signaling": [
+    {
+      "name": "Wnt Signaling Pathway",
+      "description": "Regulates cell fate, organogenesis, and embryonic development through beta-catenin stabilization or non-canonical cascades."
+    },
+    {
+      "name": "TGF-beta Signaling Pathway",
+      "description": "Includes BMPs and Activins, influencing cell growth, differentiation, and dorsal-ventral axis specification during development."
+    },
+    {
+      "name": "Notch Signaling Pathway",
+      "description": "A highly conserved cell-to-cell signaling mechanism that determines cell fate decisions and maintains stem cell populations."
+    },
+    {
+      "name": "Fibroblast Growth Factor (FGF) Signaling Pathway",
+      "description": "Plays essential roles in gastrulation, limb development, and neural patterning via receptor tyrosine kinases."
+    },
+    {
+      "name": "Retinoic Acid (RA) Signaling Pathway",
+      "description": "A small molecule morphogen that regulates anterior-posterior patterning and organ development by binding to nuclear receptors."
+    },
+    {
+      "name": "Hippo Signaling Pathway",
+      "description": "Coordinates cell proliferation and apoptosis to control organ size and maintain tissue homeostasis during morphogenesis."
+    }
+  ],
+  "siblings:cytoskeleton-dependent transport": [
+    {
+      "name": "Actin-mediated transport",
+      "description": "Movement of intracellular cargo, such as vesicles and organelles, along actin filaments primarily using myosin motor proteins."
+    },
+    {
+      "name": "Myosin-dependent transport",
+      "description": "A specialized form of transport along microfilaments that utilizes the ATP-driven activity of the myosin motor superfamily."
+    },
+    {
+      "name": "Intermediate filament-based transport",
+      "description": "The transport and mechanical positioning of cellular components, including the nucleus and mitochondria, facilitated by intermediate filaments."
+    },
+    {
+      "name": "Actin-dependent organelle positioning",
+      "description": "The specific movement and anchoring of organelles to defined cellular locations using the actin cytoskeleton network."
+    },
+    {
+      "name": "Microfilament-based cargo transport",
+      "description": "The translocation of molecular complexes and vesicles through the cytoplasm along microfilaments."
+    }
+  ],
+  "siblings:protein degradation": [
+    {
+      "name": "Macroautophagy",
+      "description": "A pathway where cytoplasmic components are sequestered within double-membrane vesicles called autophagosomes and delivered to lysosomes for degradation."
+    },
+    {
+      "name": "Chaperone-Mediated Autophagy",
+      "description": "A selective degradation process where specific cytosolic proteins containing a KFERQ-like motif are directly translocated across the lysosomal membrane."
+    },
+    {
+      "name": "Calpain System",
+      "description": "A non-lysosomal, calcium-dependent proteolytic system involving cysteine proteases that facilitate limited cleavage of proteins for signaling and structural purposes."
+    },
+    {
+      "name": "Endosomal-Lysosomal Pathway",
+      "description": "The degradation route for extracellular and plasma membrane proteins internalized through endocytosis and subsequently digested by lysosomal hydrolases."
+    },
+    {
+      "name": "Caspase Pathway",
+      "description": "A family of protease enzymes that play essential roles in programmed cell death and inflammation through highly specific protein cleavage."
+    },
+    {
+      "name": "Microautophagy",
+      "description": "A process involving the direct engulfment of cytoplasmic material by the lysosomal or vacuolar membrane through invagination or protrusion."
+    },
+    {
+      "name": "Matrix Metalloproteinase Pathway",
+      "description": "A system of zinc-dependent endopeptidases responsible for the degradation and remodeling of extracellular matrix proteins."
+    }
+  ],
+  "siblings:cellular transport": [
+    {
+      "name": "Active Transport",
+      "description": "The movement of molecules across a cell membrane from a region of lower concentration to a region of higher concentration using energy."
+    },
+    {
+      "name": "Passive Transport",
+      "description": "The movement of substances across cell membranes without the requirement of energy input."
+    },
+    {
+      "name": "Endocytosis",
+      "description": "A cellular process in which substances are brought into the cell by engulfing them in a vesicle."
+    },
+    {
+      "name": "Exocytosis",
+      "description": "A process by which the contents of a cell vacuole are released to the exterior through fusion of the vacuole membrane with the cell membrane."
+    },
+    {
+      "name": "Transcytosis",
+      "description": "A type of transcellular transport in which various macromolecules are transported across the interior of a cell."
+    },
+    {
+      "name": "Nucleocytoplasmic Transport",
+      "description": "The movement of macromolecules between the cell nucleus and the cytoplasm across the nuclear envelope."
+    }
+  ],
+  "siblings:cellular signaling": [
+    {
+      "name": "Intracellular Signaling",
+      "description": "The process of communication and signal relay that occurs strictly within the internal environment of a single cell."
+    },
+    {
+      "name": "Signal Transduction",
+      "description": "The biochemical cascades through which a cell converts an extracellular signal into a specific functional response."
+    },
+    {
+      "name": "Sensory Transduction",
+      "description": "The transformation of physical or chemical environmental stimuli, such as light or sound, into cellular electrochemical signals."
+    },
+    {
+      "name": "Environmental Sensing",
+      "description": "The mechanisms by which cells detect and respond to non-biological external cues including pH, temperature, and nutrient concentration."
+    },
+    {
+      "name": "Nuclear Receptor Signaling",
+      "description": "A specialized signaling pathway involving lipophilic ligands that activate intracellular receptors to modulate gene expression directly."
+    },
+    {
+      "name": "Metabolic Signaling",
+      "description": "Regulatory pathways where cellular metabolic intermediates or flux levels act as signaling molecules to control homeostasis."
+    }
+  ],
+  "siblings:endoplasmic reticulum protein quality control": [
+    {
+      "name": "Unfolded Protein Response (UPR)",
+      "description": "An adaptive signaling pathway that senses accumulation of misfolded proteins and coordinates cellular responses to restore ER homeostasis."
+    },
+    {
+      "name": "Calnexin/Calreticulin (CNX/CRT) Cycle",
+      "description": "A glycan-dependent quality control system that monitors the folding state of glycoproteins and prevents the exit of immature proteins."
+    },
+    {
+      "name": "ER-phagy",
+      "description": "The selective degradation of the endoplasmic reticulum via autophagy to clear large protein aggregates and damaged membrane sections."
+    },
+    {
+      "name": "ER-to-Lysosome Degradation (ERLAD)",
+      "description": "A pathway that directs misfolded proteins or aggregates to the endolysosomal system for degradation, bypassing the proteasome."
+    },
+    {
+      "name": "ER Selective Export",
+      "description": "A checkpoint mechanism at ER exit sites that ensures only correctly folded and assembled proteins are packaged into COPII transport vesicles."
+    },
+    {
+      "name": "ER Retrieval",
+      "description": "A sorting process that recognizes escaped ER-resident proteins in the Golgi and returns them to the ER lumen using COPI-coated vesicles."
+    }
+  ],
+  "siblings:excision repair": [
+    {
+      "name": "Base Excision Repair",
+      "description": "A mechanism that removes small, non-helix-distorting damaged bases through the action of DNA glycosylases and AP endonucleases."
+    },
+    {
+      "name": "Mismatch Repair",
+      "description": "A system that recognizes and corrects erroneous insertions, deletions, and mis-incorporations of bases that occur during DNA replication."
+    },
+    {
+      "name": "Ribonucleotide Excision Repair",
+      "description": "A specialized pathway responsible for removing ribonucleotides mistakenly incorporated into the DNA strand by DNA polymerases."
+    },
+    {
+      "name": "Alternative Excision Repair",
+      "description": "An endonucleolytic pathway that serves as a backup or alternative to standard NER and BER, typically involving enzymes like UV-damage endonuclease (UVDE)."
+    },
+    {
+      "name": "Single-Strand Break Repair",
+      "description": "A pathway closely related to BER that specifically handles the repair of gaps and breaks in the sugar-phosphate backbone of a single DNA strand."
+    }
+  ],
+  "siblings:immune system signaling": [
+    {
+      "name": "Adaptive Immune Signaling",
+      "description": "Pathways mediating the highly specific, memory-based immune response involving T and B lymphocytes."
+    },
+    {
+      "name": "Cytokine Signaling",
+      "description": "Intercellular communication pathways mediated by cytokines that regulate the intensity and duration of the immune response."
+    },
+    {
+      "name": "Chemokine Signaling",
+      "description": "Signaling cascades that coordinate the directional migration and localization of leukocytes within tissues."
+    },
+    {
+      "name": "Antigen Processing and Presentation",
+      "description": "The specialized signaling process for the capture, digestion, and display of antigens on MHC molecules for immune recognition."
+    },
+    {
+      "name": "T Cell Receptor (TCR) Signaling",
+      "description": "Intracellular signaling events triggered by the recognition of peptide-MHC complexes by T cells."
+    },
+    {
+      "name": "B Cell Receptor (BCR) Signaling",
+      "description": "Signaling pathways initiated by antigen binding to surface immunoglobulins on B cells, leading to activation and differentiation."
+    },
+    {
+      "name": "Leukocyte Transendothelial Migration Signaling",
+      "description": "Signaling events that facilitate the movement of immune cells from the bloodstream across the vascular wall into sites of infection."
+    }
+  ],
+  "siblings:cell death": [
+    {
+      "name": "Accidental Cell Death",
+      "description": "An instantaneous and uncontrolled form of cell death resulting from severe physical, chemical, or mechanical insults."
+    },
+    {
+      "name": "Mitotic Catastrophe",
+      "description": "A regulated mechanism of cell death triggered by aberrant mitosis, often resulting from DNA damage or spindle dysfunction."
+    },
+    {
+      "name": "Autophagic Cell Death",
+      "description": "A form of cell death that is mechanistically dependent on the cell's autophagic machinery for cytoplasm degradation."
+    },
+    {
+      "name": "Cornification",
+      "description": "A specialized terminal differentiation process in epithelial cells resulting in the formation of a dead, protective barrier layer."
+    },
+    {
+      "name": "Entosis",
+      "description": "A non-apoptotic cell death pathway where one viable cell is engulfed by another and subsequently degraded within a lysosome."
+    },
+    {
+      "name": "Wallerian Degeneration",
+      "description": "An active, regulated process of axon degeneration that occurs distal to the site of a nerve lesion."
+    },
+    {
+      "name": "Necrotic Cell Death",
+      "description": "A type of cell death characterized by cellular swelling and the early loss of plasma membrane integrity, distinct from programmed apoptosis."
+    }
+  ],
+  "siblings:cellular responses to external stimuli": [
+    {
+      "name": "Cellular Senescence",
+      "description": "A state of stable cell cycle arrest that prevents the proliferation of damaged or aged cells in response to various stressors."
+    },
+    {
+      "name": "Cellular response to starvation",
+      "description": "Adaptive metabolic and signaling changes, such as the induction of autophagy, triggered by the deprivation of essential nutrients."
+    },
+    {
+      "name": "Response to metal ions",
+      "description": "The molecular processes that regulate the uptake, sequestration, and detoxification of metal ions like zinc, copper, and iron."
+    },
+    {
+      "name": "Cellular response to radiation",
+      "description": "The signaling and DNA repair pathways activated in response to exposure to external ionizing or ultraviolet radiation."
+    },
+    {
+      "name": "Cellular response to mechanical stimulus",
+      "description": "The process of mechanotransduction where physical environmental forces are converted into intracellular biochemical signals."
+    },
+    {
+      "name": "Cellular response to oxygen levels",
+      "description": "Adaptive homeostatic adjustments to gene expression and metabolism in response to fluctuations in ambient oxygen concentrations."
+    },
+    {
+      "name": "Cellular response to chemical stimulus",
+      "description": "The molecular and physiological changes initiated in a cell upon the detection of extracellular xenobiotics or signaling molecules."
+    }
+  ],
+  "siblings:nucleotide excision repair": [
+    {
+      "name": "Global Genomic Nucleotide Excision Repair (GG-NER)",
+      "description": "A repair pathway that surveys the entire genome for helix-distorting DNA lesions regardless of transcriptional activity."
+    },
+    {
+      "name": "Dual Incision in NER",
+      "description": "The coordinated stage where specific endonucleases cleave the damaged DNA strand on both the 5' and 3' sides of the lesion."
+    },
+    {
+      "name": "Gap-filling DNA Repair Synthesis",
+      "description": "The phase where DNA polymerases synthesize new DNA to fill the gap using the undamaged complementary strand as a template."
+    },
+    {
+      "name": "DNA Ligation in NER",
+      "description": "The final step where DNA ligase seals the phosphodiester backbone to complete the repair process."
+    },
+    {
+      "name": "DNA Damage Recognition in GG-NER",
+      "description": "The specific sub-process involving the XPC and DDB complexes that identify lesions throughout the genome."
+    },
+    {
+      "name": "UvrABC-mediated Nucleotide Excision Repair",
+      "description": "The evolutionary conserved bacterial NER pathway utilizing the UvrA, UvrB, and UvrC protein complex."
+    }
+  ],
+  "siblings:tissue-specific signaling": [
+    {
+      "name": "Neural Signaling",
+      "description": "Signaling pathways specific to neurons and glial cells that regulate synaptic plasticity and neurogenesis."
+    },
+    {
+      "name": "Cardiovascular Signaling",
+      "description": "Molecular interactions governing heart muscle contraction, vascular tone, and endothelial health."
+    },
+    {
+      "name": "Immune Signaling",
+      "description": "Tissue-specific cascades regulating the maturation, activation, and coordination of leukocytes."
+    },
+    {
+      "name": "Epithelial Signaling",
+      "description": "Mechanisms controlling cell polarity, barrier function, and regeneration in epithelial tissues."
+    },
+    {
+      "name": "Endocrine Signaling",
+      "description": "Specialized signaling involving hormone production and tissue-specific responses within glandular systems."
+    },
+    {
+      "name": "Adipose Tissue Signaling",
+      "description": "Regulatory pathways controlling lipid metabolism, thermogenesis, and the secretion of adipokines."
+    }
+  ],
+  "siblings:rna metabolism": [
+    {
+      "name": "Transcription",
+      "description": "The biochemical process of synthesizing an RNA molecule from a DNA template."
+    },
+    {
+      "name": "RNA Processing",
+      "description": "The series of covalent modifications including 5' capping, splicing, and 3' polyadenylation that convert pre-mRNA into mature mRNA."
+    },
+    {
+      "name": "RNA Export",
+      "description": "The regulated transport of RNA molecules from the nucleus to the cytoplasm through nuclear pore complexes."
+    },
+    {
+      "name": "rRNA Metabolism",
+      "description": "The synthesis, nucleolar processing, and assembly of ribosomal RNAs into functional subunits."
+    },
+    {
+      "name": "tRNA Metabolism",
+      "description": "The multi-step process involving the synthesis, maturation, and modification of transfer RNAs."
+    },
+    {
+      "name": "RNA Editing",
+      "description": "The post-transcriptional process by which the nucleotide sequence of an RNA molecule is altered via insertion, deletion, or substitution."
+    },
+    {
+      "name": "Small RNA Biogenesis",
+      "description": "The pathway responsible for the production and processing of regulatory non-coding RNAs like miRNA and siRNA."
+    }
+  ],
+  "siblings:ion transport": [
+    {
+      "name": "Sodium Ion Transport",
+      "description": "The directed movement of sodium ions across biological membranes via specific channels or pumps."
+    },
+    {
+      "name": "Potassium Ion Transport",
+      "description": "The movement of potassium ions through membrane proteins, essential for cellular excitability and volume regulation."
+    },
+    {
+      "name": "Calcium Ion Transport",
+      "description": "The regulated movement of calcium ions into or out of cells or organelles, serving as a critical secondary messenger."
+    },
+    {
+      "name": "Chloride Ion Transport",
+      "description": "The passage of chloride ions across membranes to regulate osmotic pressure, fluid secretion, and cell volume."
+    },
+    {
+      "name": "Proton Transport",
+      "description": "The movement of hydrogen ions across membranes to create electrochemical gradients and maintain pH homeostasis."
+    },
+    {
+      "name": "Anion Transport",
+      "description": "The directed movement of various negatively charged ions across a cell membrane or between compartments."
+    },
+    {
+      "name": "Transition Metal Ion Transport",
+      "description": "The specific movement of trace metal ions such as zinc, iron, or copper required for enzymatic functions."
+    }
+  ],
+  "siblings:dna replication": [
+    {
+      "name": "DNA Replication Initiation",
+      "description": "The process of unwinding the DNA double helix and synthesizing an RNA primer to begin DNA synthesis."
+    },
+    {
+      "name": "DNA Strand Elongation",
+      "description": "The rapid addition of dNTPs to the 3' end of the growing DNA strand by DNA polymerases."
+    },
+    {
+      "name": "Leading Strand Synthesis",
+      "description": "Continuous synthesis of the new DNA strand in the 5' to 3' direction toward the replication fork."
+    },
+    {
+      "name": "Lagging Strand Synthesis",
+      "description": "Discontinuous synthesis of DNA in short segments called Okazaki fragments away from the replication fork."
+    },
+    {
+      "name": "Okazaki Fragment Processing",
+      "description": "The removal of RNA primers and the ligation of DNA segments on the lagging strand."
+    },
+    {
+      "name": "DNA Replication Termination",
+      "description": "The completion of DNA synthesis and the disassembly of the replication machinery at specific termination sites."
+    },
+    {
+      "name": "DNA Replication Pre-Initiation",
+      "description": "The assembly of the pre-replicative complex at the origin of replication prior to DNA synthesis."
+    }
+  ],
+  "siblings:microtubule dynamics": [
+    {
+      "name": "Microtubule Nucleation",
+      "description": "The initial formation of microtubules from tubulin dimers, primarily occurring at microtubule-organizing centers."
+    },
+    {
+      "name": "Microtubule Assembly and Disassembly",
+      "description": "The dynamic processes of polymerization and depolymerization that allow microtubules to grow and shrink."
+    },
+    {
+      "name": "Microtubule-Based Cargo Transport",
+      "description": "The intracellular movement of organelles, vesicles, and macromolecules along microtubules by motor proteins."
+    },
+    {
+      "name": "Ciliary and Flagellar Dynamics",
+      "description": "The assembly and regulation of the microtubule-based axoneme in motile and primary cilia."
+    },
+    {
+      "name": "Regulation of Microtubule Stability",
+      "description": "The control of microtubule turnover and persistence mediated by microtubule-associated proteins and modifications."
+    },
+    {
+      "name": "Microtubule Reorganization in Neurons",
+      "description": "Specific dynamics involved in the formation and maintenance of axonal and dendritic microtubule arrays."
+    }
+  ],
+  "siblings:protein transport": [
+    {
+      "name": "Nucleocytoplasmic Transport",
+      "description": "The regulated movement of proteins and RNA between the cell nucleus and the cytoplasm via nuclear pore complexes."
+    },
+    {
+      "name": "Transmembrane Transport",
+      "description": "The directed movement of proteins across a biological membrane, typically facilitated by translocons."
+    },
+    {
+      "name": "Vesicular Transport",
+      "description": "The movement of proteins between different cellular compartments using membrane-bound transport vesicles."
+    },
+    {
+      "name": "Protein Secretion",
+      "description": "The process of exporting proteins from the internal cellular environment to the extracellular space."
+    },
+    {
+      "name": "Retrograde Transport",
+      "description": "The movement of proteins in the reverse direction of the secretory pathway, such as from the Golgi back to the endoplasmic reticulum."
+    },
+    {
+      "name": "Anterograde Transport",
+      "description": "The forward movement of proteins along the secretory pathway, specifically from the endoplasmic reticulum to the Golgi apparatus."
+    }
+  ],
+  "siblings:protein processing": [
+    {
+      "name": "Protein Folding",
+      "description": "The physical process by which a polypeptide chain acquires its functional three-dimensional conformation."
+    },
+    {
+      "name": "Post-translational Modification",
+      "description": "The covalent and enzymatic modification of proteins following protein biosynthesis to influence function or stability."
+    },
+    {
+      "name": "Protein Translocation",
+      "description": "The movement of proteins across or into biological membranes to reach specific cellular compartments."
+    },
+    {
+      "name": "Proteolytic Processing",
+      "description": "The specific cleavage of peptide bonds in a precursor protein to generate active enzymes or signaling molecules."
+    },
+    {
+      "name": "Protein Degradation",
+      "description": "The regulated breakdown of proteins into amino acids or smaller peptides for quality control and cellular homeostasis."
+    },
+    {
+      "name": "Protein Sorting",
+      "description": "The identification and delivery of proteins to their correct subcellular locations or for secretion."
+    }
+  ],
+  "siblings:chromosome maintenance": [
+    {
+      "name": "DNA Replication",
+      "description": "The process of duplicating the genetic material to ensure accurate inheritance during cell division."
+    },
+    {
+      "name": "Chromatin Organization",
+      "description": "The structural arrangement and modification of DNA and histones into functional chromatin units."
+    },
+    {
+      "name": "Chromosome Condensation",
+      "description": "The compacting of thin chromatin strands into discrete, manageable chromosomes during mitosis or meiosis."
+    },
+    {
+      "name": "Sister Chromatid Cohesion",
+      "description": "The mechanism that keeps identical sister chromatids physically paired until their separation in anaphase."
+    },
+    {
+      "name": "Kinetochore Assembly",
+      "description": "The formation of the multi-protein complex on centromeric DNA that facilitates spindle fiber attachment."
+    },
+    {
+      "name": "DNA Repair",
+      "description": "The collection of biological pathways that identify and correct damage to DNA molecules."
+    }
+  ],
+  "siblings:cytokine signaling": [
+    {
+      "name": "Signaling by Interferons",
+      "description": "Pathways initiated by interferon binding that induce antiviral, antiproliferative, and immunomodulatory responses."
+    },
+    {
+      "name": "TNF signaling",
+      "description": "Signal transduction pathways mediated by Tumor Necrosis Factors involved in inflammation and apoptosis."
+    },
+    {
+      "name": "Chemokine receptors bind chemokines",
+      "description": "Signaling through G protein-coupled receptors that directs leukocyte migration and activation."
+    },
+    {
+      "name": "Signaling by TGF-beta family members",
+      "description": "Intracellular signaling regulating cell growth, differentiation, and development through SMAD proteins."
+    },
+    {
+      "name": "Signaling by Erythropoietin",
+      "description": "Cytokine signaling pathway essential for the survival and proliferation of erythroid progenitor cells."
+    },
+    {
+      "name": "FLT3 signaling",
+      "description": "Signaling involving the FLT3 receptor tyrosine kinase which is critical for hematopoietic stem cell development."
+    },
+    {
+      "name": "Signaling by CSF",
+      "description": "Colony Stimulating Factor pathways that regulate the production and function of myeloid cells."
+    }
+  ],
+  "siblings:protein folding": [
+    {
+      "name": "Folding of Actin by CCT/TRiC",
+      "description": "The specialized process by which actin monomers are folded into their native state by the chaperonin CCT/TRiC complex."
+    },
+    {
+      "name": "Folding of Tubulin by CCT/TRiC",
+      "description": "The chaperonin-assisted maturation of alpha and beta tubulin subunits into functional dimers."
+    },
+    {
+      "name": "Prefoldin-mediated transfer of substrate to CCT/TRiC",
+      "description": "The mechanism by which the prefoldin complex captures nascent polypeptides and delivers them to the CCT/TRiC chaperonin."
+    },
+    {
+      "name": "Protein folding in the endoplasmic reticulum",
+      "description": "The process of folding and assembly of newly synthesized proteins within the lumen of the endoplasmic reticulum."
+    },
+    {
+      "name": "Co-translational protein folding",
+      "description": "Protein folding that occurs simultaneously with the translation of the polypeptide chain at the ribosome."
+    },
+    {
+      "name": "Post-translational protein folding",
+      "description": "The process where polypeptide chains achieve their functional tertiary structure after complete release from the ribosome."
+    },
+    {
+      "name": "Small-molecule-mediated protein folding",
+      "description": "The stabilization or folding of proteins facilitated by specific small-molecule ligands or chemical chaperones."
+    }
+  ],
+  "siblings:microtubule-based processes": [
+    {
+      "name": "Microtubule-based transport",
+      "description": "The movement of organelles, vesicles, or proteins along microtubules via molecular motors."
+    },
+    {
+      "name": "Mitotic spindle organization",
+      "description": "The process of assembling and spatial arrangement of microtubules to form the mitotic spindle."
+    },
+    {
+      "name": "Microtubule cytoskeleton organization",
+      "description": "The formation, maintenance, and spatial arrangement of the microtubule network within a cell."
+    },
+    {
+      "name": "Chromosome segregation",
+      "description": "The microtubule-mediated physical movement of chromosomes to opposite cell poles."
+    },
+    {
+      "name": "Microtubule nucleation",
+      "description": "The initiation of microtubule polymer formation from tubulin dimers at specific cellular sites."
+    },
+    {
+      "name": "Organelle positioning",
+      "description": "The active distribution and maintenance of organelle locations using microtubule-based motor proteins."
+    }
+  ],
+  "parent:mrna splicing": "mRNA Processing",
+  "parent:calcium-mediated signaling": "Second Messenger Signaling",
+  "parent:mtor signaling": "Nutrient Sensing",
+  "parent:proteasome-mediated degradation": "Ubiquitin-Dependent Proteolysis",
+  "parent:autophagy regulation": "Autophagy",
+  "parent:ubiquitin-dependent protein catabolism": "Proteasomal Protein Degradation",
+  "parent:epigenetic gene regulation": "Regulation of Gene Expression",
+  "parent:pi3k/akt signaling": "Phosphatidylinositol 3-Kinase (PI3K) Signaling",
+  "parent:glycogen metabolism": "Polysaccharide Metabolism",
+  "parent:mrna translation": "Translation",
+  "parent:mrna processing": "RNA Processing",
+  "parent:polysaccharide metabolism": "Carbohydrate Metabolism",
+  "parent:ubiquitin-dependent proteolysis": "Ubiquitin-Proteasome System",
+  "parent:nutrient sensing": "Growth Factor Signaling",
+  "parent:proteasomal protein degradation": "Ubiquitin-Dependent Protein Degradation",
+  "parent:phosphatidylinositol 3-kinase (pi3k) signaling": "Phosphoinositide Signaling",
+  "parent:second messenger signaling": "Intracellular Signal Transduction",
+  "parent:phosphoinositide signaling": "Lipid-Mediated Signaling",
+  "parent:growth factor signaling": "Cellular Signaling",
+  "parent:ubiquitin-dependent protein degradation": "Proteasomal Protein Degradation",
+  "parent:intracellular signal transduction": "Signal Transduction",
+  "parent:carbohydrate metabolism": "Primary Metabolism",
+  "parent:lipid-mediated signaling": "Small Molecule Signaling",
+  "parent:primary metabolism": "Metabolism",
+  "parent:metabolism": "Metabolism & Bioenergetics",
+  "parent:small molecule signaling": "Chemical Signaling",
+  "parent:chemical signaling": "Intercellular Signaling",
+  "siblings:carbohydrate metabolism": [
+    {
+      "name": "Glycolysis / Gluconeogenesis",
+      "description": "The metabolic pathways that break down glucose for energy and synthesize glucose from non-carbohydrate precursors."
+    },
+    {
+      "name": "Pentose phosphate pathway",
+      "description": "A pathway parallel to glycolysis that generates NADPH and pentoses, as well as ribose 5-phosphate."
+    },
+    {
+      "name": "Fructose and mannose metabolism",
+      "description": "The metabolic processes involved in the conversion and breakdown of fructose and mannose into glycolytic intermediates."
+    },
+    {
+      "name": "Galactose metabolism",
+      "description": "The biochemical pathway responsible for converting galactose into glucose-1-phosphate to enter glycolysis."
+    },
+    {
+      "name": "Ascorbate and aldarate metabolism",
+      "description": "The metabolic reactions involving the synthesis and degradation of vitamin C and various sugar acids."
+    },
+    {
+      "name": "Pyruvate metabolism",
+      "description": "The metabolic hub connecting glycolysis to the citric acid cycle through the regulation of pyruvate levels."
+    },
+    {
+      "name": "Pentose and glucuronate interconversions",
+      "description": "The metabolic interconversions between five-carbon sugars and sugar acids such as glucuronate."
+    }
+  ],
+  "siblings:organ system-specific signal transduction": [
+    {
+      "name": "Nervous System Signal Transduction",
+      "description": "Signaling processes governing neuronal communication, synaptic transmission, and sensory transduction."
+    },
+    {
+      "name": "Immune System Signal Transduction",
+      "description": "Intracellular signaling pathways involved in the activation and regulation of innate and adaptive immune responses."
+    },
+    {
+      "name": "Respiratory System Signal Transduction",
+      "description": "Regulation of pulmonary function, including gas exchange signaling and surfactant production control."
+    },
+    {
+      "name": "Digestive System Signal Transduction",
+      "description": "Signaling cascades controlling gastrointestinal motility, enzyme secretion, and nutrient absorption."
+    },
+    {
+      "name": "Endocrine System Signal Transduction",
+      "description": "Communication pathways mediated by hormones to regulate systemic physiological functions and metabolism."
+    },
+    {
+      "name": "Renal System Signal Transduction",
+      "description": "Pathways regulating ion transport, water reabsorption, and acid-base balance within the kidneys."
+    }
+  ],
+  "siblings:polysaccharide metabolism": [
+    {
+      "name": "Starch Metabolism",
+      "description": "The biological processes involved in the synthesis and degradation of starch, a storage polysaccharide in plants."
+    },
+    {
+      "name": "Cellulose Metabolism",
+      "description": "Pathways responsible for the production and breakdown of cellulose, a primary structural component of plant cell walls."
+    },
+    {
+      "name": "Chitin Metabolism",
+      "description": "The metabolic synthesis and enzymatic degradation of chitin, found in fungal cell walls and arthropod exoskeletons."
+    },
+    {
+      "name": "Peptidoglycan Metabolism",
+      "description": "Processes involved in the assembly and remodeling of the bacterial cell wall polysaccharide-peptide complex."
+    },
+    {
+      "name": "Glycosaminoglycan Metabolism",
+      "description": "The synthesis and degradation of long, unbranched polysaccharides such as heparin and hyaluronan in animal tissues."
+    },
+    {
+      "name": "Hemicellulose Metabolism",
+      "description": "Metabolic pathways involving heteropolymers like xyloglucan and xylan that provide structural support in plants."
+    }
+  ],
+  "siblings:intracellular signal transduction": [
+    {
+      "name": "MAPK signaling pathway",
+      "description": "A chain of proteins in the cell that communicates a signal from a receptor on the surface of the cell to the DNA in the nucleus."
+    },
+    {
+      "name": "JAK-STAT signaling pathway",
+      "description": "Transmits information from extracellular chemical signals to the nucleus, resulting in the transcription of genes involved in immunity and proliferation."
+    },
+    {
+      "name": "PI3K-Akt signaling pathway",
+      "description": "An intracellular signal transduction pathway that promotes metabolism, proliferation, cell survival, and growth."
+    },
+    {
+      "name": "TGF-beta signaling pathway",
+      "description": "Regulates diverse cellular processes, including cell growth, differentiation, and development, via SMAD proteins."
+    },
+    {
+      "name": "NF-kappaB signaling pathway",
+      "description": "A protein complex that controls transcription of DNA, cytokine production, and cell survival in response to stress and inflammation."
+    },
+    {
+      "name": "Wnt signaling pathway",
+      "description": "A group of signal transduction pathways made of proteins that pass signals into a cell through cell surface receptors to regulate embryonic development."
+    },
+    {
+      "name": "Notch signaling pathway",
+      "description": "A highly conserved cell signaling system that promotes neighbor-to-neighbor communication and regulates cell-fate determination."
+    }
+  ],
+  "siblings:second messenger signaling": [
+    {
+      "name": "Cyclic AMP (cAMP) Signaling",
+      "description": "Involves the conversion of ATP to cAMP by adenylyl cyclase, primarily activating protein kinase A (PKA)."
+    },
+    {
+      "name": "Cyclic GMP (cGMP) Signaling",
+      "description": "Utilizes cGMP generated by guanylyl cyclases to activate protein kinase G (PKG) and regulate ion channels."
+    },
+    {
+      "name": "Inositol Triphosphate (IP3) Signaling",
+      "description": "A lipid-derived pathway where IP3 binds to receptors on the endoplasmic reticulum to mobilize intracellular calcium stores."
+    },
+    {
+      "name": "Diacylglycerol (DAG) Signaling",
+      "description": "A membrane-bound signaling pathway that activates protein kinase C (PKC) in response to phospholipase C activity."
+    },
+    {
+      "name": "Nitric Oxide (NO) Signaling",
+      "description": "A gaseous signaling pathway where NO diffuses across membranes to activate soluble guanylyl cyclase."
+    },
+    {
+      "name": "Arachidonic Acid Signaling",
+      "description": "Involves the release of arachidonic acid from phospholipids, serving as a precursor for eicosanoids like prostaglandins."
+    },
+    {
+      "name": "Phosphatidylinositol (3,4,5)-trisphosphate (PIP3) Signaling",
+      "description": "Produced by PI3K, PIP3 acts as a docking site for signaling proteins containing PH domains, such as Akt."
+    }
+  ],
+  "siblings:lipid-mediated signaling": [
+    {
+      "name": "Eicosanoid Signaling",
+      "description": "Signaling mediated by bioactive lipids derived from arachidonic acid, including prostaglandins, leukotrienes, and thromboxanes."
+    },
+    {
+      "name": "Sphingolipid Signaling",
+      "description": "Pathways involving molecules such as ceramide, sphingosine, and sphingosine-1-phosphate that regulate cell survival and apoptosis."
+    },
+    {
+      "name": "Endocannabinoid Signaling",
+      "description": "A lipid-based retrograde signaling system that utilizes anandamide and 2-arachidonoylglycerol to regulate neurotransmission."
+    },
+    {
+      "name": "Lysophospholipid Signaling",
+      "description": "Signaling through G protein-coupled receptors by lysophosphatidic acid (LPA) and sphingosine-1-phosphate (S1P)."
+    },
+    {
+      "name": "Platelet-Activating Factor (PAF) Signaling",
+      "description": "A pathway mediated by a potent phospholipid that triggers inflammatory responses and platelet aggregation."
+    },
+    {
+      "name": "Diacylglycerol (DAG) Signaling",
+      "description": "The signaling branch focused on the activation of Protein Kinase C and other targets by the membrane-bound second messenger DAG."
+    }
+  ],
+  "siblings:mrna processing": [
+    {
+      "name": "5' Capping",
+      "description": "The addition of a 7-methylguanosine cap to the 5' end of the pre-mRNA transcript to protect it from degradation."
+    },
+    {
+      "name": "3' Cleavage and Polyadenylation",
+      "description": "The process of cleaving the pre-mRNA and adding a poly(A) tail to the 3' end to enhance stability and translation."
+    },
+    {
+      "name": "RNA Editing",
+      "description": "The post-transcriptional alteration of specific nucleotide sequences within the mRNA molecule."
+    },
+    {
+      "name": "mRNA Export",
+      "description": "The transport of mature mRNA from the nucleus to the cytoplasm through the nuclear pore complex."
+    },
+    {
+      "name": "mRNA Degradation",
+      "description": "The regulated breakdown of mRNA molecules to control the duration and level of gene expression."
+    },
+    {
+      "name": "RNA Base Modification",
+      "description": "The enzymatic modification of RNA bases, such as N6-methyladenosine methylation, which influences mRNA metabolism."
+    },
+    {
+      "name": "mRNA Surveillance",
+      "description": "The quality control mechanisms that detect and degrade defective mRNA transcripts."
+    }
+  ],
+  "siblings:nutrient sensing": [
+    {
+      "name": "AMPK Signaling",
+      "description": "A central energy sensor that monitors cellular AMP/ATP ratios to activate catabolic pathways during low energy states."
+    },
+    {
+      "name": "Insulin/IGF-1 Signaling",
+      "description": "Senses extracellular glucose and growth factor availability to regulate nutrient uptake and anabolic metabolism."
+    },
+    {
+      "name": "Sirtuin Signaling",
+      "description": "A family of NAD+-dependent deacetylases that sense cellular redox status and regulate metabolic homeostasis and aging."
+    },
+    {
+      "name": "GCN2 Pathway",
+      "description": "Senses amino acid deficiency by detecting uncharged tRNAs and initiating the integrated stress response."
+    },
+    {
+      "name": "Hexosamine Biosynthetic Pathway",
+      "description": "Integrates glucose, amino acid, and lipid metabolism to regulate protein function via O-GlcNAcylation."
+    },
+    {
+      "name": "PPAR Signaling",
+      "description": "Nuclear receptors that sense the levels of fatty acids and their derivatives to regulate lipid and glucose metabolism."
+    }
+  ],
+  "siblings:growth factor signaling": [
+    {
+      "name": "PI3K-Akt Signaling",
+      "description": "A primary intracellular pathway regulating the cell cycle, protein synthesis, and cell growth in response to growth factor receptor activation."
+    },
+    {
+      "name": "MAPK/ERK Signaling",
+      "description": "A signal transduction cascade that couples extracellular growth factor signals to nuclear gene expression to regulate proliferation and differentiation."
+    },
+    {
+      "name": "JAK/STAT Signaling",
+      "description": "A pathway that transfers signals from growth factor and cytokine receptors directly to the nucleus to regulate growth-related genes."
+    },
+    {
+      "name": "TGF-beta Signaling",
+      "description": "Controls diverse biological processes including cell growth, differentiation, and development through the activation of Smad protein complexes."
+    },
+    {
+      "name": "Insulin/IGF-1 Signaling",
+      "description": "An evolutionarily conserved pathway that acts as a major regulator of glucose metabolism, systemic growth, and longevity."
+    },
+    {
+      "name": "VEGF Signaling",
+      "description": "A specialized growth factor pathway that coordinates the growth of new blood vessels and regulates vascular permeability."
+    },
+    {
+      "name": "EGF/EGFR Signaling",
+      "description": "Triggers a cascade of events that promotes cell growth, proliferation, and survival in epithelial and other cell types."
+    }
+  ],
+  "siblings:small molecule signaling": [
+    {
+      "name": "Nucleotide Signaling",
+      "description": "Signaling pathways utilizing molecules such as cAMP, cGMP, and ATP as secondary messengers or extracellular ligands."
+    },
+    {
+      "name": "Gasotransmitter Signaling",
+      "description": "Signaling mediated by small gaseous molecules like nitric oxide, carbon monoxide, and hydrogen sulfide that diffuse across cell membranes."
+    },
+    {
+      "name": "Amino Acid-Mediated Signaling",
+      "description": "Communication involving amino acids such as glutamate, GABA, and glycine, primarily acting as neurotransmitters or metabolic signals."
+    },
+    {
+      "name": "Calcium-Mediated Signaling",
+      "description": "Intracellular signaling processes triggered by the movement and binding of calcium ions as a second messenger."
+    },
+    {
+      "name": "Biogenic Amine Signaling",
+      "description": "Signaling involving small nitrogenous compounds such as serotonin, dopamine, histamine, and norepinephrine."
+    },
+    {
+      "name": "Redox Signaling",
+      "description": "The use of reactive oxygen species or other small oxidant/reductant molecules to modulate cellular protein function and gene expression."
+    }
+  ],
+  "siblings:chemical signaling": [
+    {
+      "name": "Peptide and Protein Signaling",
+      "description": "Communication involving secreted peptides or proteins such as insulin, growth factors, and cytokines."
+    },
+    {
+      "name": "Lipid Signaling",
+      "description": "Signaling mediated by hydrophobic lipid molecules including eicosanoids, sphingolipids, and fatty acids."
+    },
+    {
+      "name": "Gasotransmitter Signaling",
+      "description": "The use of small gaseous molecules like nitric oxide and carbon monoxide to transmit biological signals."
+    },
+    {
+      "name": "Nucleotide and Nucleoside Signaling",
+      "description": "Extracellular signaling using molecules like ATP, ADP, and adenosine via purinergic receptors."
+    },
+    {
+      "name": "Amino Acid Signaling",
+      "description": "Signaling mediated by amino acids such as glutamate, aspartate, and GABA, particularly in synaptic transmission."
+    },
+    {
+      "name": "Steroid Hormone Signaling",
+      "description": "Communication via cholesterol-derived hormones that typically modulate gene expression through nuclear receptors."
+    }
+  ],
+  "siblings:ubiquitin-dependent protein degradation": [
+    {
+      "name": "Autophagic-Lysosomal Degradation",
+      "description": "The process where ubiquitinated proteins or damaged organelles are sequestered into autophagosomes for degradation in lysosomes."
+    },
+    {
+      "name": "Endocytic Pathway Degradation",
+      "description": "Ubiquitin-mediated internalization of cell surface receptors and their subsequent trafficking to lysosomes for degradation."
+    },
+    {
+      "name": "Mitophagy",
+      "description": "A selective autophagic process that targets ubiquitinated mitochondria for degradation to maintain cellular homeostasis."
+    },
+    {
+      "name": "Endoplasmic Reticulum-Associated Degradation (ERAD)",
+      "description": "The targeting of misfolded ER proteins for ubiquitination and translocation to the cytoplasm for eventual clearance."
+    },
+    {
+      "name": "Xenophagy",
+      "description": "A specialized form of autophagy that uses ubiquitin tags to identify and degrade intracellular bacterial and viral pathogens."
+    },
+    {
+      "name": "Pexophagy",
+      "description": "The selective degradation of peroxisomes through the ubiquitin-dependent autophagic pathway in response to environmental changes."
+    },
+    {
+      "name": "Ribophagy",
+      "description": "The targeted degradation of ribosomes via ubiquitin-dependent selective autophagy, often triggered by nutrient starvation."
+    }
+  ],
+  "siblings:rna processing": [
+    {
+      "name": "rRNA Processing",
+      "description": "The maturation of ribosomal RNA precursors into functional 18S, 5.8S, and 28S rRNA components."
+    },
+    {
+      "name": "tRNA Processing",
+      "description": "The enzymatic modification and cleavage of precursor tRNA transcripts to produce mature transfer RNAs."
+    },
+    {
+      "name": "snRNA Processing",
+      "description": "The maturation steps for small nuclear RNAs which are essential components of the spliceosome."
+    },
+    {
+      "name": "snoRNA Processing",
+      "description": "The processing of small nucleolar RNAs that guide the chemical modification of rRNA and other RNAs."
+    },
+    {
+      "name": "miRNA Processing",
+      "description": "The biogenesis of microRNAs from primary transcripts through Drosha and Dicer-mediated cleavage."
+    },
+    {
+      "name": "siRNA Processing",
+      "description": "The processing of long double-stranded RNA into small interfering RNAs by the Dicer enzyme."
+    }
+  ],
+  "siblings:ubiquitin-proteasome system": [
+    {
+      "name": "Ubiquitination",
+      "description": "The enzymatic process involving E1, E2, and E3 enzymes that covalently attaches ubiquitin moieties to target proteins."
+    },
+    {
+      "name": "Deubiquitination",
+      "description": "The removal of ubiquitin molecules from substrates by deubiquitinating enzymes (DUBs) to regulate protein stability."
+    },
+    {
+      "name": "Proteasome Assembly",
+      "description": "The regulated multi-step formation of the 26S proteasome complex from its 20S core and 19S regulatory subunits."
+    },
+    {
+      "name": "Endoplasmic Reticulum-Associated Degradation (ERAD)",
+      "description": "The pathway identifying misfolded proteins in the ER and translocating them to the cytosol for UPS-mediated destruction."
+    },
+    {
+      "name": "Ubiquitin Recycling",
+      "description": "The disassembly of polyubiquitin chains into free ubiquitin monomers to maintain the cellular pool of available ubiquitin."
+    },
+    {
+      "name": "E3 Ligase-Mediated Substrate Recognition",
+      "description": "The specific identification and binding of target proteins via degron motifs to ensure selective ubiquitination."
+    }
+  ],
+  "siblings:phosphatidylinositol 3-kinase (pi3k) signaling": [
+    {
+      "name": "PI3K/SGK Signaling",
+      "description": "Activation of serum/glucocorticoid regulated kinases involved in ion transport and cell survival."
+    },
+    {
+      "name": "PI3K/PDK1 Signaling",
+      "description": "Activation of PDK1 which regulates multiple AGC kinase family members independently of Akt."
+    },
+    {
+      "name": "PI3K/Tec Kinase Signaling",
+      "description": "Recruitment of Tec family kinases like BTK for calcium signaling and B-cell activation."
+    },
+    {
+      "name": "PI3K/Rac1/Cdc42 Signaling",
+      "description": "Regulation of Rho-family GTPases governing cytoskeletal dynamics and cell motility."
+    },
+    {
+      "name": "PI3K/mTOR Signaling",
+      "description": "Coordination of cellular growth and protein synthesis via mTOR complex 1 and 2."
+    },
+    {
+      "name": "PI3K/PKC Signaling",
+      "description": "Activation of protein kinase C isoforms to mediate varied cellular functions including proliferation."
+    }
+  ],
+  "siblings:translation": [
+    {
+      "name": "Mitochondrial Translation",
+      "description": "The process of protein synthesis specifically occurring within mitochondria using organelle-specific ribosomes."
+    },
+    {
+      "name": "Translation Initiation",
+      "description": "The assembly of the translation machinery at the start codon of an mRNA molecule."
+    },
+    {
+      "name": "Translation Elongation",
+      "description": "The stepwise addition of amino acids to a growing polypeptide chain guided by mRNA codons."
+    },
+    {
+      "name": "Translation Termination",
+      "description": "The release of the completed polypeptide chain and dissociation of the ribosome upon reaching a stop codon."
+    },
+    {
+      "name": "Ribosome Recycling",
+      "description": "The process of splitting the post-termination ribosomal complex into subunits for subsequent rounds of translation."
+    },
+    {
+      "name": "Viral mRNA Translation",
+      "description": "Pathways used by viral pathogens to hijack host translation machinery for the synthesis of viral proteins."
+    }
+  ],
+  "siblings:primary metabolism": [
+    {
+      "name": "Lipid Metabolism",
+      "description": "Biochemical pathways involved in the synthesis and degradation of lipids and fatty acids."
+    },
+    {
+      "name": "Amino Acid Metabolism",
+      "description": "Chemical processes governing the synthesis and breakdown of amino acids."
+    },
+    {
+      "name": "Nucleotide Metabolism",
+      "description": "Pathways responsible for the production and recycling of purines and pyrimidines."
+    },
+    {
+      "name": "Energy Metabolism",
+      "description": "Processes such as oxidative phosphorylation and photosynthesis that generate and store cellular energy."
+    },
+    {
+      "name": "Metabolism of Cofactors and Vitamins",
+      "description": "Synthesis and maintenance of organic molecules required as essential enzymatic helpers."
+    },
+    {
+      "name": "Glycan Biosynthesis and Metabolism",
+      "description": "Processes involved in the construction and modification of complex carbohydrates and sugar chains."
+    }
+  ],
+  "siblings:metabolism": [
+    {
+      "name": "Secondary Metabolism",
+      "description": "Pathways producing specialized compounds not directly involved in growth or reproduction, often used for defense or signaling."
+    },
+    {
+      "name": "Xenobiotic Metabolism",
+      "description": "The set of metabolic pathways that modify the chemical structure of foreign substances, such as drugs and environmental pollutants."
+    },
+    {
+      "name": "Energy Metabolism",
+      "description": "Biochemical processes focused on the conversion of nutrients into chemical energy in the form of ATP."
+    },
+    {
+      "name": "Lipid Metabolism",
+      "description": "The synthesis and degradation of lipids, including fatty acids, triglycerides, and cholesterol."
+    },
+    {
+      "name": "Carbohydrate Metabolism",
+      "description": "The biochemical processes responsible for the formation, breakdown, and interconversion of sugars and starches."
+    },
+    {
+      "name": "Amino Acid Metabolism",
+      "description": "The metabolic pathways involved in the biosynthesis and catabolism of proteins and nitrogenous compounds."
+    },
+    {
+      "name": "Nucleotide Metabolism",
+      "description": "The pathways for the synthesis and degradation of purines and pyrimidines required for DNA and RNA."
+    }
+  ],
+  "siblings:phosphoinositide signaling": [
+    {
+      "name": "Phospholipase C (PLC) Signaling",
+      "description": "The hydrolysis of phosphatidylinositol 4,5-bisphosphate into the second messengers inositol 1,4,5-trisphosphate and diacylglycerol."
+    },
+    {
+      "name": "Phosphoinositide 4-Kinase (PI4K) Signaling",
+      "description": "The production of phosphatidylinositol 4-phosphate, a key regulatory lipid and precursor for higher-order phosphoinositides."
+    },
+    {
+      "name": "Phosphoinositide 5-Kinase (PIP5K) Signaling",
+      "description": "The enzymatic synthesis of phosphatidylinositol 4,5-bisphosphate from phosphatidylinositol 4-phosphate."
+    },
+    {
+      "name": "PTEN Phosphatase Signaling",
+      "description": "The negative regulation of the PI3K pathway through the dephosphorylation of phosphatidylinositol 3,4,5-trisphosphate back to the 4,5-bisphosphate form."
+    },
+    {
+      "name": "SHIP Phosphatase Signaling",
+      "description": "The conversion of phosphatidylinositol 3,4,5-trisphosphate into phosphatidylinositol 3,4-bisphosphate by SH2-containing inositol 5-phosphatases."
+    },
+    {
+      "name": "Inositol Phosphate Metabolism",
+      "description": "The set of enzymatic reactions that interconvert various inositol phosphate isomers following the action of phospholipases."
+    }
+  ],
+  "siblings:metabolism & bioenergetics": [
+    {
+      "name": "Cellular Respiration",
+      "description": "The metabolic process by which cells convert chemical energy from nutrients into adenosine triphosphate (ATP) and release waste products."
+    },
+    {
+      "name": "Photosynthesis",
+      "description": "The biological process of converting light energy into chemical energy, primarily used by autotrophs to synthesize organic compounds."
+    },
+    {
+      "name": "Oxidative Phosphorylation",
+      "description": "The metabolic pathway where cells use enzymes to oxidize nutrients, thereby releasing energy used to produce ATP within the mitochondria."
+    },
+    {
+      "name": "Thermogenesis",
+      "description": "The process of heat production in organisms, often involving the uncoupling of electron transport from ATP synthesis to maintain body temperature."
+    },
+    {
+      "name": "Electron Transport Chain",
+      "description": "A series of protein complexes and other molecules that transfer electrons through redox reactions to create a proton gradient for energy production."
+    },
+    {
+      "name": "ATP Synthesis",
+      "description": "The enzymatic production of ATP from ADP and inorganic phosphate, typically driven by the movement of protons across a membrane."
+    }
+  ],
+  "siblings:specialized signaling pathways": [
+    {
+      "name": "Synaptic Signaling",
+      "description": "Communication between neurons via neurotransmitters at specialized junctions."
+    },
+    {
+      "name": "Phototransduction",
+      "description": "The conversion of light stimuli into electrical signals within sensory cells."
+    },
+    {
+      "name": "Mechanotransduction",
+      "description": "The translation of mechanical forces into biochemical signals to regulate cellular responses."
+    },
+    {
+      "name": "Immune Response Signaling",
+      "description": "Specialized signal cascades that coordinate cellular defenses against pathogens and injury."
+    },
+    {
+      "name": "Hormonal Signaling",
+      "description": "Systemic coordination of physiological processes through endocrine-derived chemical messengers."
+    },
+    {
+      "name": "Circadian Rhythm Signaling",
+      "description": "Molecular pathways that synchronize biological activities with the 24-hour solar cycle."
+    }
+  ],
+  "siblings:ubiquitin-dependent proteolysis": [
+    {
+      "name": "Protein Ubiquitination",
+      "description": "The enzymatic cascade involving E1, E2, and E3 ligases that tags target proteins with ubiquitin molecules."
+    },
+    {
+      "name": "Deubiquitination",
+      "description": "The removal of ubiquitin from substrates by deubiquitinating enzymes to regulate signaling or recycle ubiquitin."
+    },
+    {
+      "name": "Ubiquitin-dependent Endocytosis",
+      "description": "A pathway where ubiquitin tags on membrane proteins trigger their internalization and delivery to lysosomes for degradation."
+    },
+    {
+      "name": "Selective Autophagy",
+      "description": "A process in which ubiquitinated proteins or organelles are sequestered into autophagosomes for lysosomal destruction."
+    },
+    {
+      "name": "ER-associated degradation (ERAD)",
+      "description": "The specific targeting of misfolded endoplasmic reticulum proteins for retrotranslocation and ubiquitin-dependent destruction."
+    },
+    {
+      "name": "N-end rule pathway",
+      "description": "A proteolytic system that relates the in vivo half-life of a protein to the identity of its N-terminal amino acid."
+    }
+  ],
+  "parent:nuclear import": "Nucleocytoplasmic Transport",
+  "parent:transcriptional repression": "Transcriptional Regulation",
+  "parent:protein aggregation": "Protein Misfolding",
+  "parent:protein misfolding": "Protein Folding",
+  "siblings:small molecule transport": [
+    {
+      "name": "Carbohydrate Transport",
+      "description": "The translocation of sugars such as glucose, fructose, and galactose across biological membranes."
+    },
+    {
+      "name": "Amino Acid Transport",
+      "description": "The movement of amino acids into or out of cells, often mediated by specific symporters or antiporters."
+    },
+    {
+      "name": "Nucleoside and Nucleotide Transport",
+      "description": "The transport of nitrogenous bases and their derivatives, essential for DNA and RNA synthesis."
+    },
+    {
+      "name": "Lipid Transport",
+      "description": "The process of moving fatty acids, sterols, and other lipophilic molecules across cellular barriers."
+    },
+    {
+      "name": "Vitamin and Cofactor Transport",
+      "description": "The specialized movement of essential micronutrients and enzymatic precursors across membranes."
+    },
+    {
+      "name": "Water Transport",
+      "description": "The movement of water molecules, primarily facilitated by specialized channels known as aquaporins."
+    },
+    {
+      "name": "Organic Anion and Cation Transport",
+      "description": "The transport of a wide variety of organic metabolites, signaling molecules, and xenobiotics."
+    }
+  ],
+  "siblings:energy homeostasis": [
+    {
+      "name": "Appetite and Satiety Regulation",
+      "description": "The hypothalamic control of food intake and energy expenditure through orexigenic and anorexigenic signaling."
+    },
+    {
+      "name": "Glucose Homeostasis",
+      "description": "The systematic regulation of blood glucose levels through insulin secretion and glucagon-mediated hepatic glucose production."
+    },
+    {
+      "name": "Lipid Metabolism",
+      "description": "The processes of lipogenesis, lipolysis, and fatty acid oxidation that manage the storage and utilization of triglycerides."
+    },
+    {
+      "name": "Glycogen Metabolism",
+      "description": "The balanced pathways of glycogenesis and glycogenolysis used to store and mobilize glucose in the liver and skeletal muscle."
+    },
+    {
+      "name": "Gluconeogenesis",
+      "description": "The metabolic pathway that synthesizes glucose from non-carbohydrate precursors to maintain energy supply during fasting."
+    },
+    {
+      "name": "Mitochondrial Oxidative Phosphorylation",
+      "description": "The cellular process of ATP production using energy released by the oxidation of nutrients within the electron transport chain."
+    }
+  ],
+  "siblings:protein misfolding": [
+    {
+      "name": "ER-associated degradation (ERAD)",
+      "description": "A cellular pathway that targets misfolded proteins in the endoplasmic reticulum for ubiquitination and proteasomal degradation."
+    },
+    {
+      "name": "Chaperone-mediated refolding",
+      "description": "A process where molecular chaperones bind to misfolded proteins to assist them in achieving their native three-dimensional structure."
+    },
+    {
+      "name": "Amyloid formation",
+      "description": "The specific structural transition of misfolded proteins into highly organized, insoluble cross-beta sheet fibrillar structures."
+    },
+    {
+      "name": "Aggresome formation",
+      "description": "The sequestration of misfolded proteins and small aggregates into a large perinuclear structure near the microtubule-organizing center."
+    },
+    {
+      "name": "Unfolded Protein Response (UPR)",
+      "description": "A cellular stress response pathway activated by the accumulation of misfolded proteins in the lumen of the endoplasmic reticulum."
+    },
+    {
+      "name": "Proteasomal degradation",
+      "description": "The tagging and subsequent proteolysis of misfolded proteins by the ubiquitin-proteasome system to maintain proteostasis."
+    }
+  ],
+  "siblings:energy metabolism": [
+    {
+      "name": "Glycolysis",
+      "description": "A metabolic pathway that converts glucose into pyruvate, producing a small amount of ATP and NADH."
+    },
+    {
+      "name": "Citric Acid Cycle",
+      "description": "A series of reactions used by aerobic organisms to release stored energy through the oxidation of acetyl-CoA derived from carbohydrates, fats, and proteins."
+    },
+    {
+      "name": "Pentose Phosphate Pathway",
+      "description": "A process that generates NADPH and five-carbon sugars, serving as an alternative pathway for glucose oxidation."
+    },
+    {
+      "name": "Beta-Oxidation",
+      "description": "The catabolic process by which fatty acid molecules are broken down in the mitochondria to generate acetyl-CoA for the Citric Acid Cycle."
+    },
+    {
+      "name": "Gluconeogenesis",
+      "description": "The synthesis of glucose from non-carbohydrate precursors, such as lactate, glycerol, and glucogenic amino acids."
+    },
+    {
+      "name": "Glycogenolysis",
+      "description": "The primary pathway for the breakdown of glycogen into glucose-6-phosphate or glucose to maintain blood sugar levels."
+    },
+    {
+      "name": "Carbon Fixation",
+      "description": "The process by which inorganic carbon is converted to organic compounds by living organisms, typically through the Calvin cycle."
+    }
+  ],
+  "siblings:transcriptional regulation": [
+    {
+      "name": "Transcriptional Activation",
+      "description": "The process of increasing the rate of gene transcription by the binding of activator proteins to specific DNA sequences."
+    },
+    {
+      "name": "Transcriptional Initiation",
+      "description": "The initial stage of transcription involving the assembly of RNA polymerase and transcription factors at the promoter."
+    },
+    {
+      "name": "Transcriptional Elongation",
+      "description": "The stage where RNA polymerase travels along the DNA template to synthesize a complementary RNA strand."
+    },
+    {
+      "name": "Transcriptional Termination",
+      "description": "The final stage of transcription where the RNA polymerase and the nascent RNA transcript are released from the DNA."
+    },
+    {
+      "name": "Transcriptional Pausing",
+      "description": "A regulatory mechanism where RNA polymerase halts at specific sites during elongation to coordinate gene expression."
+    },
+    {
+      "name": "Transcriptional Interference",
+      "description": "The direct suppressive influence of one transcription process on another in cis, such as through promoter competition."
+    }
+  ],
+  "siblings:nucleocytoplasmic transport": [
+    {
+      "name": "Nuclear Export",
+      "description": "The process of transporting proteins and RNA molecules from the nucleoplasm to the cytoplasm through nuclear pore complexes."
+    },
+    {
+      "name": "mRNA Export",
+      "description": "The specialized pathway for the transport of mature messenger RNA molecules to the cytoplasm for translation."
+    },
+    {
+      "name": "tRNA Export",
+      "description": "The regulated movement of mature transfer RNAs out of the nucleus, typically mediated by specific exportins like XPO5."
+    },
+    {
+      "name": "snRNA Export",
+      "description": "The export of small nuclear RNAs to the cytoplasm for further processing and assembly into ribonucleoprotein particles."
+    },
+    {
+      "name": "rRNA Export",
+      "description": "The translocation of ribosomal subunits from the nucleolus to the cytoplasm via the nuclear pore complex."
+    },
+    {
+      "name": "Nuclear Pore Complex Assembly",
+      "description": "The structural process of constructing the large proteinaceous channels that span the nuclear envelope to facilitate transport."
+    },
+    {
+      "name": "Ran-GTPase Cycle",
+      "description": "The regulatory mechanism involving Ran protein transitions between GTP-bound and GDP-bound states to provide energy and directionality to transport."
+    }
+  ],
+  "siblings:oxidative phosphorylation": [
+    {
+      "name": "ATP Synthesis",
+      "description": "The biochemical process where ATP synthase utilizes the electrochemical proton gradient to convert ADP and inorganic phosphate into ATP."
+    },
+    {
+      "name": "Respiratory Uncoupling",
+      "description": "The process by which the proton gradient is dissipated as heat instead of being used for ATP synthesis, often mediated by uncoupling proteins."
+    },
+    {
+      "name": "Proton Translocation",
+      "description": "The movement of protons across the inner mitochondrial membrane to establish the electrochemical gradient required for chemiosmosis."
+    },
+    {
+      "name": "Supercomplex Assembly",
+      "description": "The structural organization of respiratory chain complexes into higher-order respirasomes to optimize electron transfer efficiency."
+    },
+    {
+      "name": "Chemiosmotic Coupling",
+      "description": "The mechanism that links the energy released from the electron transport chain to the phosphorylation of ADP."
+    }
+  ],
+  "parent:apoptosis regulation": "Apoptosis",
+  "parent:protein stability regulation": "Protein Quality Control",
+  "parent:translation regulation": "Translation",
+  "parent:mitochondrial organization": "Organelle Organization",
+  "parent:cellular oxidative stress response": "Cellular Stress Response",
+  "parent:p53-dependent apoptosis": "p53 Signaling",
+  "parent:organelle organization": "Cellular Component Organization",
+  "parent:p53 signaling": "Apoptosis Signaling",
+  "parent:apoptosis signaling": "Programmed Cell Death",
+  "parent:cellular component organization": "Cellular Component Organization or Biogenesis",
+  "parent:cellular component organization or biogenesis": "Cellular Process",
+  "parent:cellular process": "Biological Process",
+  "parent:biological process": "Biological Phenomenon",
+  "parent:biological phenomenon": "Phenomena and Processes",
+  "parent:phenomena and processes": "Biological Process",
+  "siblings:metabolic regulation": [
+    {
+      "name": "Glucose Homeostasis",
+      "description": "The regulation of blood sugar levels through the coordinated actions of insulin, glucagon, and other hormones."
+    },
+    {
+      "name": "Lipid Homeostasis",
+      "description": "The management of fatty acid and cholesterol synthesis, storage, and mobilization within the body."
+    },
+    {
+      "name": "Amino Acid Homeostasis",
+      "description": "Maintenance of the pool of essential and non-essential amino acids through synthesis and degradation."
+    },
+    {
+      "name": "Redox Homeostasis",
+      "description": "The balancing of oxidative and reductive chemical reactions to maintain cellular stability and prevent damage."
+    },
+    {
+      "name": "Nucleotide Homeostasis",
+      "description": "The control of purine and pyrimidine synthesis and breakdown to ensure availability for DNA and RNA production."
+    },
+    {
+      "name": "Mineral Homeostasis",
+      "description": "The metabolic regulation of essential ions such as calcium, phosphate, and magnesium."
+    },
+    {
+      "name": "pH Homeostasis",
+      "description": "The metabolic management of acid-base balance to maintain physiological hydrogen ion concentrations."
+    }
+  ],
+  "siblings:cellular component organization": [
+    {
+      "name": "Cytoskeleton Organization",
+      "description": "Processes that result in the assembly, arrangement of constituent parts, or disassembly of the cytoskeleton."
+    },
+    {
+      "name": "Plasma Membrane Organization",
+      "description": "Processes that result in the assembly, arrangement of constituent parts, or disassembly of the plasma membrane."
+    },
+    {
+      "name": "Cell Wall Organization",
+      "description": "The assembly, arrangement of constituent parts, or disassembly of a cell wall."
+    },
+    {
+      "name": "Extracellular Matrix Organization",
+      "description": "Processes that result in the assembly, arrangement of constituent parts, or disassembly of an extracellular matrix."
+    },
+    {
+      "name": "Protein Complex Assembly",
+      "description": "The aggregation, arrangement, and bonding together of a set of macromolecules to form a protein complex."
+    },
+    {
+      "name": "External Encapsulating Structure Organization",
+      "description": "Processes that result in the assembly, arrangement of constituent parts, or disassembly of a structure that lies outside the plasma membrane."
+    }
+  ],
+  "siblings:apoptosis signaling": [
+    {
+      "name": "Intrinsic (Mitochondrial) Pathway",
+      "description": "A pathway activated by internal stimuli such as DNA damage or oxidative stress, leading to mitochondrial membrane permeabilization and cytochrome c release."
+    },
+    {
+      "name": "Extrinsic (Death Receptor) Pathway",
+      "description": "Triggered by extracellular signal molecules binding to cell surface death receptors like TNF-R1 or Fas."
+    },
+    {
+      "name": "Perforin/Granzyme Pathway",
+      "description": "Utilized by cytotoxic T lymphocytes and natural killer cells to deliver proteases that directly activate apoptotic processes in target cells."
+    },
+    {
+      "name": "ER Stress-induced Apoptosis",
+      "description": "Activated when the endoplasmic reticulum undergoes prolonged stress, triggering the unfolded protein response and pro-apoptotic signaling."
+    },
+    {
+      "name": "Caspase Signaling Cascade",
+      "description": "The central proteolytic mechanism involving initiator and executioner caspases that systematically dismantles the cell."
+    },
+    {
+      "name": "Anoikis",
+      "description": "A specialized form of programmed cell death induced by the loss of cell-extracellular matrix interaction."
+    }
+  ],
+  "siblings:p53 signaling": [
+    {
+      "name": "p53-Dependent Cell Cycle Arrest",
+      "description": "The process by which p53 activates p21 (CDKN1A) to inhibit cyclin-dependent kinases, halting the cell cycle for DNA repair."
+    },
+    {
+      "name": "p53-Dependent Cellular Senescence",
+      "description": "A permanent state of cell cycle withdrawal induced by p53 in response to oncogenic stress or telomere attrition."
+    },
+    {
+      "name": "p53-Mediated DNA Repair",
+      "description": "Transcriptional upregulation of genes such as GADD45 and RRM2B to maintain genomic integrity after damage."
+    },
+    {
+      "name": "p53-Regulated Metabolism",
+      "description": "Modulation of glycolysis, oxidative phosphorylation, and antioxidant response through targets like TIGAR and SCO2."
+    },
+    {
+      "name": "p53-Dependent Autophagy",
+      "description": "The induction or regulation of self-digestive catabolic processes to manage cellular stress or nutrient deprivation."
+    },
+    {
+      "name": "p53-Mediated Ferroptosis",
+      "description": "An iron-dependent form of regulated cell death promoted by p53 through the repression of cystine/glutamate antiporters."
+    },
+    {
+      "name": "p53-Dependent Inhibition of Angiogenesis",
+      "description": "The suppression of new blood vessel formation via the downregulation of pro-angiogenic factors like VEGF."
+    }
+  ],
+  "siblings:apoptosis": [
+    {
+      "name": "Intrinsic Apoptotic Signaling Pathway",
+      "description": "A pathway initiated by internal cellular stress signals that leads to mitochondrial outer membrane permeabilization."
+    },
+    {
+      "name": "Extrinsic Apoptotic Signaling Pathway",
+      "description": "A pathway initiated by the binding of extracellular death ligands to cell surface death receptors."
+    },
+    {
+      "name": "Execution Phase of Apoptosis",
+      "description": "The final stage of apoptosis characterized by the activation of executioner caspases and systemic cellular degradation."
+    },
+    {
+      "name": "Apoptotic DNA Fragmentation",
+      "description": "The biochemical process where nuclear DNA is cleaved into nucleosomal fragments by endonucleases."
+    },
+    {
+      "name": "Caspase Activation",
+      "description": "The sequential proteolytic cleavage of pro-caspases into active enzymes that drive the apoptotic process."
+    },
+    {
+      "name": "Apoptotic Body Formation",
+      "description": "The process of cell shrinkage and membrane blebbing that results in the formation of discrete membrane-bound vesicles."
+    },
+    {
+      "name": "Apoptotic Cell Clearance",
+      "description": "The recognition and engulfment of apoptotic cells or fragments by phagocytes, also known as efferocytosis."
+    }
+  ],
+  "siblings:cellular component organization or biogenesis": [
+    {
+      "name": "Cellular Component Biogenesis",
+      "description": "The process that results in the biosynthesis of constituent macromolecules and their assembly into a cellular component."
+    },
+    {
+      "name": "Cellular Component Disassembly",
+      "description": "The process that results in the breakdown of a cellular component into its constituent parts."
+    },
+    {
+      "name": "Protein Complex Subunit Organization",
+      "description": "A process that results in the formation, arrangement of constituent parts, or disassembly of a protein-containing complex."
+    },
+    {
+      "name": "External Encapsulating Structure Organization",
+      "description": "A process that results in the assembly, arrangement of constituent parts, or disassembly of an external encapsulating structure."
+    },
+    {
+      "name": "Cellular Component Maintenance",
+      "description": "The process of keeping a cellular component in a functional state over time."
+    }
+  ],
+  "parent:translational control": "Translation",
+  "parent:sting signaling pathway": "Cytosolic DNA-Sensing Pathway",
+  "parent:unfolded protein response (upr)": "Endoplasmic Reticulum Stress Response",
+  "parent:aggresome formation": "Misfolded Protein Sequestration",
+  "parent:upr-induced gene expression": "Unfolded Protein Response",
+  "parent:cell-cell junction organization": "Cell Junction Organization",
+  "parent:er stress response": "Endoplasmic Reticulum Quality Control",
+  "parent:focal adhesion assembly": "Integrin-Mediated Adhesion",
+  "parent:endoplasmic reticulum stress response": "Endoplasmic Reticulum Quality Control",
+  "parent:integrin-mediated adhesion": "Cell-Matrix Adhesion",
+  "parent:misfolded protein sequestration": "Spatial Protein Quality Control",
+  "parent:cytosolic dna-sensing pathway": "DNA Sensing",
+  "parent:cell junction organization": "Cell-Cell Communication",
+  "parent:endoplasmic reticulum quality control": "Protein Quality Control",
+  "parent:dna sensing": "Nucleic Acid Sensing",
+  "parent:cell-matrix adhesion": "Cell Adhesion",
+  "parent:spatial protein quality control": "Protein Quality Control",
+  "parent:cell-cell communication": "Intercellular Signaling",
+  "parent:nucleic acid sensing": "Pattern Recognition Receptor (PRR) Signaling",
+  "parent:cell adhesion": "Cell-Cell and Cell-Matrix Interactions",
+  "parent:cell-cell and cell-matrix interactions": "Cellular Adhesion",
+  "parent:cellular adhesion": "Cell-Cell and Cell-Matrix Interactions",
+  "siblings:mitochondrial homeostasis": [
+    {
+      "name": "Mitophagy",
+      "description": "The selective degradation of damaged or redundant mitochondria through the autophagic pathway."
+    },
+    {
+      "name": "Mitochondrial Biogenesis",
+      "description": "The process by which cells increase mitochondrial mass and number in response to metabolic demand."
+    },
+    {
+      "name": "Mitochondrial Fusion",
+      "description": "The physical merging of outer and inner mitochondrial membranes to exchange genetic material and proteins."
+    },
+    {
+      "name": "Mitochondrial Fission",
+      "description": "The division of mitochondria into smaller units to facilitate transport and quality control."
+    },
+    {
+      "name": "Mitochondrial Proteostasis",
+      "description": "The regulation of mitochondrial protein synthesis, folding, and degradation, including the unfolded protein response (UPRmt)."
+    },
+    {
+      "name": "Mitochondrial Calcium Homeostasis",
+      "description": "The regulation of calcium uptake and efflux to maintain metabolic signaling and prevent cell death."
+    },
+    {
+      "name": "Mitochondrial Redox Homeostasis",
+      "description": "The balance between the production and scavenging of reactive oxygen species within the organelle."
+    }
+  ],
+  "siblings:integrin-mediated adhesion": [
+    {
+      "name": "Focal Adhesion Disassembly",
+      "description": "The controlled breakdown of focal adhesion complexes to facilitate cellular detachment and movement."
+    },
+    {
+      "name": "Integrin Signaling",
+      "description": "The transmission of biochemical signals across the plasma membrane following integrin-ligand binding."
+    },
+    {
+      "name": "Hemidesmosome Assembly",
+      "description": "The formation of stable, integrin-linked junctions that anchor cells to the underlying basement membrane."
+    },
+    {
+      "name": "Integrin Cell Surface Interactions",
+      "description": "The initial engagement of cell-surface integrin receptors with extracellular matrix components or counter-receptors."
+    },
+    {
+      "name": "Integrin-Mediated Cell Migration",
+      "description": "The coordinated process of cell translocation driven by the dynamic regulation of integrin-based adhesions."
+    },
+    {
+      "name": "Activation of Integrins",
+      "description": "The process by which integrins undergo conformational changes to increase their affinity for ligands."
+    }
+  ],
+  "siblings:cytosolic dna-sensing pathway": [
+    {
+      "name": "AIM2 Inflammasome Pathway",
+      "description": "A pathway where the sensor AIM2 binds cytosolic double-stranded DNA to trigger the assembly of the inflammasome and activation of caspase-1."
+    },
+    {
+      "name": "DAI (ZBP1) Pathway",
+      "description": "Mediates the induction of type I interferons and other cytokines by sensing intracellular DNA through the DNA-dependent activator of IRFs."
+    },
+    {
+      "name": "IFI16 Signaling Pathway",
+      "description": "A member of the PYHIN family that senses cytosolic and nuclear DNA to induce the expression of interferon-stimulated genes."
+    },
+    {
+      "name": "RNA Polymerase III-RIG-I Pathway",
+      "description": "Converts cytosolic AT-rich DNA into 5'-triphosphate RNA, which is then recognized by the RIG-I receptor to trigger an antiviral response."
+    },
+    {
+      "name": "DHX9/DHX36 Helicase Pathways",
+      "description": "DExD/H-box helicases that act as sensors for cytosolic DNA to activate IRF7 and NF-kappaB signaling in plasmacytoid dendritic cells."
+    },
+    {
+      "name": "LRRFIP1 Signaling Pathway",
+      "description": "Recognizes double-stranded DNA and mediates the production of IFN-beta via a mechanism involving Beta-catenin."
+    },
+    {
+      "name": "cGAS-mediated Signaling",
+      "description": "Though often coupled with STING, cGAS acts as the primary enzymatic sensor that produces cGAMP upon DNA binding to initiate downstream signaling."
+    }
+  ],
+  "siblings:misfolded protein sequestration": [
+    {
+      "name": "JUNQ (Juxtanuclear Quality Control compartment)",
+      "description": "A compartment for the sequestration of soluble ubiquitinated proteins destined for proteasomal degradation."
+    },
+    {
+      "name": "IPOD (Insoluble Protein Deposit)",
+      "description": "A site for the sequestration of terminally misfolded, insoluble, or amyloidogenic proteins."
+    },
+    {
+      "name": "ALIS (Aggresome-like induced structures)",
+      "description": "Transient cytoplasmic bodies containing ubiquitinated proteins that form in response to inflammatory or oxidative stress."
+    },
+    {
+      "name": "Inclusion body formation",
+      "description": "General formation of dense protein aggregates often containing misfolded proteins, commonly observed in both prokaryotic and eukaryotic cells."
+    },
+    {
+      "name": "Nucleolar sequestration",
+      "description": "The temporary recruitment and immobilization of misfolded proteins within the nucleolus during proteotoxic stress."
+    },
+    {
+      "name": "Proteasome storage granules",
+      "description": "Cytoplasmic structures where proteasomes and misfolded substrates are sequestered during periods of metabolic transition or starvation."
+    }
+  ],
+  "siblings:cell-cell and cell-matrix interactions": [
+    {
+      "name": "Cell Junctions",
+      "description": "Specialized protein complexes that provide physical connections and communication channels between adjacent cells, including tight junctions and gap junctions."
+    },
+    {
+      "name": "Extracellular Matrix Organization",
+      "description": "The assembly, degradation, and remodeling of the structural scaffold that provides biochemical and biomechanical support to surrounding cells."
+    },
+    {
+      "name": "Intercellular Signaling",
+      "description": "The communication process where cells transmit and receive signals through direct physical contact or secreted molecules to coordinate biological activities."
+    },
+    {
+      "name": "Transendothelial Migration",
+      "description": "The process by which cells, such as leukocytes, squeeze between or through endothelial cells to move from the bloodstream into tissues."
+    },
+    {
+      "name": "Contact Inhibition",
+      "description": "A regulatory mechanism that functions to keep cells growing into a layer one cell thick, stopping movement or proliferation upon physical contact."
+    },
+    {
+      "name": "Basement Membrane Assembly",
+      "description": "The formation of the specialized extracellular matrix layer that separates epithelial or endothelial cells from underlying connective tissue."
+    }
+  ],
+  "siblings:endoplasmic reticulum quality control": [
+    {
+      "name": "ER-associated degradation (ERAD)",
+      "description": "The pathway responsible for identifying, retrotranslocating, and targeting misfolded ER proteins for proteasomal degradation."
+    },
+    {
+      "name": "Calnexin/Calreticulin Cycle",
+      "description": "A chaperone-mediated process that ensures the proper folding and quality check of newly synthesized N-linked glycoproteins."
+    },
+    {
+      "name": "ER-phagy",
+      "description": "The selective autophagy of the endoplasmic reticulum used to clear large protein aggregates or surplus membrane components."
+    },
+    {
+      "name": "ER Export and Cargo Selection",
+      "description": "The process of sorting and packaging correctly folded proteins into COPII vesicles for transport to the Golgi apparatus."
+    },
+    {
+      "name": "Protein N-glycosylation and Glycan Trimming",
+      "description": "The enzymatic modification of proteins that acts as a molecular timer to determine the folding status and fate of the polypeptide."
+    },
+    {
+      "name": "ER-to-Golgi Quality Control",
+      "description": "Mechanisms that monitor protein maturation during trafficking, including the retrieval of escaped ER-resident proteins via the KDEL receptor."
+    }
+  ],
+  "siblings:endoplasmic reticulum stress response": [
+    {
+      "name": "ER-associated degradation (ERAD)",
+      "description": "A process that identifies terminally misfolded proteins in the ER and targets them for cytosolic proteasomal degradation."
+    },
+    {
+      "name": "ER-stress-induced Apoptosis",
+      "description": "A programmed cell death pathway triggered via caspase activation when ER stress is prolonged and homeostasis cannot be restored."
+    },
+    {
+      "name": "ER-phagy",
+      "description": "A selective form of autophagy that mediates the degradation of damaged or redundant endoplasmic reticulum components."
+    },
+    {
+      "name": "Integrated Stress Response (ISR)",
+      "description": "A signaling network that overlaps with UPR branches to regulate protein synthesis via eIF2-alpha phosphorylation."
+    },
+    {
+      "name": "Calcium Homeostasis Regulation",
+      "description": "Mechanisms that adjust luminal calcium concentrations to maintain ER chaperone activity and protein folding capacity."
+    },
+    {
+      "name": "UFMylation",
+      "description": "A post-translational modification system involving the UFM1 protein that protects cells from ER-stress-induced dysfunction."
+    }
+  ],
+  "siblings:spatial protein quality control": [
+    {
+      "name": "JUNQ (Juxtanuclear Quality Control) Formation",
+      "description": "The partitioning of soluble ubiquitinated proteins to a juxtanuclear compartment for proteasomal degradation or refolding."
+    },
+    {
+      "name": "IPOD (Insoluble Protein Deposit) Formation",
+      "description": "The sequestration of terminally misfolded or amyloidogenic proteins into a perivacuolar compartment for long-term storage or autophagy."
+    },
+    {
+      "name": "Asymmetric Aggregate Segregation",
+      "description": "The selective partitioning of damaged protein aggregates to a single daughter cell during mitosis to ensure the rejuvenation of the other."
+    },
+    {
+      "name": "Nucleolar Protein Sequestration",
+      "description": "The transient storage of misfolded proteins within the nucleolus to prevent toxic interactions during proteotoxic stress."
+    },
+    {
+      "name": "Aggrephagy",
+      "description": "The selective autophagic pathway responsible for the recognition and degradation of sequestered protein aggregates."
+    },
+    {
+      "name": "INQ (Intranuclear Quality Control) Formation",
+      "description": "The deposition of misfolded nuclear or cytosolic proteins into a specific site within the nucleus for management."
+    },
+    {
+      "name": "Stress Granule Assembly",
+      "description": "The formation of cytoplasmic ribonucleoprotein complexes to protect translation machinery and specific proteins during stress."
+    }
+  ],
+  "siblings:cell junction organization": [
+    {
+      "name": "Cell-Extracellular Matrix Junction Organization",
+      "description": "The assembly and maintenance of junctional complexes that anchor the cell to the extracellular matrix."
+    },
+    {
+      "name": "Cell-Substrate Junction Organization",
+      "description": "The organizational processes surrounding junctions that connect cells to a non-cellular underlying substrate."
+    },
+    {
+      "name": "Hemidesmosome Assembly",
+      "description": "The specific formation of stable adhesive complexes that link the intermediate filament cytoskeleton to the basement membrane."
+    },
+    {
+      "name": "Focal Adhesion Assembly",
+      "description": "The dynamic organization of multi-protein structures connecting the actin cytoskeleton to the extracellular matrix via integrins."
+    },
+    {
+      "name": "Integrin-mediated Cell-Matrix Adhesion",
+      "description": "The signaling and structural processes regulating the interaction between cell surface integrins and the surrounding matrix."
+    }
+  ],
+  "siblings:dna sensing": [
+    {
+      "name": "TLR9 Signaling Pathway",
+      "description": "Recognition of unmethylated CpG DNA motifs within the endosomal compartment by Toll-like receptor 9."
+    },
+    {
+      "name": "AIM2 Inflammasome Pathway",
+      "description": "Detection of cytosolic double-stranded DNA by the AIM2 protein, leading to the activation of caspase-1 and inflammation."
+    },
+    {
+      "name": "RNA Polymerase III-RIG-I Pathway",
+      "description": "Conversion of AT-rich DNA into 5-prime-triphosphate RNA by RNA Polymerase III, which is then detected by the RIG-I receptor."
+    },
+    {
+      "name": "IFI16 Signaling Pathway",
+      "description": "A nuclear and cytosolic sensing mechanism where IFI16 detects viral DNA to initiate interferon-beta production."
+    },
+    {
+      "name": "ZBP1/DAI Pathway",
+      "description": "Sensing of cytosolic DNA or Z-form DNA by Z-DNA binding protein 1 to induce pro-inflammatory cytokines and necroptosis."
+    },
+    {
+      "name": "DHX9/DHX36 Signaling",
+      "description": "DExD/H-box helicases that function as DNA sensors to induce type I interferon production in plasmacytoid dendritic cells."
+    }
+  ],
+  "siblings:cell-cell communication": [
+    {
+      "name": "Cell-cell adhesion molecules (CAMs)",
+      "description": "Proteins on the cell surface involved in binding with other cells or the extracellular matrix to mediate cell-cell recognition."
+    },
+    {
+      "name": "Chemical synaptic transmission",
+      "description": "The process by which signaling molecules called neurotransmitters are released by a neuron and activate receptors of another neuron."
+    },
+    {
+      "name": "Gap junction trafficking",
+      "description": "The regulation, transport, and assembly of connexin proteins into channels that allow direct intercellular communication."
+    },
+    {
+      "name": "Neurexins and neuroligins",
+      "description": "Cell surface molecules that interact across the synaptic cleft to facilitate the maturation and function of synapses."
+    },
+    {
+      "name": "Synaptic adhesion-like molecules",
+      "description": "A family of adhesion molecules involved in the formation, maintenance, and plasticity of neuronal synaptic connections."
+    },
+    {
+      "name": "Intercellular signal transduction",
+      "description": "The relay of molecular signals from a sender cell to a receiver cell to coordinate physiological responses."
+    }
+  ],
+  "siblings:nucleic acid sensing": [
+    {
+      "name": "RIG-I-like Receptor (RLR) Signaling",
+      "description": "The detection of cytosolic double-stranded and 5'-triphosphate RNA by sensors such as RIG-I and MDA5."
+    },
+    {
+      "name": "Toll-like Receptor 3 (TLR3) Signaling",
+      "description": "An endosomal pathway dedicated to the recognition of double-stranded RNA (dsRNA)."
+    },
+    {
+      "name": "Toll-like Receptor 7/8 (TLR7/8) Signaling",
+      "description": "The endosomal sensing of single-stranded RNA (ssRNA) typically derived from viruses or damaged cells."
+    },
+    {
+      "name": "RNA Polymerase III Pathway",
+      "description": "A mechanism that transcribes cytosolic DNA into 5'-triphosphate RNA, which is subsequently detected by the RIG-I receptor."
+    },
+    {
+      "name": "OAS-RNase L Pathway",
+      "description": "The activation of 2'-5' oligoadenylate synthetase by double-stranded RNA, leading to RNA degradation and inhibition of viral replication."
+    },
+    {
+      "name": "Protein Kinase R (PKR) Activation",
+      "description": "A double-stranded RNA-dependent protein kinase pathway that inhibits translation as part of the antiviral response."
+    }
+  ],
+  "siblings:unfolded protein response": [
+    {
+      "name": "PERK-mediated translation attenuation",
+      "description": "Phosphorylation of eIF2 alpha by PERK to reduce the overall protein synthesis rate and lower the ER load."
+    },
+    {
+      "name": "IRE1 alpha-mediated XBP1 splicing",
+      "description": "The processing of XBP1 mRNA by activated IRE1 to produce a functional transcription factor for foldases and ERAD components."
+    },
+    {
+      "name": "ATF6 alpha-mediated proteolysis",
+      "description": "The translocation of ATF6 to the Golgi for cleavage by S1P and S2P proteases, releasing its cytosolic transcription factor domain."
+    },
+    {
+      "name": "ER-associated degradation (ERAD)",
+      "description": "The process of identifying, retro-translocating, and degrading misfolded ER proteins via the ubiquitin-proteasome system."
+    },
+    {
+      "name": "Regulated IRE1-dependent decay (RIDD)",
+      "description": "The degradation of specific ER-localized mRNAs and microRNAs by IRE1 to further reduce protein influx into the ER."
+    },
+    {
+      "name": "ER stress-induced apoptosis",
+      "description": "Signaling cascades, often involving CHOP and JNK, that trigger programmed cell death when ER stress is persistent or severe."
+    }
+  ],
+  "parent:non-homologous end joining": "DNA Double-Strand Break Repair",
+  "parent:translation inhibition": "Translational Control",
+  "parent:spliceosomal snrnp assembly": "snRNP Biogenesis",
+  "parent:nf-kappab signaling": "Pro-inflammatory Signaling",
+  "parent:microrna biogenesis": "Small RNA Processing",
+  "parent:mrna nuclear export": "RNA Export",
+  "parent:regulation of translation": "Translation",
+  "parent:ribonucleoprotein complex assembly": "Ribonucleoprotein Complex Biogenesis",
+  "parent:small rna processing": "Non-coding RNA Processing",
+  "parent:ribonucleoprotein complex biogenesis": "Cellular Component Biogenesis",
+  "parent:snrnp biogenesis": "RNA Splicing",
+  "parent:pro-inflammatory signaling": "Inflammatory Signaling",
+  "parent:rna splicing": "Pre-mRNA Processing",
+  "parent:non-coding rna processing": "RNA Processing",
+  "parent:inflammatory signaling": "Innate Immune Signaling",
+  "parent:pre-mrna processing": "mRNA Processing",
+  "siblings:cellular response to stimulus": [
+    {
+      "name": "Cellular response to stress",
+      "description": "A change in state or activity of a cell resulting from a disturbance such as oxidative stress or protein folding stress."
+    },
+    {
+      "name": "Cellular response to chemical stimulus",
+      "description": "The process where a cell changes its state or activity due to the detection of a chemical substance."
+    },
+    {
+      "name": "Cellular response to external stimulus",
+      "description": "A change in cell state or activity resulting from a stimulus originating outside the organism or cell."
+    },
+    {
+      "name": "Cellular response to endogenous stimulus",
+      "description": "The process in which a cell changes its state or activity as a result of an internal signal like a hormone or cytokine."
+    },
+    {
+      "name": "Cellular response to DNA damage stimulus",
+      "description": "A set of molecular signals and actions triggered by damage to the cellular DNA, often leading to repair or apoptosis."
+    },
+    {
+      "name": "Cellular response to heat",
+      "description": "Specific cellular changes, such as the induction of heat shock proteins, in response to an increase in temperature."
+    }
+  ],
+  "siblings:rna export": [
+    {
+      "name": "tRNA Nuclear Export",
+      "description": "The transport of mature transfer RNAs from the nucleus to the cytoplasm, primarily mediated by the nuclear export receptor Exportin-t."
+    },
+    {
+      "name": "rRNA Nuclear Export",
+      "description": "The coordinated movement of ribosomal RNA subunits (40S and 60S) from the nucleolus through nuclear pore complexes to the cytoplasm."
+    },
+    {
+      "name": "snRNA Nuclear Export",
+      "description": "The export of small nuclear RNAs, such as U1, U2, U4, and U5, which are transported to the cytoplasm for assembly into snRNP particles."
+    },
+    {
+      "name": "miRNA Nuclear Export",
+      "description": "The translocation of precursor microRNAs (pre-miRNAs) from the nucleus to the cytoplasm, typically facilitated by the Exportin-5 protein."
+    },
+    {
+      "name": "lncRNA Nuclear Export",
+      "description": "The regulated transport of long non-coding RNAs from the nucleus to specific cytoplasmic locations to perform regulatory or structural roles."
+    }
+  ],
+  "siblings:non-coding rna processing": [
+    {
+      "name": "rRNA Processing",
+      "description": "The series of steps through which a precursor ribosomal RNA transcript is converted into mature ribosomal RNA molecules."
+    },
+    {
+      "name": "tRNA Processing",
+      "description": "The maturation of transfer RNA including 5' and 3' end cleavage, base modifications, and CCA tail addition."
+    },
+    {
+      "name": "snRNA Processing",
+      "description": "The process of maturing small nuclear RNAs which are critical components of the spliceosome."
+    },
+    {
+      "name": "snoRNA Processing",
+      "description": "The biogenesis and maturation of small nucleolar RNAs that guide chemical modifications of other RNAs."
+    },
+    {
+      "name": "lncRNA Processing",
+      "description": "The post-transcriptional maturation of long non-coding RNAs including capping, splicing, and polyadenylation."
+    },
+    {
+      "name": "Vault RNA Processing",
+      "description": "The biochemical pathways responsible for the maturation of RNAs associated with vault ribonucleoprotein complexes."
+    }
+  ],
+  "siblings:translational control": [
+    {
+      "name": "Translation Initiation Regulation",
+      "description": "The process of controlling the assembly of the eukaryotic initiation factor complex and the recruitment of the 40S ribosomal subunit."
+    },
+    {
+      "name": "Translation Elongation Regulation",
+      "description": "Mechanisms that modulate the rate of peptide chain extension, often through the phosphorylation of eukaryotic elongation factor 2."
+    },
+    {
+      "name": "Translation Termination Regulation",
+      "description": "The control of polypeptide release and ribosome recycling, ensuring the proper completion of protein synthesis."
+    },
+    {
+      "name": "mRNA Sequestration",
+      "description": "The localization of mRNA into stress granules or P-bodies to temporarily remove them from the active translation pool."
+    },
+    {
+      "name": "IRES-mediated Translation",
+      "description": "An alternative initiation pathway where ribosomes are recruited to internal ribosome entry sites, bypassing standard cap-dependent mechanisms."
+    },
+    {
+      "name": "Ribosome Biogenesis Regulation",
+      "description": "The control of the production and assembly of ribosomal RNA and proteins, defining the cell's total translational capacity."
+    },
+    {
+      "name": "uORF-mediated Regulation",
+      "description": "The use of upstream open reading frames to modulate the translation efficiency of the primary downstream protein-coding sequence."
+    }
+  ],
+  "siblings:inflammatory signaling": [
+    {
+      "name": "Anti-inflammatory Signaling",
+      "description": "Signaling pathways that downregulate the production of pro-inflammatory cytokines and suppress immune responses."
+    },
+    {
+      "name": "Pro-resolving Signaling",
+      "description": "Active biochemical processes mediated by specialized mediators that facilitate the termination of inflammation and promote tissue repair."
+    },
+    {
+      "name": "Feedback Inhibition Signaling",
+      "description": "Intrinsic cellular mechanisms, such as SOCS proteins, that act as negative feedback loops to attenuate ongoing inflammatory signals."
+    },
+    {
+      "name": "Regulatory Signaling",
+      "description": "Signaling mediated by regulatory immune cells to modulate the magnitude of the immune response and prevent autoimmunity."
+    },
+    {
+      "name": "Homeostatic Signaling",
+      "description": "Basal level signaling required for tissue maintenance and physiological immune surveillance without active inflammatory recruitment."
+    },
+    {
+      "name": "Chronic Inflammatory Signaling",
+      "description": "Dysregulated, persistent signaling patterns that fail to resolve and lead to long-term tissue damage."
+    }
+  ],
+  "siblings:proteasomal protein degradation": [
+    {
+      "name": "Ubiquitin-Independent Proteasomal Protein Catabolic Process",
+      "description": "The degradation of specific proteins by the proteasome complex without the requirement for prior polyubiquitination."
+    },
+    {
+      "name": "Endoplasmic Reticulum-Associated Degradation (ERAD)",
+      "description": "A pathway that targets misfolded proteins in the endoplasmic reticulum for retrotranslocation and degradation by the proteasome."
+    },
+    {
+      "name": "Mitochondria-Associated Degradation (MAD)",
+      "description": "The process of extracting and degrading damaged or misfolded mitochondrial proteins via the cytosolic proteasome."
+    },
+    {
+      "name": "Immunoproteasome-Mediated Protein Degradation",
+      "description": "Degradation of proteins by a specialized proteasome isoform to generate peptides optimized for MHC class I antigen presentation."
+    },
+    {
+      "name": "Thymoproteasome-Mediated Protein Degradation",
+      "description": "Specialized proteasomal activity in cortical thymic epithelial cells essential for the positive selection of T-cells."
+    },
+    {
+      "name": "Proteasome-Mediated Degradation of Nuclear Proteins",
+      "description": "Targeted proteolysis of transcription factors and nuclear proteins within the nucleus to regulate gene expression."
+    },
+    {
+      "name": "Regulation of Proteasomal Protein Catabolic Process",
+      "description": "Any biological process that modulates the frequency, rate, or extent of protein degradation by the proteasome."
+    }
+  ],
+  "siblings:dna double-strand break repair": [
+    {
+      "name": "Homologous Recombination",
+      "description": "A high-fidelity repair mechanism that uses a homologous DNA sequence, typically a sister chromatid, as a template for accurate repair."
+    },
+    {
+      "name": "Microhomology-Mediated End Joining",
+      "description": "An error-prone repair pathway that utilizes short homologous sequences flanking a break to align and ligate DNA ends."
+    },
+    {
+      "name": "Single-Strand Annealing",
+      "description": "A repair mechanism initiated by extensive end resection that anneals homologous repeat sequences, resulting in the loss of intervening DNA."
+    },
+    {
+      "name": "Break-Induced Replication",
+      "description": "A specialized pathway for repairing one-ended double-strand breaks by invading a homologous template and replicating to the chromosome end."
+    },
+    {
+      "name": "Synthesis-Dependent Strand Annealing",
+      "description": "A sub-pathway of homologous recombination that results in gene conversion without crossing over by displacing the extended strand."
+    }
+  ],
+  "siblings:small rna processing": [
+    {
+      "name": "siRNA Biogenesis",
+      "description": "The enzymatic processing of long double-stranded RNAs into small interfering RNAs by Dicer or Dicer-like proteins."
+    },
+    {
+      "name": "piRNA Biogenesis",
+      "description": "The formation of Piwi-interacting RNAs through primary biogenesis and the secondary amplification (ping-pong) cycle."
+    },
+    {
+      "name": "tsRNA Biogenesis",
+      "description": "The cleavage of mature or precursor transfer RNAs into tRNA-derived small RNAs or fragments."
+    },
+    {
+      "name": "snoRNA Processing",
+      "description": "The maturation of small nucleolar RNAs from host gene introns or independent polycistronic transcripts."
+    },
+    {
+      "name": "rsRNA Biogenesis",
+      "description": "The generation of regulatory small RNAs derived from the processing of ribosomal RNA transcripts."
+    },
+    {
+      "name": "snRNA Processing",
+      "description": "The assembly and maturation steps of small nuclear RNAs required for the formation of the spliceosome."
+    },
+    {
+      "name": "vRNA Processing",
+      "description": "The processing of vault RNAs into small vault RNAs that regulate gene expression and cell signaling."
+    }
+  ],
+  "siblings:snrnp biogenesis": [
+    {
+      "name": "U7 snRNP Biogenesis",
+      "description": "The formation of the U7 small nuclear ribonucleoprotein complex involved in the 3-prime end processing of histone pre-mRNAs."
+    },
+    {
+      "name": "Export of snRNA",
+      "description": "The mediated transport of newly transcribed small nuclear RNAs from the nucleus to the cytoplasm for further maturation."
+    },
+    {
+      "name": "Nuclear Import of snRNPs",
+      "description": "The active transport of assembled snRNP particles from the cytoplasm back into the nucleus to perform splicing functions."
+    },
+    {
+      "name": "Assembly of the Sm core",
+      "description": "The coordinated loading of Sm proteins onto the conserved Sm-binding site of snRNAs, a critical step in snRNP maturation."
+    },
+    {
+      "name": "Minor spliceosomal snRNP assembly",
+      "description": "The specific biogenesis pathways for snRNPs such as U11, U12, U4atac, and U6atac involved in the minor spliceosome."
+    }
+  ],
+  "siblings:pro-inflammatory signaling": [
+    {
+      "name": "MAPK Signaling Pathway",
+      "description": "Consists of p38, JNK, and ERK cascades that mediate cellular responses to external stress and pro-inflammatory cytokines."
+    },
+    {
+      "name": "JAK-STAT Signaling Pathway",
+      "description": "Transmits signals from extracellular chemical signals, such as interleukins and interferons, directly to the nucleus for gene transcription."
+    },
+    {
+      "name": "Toll-like Receptor (TLR) Signaling",
+      "description": "A primary innate immune pathway that recognizes pathogen-associated molecular patterns to initiate the inflammatory response."
+    },
+    {
+      "name": "TNF-alpha Signaling Pathway",
+      "description": "Activated by Tumor Necrosis Factor alpha to regulate systemic inflammation and programmed cell death."
+    },
+    {
+      "name": "Inflammasome Signaling",
+      "description": "A multiprotein complex pathway that activates caspase-1, leading to the maturation and secretion of IL-1beta and IL-18."
+    },
+    {
+      "name": "AP-1 Signaling Pathway",
+      "description": "A transcription factor-driven pathway that works in conjunction with NF-kappaB to regulate the expression of inflammatory mediators."
+    },
+    {
+      "name": "cGAS-STING Signaling Pathway",
+      "description": "Detects cytosolic DNA as a danger signal to induce type I interferons and other pro-inflammatory cytokines."
+    }
+  ],
+  "siblings:pre-mrna processing": [
+    {
+      "name": "5' Capping",
+      "description": "The addition of a 7-methylguanosine cap to the 5' end of the nascent pre-mRNA transcript."
+    },
+    {
+      "name": "3' Cleavage and Polyadenylation",
+      "description": "The enzymatic cleavage of the pre-mRNA transcript followed by the addition of a polyadenosine tail."
+    },
+    {
+      "name": "RNA Editing",
+      "description": "The process of site-specific alteration of RNA sequences, such as A-to-I or C-to-U conversions."
+    },
+    {
+      "name": "mRNA Export from Nucleus",
+      "description": "The translocation of processed mRNA through the nuclear pore complex into the cytoplasm."
+    },
+    {
+      "name": "N6-methyladenosine (m6A) Methylation",
+      "description": "A prevalent internal chemical modification of the pre-mRNA that influences stability and translation."
+    },
+    {
+      "name": "Transcription Termination",
+      "description": "The process by which RNA polymerase stops transcribing and releases the pre-mRNA molecule."
+    }
+  ],
+  "siblings:cell-matrix adhesion": [
+    {
+      "name": "Hemidesmosome Assembly",
+      "description": "Specialized adhesion complexes linking intermediate filaments to the basement membrane."
+    },
+    {
+      "name": "Syndecan-Mediated Signaling",
+      "description": "Interactions involving heparan sulfate proteoglycans that modulate cell-matrix binding."
+    },
+    {
+      "name": "CD44-Hyaluronan Interaction",
+      "description": "Cell surface receptor binding to hyaluronan-rich extracellular matrices."
+    },
+    {
+      "name": "Dystroglycan-Mediated Adhesion",
+      "description": "Transmembrane linkage between laminin in the basement membrane and the cytoskeleton."
+    },
+    {
+      "name": "Discoidin Domain Receptor Signaling",
+      "description": "Collagen-activated receptor tyrosine kinases that coordinate cell attachment and matrix remodeling."
+    },
+    {
+      "name": "Tenascin-Mediated Adhesion",
+      "description": "Cellular interactions with tenascins, large oligomeric glycoproteins of the extracellular matrix."
+    }
+  ],
+  "siblings:ribonucleoprotein complex biogenesis": [
+    {
+      "name": "Ribosome Biogenesis",
+      "description": "The multi-step process of synthesizing and assembling ribosomal RNA and proteins into functional ribosomes."
+    },
+    {
+      "name": "snRNP Assembly",
+      "description": "The pathway responsible for forming small nuclear ribonucleoprotein particles required for pre-mRNA splicing."
+    },
+    {
+      "name": "snoRNP Assembly",
+      "description": "The assembly of small nucleolar ribonucleoproteins involved in the modification and processing of ribosomal RNA."
+    },
+    {
+      "name": "Telomerase Holoenzyme Assembly",
+      "description": "The coordinated formation of the telomerase complex consisting of telomerase reverse transcriptase and telomerase RNA."
+    },
+    {
+      "name": "Signal Recognition Particle Assembly",
+      "description": "The biogenesis of the RNP complex that mediates the targeting of nascent proteins to the endoplasmic reticulum."
+    },
+    {
+      "name": "Ribonucleoprotein Complex Localization",
+      "description": "The biological process of transporting and positioning ribonucleoprotein complexes to their functional cellular sites."
+    },
+    {
+      "name": "RNA-Protein Complex Subunit Organization",
+      "description": "The process resulting in the assembly, arrangement, or disassembly of the protein and RNA subunits of an RNP complex."
+    }
+  ],
+  "siblings:cellular component biogenesis": [
+    {
+      "name": "Mitochondrion Biogenesis",
+      "description": "The cellular process resulting in the formation, organization, or maintenance of a mitochondrion."
+    },
+    {
+      "name": "Cell Wall Biogenesis",
+      "description": "The synthesis and assembly of the structural components that form the cell wall."
+    },
+    {
+      "name": "Membrane Biogenesis",
+      "description": "The process of forming new biological membranes through the synthesis and assembly of lipids and proteins."
+    },
+    {
+      "name": "Cilium Assembly",
+      "description": "The formation and structural organization of a cilium, including the assembly of the microtubule axoneme."
+    },
+    {
+      "name": "Cytoskeleton Organization",
+      "description": "The assembly, disassembly, or arrangement of the cytoskeleton components such as microtubules and actin filaments."
+    },
+    {
+      "name": "Protein Complex Assembly",
+      "description": "The process of aggregating and arranging multiple protein subunits to form a stable, functional complex."
+    }
+  ],
+  "siblings:mitochondrial quality control": [
+    {
+      "name": "Mitophagy",
+      "description": "The selective degradation of damaged or redundant mitochondria through the autophagic pathway to prevent cellular dysfunction."
+    },
+    {
+      "name": "Mitochondrial Biogenesis",
+      "description": "The process of generating new mitochondria to maintain or increase mitochondrial mass and metabolic capacity."
+    },
+    {
+      "name": "Mitochondrial Fusion",
+      "description": "The merging of two mitochondria to exchange proteins, lipids, and mtDNA, helping to buffer local damage."
+    },
+    {
+      "name": "Mitochondrial Fission",
+      "description": "The division of a mitochondrion into smaller units, facilitating organelle distribution and the isolation of damaged segments."
+    },
+    {
+      "name": "Mitochondrial Proteostasis",
+      "description": "The maintenance of the mitochondrial proteome via chaperones, proteases, and the mitochondrial unfolded protein response (UPRmt)."
+    },
+    {
+      "name": "Mitochondrial-derived Vesicles (MDVs)",
+      "description": "Small vesicles that transport cargo from the mitochondria to lysosomes or peroxisomes for the targeted removal of damaged proteins."
+    }
+  ],
+  "siblings:rna splicing": [
+    {
+      "name": "Major Pathway of RNA Splicing",
+      "description": "The primary mechanism for removing U2-type introns from pre-mRNA using the major spliceosome."
+    },
+    {
+      "name": "Minor Pathway of RNA Splicing",
+      "description": "The mechanism for removing rare U12-type introns using a specialized minor spliceosome."
+    },
+    {
+      "name": "Alternative Splicing",
+      "description": "The regulated process of selecting different splice sites to produce multiple protein isoforms from one gene."
+    },
+    {
+      "name": "Exon Junction Complex (EJC) Assembly",
+      "description": "The deposition of protein complexes at splice junctions to assist in mRNA transport and surveillance."
+    },
+    {
+      "name": "Lariat Removal and Degradation",
+      "description": "The enzymatic debranching and breakdown of excised introns to recycle nucleotides and factors."
+    },
+    {
+      "name": "Spliceosome Disassembly and Recycling",
+      "description": "The process of releasing components from the post-catalytic spliceosome for use in future splicing events."
+    }
+  ],
+  "parent:transcription-coupled nucleotide excision repair": "Nucleotide Excision Repair",
+  "parent:ephrin receptor signaling pathway": "Receptor Tyrosine Kinase (RTK) Signaling",
+  "parent:nod-like receptor (nlr) signaling": "Pattern Recognition Receptor (PRR) Signaling",
+  "parent:toll-like receptor (tlr) signaling": "Pattern Recognition Receptor (PRR) Signaling",
+  "parent:proteasomal degradation": "Ubiquitin-Proteasome System",
+  "parent:protein deubiquitination": "Ubiquitin-Mediated Protein Modification",
+  "parent:post-translational modification": "Protein Processing",
+  "parent:regulation of transcription": "Transcription",
+  "parent:p53 signaling pathway": "Apoptosis Signaling",
+  "parent:ubiquitin-mediated protein modification": "Post-Translational Protein Modification",
+  "parent:receptor tyrosine kinase (rtk) signaling": "Enzyme-Linked Receptor Signaling",
+  "parent:enzyme-linked receptor signaling": "Cell Surface Receptor Signaling",
+  "parent:cell surface receptor signaling": "Extracellular Signal Transduction",
+  "parent:extracellular signal transduction": "Cellular Signaling",
+  "siblings:post-translational protein modification": [
+    {
+      "name": "Phosphorylation",
+      "description": "The addition of a phosphate group to a protein, typically on serine, threonine, or tyrosine residues, to regulate activity."
+    },
+    {
+      "name": "Glycosylation",
+      "description": "The attachment of carbohydrate chains to proteins, essential for protein folding, stability, and cell-cell recognition."
+    },
+    {
+      "name": "Acetylation",
+      "description": "The addition of an acetyl group, often occurring on lysine residues of histones to regulate gene expression."
+    },
+    {
+      "name": "Methylation",
+      "description": "The transfer of methyl groups to amino acids like lysine or arginine, frequently involved in epigenetic regulation."
+    },
+    {
+      "name": "Lipidation",
+      "description": "The covalent attachment of lipid groups, such as myristoyl or palmitoyl groups, to facilitate membrane anchoring."
+    },
+    {
+      "name": "SUMOylation",
+      "description": "The covalent attachment of Small Ubiquitin-like Modifier (SUMO) proteins to regulate nuclear-cytosolic transport and transcriptional activity."
+    },
+    {
+      "name": "Proteolysis",
+      "description": "The targeted cleavage of peptide bonds by proteases to activate, deactivate, or degrade proteins."
+    }
+  ],
+  "siblings:enzyme-linked receptor signaling": [
+    {
+      "name": "Receptor Serine/Threonine Kinase Signaling",
+      "description": "Signaling via receptors with intrinsic serine/threonine kinase activity, primarily utilized by the TGF-beta superfamily."
+    },
+    {
+      "name": "Tyrosine Kinase-Associated Receptors",
+      "description": "Receptors lacking intrinsic enzymatic activity that signal by recruiting and activating non-covalently bound cytoplasmic tyrosine kinases like JAK."
+    },
+    {
+      "name": "Receptor Guanylyl Cyclases",
+      "description": "Receptors that catalyze the conversion of GTP to the second messenger cGMP upon extracellular ligand binding."
+    },
+    {
+      "name": "Receptor Tyrosine Phosphatases",
+      "description": "Receptors that act by removing phosphate groups from tyrosine residues on specific intracellular signaling proteins."
+    },
+    {
+      "name": "Histidine-Kinase-Associated Receptors",
+      "description": "Receptors that signal through a mechanism involving the autophosphorylation of a histidine residue, commonly found in bacterial chemotaxis."
+    }
+  ],
+  "siblings:transcription": [
+    {
+      "name": "RNA Polymerase I Transcription",
+      "description": "The process of synthesizing ribosomal RNA precursors by RNA polymerase I."
+    },
+    {
+      "name": "RNA Polymerase II Transcription",
+      "description": "The synthesis of messenger RNA and various non-coding RNAs by RNA polymerase II."
+    },
+    {
+      "name": "RNA Polymerase III Transcription",
+      "description": "The synthesis of small RNAs like transfer RNA and 5S ribosomal RNA by RNA polymerase III."
+    },
+    {
+      "name": "Transcription Initiation",
+      "description": "The assembly of the transcription machinery at the promoter region of a gene."
+    },
+    {
+      "name": "Transcription Elongation",
+      "description": "The phase where RNA polymerase synthesizes a complementary RNA strand from the DNA template."
+    },
+    {
+      "name": "Transcription Termination",
+      "description": "The phase where the RNA polymerase stops transcription and releases the newly synthesized RNA."
+    },
+    {
+      "name": "Mitochondrial Transcription",
+      "description": "The expression of genes encoded within the mitochondrial genome."
+    }
+  ],
+  "siblings:ubiquitin-mediated protein modification": [
+    {
+      "name": "Ubiquitin Activation",
+      "description": "The initial ATP-dependent step where ubiquitin is activated by an E1 enzyme via the formation of a high-energy thioester bond."
+    },
+    {
+      "name": "Ubiquitin Conjugation",
+      "description": "The transfer of activated ubiquitin from an E1 enzyme to an E2 ubiquitin-conjugating enzyme."
+    },
+    {
+      "name": "Ubiquitin Ligation",
+      "description": "The final step of the cascade where an E3 ligase facilitates the covalent attachment of ubiquitin to a lysine residue on the target substrate."
+    },
+    {
+      "name": "Monoubiquitination",
+      "description": "The addition of a single ubiquitin molecule to a substrate, typically regulating processes such as endocytosis, histone regulation, and nuclear transport."
+    },
+    {
+      "name": "K48-linked Polyubiquitination",
+      "description": "The formation of ubiquitin chains linked via Lysine 48, which serves as the primary signal for targeting proteins to the 26S proteasome for degradation."
+    },
+    {
+      "name": "K63-linked Polyubiquitination",
+      "description": "The assembly of ubiquitin chains linked via Lysine 63, involved in non-proteolytic signaling, DNA damage repair, and inflammatory responses."
+    },
+    {
+      "name": "Linear Ubiquitination",
+      "description": "The head-to-tail assembly of ubiquitin chains linked via the N-terminal methionine (M1), predominantly involved in the regulation of NF-kappaB signaling."
+    }
+  ],
+  "siblings:cell surface receptor signaling": [
+    {
+      "name": "G Protein-Coupled Receptor Signaling",
+      "description": "Transduction of signals through seven-transmembrane receptors that activate heterotrimeric G proteins."
+    },
+    {
+      "name": "Ion Channel-Linked Receptor Signaling",
+      "description": "Signaling where ligand binding induces a conformational change that opens or closes a transmembrane ion pore."
+    },
+    {
+      "name": "Cytokine Receptor Signaling",
+      "description": "Signaling through receptors that lack intrinsic enzymatic activity and rely on recruited kinases like JAKs."
+    },
+    {
+      "name": "Integrin Signaling",
+      "description": "Mechanotransduction and chemical signaling resulting from cell adhesion to the extracellular matrix."
+    },
+    {
+      "name": "Notch Signaling",
+      "description": "A juxtacrine signaling mechanism involving the proteolytic cleavage of the Notch receptor upon contact with adjacent cell ligands."
+    },
+    {
+      "name": "Wnt Signaling",
+      "description": "Pathway regulating cell fate and development through the stabilization of beta-catenin or calcium release."
+    },
+    {
+      "name": "Hedgehog Signaling",
+      "description": "A pathway essential for embryonic development that regulates gene expression via the Gli family of transcription factors."
+    }
+  ],
+  "siblings:cell adhesion": [
+    {
+      "name": "Cell-Cell Adhesion",
+      "description": "The interaction and attachment of a cell to another cell via cell-surface adhesion molecules like cadherins."
+    },
+    {
+      "name": "Adherens Junctions",
+      "description": "Protein complexes that link the actin cytoskeletons of adjacent cells to provide structural cohesion."
+    },
+    {
+      "name": "Tight Junctions",
+      "description": "Specialized connections that seal adjacent cells together to form a barrier that limits the passage of molecules."
+    },
+    {
+      "name": "Desmosomes",
+      "description": "Junctional complexes that join intermediate filaments of neighboring cells, providing high tensile strength."
+    },
+    {
+      "name": "Gap Junctions",
+      "description": "Intercellular channels that permit the direct transfer of ions and small signaling molecules between cells."
+    },
+    {
+      "name": "Leukocyte-Endothelial Adhesion",
+      "description": "The process involving selectins and integrins that allows white blood cells to bind to the vascular wall during inflammation."
+    }
+  ],
+  "siblings:transmembrane transport": [
+    {
+      "name": "Protein Translocation",
+      "description": "The movement of proteins across or into a biological membrane, often occurring co-translationally or post-translationally."
+    },
+    {
+      "name": "RNA Transport",
+      "description": "The directed movement of various RNA species across membranes, most notably across the nuclear envelope via the nuclear pore complex."
+    },
+    {
+      "name": "Vesicle-mediated Transport",
+      "description": "The transport of molecules and substances between membrane-bound compartments using transport vesicles."
+    },
+    {
+      "name": "Ion Transport",
+      "description": "The regulated movement of ions through specialized transmembrane channels, carriers, or active pumps to maintain electrochemical gradients."
+    },
+    {
+      "name": "Macromolecule Transport",
+      "description": "The process of moving large molecules, such as complex polysaccharides or lipid complexes, across membrane barriers."
+    },
+    {
+      "name": "Subcellular Organelle Transport",
+      "description": "The movement of solutes and molecules across the specific membranes of organelles like mitochondria, peroxisomes, or the endoplasmic reticulum."
+    }
+  ],
+  "siblings:receptor tyrosine kinase (rtk) signaling": [
+    {
+      "name": "Epidermal Growth Factor Receptor (EGFR) Signaling",
+      "description": "Regulates cell growth, proliferation, and survival through the binding of EGF-family ligands."
+    },
+    {
+      "name": "Fibroblast Growth Factor Receptor (FGFR) Signaling",
+      "description": "Essential for embryonic development, angiogenesis, and wound healing processes."
+    },
+    {
+      "name": "Insulin Receptor Signaling",
+      "description": "The primary mediator of glucose homeostasis and metabolic regulation in response to insulin."
+    },
+    {
+      "name": "Vascular Endothelial Growth Factor Receptor (VEGFR) Signaling",
+      "description": "A critical pathway for the stimulation of angiogenesis and vascular permeability."
+    },
+    {
+      "name": "Platelet-Derived Growth Factor Receptor (PDGFR) Signaling",
+      "description": "Involved in the regulation of cell migration, proliferation, and survival, particularly in mesenchymal cells."
+    },
+    {
+      "name": "Trk Receptor Signaling",
+      "description": "Activated by neurotrophins to promote neuronal survival, development, and synaptic plasticity."
+    },
+    {
+      "name": "MET Signaling",
+      "description": "Mediated by hepatocyte growth factor to regulate cell motility, invasive growth, and tissue regeneration."
+    }
+  ],
+  "siblings:extracellular signal transduction": [
+    {
+      "name": "Intracellular Receptor Signaling",
+      "description": "Transduction involving lipophilic signaling molecules that diffuse across the cell membrane to bind receptors located in the cytoplasm or nucleus."
+    },
+    {
+      "name": "Gap Junction Signaling",
+      "description": "The direct transmission of ions and small signaling molecules between adjacent cells through specialized protein channels known as connexons."
+    },
+    {
+      "name": "Extracellular Matrix Mediated Signaling",
+      "description": "Signaling initiated by the physical and chemical interaction of a cell with its surrounding matrix, typically via integrin receptors."
+    },
+    {
+      "name": "Juxtacrine Signaling",
+      "description": "A contact-dependent signaling mechanism where membrane-bound ligands on the surface of one cell interact directly with receptors on a neighboring cell."
+    },
+    {
+      "name": "Exosome-mediated Signaling",
+      "description": "Communication involving the secretion and uptake of extracellular vesicles containing proteins, lipids, and various RNA species."
+    }
+  ]
+}

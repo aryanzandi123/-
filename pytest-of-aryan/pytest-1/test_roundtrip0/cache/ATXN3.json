@@ -1,0 +1,17 @@
+{
+  "snapshot_json": {
+    "main": "ATXN3",
+    "interactors": [
+      {
+        "primary": "VCP",
+        "confidence": 0.9,
+        "arrow": "binds"
+      },
+      {
+        "primary": "HDAC6",
+        "confidence": 0.8,
+        "arrow": "activates"
+      }
+    ]
+  }
+}

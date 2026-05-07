@@ -1,0 +1,33 @@
+/* ModalShell layout — backdrop + dialog. The dialog inherits its accent
+ * color from a `--modal-accent` CSS variable the parent sets per modal
+ * instance (driven by the arrow class so the left border reads as the
+ * interaction's effect at a glance). */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--backdrop-tint);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 24px;
+}
+
+.dialog {
+  --modal-accent: var(--color-accent);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  backdrop-filter: var(--backdrop-blur);
+  color: var(--color-text-strong);
+  width: min(90vw, 900px);
+  max-height: calc(100vh - 10vh);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  border-left: 4px solid var(--modal-accent);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}

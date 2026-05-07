@@ -1,0 +1,219 @@
+/* FunctionCard — per-claim card. Visually mirrors the legacy modal's
+ * EFFECTS SUMMARY / MECHANISM / EFFECT / CASCADE / SPECIFIC EFFECTS /
+ * EVIDENCE rhythm. Color tokens drive the section accents:
+ *   - MECHANISM is always amber
+ *   - EFFECT is colored by the claim's arrow class via --effect-accent
+ *   - SPECIFIC EFFECTS uses --section-specifics
+ *
+ * The card is collapsible — the expanded body uses .body and the toggled
+ * header keeps `data-claim-header` on the underlying button so the shared
+ * keyboard-nav handler in ModalShell still finds it. */
+
+.card {
+  --effect-accent: var(--section-effect-neutral);
+  margin-bottom: var(--space-3);
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.cardUncited {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.10) inset;
+}
+
+.header {
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-strong);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.headerLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.titleSerif {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  line-height: var(--leading-tight);
+}
+
+.headerRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-faint);
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+}
+
+.pathwayChip {
+  background: var(--color-success-soft);
+  color: var(--color-arrow-positive);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.effectBadge {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid currentColor;
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+}
+
+.directBadge {
+  background: var(--color-info-soft);
+  color: #7dd3fc;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.uncitedPill {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.body {
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.section {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-left: 3px solid var(--section-accent, var(--color-border));
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: var(--radius-sm);
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.prose {
+  font-size: var(--font-size-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  white-space: pre-wrap;
+}
+
+.proseEffect {
+  color: var(--effect-accent);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.summaryCol .colLabel {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-faint);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.summaryCol .colValue {
+  margin-top: 4px;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.bullets {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  line-height: var(--leading-normal);
+}
+
+.bullets li { margin-bottom: 4px; }
+
+.evidenceList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.evidenceCard {
+  padding: 6px 8px;
+  background: rgba(15, 23, 42, 0.6);
+  border-left: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+.evidenceQuote { margin-top: 4px; font-style: italic; }
+
+.pmidLink {
+  color: #a5b4fc;
+  text-decoration: underline;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+}
+
+.uncitedNotice {
+  padding: 8px 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 2px solid var(--color-warn);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+  color: #fbbf24;
+  line-height: var(--leading-normal);
+}

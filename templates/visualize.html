@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ProPaths · {{ main_protein }}</title>
+  <style>
+    html, body, #root { height: 100%; margin: 0; padding: 0; }
+    body {
+      background: #0b1220;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .spa-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+  </style>
+  <link rel="stylesheet" href="/static/react/assets/app.css?v={{ cache_bust }}">
+</head>
+<body>
+  <div id="root">
+    <div class="spa-loading">Loading ProPaths…</div>
+  </div>
+
+  <script>
+    {% if raw_json is not none %}
+    window.__PROPATHS_BOOTSTRAP__ = {
+      protein: {{ main_protein | tojson }},
+      payload: {{ raw_json | tojson }}
+    };
+    {% endif %}
+  </script>
+
+  <script type="module" src="/static/react/app.js?v={{ cache_bust }}"></script>
+</body>
+</html>

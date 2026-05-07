@@ -1,0 +1,40 @@
+{
+  "zero_function_dropped": [],
+  "chain_pair_unrecoverable": [],
+  "pipeline_metadata": {
+    "quality_report": {
+      "total_functions": 172,
+      "flagged_functions": 65,
+      "pass_rate": 0.622,
+      "thresholds": {
+        "min_sentences": 6,
+        "max_sentences": 10,
+        "min_cascades": 3,
+        "max_cascades": 5
+      }
+    }
+  },
+  "chain_incomplete_hops": [],
+  "pathway_drifts": [
+    {
+      "interactor": "PERK",
+      "function": "ER-Mitochondria Calcium Transfer",
+      "from": "Mitophagy",
+      "from_score": 4,
+      "to": "Integrated Stress Response (ISR)",
+      "to_score": 15,
+      "action": "corrected",
+      "interaction_id": 14561
+    },
+    {
+      "interactor": "CANX",
+      "function": "MAM Scaffold Assembly & Mitochondrial Calcium Transfer",
+      "from": "Integrated Stress Response (ISR)",
+      "from_score": 0,
+      "to": "Apoptosis",
+      "to_score": 3,
+      "action": "corrected",
+      "interaction_id": 14578
+    }
+  ]
+}

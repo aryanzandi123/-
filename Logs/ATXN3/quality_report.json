@@ -1,0 +1,799 @@
+{
+  "total_functions": 138,
+  "flagged_functions": 58,
+  "pass_rate": 0.58,
+  "thresholds": {
+    "min_sentences": 6,
+    "max_sentences": 10,
+    "min_cascades": 3,
+    "max_cascades": 5,
+    "min_effect_sentences": 6,
+    "min_specific_effects": 3,
+    "min_evidence_papers": 3
+  },
+  "violations": [
+    {
+      "interactor": "VCP[SYVN1->VIMP]",
+      "function_name": "SYVN1-VIMP Retrotranslocon Assembly & ERAD Substrate Extraction",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "STUB1[STUB1->HSPA8]",
+      "function_name": "STUB1-HSPA8 Complex Assembly & Chaperone-Mediated Triage",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PRKN",
+      "function_name": "PRKN E3 Ligase Activity & Mitophagy",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PRKN[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PRKN[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FOXO4",
+      "function_name": "FOXO4-mediated SOD2 Transcription & Antioxidant Response",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 4,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "FOXO4",
+      "function_name": "FOXO4-mediated SOD2 Transcription & Antioxidant Response",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PNKP",
+      "function_name": "PNKP 3'-Phosphatase Activity & DNA Strand Break Repair",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "PNKP",
+      "function_name": "PNKP 3'-Phosphatase Activity & DNA Strand Break Repair",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "PNKP",
+      "function_name": "PNKP 3'-Phosphatase Activity & DNA Strand Break Repair",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BECN1",
+      "function_name": "BECN1 Stabilization & Autophagy Initiation",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "BECN1",
+      "function_name": "BECN1 Stabilization & Autophagy Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BECN1",
+      "function_name": "BECN1 Stabilization & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "BECN1[ATXN3->BECN1]",
+      "function_name": "BECN1 Deubiquitination & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA8",
+      "function_name": "Misfolded Protein Refolding & Proteasomal Degradation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA8",
+      "function_name": "Misfolded Protein Refolding & Proteasomal Degradation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSPA8[STUB1->HSPA8]",
+      "function_name": "STUB1-HSPA8 Complex Assembly & Chaperone-Mediated Triage",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSP90AA1",
+      "function_name": "Chaperone-Mediated Autophagy & Aggregate Clearance",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HSP90AA1",
+      "function_name": "Chaperone-Mediated Autophagy & Aggregate Clearance",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJB1",
+      "function_name": "Polyglutamine Aggregate Disaggregation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "DNAJB1",
+      "function_name": "Polyglutamine Aggregate Disaggregation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CREBBP",
+      "function_name": "Histone Acetyltransferase Activity & Transcription",
+      "field": "cellular_process",
+      "rule": "min_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": 10
+    },
+    {
+      "interactor": "CREBBP",
+      "function_name": "Histone Acetyltransferase Activity & Transcription",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CREBBP",
+      "function_name": "Histone Acetyltransferase Activity & Transcription",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "EP300",
+      "function_name": "EP300 Acetyltransferase Activity & Transcription Repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TBP",
+      "function_name": "TBP-DNA Binding & Transcription Pre-initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBQLN1",
+      "function_name": "Proteasomal Substrate Delivery & Protein Degradation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBQLN1",
+      "function_name": "Proteasomal Substrate Delivery & Protein Degradation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBQLN2",
+      "function_name": "Proteasomal Substrate Delivery & Protein Degradation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2W",
+      "function_name": "ATXN3 Lys-117 Monoubiquitination & Catalytic",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PSMD4",
+      "function_name": "Proteasome Recruitment & Substrate Delivery",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TP53",
+      "function_name": "p53 Deubiquitination & Stability & Apoptosis",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TP53[TP53->MDM2]",
+      "function_name": "p53-MDM2 Feedback Loop & Protein Stability",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "HDAC3",
+      "function_name": "Chromatin Recruitment & Transcriptional Repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "HDAC6",
+      "function_name": "HDAC6 Deubiquitination & Aggresome Formation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KEAP1",
+      "function_name": "KEAP1 Deubiquitination & NRF2 Pathway Repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KLF4",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "KLF4",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KLF4[FBXW7->KLF4]",
+      "function_name": "FBXW7-Mediated Ubiquitination & KLF4 Degradation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBR2",
+      "function_name": "Physical Binding",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBR2",
+      "function_name": "Physical Binding",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF4[ATXN3->TAF4]",
+      "function_name": "TAF4-Polyglutamine Binding & CREB-Dependent Transcription Suppression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF4[ATXN3->TAF4]",
+      "function_name": "Polyglutamine-Mediated TAF4 Sequestration & CREB-Dependent Transcription Suppression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "PSMD2",
+      "function_name": "Proteasome Interaction & Protein Quality Control",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KPNA2",
+      "function_name": "Nuclear Import & Nucleocytoplasmic Shuttling",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KPNA2[ATXN3->KPNA2]",
+      "function_name": "Nuclear Import & Nucleocytoplasmic Shuttling",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CSNK2A1",
+      "function_name": "Serine Phosphorylation & Nuclear Import",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VIMP",
+      "function_name": "ERAD-Mediated Substrate Retrotranslocation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "VIMP",
+      "function_name": "ERAD-Mediated Substrate Retrotranslocation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VIMP[SYVN1->VIMP]",
+      "function_name": "SYVN1-VIMP Retrotranslocon Assembly & ERAD Substrate Extraction",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2D1",
+      "function_name": "STUB1-Mediated Ubiquitination & ATXN3 Degradation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2D1",
+      "function_name": "STUB1-Mediated Ubiquitination & ATXN3 Degradation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2D1[STUB1->HSPA8]",
+      "function_name": "STUB1-HSPA8 Complex Assembly & Chaperone-Mediated Triage",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2G2",
+      "function_name": "PRKN E3 Ligase Activity & Mitophagy",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2G2",
+      "function_name": "PRKN E3 Ligase Activity & Mitophagy",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2G2[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "UBE2G2[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MFN1",
+      "function_name": "Mitochondrial Fusion & Mitophagy Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 4,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MFN1",
+      "function_name": "Mitochondrial Fusion & Mitophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MFN1[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MFN1[PRKN->ATXN3]",
+      "function_name": "PRKN-ATXN3 Bimodal Binding & DUB-E3 Reciprocal Regulation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "VPS34",
+      "function_name": "BECN1 Stabilization & PI3K Complex Activity",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "VPS34[ATXN3->BECN1]",
+      "function_name": "BECN1 Deubiquitination & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATG14",
+      "function_name": "Autophagosome Nucleation & Autophagy Initiation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATG14",
+      "function_name": "Autophagosome Nucleation & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATG14[ATXN3->BECN1]",
+      "function_name": "BECN1 Deubiquitination & Autophagy Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MDM2",
+      "function_name": "p53-MDM2 Feedback Loop & Protein Stability",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "MDM2",
+      "function_name": "p53-MDM2 Feedback Loop & Protein Stability",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "MDM2[TP53->MDM2]",
+      "function_name": "p53-MDM2 Feedback Loop & Protein Stability",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "SQSTM1",
+      "function_name": "Aggresome Formation & Selective Autophagy",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "SQSTM1",
+      "function_name": "Aggresome Formation & Selective Autophagy",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "NFE2L2",
+      "function_name": "Antioxidant Response & NRF2 Pathway",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "CUL3",
+      "function_name": "KEAP1 Deubiquitination & NRF2 Pathway Repression",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "CUL3",
+      "function_name": "KEAP1 Deubiquitination & NRF2 Pathway Repression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FBXW7",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "FBXW7",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "FBXW7[FBXW7->KLF4]",
+      "function_name": "FBXW7-Mediated Ubiquitination & KLF4 Degradation",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BRCA1",
+      "function_name": "RNF8-Dependent DNA Double-Strand Break Repair",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "BRCA1",
+      "function_name": "RNF8-Dependent DNA Double-Strand Break Repair",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF12",
+      "function_name": "TAF4-Mediated Transcription Initiation",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF12[ATXN3->TAF4]",
+      "function_name": "TAF4-Polyglutamine Binding & CREB-Dependent Transcription Suppression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "TAF12[ATXN3->TAF4]",
+      "function_name": "Polyglutamine-Mediated TAF4 Sequestration & CREB-Dependent Transcription Suppression",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 1,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "KPNB1[ATXN3->KPNA2]",
+      "function_name": "Nuclear Import & Nucleocytoplasmic Shuttling",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATXN3",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "biological_consequence",
+      "rule": "min_cascades",
+      "actual": 0,
+      "expected_min": 3,
+      "expected_max": 5
+    },
+    {
+      "interactor": "ATXN3",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "effect_description",
+      "rule": "min_effect_sentences",
+      "actual": 5,
+      "expected_min": 6,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATXN3",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "specific_effects",
+      "rule": "min_specific_effects",
+      "actual": 0,
+      "expected_min": 3,
+      "expected_max": null
+    },
+    {
+      "interactor": "ATXN3",
+      "function_name": "KLF4 Deubiquitination & Protein Stabilization",
+      "field": "evidence",
+      "rule": "min_evidence_papers",
+      "actual": 2,
+      "expected_min": 3,
+      "expected_max": null
+    }
+  ]
+}

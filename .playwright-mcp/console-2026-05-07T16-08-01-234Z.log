@@ -1,0 +1,17 @@
+[   55438ms] [LOG] ✅ Step 1: RAW data loaded {keys: Array(4), hasSnapshot: true, hasCtx: true} @ http://127.0.0.1:5003/api/visualize/TDP43?t=1778167530257:553
+[   55438ms] [LOG] ✅ Step 2: SNAP extracted {main: TDP43, keys: Array(7), hasProteins: true, hasInteractors: true, hasInteractions: true} @ http://127.0.0.1:5003/api/visualize/TDP43?t=1778167530257:582
+[   55438ms] [LOG] ✅ Step 3: Data loaded (hydration removed - using direct database format) @ http://127.0.0.1:5003/api/visualize/TDP43?t=1778167530257:651
+[   55441ms] [LOG] Initialized view mode: both @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:8478
+[   55600ms] [LOG] [SessionStorage] No saved jobs found @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:6780
+[  199101ms] [LOG] Opening Card Modal for: EIF2AK3 with 1 interactions @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10737
+[  199101ms] [LOG]   → 2 in Integrated Stress Response (ISR), 0 in other pathways @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10739
+[  199102ms] [LOG] [Pathway Filter] EIF2AK3: 1/1 interactions in "Integrated Stress Response (ISR)" @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778170136:1853
+[  208027ms] [LOG] Opening Card Modal for: EWSR1 with 1 interactions @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10737
+[  208027ms] [LOG]   → 2 in Integrated Stress Response (ISR), 2 in other pathways @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10739
+[  208027ms] [LOG] [Pathway Filter] EWSR1: 4/4 interactions in "Integrated Stress Response (ISR)" @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778170136:1853
+[  213168ms] [LOG] Opening Card Modal for: TDP43 with 1 interactions @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10737
+[  213169ms] [LOG]   → 1 in Nucleoplasmic Protein Quality Control, 107 in other pathways @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10739
+[  213169ms] [LOG] [Pathway Filter] TDP43: 1/108 interactions in "Nucleoplasmic Protein Quality Control" @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778170136:1853
+[  222106ms] [LOG] Opening Card Modal for: TDP43 with 1 interactions @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10737
+[  222106ms] [LOG]   → 15 in Autophagy, 93 in other pathways @ http://127.0.0.1:5003/static/_legacy/visualizer.js?v=1778170136:10739
+[  222106ms] [LOG] [Pathway Filter] TDP43: 1/1 interactions in "Autophagy" @ http://127.0.0.1:5003/static/_legacy/modal.js?v=1778170136:1853

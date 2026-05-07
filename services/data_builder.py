@@ -310,11 +310,11 @@ def _identity_pathway_token(item: dict) -> str:
     """Return the most specific pathway token available for an interaction row."""
     candidates = [
         item.get("pathway_id"),
+        item.get("hop_local_pathway"),
+        item.get("chain_context_pathway"),
         item.get("pathway"),
         item.get("pathway_name"),
         item.get("step3_finalized_pathway"),
-        item.get("hop_local_pathway"),
-        item.get("chain_context_pathway"),
     ]
     for value in candidates:
         if value:
@@ -770,6 +770,11 @@ def _reconstruct_chain_links(
         ).all()
         for c in _all_chain_claims:
             _chain_claims_by_interaction.setdefault(c.interaction_id, []).append(c)
+    _chain_link_memberships_index = (
+        _build_chain_membership_index(list(_chain_link_map.values()))
+        if _chain_link_map
+        else {}
+    )
 
     synthesized_chain_keys = set()
     # Track chain-context link keys to avoid duplicates across indirect interactions
@@ -1124,13 +1129,44 @@ def _reconstruct_chain_links(
                     # protein chains. Previously chain links had NO
                     # upstream_interactor, so findUpstreamParent() Strategy 1
                     # failed and chains broke at 3+ hops.
-                    def _stamp_chain_metadata(d):
+                    def _stamp_chain_metadata(d, chain_link_interaction=None):
+                        def _link_memberships_for_current_chain():
+                            if chain_link_interaction is None:
+                                memberships = _memberships_for(interaction, chain_memberships_index)
+                                return memberships, _coerce_int_id(interaction.chain_id)
+
+                            memberships = _memberships_for(
+                                chain_link_interaction,
+                                _chain_link_memberships_index,
+                            )
+                            parent_chain_id = _coerce_int_id(interaction.chain_id)
+                            if parent_chain_id is not None:
+                                matching = [
+                                    m for m in memberships
+                                    if _coerce_int_id(getattr(m, "chain_id", None)) == parent_chain_id
+                                ]
+                                if matching:
+                                    return matching, parent_chain_id
+
+                            link_chain_id = _coerce_int_id(getattr(chain_link_interaction, "chain_id", None))
+                            if link_chain_id is not None:
+                                matching = [
+                                    m for m in memberships
+                                    if _coerce_int_id(getattr(m, "chain_id", None)) == link_chain_id
+                                ]
+                                return matching or memberships, link_chain_id
+
+                            if memberships:
+                                return memberships, _coerce_int_id(getattr(memberships[0], "chain_id", None))
+                            return [], parent_chain_id
+
                         display_chain, display_arrows = _valid_component_for_segment(seg_idx)
+                        memberships, selected_chain_id = _link_memberships_for_current_chain()
                         d["upstream_interactor"] = src_sym
                         d["_is_chain_link"] = True
                         d["_chain_position"] = seg_idx
                         d["_chain_length"] = len(full_chain)
-                        d["chain_id"] = interaction.chain_id
+                        d["chain_id"] = selected_chain_id
                         d["mediator_chain"] = chain_view.mediator_chain
                         d.setdefault("depth", chain_view.depth)
                         # Attach full chain entity for frontend linear rendering
@@ -1149,7 +1185,6 @@ def _reconstruct_chain_links(
                         # invisible. Frontend can fall back to scalar
                         # `chain_id` when `all_chains` is empty/absent.
                         try:
-                            memberships = _memberships_for(interaction, chain_memberships_index)
                             if memberships:
                                 summaries = []
                                 for m in memberships:
@@ -1202,7 +1237,7 @@ def _reconstruct_chain_links(
                             chain_link, src_sym, tgt_sym, chain_funcs, interaction,
                             segment_arrow=_arrow_for_segment(seg_idx),
                         )
-                        _stamp_chain_metadata(chain_data)
+                        _stamp_chain_metadata(chain_data, chain_link)
                         interactions_list.append(chain_data)
 
                     elif chain_link and chain_link.id in chain_link_ids and chain_funcs:
@@ -1210,7 +1245,7 @@ def _reconstruct_chain_links(
                             chain_link, src_sym, tgt_sym, chain_funcs, interaction,
                             segment_arrow=_arrow_for_segment(seg_idx),
                         )
-                        _stamp_chain_metadata(chain_data)
+                        _stamp_chain_metadata(chain_data, chain_link)
                         interactions_list.append(chain_data)
 
                     elif chain_link is None:

@@ -601,6 +601,121 @@ def test_reconstruct_chain_links_prefers_real_db_terminal_hop(test_app):
         assert hop_payload["claims"][0]["locus"] == "chain_hop_claim"
 
 
+def test_reconstructed_chain_link_uses_hop_membership_for_identity(test_app):
+    """Same hop DB row should not duplicate under the parent chain role."""
+
+    from models import (
+        ChainParticipant,
+        IndirectChain,
+        Interaction,
+        InteractionClaim,
+        Pathway,
+        PathwayInteraction,
+        Protein,
+        db,
+    )
+    from services.data_builder import build_full_json_from_db
+
+    with test_app.app_context():
+        query = Protein(symbol="TDP43")
+        mediator = Protein(symbol="EWSR1")
+        target = Protein(symbol="FUS")
+        pathway = Pathway(name="RNA Granule Assembly", hierarchy_level=0, is_leaf=True)
+        db.session.add_all([query, mediator, target, pathway])
+        db.session.flush()
+
+        parent = Interaction(
+            protein_a_id=query.id,
+            protein_b_id=target.id,
+            interaction_type="indirect",
+            function_context="net",
+            direction="a_to_b",
+            arrow="activates",
+            mediator_chain=["EWSR1"],
+            depth=2,
+            data={
+                "step3_finalized_pathway": "RNA Granule Assembly",
+                "chain_link_functions": {
+                    "TDP43->EWSR1": [
+                        {
+                            "function": "Parent-carried hop copy",
+                            "arrow": "activates",
+                            "cellular_process": "TDP43 engages EWSR1 in RNA granules.",
+                            "pathway": "RNA Granule Assembly",
+                        }
+                    ]
+                },
+            },
+        )
+        hop = Interaction(
+            protein_a_id=query.id,
+            protein_b_id=mediator.id,
+            interaction_type="direct",
+            function_context="direct",
+            direction="a_to_b",
+            arrow="activates",
+            depth=1,
+            data={
+                "step3_finalized_pathway": "RNA Granule Assembly",
+                "functions": [
+                    {
+                        "function": "Hop-local assembly",
+                        "arrow": "activates",
+                        "cellular_process": "TDP43 directly recruits EWSR1.",
+                        "pathway": "RNA Granule Assembly",
+                    }
+                ],
+            },
+        )
+        db.session.add_all([parent, hop])
+        db.session.flush()
+
+        chain = IndirectChain(
+            chain_proteins=["TDP43", "EWSR1", "FUS"],
+            origin_interaction_id=parent.id,
+            pathway_name="RNA Granule Assembly",
+            pathway_id=pathway.id,
+            discovered_in_query="TDP43",
+        )
+        db.session.add(chain)
+        db.session.flush()
+        parent.chain_id = chain.id
+        hop.chain_id = chain.id
+        db.session.add_all([
+            ChainParticipant(chain_id=chain.id, interaction_id=parent.id, role="origin"),
+            ChainParticipant(chain_id=chain.id, interaction_id=hop.id, role="hop"),
+            PathwayInteraction(pathway_id=pathway.id, interaction_id=parent.id),
+            PathwayInteraction(pathway_id=pathway.id, interaction_id=hop.id),
+            InteractionClaim(
+                interaction_id=hop.id,
+                function_name="Hop-local assembly",
+                arrow="activates",
+                direction="main_to_primary",
+                mechanism="TDP43 directly recruits EWSR1.",
+                pathway_name="RNA Granule Assembly",
+                pathway_id=pathway.id,
+                function_context="direct",
+                chain_id=chain.id,
+            ),
+        ])
+        db.session.commit()
+
+        with patch("services.data_builder._inject_cross_protein_chain_claims"):
+            result = build_full_json_from_db("TDP43")["snapshot_json"]
+
+        hop_rows = [
+            ix for ix in result["interactions"]
+            if ix.get("_db_id") == hop.id and {ix.get("source"), ix.get("target")} == {"TDP43", "EWSR1"}
+        ]
+
+        assert len(hop_rows) == 1
+        assert hop_rows[0]["chain_id"] == chain.id
+        assert hop_rows[0]["hop_index"] == 0
+        assert hop_rows[0]["locus"] == "chain_hop_claim"
+        assert hop_rows[0]["all_chains"][0]["role"] == "hop"
+        assert "|role:hop" in hop_rows[0]["_interaction_instance_id"]
+
+
 def test_multi_chain_hop_rows_scope_claims_to_visible_chain(test_app):
     """A shared hop must not carry evidence from a different chain instance."""
 

@@ -270,7 +270,9 @@ function groupChainsByChainId(pathwayInteractorIds, pathwayName) {
                 ? inst.chainPathways.map(p => (p || '').trim().toLowerCase())
                 : [];
             const instClaimHere = !!pathwayNameNorm && instChainPathwaysNorm.includes(pathwayNameNorm);
-            if (!bothEndpointsInPathway && !instAssignedHere && !instClaimHere) continue;
+            const instHasExplicitPathway = !!instPwNorm || instChainPathwaysNorm.length > 0;
+            const endpointOnlyAdmission = bothEndpointsInPathway && !instHasExplicitPathway;
+            if (!endpointOnlyAdmission && !instAssignedHere && !instClaimHere) continue;
 
             if (!chains.has(inst.cid)) {
                 chains.set(inst.cid, {
@@ -1779,6 +1781,30 @@ function _cvHopIndex(interaction) {
     return Number.isFinite(parsed) ? parsed : null;
 }
 
+function _cvChainProteinId(proteins) {
+    if (!Array.isArray(proteins)) return '';
+    return proteins
+        .filter(Boolean)
+        .map(p => String(p).toUpperCase())
+        .join('->');
+}
+
+function _cvInteractionMatchesChainId(interaction, chainId) {
+    if (chainId == null || chainId === '') return true;
+    const wanted = String(chainId);
+    const wantedProteinId = _cvChainProteinId(wanted.includes('->') ? wanted.split('->') : []);
+    if (String(interaction.chain_id ?? '') === wanted) return true;
+    if (Array.isArray(interaction.chain_ids) && interaction.chain_ids.some(cid => String(cid) === wanted)) return true;
+    if (wantedProteinId) {
+        const entityChainId = _cvChainProteinId(interaction._chain_entity?.chain_proteins);
+        if (entityChainId && entityChainId === wantedProteinId) return true;
+    }
+    return Array.isArray(interaction.all_chains) && interaction.all_chains.some(ch => {
+        if (String(ch?.chain_id ?? '') === wanted) return true;
+        return wantedProteinId && _cvChainProteinId(ch?.chain_proteins) === wantedProteinId;
+    });
+}
+
 function createInteractorNode(intId, parentId, instanceContext = {}) {
     let rel = null;
     if (window.getNodeRelationship) {
@@ -1870,17 +1896,14 @@ function getLocalRelationship(parentId, childId, instanceContext = {}) {
 
     let interaction = null;
     if (chainId != null && chainId !== '') {
-        const chainMatches = pairMatches.filter(i => {
-            const rowChain = String(i.chain_id ?? '');
-            const inChains = Array.isArray(i.chain_ids) && i.chain_ids.some(cid => String(cid) === String(chainId));
-            const inAllChains = Array.isArray(i.all_chains) && i.all_chains.some(ch => String(ch?.chain_id ?? '') === String(chainId));
-            return rowChain === String(chainId) || inChains || inAllChains;
-        });
+        const chainMatches = pairMatches.filter(i => _cvInteractionMatchesChainId(i, chainId));
         interaction = chainMatches.find(i =>
             getCvInteractionLocus(i) === 'chain_hop_claim' &&
             (hopCandidates.size === 0 || hopCandidates.has(_cvHopIndex(i))) &&
-            _cvSameSymbol(i.source, parentId) &&
-            _cvSameSymbol(i.target, childId)
+            (
+                (_cvSameSymbol(i.source, parentId) && _cvSameSymbol(i.target, childId)) ||
+                (_cvSameSymbol(i.source, childId) && _cvSameSymbol(i.target, parentId))
+            )
         ) || chainMatches.find(i =>
             getCvInteractionLocus(i) === 'chain_hop_claim' &&
             (hopCandidates.size === 0 || hopCandidates.has(_cvHopIndex(i)))
@@ -1906,9 +1929,13 @@ function getLocalRelationship(parentId, childId, instanceContext = {}) {
 
     if (!interaction) return { text: 'Associated', arrow: 'binds' };
 
-    const isDownstream = _cvSameSymbol(interaction.source, parentId);
     const arrow = interaction.arrow || 'binds';
     const locus = getCvInteractionLocus(interaction);
+    const hasChainScope = chainId != null && chainId !== '';
+    const isChainHop = locus === 'chain_hop_claim';
+    const isDownstream = hasChainScope && isChainHop
+        ? true
+        : _cvSameSymbol(interaction.source, parentId);
 
     const action = arrow === 'activates' ? 'activates' :
         arrow === 'inhibits' ? 'inhibits' :

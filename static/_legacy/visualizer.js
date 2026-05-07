@@ -10545,9 +10545,19 @@ window.getNodeRelationship = (nodeId) => {
 function cardContextChainMatches(interaction, chainId) {
   if (chainId == null || chainId === '') return true;
   const wanted = String(chainId);
+  const normalizeProteinPath = (value) => String(value || '').toUpperCase();
   if (String(interaction.chain_id ?? '') === wanted) return true;
   if (Array.isArray(interaction.chain_ids) && interaction.chain_ids.some(cid => String(cid) === wanted)) return true;
-  if (Array.isArray(interaction.all_chains) && interaction.all_chains.some(chain => String(chain?.chain_id ?? '') === wanted)) return true;
+  const chainProteinId = (proteins) => Array.isArray(proteins)
+    ? proteins.filter(Boolean).map(normalizeProteinPath).join('->')
+    : '';
+  const wantedProteinId = wanted.includes('->') ? chainProteinId(wanted.split('->')) : '';
+  const entityChainId = chainProteinId(interaction._chain_entity?.chain_proteins);
+  if (wantedProteinId && entityChainId && entityChainId === wantedProteinId) return true;
+  if (Array.isArray(interaction.all_chains) && interaction.all_chains.some(chain => (
+    String(chain?.chain_id ?? '') === wanted ||
+    (wantedProteinId && chainProteinId(chain?.chain_proteins) === wantedProteinId)
+  ))) return true;
   return false;
 }
 
@@ -10593,30 +10603,37 @@ function sameCardProteinSymbol(left, right) {
 }
 
 function selectLinksForCardContext(interactions, cardContext) {
+  const chainId = cardContext?._chainId;
+  const hasChainScope = chainId != null && chainId !== '' && cardContext?._chainPosition != null;
+  const hopCandidates = getCardContextHopCandidates(cardContext);
+  const interactionMatchesScopedHop = (interaction) => {
+    if (!hasChainScope) return true;
+    if (!cardContextChainMatches(interaction, chainId)) return false;
+    if (getLegacyInteractionLocus(interaction) !== 'chain_hop_claim') return false;
+    const rowHop = getCardRowHopIndex(interaction);
+    return hopCandidates.some(candidate => {
+      if (rowHop !== candidate.hopIndex) return false;
+      const forward = sameCardProteinSymbol(interaction.source, candidate.source) &&
+        sameCardProteinSymbol(interaction.target, candidate.target);
+      const reverse = sameCardProteinSymbol(interaction.source, candidate.target) &&
+        sameCardProteinSymbol(interaction.target, candidate.source);
+      return forward || reverse;
+    });
+  };
+
   const relationshipInteractionId = cardContext?.relationshipInteractionId;
   if (relationshipInteractionId) {
     const exact = interactions.filter(interaction =>
       String(interaction._interaction_instance_id || interaction._display_row_id || '') === String(relationshipInteractionId)
     );
-    if (exact.length > 0) return exact;
+    const scopedExact = hasChainScope ? exact.filter(interactionMatchesScopedHop) : exact;
+    if (scopedExact.length > 0) return scopedExact;
   }
 
-  const chainId = cardContext?._chainId;
-  const hasChainScope = chainId != null && chainId !== '' && cardContext?._chainPosition != null;
-  const hopCandidates = getCardContextHopCandidates(cardContext);
   if (!hasChainScope) return interactions;
   if (hopCandidates.length === 0) return [];
 
-  const scoped = interactions.filter(interaction => {
-    if (!cardContextChainMatches(interaction, chainId)) return false;
-    if (getLegacyInteractionLocus(interaction) !== 'chain_hop_claim') return false;
-    const rowHop = getCardRowHopIndex(interaction);
-    return hopCandidates.some(candidate =>
-      rowHop === candidate.hopIndex &&
-      sameCardProteinSymbol(interaction.source, candidate.source) &&
-      sameCardProteinSymbol(interaction.target, candidate.target)
-    );
-  });
+  const scoped = interactions.filter(interactionMatchesScopedHop);
 
   return scoped;
 }

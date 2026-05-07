@@ -716,6 +716,28 @@ def test_reconstructed_chain_link_uses_hop_membership_for_identity(test_app):
         assert "|role:hop" in hop_rows[0]["_interaction_instance_id"]
 
 
+def test_chain_hop_identity_prefers_hop_local_pathway_over_stale_direct_pathway():
+    """A chain-hop row's display identity follows its scoped hop pathway."""
+
+    from services.data_builder import _interaction_instance_id_for
+
+    identity = _interaction_instance_id_for({
+        "_db_id": 14612,
+        "source": "CYLD",
+        "target": "TDP43",
+        "chain_id": 2626,
+        "hop_index": 0,
+        "locus": "chain_hop_claim",
+        "step3_finalized_pathway": "Protein Quality Control",
+        "hop_local_pathway": "Inflammatory Signaling",
+        "chain_context_pathway": "Inflammatory Signaling",
+        "all_chains": [{"chain_id": 2626, "role": "hop"}],
+    })
+
+    assert "pathway:inflammatory signaling" in identity
+    assert "pathway:protein quality control" not in identity
+
+
 def test_multi_chain_hop_rows_scope_claims_to_visible_chain(test_app):
     """A shared hop must not carry evidence from a different chain instance."""
 
@@ -862,6 +884,8 @@ def test_multi_chain_hop_rows_scope_claims_to_visible_chain(test_app):
             row_scope = {ix["chain_id"]}
             claim_chain_ids = {claim.get("chain_id") for claim in ix.get("claims", [])}
             assert claim_chain_ids <= row_scope
+            summary_chain_ids = {chain.get("chain_id") for chain in ix.get("all_chains", [])}
+            assert summary_chain_ids <= row_scope
 
             matching_chain = next(
                 (

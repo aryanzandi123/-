@@ -596,7 +596,16 @@ def _chain_fields_for(
     try:
         memberships = _memberships_for(interaction, chain_memberships_index)
         if memberships:
-            chain_ids = [m.chain_id for m in memberships]
+            primary_chain_id = _coerce_int_id(result.get("chain_id"))
+            scoped_memberships = memberships
+            if primary_chain_id is not None:
+                matching_memberships = [
+                    m for m in memberships
+                    if _coerce_int_id(getattr(m, "chain_id", None)) == primary_chain_id
+                ]
+                if matching_memberships:
+                    scoped_memberships = matching_memberships
+            chain_ids = [m.chain_id for m in scoped_memberships]
             # Layer 2 of CLAUDE_DOCS/11_CHAIN_TOPOLOGY.md: collect every
             # distinct pathway any chain-derived claim landed in, per
             # chain. Frontend gate widens on these so HDAC6's chain
@@ -628,7 +637,7 @@ def _chain_fields_for(
                         per_chain_pathways.setdefault(cid, set()).add(pw)
 
             chain_summaries = []
-            for m in memberships:
+            for m in scoped_memberships:
                 ch = m.chain
                 if not ch:
                     continue
